@@ -1,0 +1,50 @@
+import React from 'react'
+import logo from '../asserts/goldlogopng.png';
+import { Link, NavLink } from 'react-router-dom';
+import { CiBag1 } from "react-icons/ci"; // bag icon
+import { CiHeart } from "react-icons/ci"; // heart icon
+import { navigation } from '../constant/navigation';
+
+
+const Header = () => {
+
+
+  return (
+    <header className='fixed h-14 top-0 w-full border-b-2'>
+      <div className='container  mx-auto px-2  flex items-center h-full'>
+
+        <div className='flex items-center mr-10'>
+          <Link to={"/"}>
+            <img src={logo} alt="logo-img" width={80} className='cursor-pointer' />
+          </Link>
+          <h2 className='font-bold text-2xl cursor-pointer'>DivineGold</h2>
+        </div>
+
+        <div className='mx-auto'>
+          <nav className='hidden lg:flex gap-3 items-center'>
+            {navigation?.map((el, i) => (
+              <div>
+                <NavLink key={el.label} to={el.href} className={({ isActive }) => `px-1 hover:text-pink-400 transition-all ${isActive && 'text-pink-700'}`}  >{el.label} </NavLink>
+              </div>
+            ))}
+          </nav>
+        </div>
+
+        {/**for user icons and bag */}
+        <div className='ml-auto '>
+          <section className='flex justify-center gap-5 mr-7 text-xl '>
+            <div className='font-extrabold'>
+              <CiHeart />
+            </div>
+            <div>
+              <CiBag1 />
+            </div>
+          </section>
+        </div>
+
+      </div>
+    </header>
+  )
+}
+
+export default Header
