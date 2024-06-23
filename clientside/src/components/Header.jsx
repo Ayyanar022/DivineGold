@@ -3,18 +3,19 @@ import logo from '../asserts/goldlogopng.png';
 import { Link, NavLink } from 'react-router-dom';
 import { CiBag1 } from "react-icons/ci"; // bag icon
 import { CiHeart } from "react-icons/ci"; // heart icon
+import { FaUserCircle } from "react-icons/fa"; // userProfile icon
 import { navigation } from '../constant/navigation';
 import { useAuth0 } from '@auth0/auth0-react';
 
 
 const Header = () => {
-  const { loginWithRedirect } = useAuth0()
+  const { loginWithRedirect, isAuthenticated, logout } = useAuth0()
 
   return (
     <header className='fixed h-14 top-0 w-full border-b-2'>
       <div className='container  mx-auto px-2  flex items-center h-full'>
 
-        <div className='flex items-center mr-10'>
+        <div className='flex items-center  lg:mr-10'>
           <Link to={"/"}>
             <img src={logo} alt="logo-img" width={80} className='cursor-pointer' />
           </Link>
@@ -33,13 +34,20 @@ const Header = () => {
 
         {/**for user icons and bag */}
         <div className='ml-auto '>
-          <section className='flex justify-center gap-5 mr-7 text-xl '>
-            <button className='text-sm' onClick={async () => await loginWithRedirect()}>Login</button>
-            <div className='font-extrabold'> <CiHeart />  </div>
+          <section className='flex justify-center gap-5 lg:mr-7 pr-2 text-xl items-center '>
+
+            {isAuthenticated ? (
+              <button className='text-sm' onClick={() => logout()}>Logout</button>
+            ) : <button className='text-sm cursor-pointer' onClick={async () => await loginWithRedirect()}>Login</button>}
+
+
+            {/* <p>{user?.email}</p> */}
+            {isAuthenticated && <span className='cursor-pointer hidden lg:block'><FaUserCircle /> </span>}
+            <div> <CiHeart /> </div>
             <div> <CiBag1 /> </div>
           </section>
         </div>
-        
+
       </div>
     </header>
   )
