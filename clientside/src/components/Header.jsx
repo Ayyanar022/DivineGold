@@ -4,10 +4,11 @@ import { Link, NavLink } from 'react-router-dom';
 import { CiBag1 } from "react-icons/ci"; // bag icon
 import { CiHeart } from "react-icons/ci"; // heart icon
 import { navigation } from '../constant/navigation';
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 const Header = () => {
-
+  const { loginWithRedirect } = useAuth0()
 
   return (
     <header className='fixed h-14 top-0 w-full border-b-2'>
@@ -33,15 +34,12 @@ const Header = () => {
         {/**for user icons and bag */}
         <div className='ml-auto '>
           <section className='flex justify-center gap-5 mr-7 text-xl '>
-            <div className='font-extrabold'>
-              <CiHeart />
-            </div>
-            <div>
-              <CiBag1 />
-            </div>
+            <button className='text-sm' onClick={async () => await loginWithRedirect()}>Login</button>
+            <div className='font-extrabold'> <CiHeart />  </div>
+            <div> <CiBag1 /> </div>
           </section>
         </div>
-
+        
       </div>
     </header>
   )
