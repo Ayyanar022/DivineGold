@@ -6,13 +6,13 @@ import { useNavigate } from 'react-router-dom'
 
 const AuthCallBack = () => {
     const { user } = useAuth0()
-    console.log("user", user)
     const { createUser } = useCreateMyUser();
     const navigate = useNavigate()
     const hasUserCreated = useRef(false)
+
     useEffect(() => {
         // its for creating user in our database 
-        if (user?.sub && user?.email && !hasUserCreated) {
+        if (user?.sub && user?.email && !hasUserCreated.current) {
             createUser({ auth0Id: user?.sub, email: user.email });
             hasUserCreated.current = true
         }

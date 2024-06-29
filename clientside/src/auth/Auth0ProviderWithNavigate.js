@@ -48,13 +48,10 @@ const Auth0ProviderWithNavigate = ({ children }) => {
     throw new Error("Unable to initialise Auth");
   }
 
-  const { createUser } = useCreateMyUser();
 
-  const onRedirectCallback = (appState, user) => {
-    if (user?.sub && user?.email) {
-      createUser({ auth0Id: user?.sub, email: user.email });
-    }
-    // navigate(appState?.returnTo || window.location.pathname);
+
+  const onRedirectCallback = (appState, user) => {  
+    navigate("/auth-callback");
   };
 
   return (
