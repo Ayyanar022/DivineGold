@@ -28,7 +28,7 @@ const Header = () => {
               <div>
                 <NavLink key={el.label} to={el.href} className={({ isActive }) => `px-1 hover:text-pink-400 transition-all ${isActive && 'text-pink-700'}`}  >{el.label} </NavLink>
               </div>
-            ))}
+            ))} 
           </nav>
         </div>
 
