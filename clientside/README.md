@@ -76,3 +76,5 @@ react-icons - for icons
 Auth0 - for google authentication and (Authentication and Autherization)
 db - mondodb Atlas
 customhook - for api request
+
+npm for oauth2 with jwt -serverside -> npm i express-oauth2-jwt-bearer

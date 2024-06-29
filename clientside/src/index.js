@@ -1,39 +1,4 @@
 
-// import React from "react";
-// import ReactDOM from "react-dom/client";
-// import "./index.css";
-// import reportWebVitals from "./reportWebVitals";
-// import { Outlet, RouterProvider } from "react-router-dom";
-// import router from "./routes";
-// import Auth0ProviderWithNavigate from "./auth/Auth0ProviderWithNavigate";
-// import { QueryClient, QueryClientProvider } from "react-query";
-
-// const queryClient = new QueryClient({
-//   defaultOptions: {
-//     queries: {
-//       refetchOnWindowFocus: false,
-//     },
-//   },
-// });
-
-// const root = ReactDOM.createRoot(document.getElementById("root"));
-// root.render(
-//   <React.StrictMode>
-//     <QueryClientProvider client={queryClient}>
-//       <RouterProvider router={router}>
-//         <Auth0ProviderWithNavigate>
-//           <div>
-//             <Outlet /> {/* This should be in App.js */}
-//           </div>
-//         </Auth0ProviderWithNavigate>
-//       </RouterProvider>
-//     </QueryClientProvider>
-//   </React.StrictMode>
-// );
-
-// reportWebVitals();
-
-
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
