@@ -12,8 +12,11 @@ const userSchema = new mongoose.Schema({
     name:{type:String},
     mobileNo:{type:Number},
     address:{type:String},
-    country:{type:String},   
-    role:{type:String}
+    village:{type:String},   
+    city:{type:String},   
+    role:{type:String},
+    bonousCode:{type:String},
+    bonousePoints:{type:Number}
 })
 
 const User = mongoose.model('User',userSchema)

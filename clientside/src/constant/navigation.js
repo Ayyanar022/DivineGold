@@ -8,7 +8,7 @@ import { FaBlackTie } from "react-icons/fa"; // contect us icon
 export const navigation = [
   { label: "Explor", href: "explore", icon: <BiSolidCategoryAlt /> },
   { label: "Fair Price", href: "fairPrice", icon: <BiSolidComponent /> },
-  { label: "User", href: "userProfil", icon: <FaUserCircle /> },
+  { label: "User", href: "user-profile", icon: <FaUserCircle /> },
   { label: "Contect Us", href: "contectInfo", icon: <FaBlackTie /> },
 ]
 

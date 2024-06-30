@@ -1,9 +1,6 @@
 import User from '../models/userModel.js'
 
 const createCurrentUser = async(req,res)=>{
-    //check if user is exist
-    // if dosent create user 
-    // return the user object 
 
     try{
         const {auth0Id} = req.body;
@@ -21,7 +18,31 @@ const createCurrentUser = async(req,res)=>{
     }
 }
 
+const updateCurrentUser = async(req,res)=>{
+    try{
+        const {name,mobileNo,address,village,city} = req.body;
+        const user = await User.findById(req.userId);
+
+        if(!user)return res.status(404).json({message:"User not found"})
+        
+        user.name=name;
+        user.mobileNo=mobileNo
+        user.address=address
+        user.village=village
+        user.city=country
+
+       await user.save()
+        res.send(user)
+        
+
+    }catch(err){
+        console.log("Error in update ",err)
+        res.json({message:"Error updating user"})
+    }
+}
+
 export default {
     createCurrentUser, 
+    updateCurrentUser,
 }
 
