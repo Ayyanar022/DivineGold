@@ -32,5 +32,29 @@ const {getAccessTokenSilently } = useAuth0()
 }
 
 
+export const useUpdateMyUser = ()=>{
+    const {getAccessTokenSilently} = useAuth0();
+
+    const updateMyUserRequest = async (formData)=>{
+        const accessToken = getAccessTokenSilently()
+        const response = await fetch(`http://localhost:7000/api/my/user`,{
+            method:"PUT",
+            headers:{
+                Authorization:`Bearer ${accessToken}`, 
+                "Content-Type":"application/json"   
+            },
+            body:JSON.stringify(formData),
+        })
+
+        if(!response)throw new Error("Faild to update user")
+        
+        return response.json()
+    }
+
+    const {mutateAsync: updateUser, isLoading, isSuccess,isError,error,reset} = useMutation(updateMyUserRequest);
+
+    return {updateUser,isLoading};
+}
+
 
 

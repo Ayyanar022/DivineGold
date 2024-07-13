@@ -12,7 +12,7 @@ const Header = () => {
   const { loginWithRedirect, isAuthenticated, logout } = useAuth0()
 
   return (
-    <header className='fixed h-14 top-0 w-full border-b-2 z-50'>
+    <header className='fixed h-14 top-0 w-full border-b-2 z-50 shadow-sm'>
       <div className='container  mx-auto px-2  flex items-center h-full'>
 
         <div className='flex items-center  lg:mr-10'>

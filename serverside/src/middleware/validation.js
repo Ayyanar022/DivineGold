@@ -9,8 +9,8 @@ const handleValidationerrors = (req,res,next)=>{
 
 export const validateMyUserRequest = [
     body("name").isString().notEmpty().withMessage("Name must be string"),
-    body("mobileNo").isNumeric().notEmpty().withMessage("Mobile number Must be 10 number"),
-    body("address").isString().notEmpty().withMessage("Address must"),
+    body("mobileNo").isString().notEmpty().withMessage("Mobile number Must be 10 number"),
+    body("address").isString().notEmpty().withMessage("Address must String"),
     body("village").isString().notEmpty().withMessage("Village must be sting"),
     body("city").isString().notEmpty().withMessage("City must be string and valid  "),
     handleValidationerrors,

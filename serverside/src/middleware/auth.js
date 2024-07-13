@@ -12,6 +12,7 @@ import User from "../models/userModel.js";
 
   export const jwtParse = async(req,res,next)=>{
      const {authorization} =req.headers;
+     console.log("authorization",authorization)
 
      if(!authorization || !authorization.startsWith("Bearer "))return res.sendStatus(401);
 

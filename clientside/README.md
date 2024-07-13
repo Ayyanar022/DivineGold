@@ -78,3 +78,5 @@ db - mondodb Atlas
 customhook - for api request
 
 npm for oauth2 with jwt -serverside -> npm i express-oauth2-jwt-bearer
+
+form validation--> npm install react-hook-form @hookform/resolvers zod

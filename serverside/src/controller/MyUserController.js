@@ -20,7 +20,9 @@ const createCurrentUser = async(req,res)=>{
 
 const updateCurrentUser = async(req,res)=>{
     try{
+       
         const {name,mobileNo,address,village,city} = req.body;
+        console.log("name",name)
         const user = await User.findById(req.userId);
 
         if(!user)return res.status(404).json({message:"User not found"})
@@ -29,7 +31,7 @@ const updateCurrentUser = async(req,res)=>{
         user.mobileNo=mobileNo
         user.address=address
         user.village=village
-        user.city=country
+        user.city=city
 
        await user.save()
         res.send(user)
