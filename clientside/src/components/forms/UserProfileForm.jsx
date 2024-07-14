@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { z } from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -14,9 +14,19 @@ const formSchema = z.object({
     bonousCode: z.string().optional(),
 });
 
-const UserProfileForm = ({ onSave, isLoading }) => {
-    const { register, handleSubmit, formState: { errors } } = useForm({
-        resolver: zodResolver(formSchema)
+const UserProfileForm = ({ currentUser, onSave, isLoading }) => {
+    const { register, handleSubmit, formState: { errors }, reset } = useForm({
+        resolver: zodResolver(formSchema),
+        // defaultValues: currentUser,
+        defaultValues: {
+            email: currentUser?.email || '',
+            name: currentUser?.name || '',
+            mobileNo: currentUser?.mobileNo?.toString() || '', // Convert to string
+            address: currentUser?.address || '',
+            village: currentUser?.village || '',
+            city: currentUser?.city || '',
+            bonousCode: currentUser?.bonousCode || '',
+        },
     });
 
     const onSubmit = data => {
@@ -24,16 +34,22 @@ const UserProfileForm = ({ onSave, isLoading }) => {
             onSave(data);
         }
     };
-    
+
+    useEffect(() => {
+
+        reset(currentUser)
+        console.log("current usr--- ", currentUser)
+    }, [currentUser, reset])
+
 
     return (
-        <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 p-4  ">
+        <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 p-4 z-0 ">
             <div className="w-full md:w-1/2 bg-white p-6 rounded-lg shadow-md">
                 <h2 className="text-xl font-bold mb-4">User Profile Form</h2>
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Email</label>
-                        <input {...register('email')} disabled className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+                        <input {...register('email')} disabled className="mt-1 block w-full text-gray-500 p-2 border border-gray-300 rounded-md" />
                         {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
                     </div>
                     <div>
@@ -61,11 +77,12 @@ const UserProfileForm = ({ onSave, isLoading }) => {
                         <input {...register('city')} className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
                         {errors.city && <p className="text-red-500 text-sm mt-1">{errors.city.message}</p>}
                     </div>
-                    <div>
+                    {!currentUser && <div>
                         <label className="block text-sm font-medium text-gray-700">Super Code</label>
                         <input {...register('bonousCode')} className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
                         {errors.bonousCode && <p className="text-red-500 text-sm mt-1">{errors.bonousCode.message}</p>}
-                    </div>
+                    </div>}
+
                     <button type="submit" disabled={isLoading} className="w-full bg-pink-600 text-white py-2 rounded-md hover:bg-pink-700 transition duration-200">
                         {isLoading ? 'Loading...' : 'Submit'}
                     </button>
@@ -75,8 +92,14 @@ const UserProfileForm = ({ onSave, isLoading }) => {
 
             <div className="w-full md:w-1/2 bg-white p-6 rounded-lg shadow-md">
                 <h2 className="text-xl font-bold mb-4">User Details</h2>
-                <p>Here you can display user details.</p>
-                {/* Add your user details content here */}
+                <div className=' flex flex-col lg:flex-row gap-1 lg:items-center'>
+                    <p className='text-lg font-semibold  text-slate-700'>Treasure Code : </p>
+                    <p className='text-slate-700 text-sm'>{currentUser.bonousCode}</p>
+                </div>
+                <div className='flex flex-col lg:flex-row gap-1 mt-3 lg:items-center '>
+                    <p className='text-lg font-semibold text-slate-700'>Prize Token : </p>
+                    <p className='text-slate-700 text-sm'>{currentUser.bonousePoints}</p>
+                </div>
             </div>
         </div>
     );

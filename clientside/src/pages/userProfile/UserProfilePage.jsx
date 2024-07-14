@@ -1,21 +1,29 @@
 import React from 'react'
 import UserProfileForm from '../../components/forms/UserProfileForm'
-import UserDetailsShow from '../../components/UserDetailsShow'
-import { useUpdateMyUser } from '../../api/MyUserApi'
+// import UserDetailsShow from '../../components/UserDetailsShow'
+import { useGetMyUser, useUpdateMyUser } from '../../api/MyUserApi'
 
 const UserProfilePage = () => {
 
-  const { updateUser, isLoading } = useUpdateMyUser()
+  const { updateUser, isLoading: isGetLoading } = useUpdateMyUser()
+  const { currentUser, isLoading: isUpdateLoading } = useGetMyUser()
+
+
+  if (isGetLoading) {
+    return <span>Loading...</span>
+  }
+
+  if (!currentUser) {
+    return <span>Unable to load user Profile..</span>
+  }
 
   return (
-    <div>
 
-      <div className='z-10 over'>
-        <UserProfileForm onSave={updateUser} isLoading={isLoading} />
-      </div>
+    <UserProfileForm currentUser={currentUser} onSave={updateUser} isLoading={isUpdateLoading} />
 
 
-    </div>
+
+
   )
 }
 
