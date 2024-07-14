@@ -1,5 +1,6 @@
 import {useMutation} from 'react-query'
 import {useAuth0} from "@auth0/auth0-react";
+import { toast} from 'react-toastify';
 
 // const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
@@ -52,8 +53,16 @@ export const useUpdateMyUser = ()=>{
         return response.json()
     }
 
-    const {mutateAsync: updateUser, isLoading, isSuccess,isError,error,reset} = useMutation(updateMyUserRequest);
+    const {mutateAsync: updateUser, isLoading, isSuccess,error,reset} = useMutation(updateMyUserRequest);
 
+    if(isSuccess){
+        toast.success('🦄 User profile updated..')
+      }
+
+    if(error){
+        toast.error(error.toString());
+        reset()
+    }
     return {updateUser,isLoading};
 }
 

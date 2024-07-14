@@ -24,6 +24,7 @@ const UserProfileForm = ({ onSave, isLoading }) => {
             onSave(data);
         }
     };
+    
 
     return (
         <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 p-4  ">

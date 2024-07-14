@@ -7,6 +7,8 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Auth0ProviderWithNavigate from "./auth/Auth0ProviderWithNavigate";
 import router from "./routes"; 
+import { ToastContainer,Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -36,6 +38,21 @@ root.render(
               </Route>
             ))}
           </Routes>
+          <ToastContainer
+                position="bottom-right"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss={false}
+                draggable
+                pauseOnHover
+                theme="light"
+                transition={Bounce}
+                />
+                {/* <ToastContainer /> */}
+
         </Auth0ProviderWithNavigate>
       </BrowserRouter>
     </QueryClientProvider>
