@@ -10,13 +10,13 @@ const userSchema = new mongoose.Schema({
         required:true
     },
     name:{type:String},
-    mobileNo:{type:Number},
+    mobileNo:{type:Number}, // number
     address:{type:String},
     village:{type:String},   
     city:{type:String},   
     role:{type:String},
-    bonousCode:{type:String},
-    bonousePoints:{type:Number}
+    bonousCode:{type:String,unique:true},
+    bonousePoints:{type:Number} // number
 })
 
 const User = mongoose.model('User',userSchema)

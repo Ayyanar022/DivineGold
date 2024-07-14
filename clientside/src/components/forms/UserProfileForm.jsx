@@ -10,7 +10,8 @@ const formSchema = z.object({
     mobileNo: z.string().min(10, "Mobile No is required"), // Change to string for validation
     address: z.string().min(5, "Address is required"),
     village: z.string().min(4, "Village Name required"),
-    city: z.string().min(4, "City name is required")
+    city: z.string().min(4, "City name is required"),
+    bonuseCode: z.string().optional(),
 });
 
 const UserProfileForm = ({ onSave, isLoading }) => {
@@ -58,6 +59,11 @@ const UserProfileForm = ({ onSave, isLoading }) => {
                         <label className="block text-sm font-medium text-gray-700">City</label>
                         <input {...register('city')} className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
                         {errors.city && <p className="text-red-500 text-sm mt-1">{errors.city.message}</p>}
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700">Super Code</label>
+                        <input {...register('bonuseCode')} className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+                        {errors.bonuseCode && <p className="text-red-500 text-sm mt-1">{errors.bonuseCode.message}</p>}
                     </div>
                     <button type="submit" disabled={isLoading} className="w-full bg-pink-600 text-white py-2 rounded-md hover:bg-pink-700 transition duration-200">
                         {isLoading ? 'Loading...' : 'Submit'}

@@ -11,25 +11,20 @@ import User from "../models/userModel.js";
 
 
   export const jwtParse = async(req,res,next)=>{
-     const {authorization} =req.headers;
-     console.log("authorization",authorization)
-
-     if(!authorization || !authorization.startsWith("Bearer "))return res.sendStatus(401);
-
+     const {authorization} = req.headers;
+     if(!authorization || !authorization.startsWith("Bearer ")) return res.sendStatus(401);
      const token = authorization.split(" ")[1];
-
      try{
-      const decoded = jwt.decode(token)
+      const decoded =await jwt.decode(token) 
       const auth0Id = decoded.sub;
-
       const user = await User.findOne({auth0Id})
-      if(!user)return res.sendStatus(401)
-      
+      if(!user) return res.sendStatus(401)      
       req.auth0Id = auth0Id;
       req.userId = user._id.toString()
       next();
-
-     }catch(err){
+     }
+     catch(err){
+      console.log('auth.js cath block',err)
       return res.sendStatus(401);
      }
   }

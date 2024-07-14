@@ -36,7 +36,8 @@ export const useUpdateMyUser = ()=>{
     const {getAccessTokenSilently} = useAuth0();
 
     const updateMyUserRequest = async (formData)=>{
-        const accessToken = getAccessTokenSilently()
+        const accessToken = await getAccessTokenSilently()
+        console.log("accessToken",accessToken)
         const response = await fetch(`http://localhost:7000/api/my/user`,{
             method:"PUT",
             headers:{

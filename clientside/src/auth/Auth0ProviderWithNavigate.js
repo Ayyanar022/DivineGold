@@ -11,6 +11,8 @@ const Auth0ProviderWithNavigate = ({ children }) => {
   const redirectUri = process.env.REACT_APP_AUTH0_CALLBACK_URL;
   const audience = process.env.REACT_APP_AUTH0_AUDIENCE;
 
+  // console.log("domain : ",domain,"clientId :",clientId,"redirectUri : ",redirectUri,"audience :",audience)
+
   if (!domain || !clientId || !redirectUri ||!audience) {
     throw new Error("Unable to initialise Auth");
   }
