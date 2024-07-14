@@ -25,8 +25,8 @@ const Header = () => {
         <div className='mx-auto'>
           <nav className='hidden lg:flex gap-3 items-center'>
             {navigation?.map((el, i) => (
-              <div>
-                <NavLink key={el.label} to={el.href} className={({ isActive }) => `px-1 hover:text-pink-400 transition-all ${isActive && 'text-pink-700'}`}  >{el.label} </NavLink>
+              <div key={el.label}>
+                <NavLink to={el.href} className={({ isActive }) => `px-1 hover:text-pink-400 transition-all ${isActive && 'text-pink-700'}`}  >{el.label} </NavLink>
               </div>
             ))}
           </nav>

@@ -19,7 +19,6 @@ const createCurrentUser = async(req,res)=>{
 const updateCurrentUser = async(req,res)=>{
     try{       
         const {name,mobileNo,address,village,city,bonousCode} = req.body;
-        console.log("name",name,mobileNo,address,village,city,"bonousCode",bonousCode)
         const user = await User.findById(req.userId);
         if(!user)return res.status(404).json({message:"User not found"})    
             

@@ -11,7 +11,7 @@ const formSchema = z.object({
     address: z.string().min(5, "Address is required"),
     village: z.string().min(4, "Village Name required"),
     city: z.string().min(4, "City name is required"),
-    bonuseCode: z.string().optional(),
+    bonousCode: z.string().optional(),
 });
 
 const UserProfileForm = ({ onSave, isLoading }) => {
@@ -62,8 +62,8 @@ const UserProfileForm = ({ onSave, isLoading }) => {
                     </div>
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Super Code</label>
-                        <input {...register('bonuseCode')} className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
-                        {errors.bonuseCode && <p className="text-red-500 text-sm mt-1">{errors.bonuseCode.message}</p>}
+                        <input {...register('bonousCode')} className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+                        {errors.bonousCode && <p className="text-red-500 text-sm mt-1">{errors.bonousCode.message}</p>}
                     </div>
                     <button type="submit" disabled={isLoading} className="w-full bg-pink-600 text-white py-2 rounded-md hover:bg-pink-700 transition duration-200">
                         {isLoading ? 'Loading...' : 'Submit'}
