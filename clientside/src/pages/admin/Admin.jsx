@@ -12,7 +12,7 @@ const Admin = () => {
           <Link to="add-farerate" >Add FairPrice</Link>
         </div>
       </aside>
-      <div className='p-2 w-full min-h-32 '>
+      <div className='p-2 w-full h-full '>
         <Outlet />
       </div>
     </div>

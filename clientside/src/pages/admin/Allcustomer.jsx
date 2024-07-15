@@ -3,8 +3,8 @@ import React from 'react'
 const Allcustomer = () => {
 
     return (
-        <div className=' w-full h-full'>
-            Allcustomer
+        <div className='container w-full h-full'>
+
         </div>
     )
 }
