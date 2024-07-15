@@ -42,7 +42,7 @@ const Header = () => {
 
 
             {/* <p>{user?.email}</p> */}
-            {isAuthenticated && <span className='cursor-pointer hidden lg:block'><FaUserCircle /> </span>}
+            {isAuthenticated && <Link to={"/admin-chan"} className='cursor-pointer hidden lg:block'><FaUserCircle /> </Link>}
             <div> <CiHeart /> </div>
             <div> <CiBag1 /> </div>
           </section>
