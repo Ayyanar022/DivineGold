@@ -3,6 +3,7 @@ import { Link, Outlet } from 'react-router-dom'
 
 const Admin = () => {
 
+
   return (
     <div className=' min-h-[calc(100vh-95px)] hidden lg:flex'>
       <aside className='max-w-56 w-full overflow-hidden border-r-2'>

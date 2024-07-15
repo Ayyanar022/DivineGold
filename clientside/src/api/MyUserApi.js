@@ -17,16 +17,12 @@ export const useGetMyUser = ()=>{
                 "Content-Type":"application/json"    
             }
         })
-
-        if(!response.ok){
-            throw new Error("Faild to fetch user ");
-        }
-
+        if(!response.ok)throw new Error("Faild to fetch user ");
         return response.json()
     }
+
     const {data:currentUser,isLoading,error}= useQuery("fetchCurrentUser",getMyUserRequest);
-    if(error) toast.error(error.toString());
-    
+    if(error) toast.error(error.toString());    
     return {currentUser,isLoading}
 }
 
