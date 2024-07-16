@@ -11,7 +11,7 @@ const Allcustomer = () => {
     return (
         <div className='container w-full h-full'>
             <table className='w-full userTable'>
-                <thead className='bg-black text-white'>
+                <thead className='bg-black text-white text-sm'>
                     <th className='p-2'>S.No</th>
                     <th className='p-2'>Full Name</th>
                     <th className='p-2'>MobileNo</th>

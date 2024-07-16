@@ -12,7 +12,7 @@ const Header = () => {
   const { loginWithRedirect, isAuthenticated, logout } = useAuth0()
 
   return (
-    <header className='fixed h-14 top-0 w-full border-b-2 z-50 shadow-sm'>
+    <header className='fixed h-14  w-full border-b-2 z-40 shadow-sm bg-white'>
       <div className='container  mx-auto px-2  flex items-center h-full'>
 
         <div className='flex items-center  lg:mr-10'>
@@ -42,7 +42,7 @@ const Header = () => {
 
 
             {/* <p>{user?.email}</p> */}
-            {isAuthenticated && <Link to={"/admin-chan"} className='cursor-pointer hidden lg:block'><FaUserCircle /> </Link>}
+            {isAuthenticated && <Link to={"/admin-chan/add-farerate"} className='cursor-pointer hidden lg:block'><FaUserCircle /> </Link>}
             <div> <CiHeart /> </div>
             <div> <CiBag1 /> </div>
           </section>
