@@ -30,7 +30,6 @@ export const useCreateMyUser = () =>{
 const {getAccessTokenSilently } = useAuth0() 
   
     const createMyUserRequest = async (user)=>{
-        console.log("user--",user)
         const accessToken =await getAccessTokenSilently()
         const response = await fetch(`http://localhost:7000/api/my/user`,{
             // const response = await fetch(`${API_BASE_URL}/api/my/user`,{

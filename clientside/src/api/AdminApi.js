@@ -25,3 +25,27 @@ export const useGetAllCustomer = ()=>{
 
     return{allCustomer,isLoading};
 }
+
+
+
+export const useCreateFairPriceItem = ()=>{
+    const {getAccessTokenSilently} = useAuth0()
+
+    const createFairPricefun =async (data)=>{
+        console.log("data",data)
+        const accessToken = await getAccessTokenSilently();
+        const response = await fetch(`http://localhost:7000/api/admin`,{
+            method:"POST",
+            headers:{
+                Authorization:`Bearer ${accessToken}`, 
+                "Content-Type":"application/json"    
+            },
+            body:JSON.stringify(data)
+        })
+        if(!response.ok)throw new Error("faild to Create FairPrice")
+        return response.json();
+    }
+
+    const {mutateAsync:createFairPrice,isError,isSuccess,isLoading} = useMutation(createFairPricefun)
+    return{createFairPrice,isLoading,isSuccess,isError}
+} 

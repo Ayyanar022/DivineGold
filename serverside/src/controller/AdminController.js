@@ -1,3 +1,4 @@
+import FairPrice from '../models/fairPriceModel.js'
 import User from '../models/userModel.js'
 
 
@@ -15,6 +16,20 @@ return res.status(500).json({message:"something went wrong fetch all user.."})
 }
 
 
+const createFairPriceItem = async (req,res)=>{
+   try{
+    const newfairPrice = new FairPrice(req.body);
+    console.log("req.body",req.body)
+    await newfairPrice.save()
+    res.status(201).json(newfairPrice.toObject())
+   }catch(err){
+    console.log("err",err)
+    res.status(500).json({message:"faild to create fairPrice",success:false})
+   }
+}
+
+
 export default {
     getAllUser,
+    createFairPriceItem,
 }

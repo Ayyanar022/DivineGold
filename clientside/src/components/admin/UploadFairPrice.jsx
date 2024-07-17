@@ -6,14 +6,14 @@ import uploadRateforImage from '../../helper/uploadRateForImage';
 import { TbHttpDelete } from "react-icons/tb";
 
 
-const UploadFairPrice = ({ onClose }) => {
+const UploadFairPrice = ({ createFairPrice, isCreateLoading, iscreateSuccess, onClose }) => {
 
     const [data, setData] = useState({
         itemName: '',
         category: '',
         touch_75: '',
         touch_92: "",
-        item_Image: [],
+        item_Image: '',
         description: '',
     })
 
@@ -37,6 +37,15 @@ const UploadFairPrice = ({ onClose }) => {
 
     const handleDeleteImage = () => {
         setData(prev => ({ ...prev, item_Image: [] }))
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        console.log("data", data)
+        if (createFairPrice) {
+            createFairPrice(data)
+        }
+
     }
 
     return (
@@ -92,15 +101,18 @@ const UploadFairPrice = ({ onClose }) => {
                     </div>
 
 
-                    {data?.item_Image[0] && (
+                    {data?.item_Image && (
                         <div className='relative group max-w-[90px] cursor-pointer'>
                             <img src={data?.item_Image} width={90} height={90} className='bg-slate-100 border p-1' />
                             <div onClick={handleDeleteImage} className='absolute bottom-0 text-xl hover:2xl  cursor-pointer bg-red-600 rounded-full p-0.5 text-white hidden group-hover:block'><TbHttpDelete /></div>
                         </div>
                     )}
 
-
-                    <button className='bg-pink-500 hover:bg-pink-600 p-2 font-semibold mb-7 mt-5' >Upload FairPrice</button>
+                    {
+                        isCreateLoading ? (<button className='bg-pink-500 hover:bg-pink-600 p-2 font-semibold mb-7 mt-5' >Uploading...</button>
+                        ) : (<button onClick={handleSubmit} className='bg-pink-500 hover:bg-pink-600 p-2 font-semibold mb-7 mt-5' >Upload FairPrice</button>
+                        )
+                    }
                 </form>
             </div>
 

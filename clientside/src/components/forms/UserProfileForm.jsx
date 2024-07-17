@@ -36,9 +36,7 @@ const UserProfileForm = ({ currentUser, onSave, isLoading }) => {
     };
 
     useEffect(() => {
-
         reset(currentUser)
-        console.log("current usr--- ", currentUser)
     }, [currentUser, reset])
 
 

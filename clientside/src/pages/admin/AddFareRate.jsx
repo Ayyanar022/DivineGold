@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import UploadFairPrice from '../../components/admin/UploadFairPrice';
+import { useCreateFairPriceItem } from '../../api/AdminApi';
 
 const AddFareRate = () => {
+
+    const { createFairPrice, isLoading, isSuccess, isError } = useCreateFairPriceItem()
 
     const [openUploadFairPrice, setOpenUploadFairPrice] = useState(false);
     return (
@@ -12,7 +15,11 @@ const AddFareRate = () => {
             </div>
 
             {/**Upload product */}
-            {openUploadFairPrice && <UploadFairPrice onClose={() => setOpenUploadFairPrice(false)} />}
+            {openUploadFairPrice && <UploadFairPrice
+                createFairPrice={createFairPrice}
+                isCreateLoading={isLoading}
+                iscreateSuccess={isSuccess}
+                onClose={() => setOpenUploadFairPrice(false)} />}
         </div>
     )
 }
