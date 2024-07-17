@@ -36,5 +36,16 @@ export const category = [
 {id:3, label:"HighFancy"},
 ]
    
+
+export const  itemCategory = [
+  {id:1,label:"Ring"},
+  {id:1,label:"Chain"},
+  {id:1,label:"Earring"},
+  {id:1,label:"Bracelet"},
+  {id:1,label:"Necklace"},
+  {id:1,label:"Pendant"},
+  {id:1,label:"Ring"},
+  {id:1,label:"Bangle"},
+]
    
 

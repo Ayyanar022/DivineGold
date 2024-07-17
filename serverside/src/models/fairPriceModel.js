@@ -2,6 +2,7 @@ import mongoose  from "mongoose";
 
 const fairPriceschema = new mongoose.Schema({
     itemName:{type:String},
+    item_category:{type:String},
     category: {type:String},
     touch_75: {type:Number},
     touch_92: {type:Number},

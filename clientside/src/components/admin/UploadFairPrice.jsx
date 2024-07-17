@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { IoMdCloseCircleOutline } from "react-icons/io";
-import { category, item_Name } from '../../helper/uploadFairPriceItemData'
+import { category, item_Name, itemCategory } from '../../helper/uploadFairPriceItemData'
 import { FiUploadCloud } from "react-icons/fi";
 import uploadRateforImage from '../../helper/uploadRateForImage';
 import { TbHttpDelete } from "react-icons/tb";
@@ -10,6 +10,7 @@ const UploadFairPrice = ({ createFairPrice, isCreateLoading, iscreateSuccess, on
 
     const [data, setData] = useState({
         itemName: '',
+        item_category: '',
         category: '',
         touch_75: '',
         touch_92: "",
@@ -65,6 +66,16 @@ const UploadFairPrice = ({ createFairPrice, isCreateLoading, iscreateSuccess, on
                             ))}
                         </select>
                     </div>
+
+                    <div className='grid'>
+                        <label htmlFor='item_category'>Item Category</label>
+                        <select className='px-2 py-1 mt-1 bg-slate-100 border text-sm' type='text' id='item_category' name="item_category" placeholder='Enter Item Name' value={data?.item_category} onChange={handleChange} >
+                            {itemCategory?.map((item, index) => (
+                                <option className='py-2' value={item?.label} key={item.id}>{item?.label}</option>
+                            ))}
+                        </select>
+                    </div>
+
                     <div className='grid mt-2'>
                         <label htmlFor='category'>Category</label>
                         <select className='px-2 py-1 mt-1 bg-slate-100 border text-sm' type='text' id='category' name="category" placeholder='Enter Item Name' value={data?.category} onChange={handleChange} >
