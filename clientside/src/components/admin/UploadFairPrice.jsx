@@ -7,8 +7,7 @@ import { TbHttpDelete } from "react-icons/tb";
 
 
 const UploadFairPrice = ({ createFairPrice, isCreateLoading, iscreateSuccess, onClose }) => {
-
-    const [data, setData] = useState({
+    const schema = {
         itemName: '',
         item_category: '',
         category: '',
@@ -16,13 +15,12 @@ const UploadFairPrice = ({ createFairPrice, isCreateLoading, iscreateSuccess, on
         touch_92: "",
         item_Image: '',
         description: '',
-    })
+    }
+    const [data, setData] = useState(schema)
 
-    const [UploadedImageName, setUploadedImageName] = useState('')
 
     const handleChange = (e) => {
         const { value, name } = e.target
-
         setData((prev) => ({
             ...prev,
             [name]: value
@@ -31,7 +29,6 @@ const UploadFairPrice = ({ createFairPrice, isCreateLoading, iscreateSuccess, on
 
     const handleUploadRateForItem = async (e) => {
         const file = e.target.files[0];
-        setUploadedImageName(file.name)
         const uploadImage = await uploadRateforImage(file);
         setData((prev) => ({ ...prev, item_Image: uploadImage.url }))
     }
@@ -45,8 +42,8 @@ const UploadFairPrice = ({ createFairPrice, isCreateLoading, iscreateSuccess, on
         console.log("data", data)
         if (createFairPrice) {
             createFairPrice(data)
+            setData(schema)
         }
-
     }
 
     return (
@@ -80,7 +77,7 @@ const UploadFairPrice = ({ createFairPrice, isCreateLoading, iscreateSuccess, on
                         <label htmlFor='category'>Category</label>
                         <select className='px-2 py-1 mt-1 bg-slate-100 border text-sm' type='text' id='category' name="category" placeholder='Enter Item Name' value={data?.category} onChange={handleChange} >
                             {category?.map((cat) => (
-                                <option className='p-1' value={cat?.label} key={cat.id}>{cat?.label}</option>
+                                <option className='p-1' value={cat?.label} key={cat?.id + cat?.label}>{cat?.label}</option>
                             ))}
                         </select>
                     </div>
