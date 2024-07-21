@@ -12,8 +12,25 @@ const getAllFairPriceList = async(req,res)=>{
     }
 }
 
+const getSingleFairPriceDetails = async(req,res)=>{
+    try{
+        const {itemName,category} = req.params;
+        console.log("itemName",itemName,category)
+        const response = await FairPrice.find({category,itemName})
+        console.log("respo ",response);
+        if(response.length<1){
+            res.status(200).json({message:"nodata fount",success:false})
+        }       
+        res.status(200).json({data:response[0],success:true})
+    }catch(err){
+        console.log("err",err)
+        return res.status(500).json({message:"Somthing went wrong..",error:false})
+    }
+}
+
 
 export default{
     getAllFairPriceList,
+    getSingleFairPriceDetails,
 }
 
