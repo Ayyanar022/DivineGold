@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useGetAllFairPrice } from '../../api/FairPriceApi'
 import FairPriceCard from '../../components/fairPrice/FairPriceCard'
+import { Link } from 'react-router-dom'
 
 const FairPrice = () => {
 
@@ -55,7 +56,10 @@ const FairPrice = () => {
         <div onClick={() => setFilterdCardData([])} className='mb-4 text-xl font-semibold cursor-pointer'>All Category</div>
         <div className='grid lg:gap-8 md:gap-4 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2'>
           {!isLoading && (filterdcardData.length > 0 ? filterdcardData : fairPriceCardData)?.map((item) => (
-            <FairPriceCard key={item.id} data={item} />
+            <Link to={`/fairPrice-details/${item.itemName}/${item.category}`}>
+              <FairPriceCard key={item.id} data={item} />
+            </Link>
+
           ))}
         </div>
       </div>

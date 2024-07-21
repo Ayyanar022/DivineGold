@@ -20,10 +20,31 @@ export const useGetAllFairPrice = () => {
     return response.json();
   };
 
-  const { data: fairPriceCardData, isLoading, error } = useQuery("getAllFairPrice", getAllFairPrice);
-  
+  const { data: fairPriceCardData, isLoading, error } = useQuery("getAllFairPrice", getAllFairPrice);  
   if (error) toast.error(error.toString());
-
   return { fairPriceCardData, isLoading };
 };
 
+
+export const useGetFairPriceDetailsData = ()=>{
+  const { getAccessTokenSilently } = useAuth0();
+
+  const getFairPriceDetails = async(data)=>{
+    const accessToken = getAccessTokenSilently();
+
+ const response =   await fetch(`http://localhost:7000/api/fairPrice/${data.itemName}/${data.category}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) throw new Error("Failed to Fetch FairPrice Card");
+    return response.json()   
+  }
+
+  const {data:fairPriceDetails,isLoading,error} = useQuery("getFairPriceDetails",getFairPriceDetails);
+  if (error) toast.error(error.toString());
+  return { fairPriceDetails, isLoading };
+}

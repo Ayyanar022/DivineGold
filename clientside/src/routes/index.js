@@ -48,6 +48,7 @@ import UserProfilePage from '../pages/userProfile/UserProfilePage.jsx'
 import Allcustomer from "../pages/admin/Allcustomer.jsx";
 import AddFareRate from "../pages/admin/AddFareRate.jsx";
 import { createBrowserRouter } from "react-router-dom";
+import FairPriceDetails from "../pages/fairPrice/FairPriceDetails.jsx";
 
 const router = createBrowserRouter([
   {
@@ -59,7 +60,7 @@ const router = createBrowserRouter([
       { path: "fairPrice", element: <FairPrice /> },
       { path: "contectInfo", element: <ContectInfo /> },      
       { path: "auth-callback", element: <AuthCallBack /> },
-      { path:"user-profile", element: <UserProfilePage />},
+      { path: "user-profile", element: <UserProfilePage />},
       { 
         path: "admin-chan",
         element: <Admin />,
@@ -68,6 +69,7 @@ const router = createBrowserRouter([
           { path: "add-farerate", element: <AddFareRate />}
         ]
        },
+       { path: "fairPrice-details/:itemName/:category",element:< FairPriceDetails />}
     ],
   },
 ])
