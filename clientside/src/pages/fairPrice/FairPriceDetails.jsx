@@ -2,18 +2,19 @@ import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useGetFairPriceDetailsData } from '../../api/FairPriceApi'
 import { useCurrentUserConetxt } from '../../context/userContext'
+import displayINR from '../../helper/RupeeConvetion'
+import { toast } from 'react-toastify'
 
 
 const RadioButton = ({ label, value, checked, onChange }) => {
     return (
-        <label>
+        <label className='block mb-2'>
             <input
                 type='radio'
                 value={value}
                 checked={checked}
                 onChange={onChange}
-                style={{ marginRight: "10px" }}
-            />
+                className='mr-2 ' />
             {label}
         </label>
     )
@@ -24,56 +25,173 @@ const FairPriceDetails = () => {
     const { itemName, category } = useParams()
     const { fairPriceDetails, isLoading: cardDetailsLoding } = useGetFairPriceDetailsData(itemName, category)
     const details = fairPriceDetails?.data
-    console.log("details", details)
 
     const { currentUserData } = useCurrentUserConetxt();
-    console.log("currentUserData", currentUserData)
 
     const [data, setData] = useState({
-        selectedValue: "75halmark"
+        marketLocalPrice_999: 7500,
+        selectedValue: "75halmark",
+        itemWeight: '',
+        usePriceToken: '',
     })
 
     const handleChange = (e) => {
         setData(prev => ({ ...prev, selectedValue: e.target.value }));
     }
 
+
+    const [price, setPrice] = useState({
+        bestPrice: '',
+        tokenPricediscount: '',
+        afterTokenDiscount: ''
+    })
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("data", data)
+
+        if (!data.itemWeight) {
+            toast.info("Please Enter Weight...")
+            return
+        }
+
+
+        if (data.selectedValue === "75halmark") {
+            const result = (((details.touch_75 / 100) * data.itemWeight) * data.marketLocalPrice_999);
+            if (currentUserData?.bonousePoints >= (Number(data.usePriceToken)) > 0) {
+                const token = Number(data.usePriceToken) * 49
+                const resultData = Number(result) - token
+                setPrice({
+                    bestPrice: displayINR(result) || 0,
+                    afterTokenDiscount: displayINR(resultData) || 0,
+                    tokenPricediscount: displayINR(token) || 0
+                })
+                return
+            }
+            setPrice({ bestPrice: displayINR(result) })
+
+        } else if (data.selectedValue === "916halmark") {
+
+            const result = (((details.touch_92 / 100) * data.itemWeight) * data.marketLocalPrice_999)
+            if (currentUserData?.bonousePoints >= (Number(data.usePriceToken)) > 0) {
+                const token = Number(data.usePriceToken) * 49
+                const resultData = Number(result) - token
+                setPrice({
+                    bestPrice: displayINR(result) || 0,
+                    afterTokenDiscount: displayINR(resultData) || 0,
+                    tokenPricediscount: displayINR(token) || 0
+                })
+                return
+            }
+            setPrice({ bestPrice: displayINR(result) })
+
+        } else {
+            setPrice()
+        }
+
+    }
+
     return (
-        <div className='container mx-auto '>
-            {cardDetailsLoding ? <h1>Loading...</h1> : (
-                <div className='flex items-center justify-center'>
-                    <div className='w-1/2 h-full p-4 '>
 
-                        {!cardDetailsLoding && <img src={details?.item_Image} alt={details?.item_category} />}
+        <div className="container mx-auto p-4">
+            {cardDetailsLoding ? (
+                <h1 className="text-center">Loading...</h1>
+            ) : (
+                <div className="flex flex-col lg:flex-row items-center justify-center lg:w-4/5 mx-auto ">
+                    <div className="w-full lg:w-1/2 p-4 ">
+                        {!cardDetailsLoding && (
+                            <img
+                                src={details?.item_Image}
+                                alt={details?.item_category}
+                                className="w-full h-auto"
+                            />
+                        )}
                     </div>
-                    <div className='w-1/2 p-4 bg-gray-100 h-full'>
-                        <div>
-                            <h2>Avilable Price Token :</h2>
-                            <p>{currentUserData?.bonousePoints}</p>
-                        </div>
-                        <div>
-                            <RadioButton
-                                label='75 Halmark'
-                                value="75halmark"
-                                checked={data.selectedValue === '75halmark'}
-                                onChange={handleChange}
-                            />
-                            <RadioButton
-                                label='916 Halmark'
-                                value="916halmark"
-                                checked={data.selectedValue === '916halmark'}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div>
-                            <h2>Avilable Price Token :</h2>
-                            <p>{currentUserData?.bonousePoints}</p>
-                        </div>
+                    <div className="w-full lg:w-1/2 p-4 bg-gray-100 ">
+                        <form>
+                            <div className="mb-4 flex gap-2  items-center">
+                                <h2 className="text-md font-semibold">Available Price Token :</h2>
+                                <p>{(currentUserData?.bonousePoints >= data?.usePriceToken > 0) ? (currentUserData?.bonousePoints - data?.usePriceToken) : currentUserData?.bonousePoints}</p>
+                            </div>
+                            <div className="mb-4 ">
+                                <p className="mb-2 text-md font-semibold">Use Price Token :</p>
+                                <input
+                                    type="text"
+                                    id="usePriceToken"
+                                    value={data.usePriceToken}
+                                    onChange={(e) =>
+                                        setData((prev) => ({
+                                            ...prev,
+                                            usePriceToken: e.target.value,
+                                        }))
+                                    }
+                                    className="w-full p-2 border border-gray-300 rounded"
+                                />
+                            </div>
+                            <div className="mb-4">
+                                <label className='text-md font-semibold'> Select Quality :</label>
+                                <div className='flex gap-3 mt-2'>
+                                    <RadioButton
+                                        label="75 Halmark"
+                                        value="75halmark"
+                                        checked={data.selectedValue === '75halmark'}
+                                        onChange={handleChange}
+                                    />
+                                    <RadioButton
+                                        label="916 Halmark"
+                                        value="916halmark"
+                                        checked={data.selectedValue === '916halmark'}
+                                        onChange={handleChange}
+                                    />
+                                </div>
 
+                            </div>
+                            <div className="mb-4">
+                                <label className="block mb-2 text-md font-semibold">Net Weight :</label>
+                                <input
+                                    id="itemWeight"
+                                    type="text"
+                                    value={data.itemWeight}
+                                    onChange={(e) =>
+                                        setData((prev) => ({
+                                            ...prev,
+                                            itemWeight: e.target.value,
+                                        }))
+                                    }
+                                    className="w-full p-2 border border-gray-300 rounded"
+                                />
+                            </div>
+                            {/**show price */}
+                            <div>
+                                <div className='flex justify-between items-center'>
+                                    <label className='text-md font-semibold'>Fair Price :</label>
+                                    <p className='p-2 text-lg font-bold text-pink-600'> {price?.bestPrice}</p>
+                                </div>
+                                {
+                                    price?.tokenPricediscount && (<div>
+                                        <div className='flex justify-between items-center'>
+                                            <label className='text-md font-semibold'>Prize Token Discount :</label>
+                                            <p className='p-2 text-lg font-bold text-pink-600'> {price?.tokenPricediscount}</p>
+                                        </div>
+                                        <div className='flex justify-between items-center'>
+                                            <label className='text-md font-semibold'>Best Fair Price :</label>
+                                            <p className='p-2 text-lg font-bold text-pink-600'> {price?.afterTokenDiscount}</p>
+                                        </div>
+                                    </div>)
+                                }
+
+
+                            </div>
+                            <button
+                                className="bg-pink-500 p-2 text-white my-3 w-full rounded"
+                                onClick={handleSubmit}
+                            >
+                                Show Me Best Price
+                            </button>
+                        </form>
                     </div>
                 </div>
             )}
-
-
         </div>
     )
 }

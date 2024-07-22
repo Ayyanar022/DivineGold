@@ -11,6 +11,7 @@ const UserProfilePage = () => {
 
   //conetxt forcurrent user
   const { setCurrentUserData } = useCurrentUserConetxt()
+  // console.log("---cur", currentUser)
 
   useEffect(() => {
     setCurrentUserData(currentUser)
