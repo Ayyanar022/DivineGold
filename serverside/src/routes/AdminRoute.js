@@ -6,5 +6,7 @@ const router = express.Router();
 
 router.get("/",jwtCheck,jwtParse,AdminController.getAllUser);
 router.post("/",jwtCheck,jwtParse,AdminController.createFairPriceItem)
+router.post("/cuurentPrice",jwtCheck,jwtParse,AdminController.updateCurentPrice)
+
 
 export default router;

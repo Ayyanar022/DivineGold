@@ -107,14 +107,20 @@ const FairPriceDetails = () => {
                             />
                         )}
                     </div>
-                    <div className="w-full lg:w-1/2 p-4 bg-gray-100 ">
+                    <div className="w-full lg:w-1/2 p-6 bg-gray-100 ">
                         <form>
                             <div className="mb-4 flex gap-2  items-center">
-                                <h2 className="text-md font-semibold">Available Price Token :</h2>
-                                <p>{(currentUserData?.bonousePoints >= data?.usePriceToken > 0) ? (currentUserData?.bonousePoints - data?.usePriceToken) : currentUserData?.bonousePoints}</p>
+                                <h2 className="text-md font-semibold">Available Prize Token :</h2>
+                                <p className='font-bold'>{(currentUserData?.bonousePoints >= data?.usePriceToken > 0) ? (currentUserData?.bonousePoints - data?.usePriceToken) : currentUserData?.bonousePoints}</p>
                             </div>
                             <div className="mb-4 ">
-                                <p className="mb-2 text-md font-semibold">Use Price Token :</p>
+                                {
+                                    data?.usePriceToken ? ((currentUserData?.bonousePoints >= data?.usePriceToken > 0) ?
+                                        (<p className="mb-2 text-md font-semibold">Use Price Token :</p>) : (
+                                            <p className="mb-2 text-md text-red-500 font-semibold">Invalid.! prize token:</p>
+                                        )) : <p className="mb-2 text-md font-semibold">Use Price Token :</p>
+                                }
+
                                 <input
                                     type="text"
                                     id="usePriceToken"

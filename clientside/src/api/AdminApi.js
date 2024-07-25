@@ -49,3 +49,47 @@ export const useCreateFairPriceItem = ()=>{
     const {mutateAsync:createFairPrice,isError,isSuccess,isLoading} = useMutation(createFairPricefun)
     return{createFairPrice,isLoading,isSuccess,isError}
 } 
+
+
+export const useUpdateCurrentPrice =()=>{
+    const {getAccessTokenSilently} = useAuth0();
+
+    const updatePrice =async (data)=>{
+        const accessToken = await getAccessTokenSilently();
+        const response = await fetch(`http://localhost:7000/api/admin/cuurentPrice`,{
+            method:"POST",
+            headers:{
+                Authorization:`Bearer ${accessToken}`, 
+                "Content-Type":"application/json"    
+            },
+            body:JSON.stringify({ currentPrice: data })
+        })
+        if(!response.ok)throw new Error("faild to Update Current Price")
+        return response.json();
+    }
+
+    const {mutateAsync:updateCurrentPrice ,isSuccess,isLoading} = useMutation(updatePrice)
+    return {updateCurrentPrice ,isSuccess,isLoading}
+} 
+
+const useGetCurrentPrice =()=>{
+    const {getAccessTokenSilently} = useAuth0();
+
+    const getCP = async()=>{
+        const accessToken = await getAccessTokenSilently();
+
+        const response = await  fetch(`http://localhost:7000/api/admin/cuurentPrice`,{
+            method:"GET",
+            headers:{
+                Authorization:`Bearer ${accessToken}`, 
+                "Content-Type":"application/json"    
+            },
+        })
+        if(!response.ok)throw new Error("faild to Update Current Price")
+        return response.json();
+    }
+
+    const {data:currentPrice ,isLoading ,error} = useMutation("getCurrentPrice",getCP);
+    return {currentPrice ,isLoading ,error}
+
+}

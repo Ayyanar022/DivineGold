@@ -1,3 +1,4 @@
+import CurrentPrice from '../models/currentPriceModel.js'
 import FairPrice from '../models/fairPriceModel.js'
 import User from '../models/userModel.js'
 
@@ -28,8 +29,27 @@ const createFairPriceItem = async (req,res)=>{
    }
 }
 
+const updateCurentPrice = async (req,res)=>{
+    try{
+        const currentPrice = req.body.currentPrice;
+        console.log("currentPrice",currentPrice)
+        const updateCP = await CurrentPrice.findOneAndUpdate(
+            {}, // Assuming you have only one document, so an empty filter
+            { currentPrice: currentPrice },
+            { new: true, upsert: true } // `new` returns the modified document, `upsert` creates if it doesn't exist
+        );
+console.log()
+        res.status(201).json(updateCP);
+        
+    }catch(err){
+        console.log("err",err)
+        res.status(500).json({message:"faild to Update fairPrice",success:false})
+       }
+}
+
 
 export default {
     getAllUser,
     createFairPriceItem,
+    updateCurentPrice,
 }
