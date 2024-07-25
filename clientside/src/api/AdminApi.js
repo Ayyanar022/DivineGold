@@ -56,7 +56,7 @@ export const useUpdateCurrentPrice =()=>{
 
     const updatePrice =async (data)=>{
         const accessToken = await getAccessTokenSilently();
-        const response = await fetch(`http://localhost:7000/api/admin/cuurentPrice`,{
+        const response = await fetch(`http://localhost:7000/api/admin/currentPrice`,{
             method:"POST",
             headers:{
                 Authorization:`Bearer ${accessToken}`, 
@@ -80,7 +80,7 @@ export const useGetCurrentPrice =()=>{
     const getCP = async()=>{
         const accessToken = await getAccessTokenSilently();
 
-        const response = await  fetch(`http://localhost:7000/api/admin/curRentPrice`,{
+        const response = await  fetch(`http://localhost:7000/api/admin/currentPrice`,{
             method:"GET",
             headers:{
                 Authorization:`Bearer ${accessToken}`, 

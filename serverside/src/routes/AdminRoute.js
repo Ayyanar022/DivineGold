@@ -6,8 +6,8 @@ const router = express.Router();
 
 router.get("/",jwtCheck,jwtParse,AdminController.getAllUser);
 router.post("/",jwtCheck,jwtParse,AdminController.createFairPriceItem)
-router.post("/curRentPrice",jwtCheck,jwtParse,AdminController.updateCurentPrice);
-router.get("/curRentPrice",jwtCheck,jwtParse,AdminController.getCurrentPrice);
+router.post("/currentPrice",jwtCheck,jwtParse,AdminController.updateCurentPrice);
+router.get("/currentPrice",jwtCheck,jwtParse,AdminController.getCurrentPrice);
 
 
 

@@ -36,7 +36,7 @@ const FairPrice = () => {
 
   return (
     <div className='container mx-auto w-full lg:px-9 py-1 sm:px-3 '>
-      <div className='flex '>
+      <div className='flex items-center gap-4 justify-between overflow-x-auto scrollbar-hiden'>
         {filterData?.map((item) => (
           <div onClick={() => singleFilter(item.item_category)} key={item.id} className='cursor-pointer flex flex-col justify-center items-center  w-full md:w-1/3 p-2'>
             <div className='h-12 w-12 md:h-16 md:w-16 rounded-full overflow-hidden p-2 bg-slate-200 flex items-center justify-center'>

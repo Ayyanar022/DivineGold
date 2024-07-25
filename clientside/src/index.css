@@ -20,3 +20,9 @@ code {
     monospace;
 } 
 
+
+
+/** scrollbar hidden */
+.scrollbar-hiden::-webkit-scrollbar {
+  display: none;
+}
