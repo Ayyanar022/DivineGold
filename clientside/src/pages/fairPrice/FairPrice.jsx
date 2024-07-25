@@ -6,8 +6,6 @@ import { Link } from 'react-router-dom'
 const FairPrice = () => {
 
   const { fairPriceCardData, isLoading } = useGetAllFairPrice()
-
-
   const [filterData, setFilterData] = useState([])
   const [filterdcardData, setFilterdCardData] = useState([])
 
@@ -34,6 +32,7 @@ const FairPrice = () => {
     const data = fairPriceCardData?.filter(item => item?.item_category === Itemcategory);
     setFilterdCardData(data)
   }
+
 
   return (
     <div className='container mx-auto w-full lg:px-9 py-1 sm:px-3 '>

@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useGetFairPriceDetailsData } from '../../api/FairPriceApi'
 import { useCurrentUserConetxt } from '../../context/userContext'
 import displayINR from '../../helper/RupeeConvetion'
 import { toast } from 'react-toastify'
+import { useGetCurrentPrice } from '../../api/AdminApi'
 
 
 const RadioButton = ({ label, value, checked, onChange }) => {
@@ -22,6 +23,18 @@ const RadioButton = ({ label, value, checked, onChange }) => {
 
 const FairPriceDetails = () => {
 
+    //GET CURRENT PRICE
+    const [currentPriceCP, setCurrentPriceCP] = useState('')
+    const { currentPriceData, isLoading: getCPisLoading } = useGetCurrentPrice()
+    useEffect(() => {
+        if (currentPriceData.currentPrice) {
+            setCurrentPriceCP(Number(currentPriceData?.currentPrice))
+        }
+    }, [currentPriceData])
+
+    console.log("currentPriceCP", currentPriceCP)
+    //-------------------------------------------------
+
     const { itemName, category } = useParams()
     const { fairPriceDetails, isLoading: cardDetailsLoding } = useGetFairPriceDetailsData(itemName, category)
     const details = fairPriceDetails?.data
@@ -29,7 +42,7 @@ const FairPriceDetails = () => {
     const { currentUserData } = useCurrentUserConetxt();
 
     const [data, setData] = useState({
-        marketLocalPrice_999: 7500,
+        // marketLocalPrice_999: currentPriceCP,
         selectedValue: "75halmark",
         itemWeight: '',
         usePriceToken: '',
@@ -57,7 +70,8 @@ const FairPriceDetails = () => {
 
 
         if (data.selectedValue === "75halmark") {
-            const result = (((details.touch_75 / 100) * data.itemWeight) * data.marketLocalPrice_999);
+
+            const result = (((details.touch_75 / 100) * data.itemWeight) * currentPriceCP);
             if (currentUserData?.bonousePoints >= (Number(data.usePriceToken)) > 0) {
                 const token = Number(data.usePriceToken) * 49
                 const resultData = Number(result) - token
@@ -72,7 +86,7 @@ const FairPriceDetails = () => {
 
         } else if (data.selectedValue === "916halmark") {
 
-            const result = (((details.touch_92 / 100) * data.itemWeight) * data.marketLocalPrice_999)
+            const result = (((details.touch_92 / 100) * data.itemWeight) * currentPriceCP)
             if (currentUserData?.bonousePoints >= (Number(data.usePriceToken)) > 0) {
                 const token = Number(data.usePriceToken) * 49
                 const resultData = Number(result) - token
@@ -91,10 +105,12 @@ const FairPriceDetails = () => {
 
     }
 
+
+
     return (
 
         <div className="container mx-auto p-4">
-            {cardDetailsLoding ? (
+            {(cardDetailsLoding || cardDetailsLoding) ? (
                 <h1 className="text-center">Loading...</h1>
             ) : (
                 <div className="flex flex-col lg:flex-row items-center justify-center lg:w-4/5 mx-auto ">

@@ -47,9 +47,24 @@ console.log()
        }
 }
 
+const getCurrentPrice = async(req,res)=>{
+    
+  try{
+    // console.log("req",req)
+    const response = await CurrentPrice.findOne({})
+    // console.log("response",response)
+    res.status(200).json(response);
+    
+  }catch(err){
+    console.log("error",err)
+    res.status(500).json({message:"Somthing went wrong",error:false})
+  }
+}
+
 
 export default {
     getAllUser,
     createFairPriceItem,
     updateCurentPrice,
+    getCurrentPrice,
 }

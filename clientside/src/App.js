@@ -5,8 +5,11 @@ import Footer from "./components/Footer";
 import MobileNav from "./components/MobileNav";
 import Auth0ProviderWithNavigate from "./auth/Auth0ProviderWithNavigate";
 import { Bounce, ToastContainer } from "react-toastify";
+// import { useGetCurrentPrice } from "./api/AdminApi";
 
 function App() {
+
+
   return (
 
     <Auth0ProviderWithNavigate>

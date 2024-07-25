@@ -72,13 +72,15 @@ export const useUpdateCurrentPrice =()=>{
     return {updateCurrentPrice ,isSuccess,isLoading}
 } 
 
-const useGetCurrentPrice =()=>{
+
+//GET CURRENT 999 PRICE
+export const useGetCurrentPrice =()=>{
     const {getAccessTokenSilently} = useAuth0();
 
     const getCP = async()=>{
         const accessToken = await getAccessTokenSilently();
 
-        const response = await  fetch(`http://localhost:7000/api/admin/cuurentPrice`,{
+        const response = await  fetch(`http://localhost:7000/api/admin/curRentPrice`,{
             method:"GET",
             headers:{
                 Authorization:`Bearer ${accessToken}`, 
@@ -89,7 +91,27 @@ const useGetCurrentPrice =()=>{
         return response.json();
     }
 
-    const {data:currentPrice ,isLoading ,error} = useMutation("getCurrentPrice",getCP);
-    return {currentPrice ,isLoading ,error}
+    const {data:currentPriceData ,isLoading ,error} = useQuery("getCurrentPrice",getCP);
+    if(error)toast.error(error.toString())
+    return {currentPriceData ,isLoading }
 
 }
+
+// GET CURRENT PRICE 999
+//  export const useGetCurrentPrice = ()=>{
+//     const {getAccessTokenSilently} = useAuth0();
+//     const getCurrentPrice = async()=>{
+//         const accessToken = await getAccessTokenSilently();
+//         const response = await fetch(`http://localhost:7000/api/admin/curRentPrice`,{
+//             method:"GET",
+//             headers:{
+//                 Authorization: `Bearer ${accessToken}`,
+//                 'Content-Type' : "application/json"
+//             },
+//         })
+//         if(!response.ok) throw new Error("Failed to get Current Price");
+//         return response.json()
+//     }
+//     const {data:currentPrice , isLoading ,error} = useMutation("useCurrentPrice",useCurrentPrice);
+//     return {currentPrice,isLoading}
+//  }

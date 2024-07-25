@@ -13,8 +13,6 @@ import { createBrowserRouter } from "react-router-dom";
 import FairPriceDetails from "../pages/fairPrice/FairPriceDetails.jsx";
 
 
-// const {} = useGetCurrentPrice
-
 const router = createBrowserRouter([
   {
     path: "/",
