@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 
 const FairPrice = () => {
 
+  
+
   const { fairPriceCardData, isLoading } = useGetAllFairPrice()
   const [filterData, setFilterData] = useState([])
   const [filterdcardData, setFilterdCardData] = useState([])
