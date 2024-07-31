@@ -6,7 +6,6 @@ import User from '../models/userModel.js'
 const getAllUser =async (req,res)=>{
 try{
     const response = await User.find()
-    console.log("response",response)
     if(!response) return res.status(404).json({message:"user Not Found"})
    res.json(response)     
 
@@ -20,7 +19,6 @@ return res.status(500).json({message:"something went wrong fetch all user.."})
 const createFairPriceItem = async (req,res)=>{
    try{
     const newfairPrice = new FairPrice(req.body);
-    console.log("req.body",req.body)
     await newfairPrice.save()
     res.status(201).json(newfairPrice.toObject())
    }catch(err){
@@ -32,32 +30,66 @@ const createFairPriceItem = async (req,res)=>{
 const updateCurentPrice = async (req,res)=>{
     try{
         const currentPrice = req.body.currentPrice;
-        console.log("currentPrice",currentPrice)
         const updateCP = await CurrentPrice.findOneAndUpdate(
             {}, // Assuming you have only one document, so an empty filter
             { currentPrice: currentPrice },
             { new: true, upsert: true } // `new` returns the modified document, `upsert` creates if it doesn't exist
         );
-console.log()
-        res.status(201).json(updateCP);
-        
+        res.status(201).json(updateCP);        
     }catch(err){
         console.log("err",err)
         res.status(500).json({message:"faild to Update fairPrice",success:false})
        }
 }
 
-const getCurrentPrice = async(req,res)=>{
-    
+const getCurrentPrice = async(req,res)=>{    
   try{
-    // console.log("req",req)
     const response = await CurrentPrice.findOne({})
-    // console.log("response",response)
-    res.status(200).json(response);
-    
+    res.status(200).json(response);    
   }catch(err){
     console.log("error",err)
-    res.status(500).json({message:"Somthing went wrong",error:false})
+    res.status(500).json({message:"Somthing went wrong",error:true})
+  }
+}
+
+const updateFairPriceItem = async(req,res)=>{
+  try{
+  
+    const {_id,touch_92,touch_75,item_category,itemName} = req.body;
+   
+    const updateItem = await FairPrice.findByIdAndUpdate(
+      _id,
+      {
+        itemName,
+        item_category,
+        touch_75,
+        touch_92,
+      },
+      {new:true}
+    )
+
+    if(!updateItem){
+      return res.status(404).json({ message: "Item not found", error: true });
+    }
+    res.status(200).json({ message: "Item updated successfully", updateItem, success:true });
+  }catch(err){
+    console.log("Error",err)
+    res.status(500).json({message:"somthing went wrong in updating..",error:true})
+  }
+}
+
+const deletFairPriceItem = async(req,res)=>{
+  try{
+    const {_id} = req.body;
+    const response = await FairPrice.findByIdAndDelete(_id)
+    if(!response){
+      return res.status(404).json({ message: "Item not found", error: true });
+    }
+    res.status(200).json({ message: "Item deleted successfully", success:true });
+
+  }catch(err){
+    console.log("Error",err)
+    res.status(500).json({message:"somthing went wrong in deleting..",error:true})
   }
 }
 
@@ -67,4 +99,6 @@ export default {
     createFairPriceItem,
     updateCurentPrice,
     getCurrentPrice,
+    updateFairPriceItem,
+    deletFairPriceItem,
 }

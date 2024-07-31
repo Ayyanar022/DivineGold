@@ -7,6 +7,9 @@ import { TiDeleteOutline } from "react-icons/ti"; // icon
 import { MdEdit } from "react-icons/md"; // icon
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { Dialog, DialogActions, DialogContent, DialogTitle, Button, TextField } from '@mui/material';
+import axios from "axios"
+import { useAuth0 } from '@auth0/auth0-react';
+import { useQueryClient } from 'react-query';
 
 const AddFareRate = () => {
 
@@ -19,7 +22,6 @@ const AddFareRate = () => {
 
     const hanleUpdateCurrentPrice = (e) => {
         e.preventDefault()
-        console.log("hello")
         updateCurrentPrice(currentPrice)
         if (CPisSuccess) {
             toast.success("CP Updated successfull..")
@@ -48,8 +50,48 @@ const AddFareRate = () => {
         }))
     }
 
-    const handleUpdate = () => {
 
+    // EDIT 
+    const { getAccessTokenSilently } = useAuth0();
+    const queryClient = useQueryClient();
+    const handleUpdate = async () => {
+        try {
+            const accessToken = await getAccessTokenSilently();
+            const response = await axios.put(`http://localhost:7000/api/admin`, currentItem, {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                }
+            })
+            if (response?.data?.success) {
+                toast.success(response?.data?.message)
+                setDialogOpen(false)
+                // Invalidate and refetch the query
+                queryClient.invalidateQueries('getAllFairPrice');
+
+            }
+        } catch (err) {
+            console.log("error", err)
+        }
+    }
+
+    //DELETE 
+    const handleDelete = async (item) => {
+        try {
+            const accessToken = await getAccessTokenSilently();
+            const response = await axios.delete(`http://localhost:7000/api/admin`, {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                },
+                data: { _id: item._id }
+            })
+            if (response.data.success) {
+                queryClient.invalidateQueries('getAllFairPrice');
+                toast.success(response.data.message)
+            }
+
+        } catch (err) {
+            console.log("ERROR", err)
+        }
     }
 
 
@@ -123,7 +165,7 @@ const AddFareRate = () => {
                                         <td onClick={() => opnDialog(item)} className='px-4 py-2 text-green-400 hover:text-green-700 cursor-pointer'>
                                             <span className='text-xl'><MdEdit /></span>
                                         </td>
-                                        <td className='px-4 py-2 text-red-400 hover:text-red-700 cursor-pointer'>
+                                        <td onClick={() => handleDelete(item)} className='px-4 py-2 text-red-400 hover:text-red-700 cursor-pointer'>
                                             <span className='text-xl'><TiDeleteOutline /></span>
 
                                         </td>
@@ -157,8 +199,8 @@ const AddFareRate = () => {
                                 margin="dense"
                                 variant="outlined"
                                 fullWidth
-                                name="item-category"
-                                label="Item Name"
+                                name="item_category"
+                                label="Item Category"
                                 type='text'
                                 value={currentItem.item_category}
                                 onChange={handlechange}
@@ -168,8 +210,8 @@ const AddFareRate = () => {
                                 fullWidth
                                 margin="dense"
                                 variant="outlined"
-                                name="itemName"
-                                label="Item Name"
+                                name="touch_75"
+                                label="Touch 75"
                                 type='text'
                                 value={currentItem.touch_75}
                                 onChange={handlechange}
@@ -180,8 +222,8 @@ const AddFareRate = () => {
                                 fullWidth
                                 variant="outlined"
                                 margin="dense"
-                                name="itemName"
-                                label="Item Name"
+                                name="touch_92"
+                                label="Touch 92"
                                 type='text'
                                 value={currentItem.touch_92}
                                 onChange={handlechange}

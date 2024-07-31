@@ -32,7 +32,6 @@ export const useCreateFairPriceItem = ()=>{
     const {getAccessTokenSilently} = useAuth0()
 
     const createFairPricefun =async (data)=>{
-        console.log("data",data)
         const accessToken = await getAccessTokenSilently();
         const response = await fetch(`http://localhost:7000/api/admin`,{
             method:"POST",
@@ -96,22 +95,3 @@ export const useGetCurrentPrice =()=>{
     return {currentPriceData ,isLoading }
 
 }
-
-// GET CURRENT PRICE 999
-//  export const useGetCurrentPrice = ()=>{
-//     const {getAccessTokenSilently} = useAuth0();
-//     const getCurrentPrice = async()=>{
-//         const accessToken = await getAccessTokenSilently();
-//         const response = await fetch(`http://localhost:7000/api/admin/curRentPrice`,{
-//             method:"GET",
-//             headers:{
-//                 Authorization: `Bearer ${accessToken}`,
-//                 'Content-Type' : "application/json"
-//             },
-//         })
-//         if(!response.ok) throw new Error("Failed to get Current Price");
-//         return response.json()
-//     }
-//     const {data:currentPrice , isLoading ,error} = useMutation("useCurrentPrice",useCurrentPrice);
-//     return {currentPrice,isLoading}
-//  }
