@@ -2,6 +2,11 @@ import React, { useState } from 'react'
 import UploadFairPrice from '../../components/admin/UploadFairPrice';
 import { useCreateFairPriceItem, useUpdateCurrentPrice } from '../../api/AdminApi';
 import { toast } from 'react-toastify';
+import { useGetAllFairPrice } from '../../api/FairPriceApi';
+import { TiDeleteOutline } from "react-icons/ti"; // icon
+import { MdEdit } from "react-icons/md"; // icon
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+import { Dialog, DialogActions, DialogContent, DialogTitle, Button, TextField } from '@mui/material';
 
 const AddFareRate = () => {
 
@@ -10,6 +15,7 @@ const AddFareRate = () => {
     const [openUploadFairPrice, setOpenUploadFairPrice] = useState(false);
     const [currentPrice, setCurrentPrice] = useState('')
     const { updateCurrentPrice, isSuccess: CPisSuccess, isLoading: CPisLoaing } = useUpdateCurrentPrice()
+    const { fairPriceCardData, isLoading: FPisLoading } = useGetAllFairPrice()
 
     const hanleUpdateCurrentPrice = (e) => {
         e.preventDefault()
@@ -21,11 +27,37 @@ const AddFareRate = () => {
     }
 
 
+    const [dialogOpen, setDialogOpen] = useState(false);
+    const [currentItem, setCurrentItem] = useState(null);
+
+    // Open EDIT Dialogbox
+    const opnDialog = (item) => {
+        setCurrentItem(item);
+        setDialogOpen(true)
+    }
+
+    const closedialog = () => {
+        setDialogOpen(false)
+    }
+
+    const handlechange = (e) => {
+        const { name, value } = e.target;
+        setCurrentItem((prev) => ({
+            ...prev,
+            [name]: value
+        }))
+    }
+
+    const handleUpdate = () => {
+
+    }
+
+
     return (
         <div className=' w-full h-full container'>
             {/** TO ADD CURRENT RATE */}
             <div className='flex justify-center  border-b-2 pb-3'>
-                <div className='shadow-md '>
+                <div className=''>
                     <form className='flex  flex-1 gap-2 p-3'>
                         {/* <label className='p-1'>Current Price:</label> */}
                         <input className='p-1 px-2 outline-none border shadow-md' placeholder='Current Price' value={currentPrice} onChange={(e) => setCurrentPrice(e.target.value)} />
@@ -34,7 +66,7 @@ const AddFareRate = () => {
                 </div>
             </div>
 
-            <div className=' flex justify-between px-4 py-2 items-center'>
+            <div className=' flex justify-between p-4 items-center shadow-md '>
                 <h1>Fair Price</h1>
                 <button onClick={() => setOpenUploadFairPrice(true)} className='bg-pink-500 hover:bg-pink-600 px-3 py-1 rounded font-medium text-sm text-white'>Upload New</button>
             </div>
@@ -45,6 +77,127 @@ const AddFareRate = () => {
                 isCreateLoading={isLoading}
                 iscreateSuccess={isSuccess}
                 onClose={() => setOpenUploadFairPrice(false)} />}
+
+            {/**ALL FAIR PRICE ITEM LIST */}
+
+            <div className='mt-7 p-3 shadow-sm'>
+                <h2>All FairPrice Item List</h2>
+                <div className='w-full'>
+                    <table className='w-full mt-2'>
+                        <thead className='border'>
+                            <tr className='border-b'>
+                                <th className='px-4 py-2 text-left'>S.No</th>
+                                <th className='px-4 py-2 text-left'>IMG</th>
+                                <th className='px-4 py-2 text-left'>Item Name</th>
+                                <th className='px-4 py-2 text-left'>Category</th>
+                                <th className='px-4 py-2 text-left'>Touch 75</th>
+                                <th className='px-4 py-2 text-left'>Touch 92</th>
+                                <th className='px-4 py-2 text-left'>Edit</th>
+                                <th className='px-4 py-2 text-left'>Remove</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {FPisLoading ? (
+                                <tr>
+                                    <td colSpan="8" className='text-center py-10'>
+                                        <div className='flex justify-center items-center'>
+                                            <AiOutlineLoading3Quarters className='animate-spin text-4xl text-gray-600' />
+                                            <span className='ml-2 text-xl font-semibold'>Loading...</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ) : (
+                                fairPriceCardData?.map((item, index) => (
+                                    <tr key={index + item.item_Image} className='border-b'>
+                                        <td className='px-4 py-2'>{index + 1}</td>
+                                        <td className='px-4 py-2'>
+                                            <div className='w-10 h-10'>
+                                                <img src={item.item_Image} alt={item.itemName} className='w-full h-full object-cover' />
+                                            </div>
+                                        </td>
+                                        <td className='px-4 py-2'>{item.itemName}</td>
+                                        <td className='px-4 py-2'>{item.item_category}</td>
+                                        <td className='px-4 py-2'>{item.touch_75}</td>
+                                        <td className='px-4 py-2'>{item.touch_92}</td>
+                                        <td onClick={() => opnDialog(item)} className='px-4 py-2 text-green-400 hover:text-green-700 cursor-pointer'>
+                                            <span className='text-xl'><MdEdit /></span>
+                                        </td>
+                                        <td className='px-4 py-2 text-red-400 hover:text-red-700 cursor-pointer'>
+                                            <span className='text-xl'><TiDeleteOutline /></span>
+
+                                        </td>
+                                    </tr>
+                                ))
+                            )}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            {/** Dialog box for editing  */}
+            <Dialog open={dialogOpen} onClose={closedialog}>
+                <DialogTitle>Edit Item</DialogTitle>
+                <DialogContent>
+                    {currentItem && (
+                        <div>
+                            <TextField
+                                autoFocus
+                                variant="outlined"
+                                fullWidth
+                                margin="dense"
+                                name="itemName"
+                                label="Item Name"
+                                type='text'
+                                value={currentItem.itemName}
+                                onChange={handlechange}
+                            />
+                            <TextField
+                                autoFocus
+                                margin="dense"
+                                variant="outlined"
+                                fullWidth
+                                name="item-category"
+                                label="Item Name"
+                                type='text'
+                                value={currentItem.item_category}
+                                onChange={handlechange}
+                            />
+                            <TextField
+                                autoFocus
+                                fullWidth
+                                margin="dense"
+                                variant="outlined"
+                                name="itemName"
+                                label="Item Name"
+                                type='text'
+                                value={currentItem.touch_75}
+                                onChange={handlechange}
+                            />
+
+                            <TextField
+                                autoFocus
+                                fullWidth
+                                variant="outlined"
+                                margin="dense"
+                                name="itemName"
+                                label="Item Name"
+                                type='text'
+                                value={currentItem.touch_92}
+                                onChange={handlechange}
+                            />
+                        </div>
+                    )}
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={closedialog} color="primary">
+                        Cancel
+                    </Button>
+                    <Button onClick={handleUpdate} color="primary">
+                        Update
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </div>
     )
 }
