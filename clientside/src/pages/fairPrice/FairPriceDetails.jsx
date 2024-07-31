@@ -5,6 +5,7 @@ import { useCurrentUserConetxt } from '../../context/userContext'
 import displayINR from '../../helper/RupeeConvetion'
 import { toast } from 'react-toastify'
 import { useGetCurrentPrice } from '../../api/AdminApi'
+import { useGetMyUser } from '../../api/MyUserApi'
 
 
 const RadioButton = ({ label, value, checked, onChange }) => {
@@ -26,23 +27,34 @@ const FairPriceDetails = () => {
     //GET CURRENT PRICE
     const [currentPriceCP, setCurrentPriceCP] = useState('')
     const { currentPriceData, isLoading: getCPisLoading } = useGetCurrentPrice()
+    const { currentUser, isLoading: isGetLoading } = useGetMyUser()
+    const { currentUserData, setCurrentUserData } = useCurrentUserConetxt();
+
+
     useEffect(() => {
-        if (currentPriceData.currentPrice) {
+        if (currentPriceData?.currentPrice) {
             setCurrentPriceCP(Number(currentPriceData?.currentPrice))
         }
     }, [currentPriceData])
 
-    console.log("currentPriceCP", currentPriceCP)
+    console.log("currentUserData", currentUserData, "currentUser", currentUser)
+
+    useEffect(() => {
+        if ((currentUserData.length <= 0) && currentUser) {
+            setCurrentUserData(currentUser)
+        }
+
+    }, [currentUser, setCurrentUserData, currentUserData])
+
+
     //-------------------------------------------------
 
     const { itemName, category } = useParams()
     const { fairPriceDetails, isLoading: cardDetailsLoding } = useGetFairPriceDetailsData(itemName, category)
     const details = fairPriceDetails?.data
 
-    const { currentUserData } = useCurrentUserConetxt();
 
     const [data, setData] = useState({
-        // marketLocalPrice_999: currentPriceCP,
         selectedValue: "75halmark",
         itemWeight: '',
         usePriceToken: '',
@@ -61,18 +73,18 @@ const FairPriceDetails = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("data", data)
 
         if (!data.itemWeight) {
             toast.info("Please Enter Weight...")
             return
         }
+        if (!currentPriceData || getCPisLoading) return
 
 
         if (data.selectedValue === "75halmark") {
 
             const result = (((details.touch_75 / 100) * data.itemWeight) * currentPriceCP);
-            if (currentUserData?.bonousePoints >= (Number(data.usePriceToken)) > 0) {
+            if ((currentUserData?.bonousePoints >= Number(data.usePriceToken)) && Number(data.usePriceToken) > 0) {
                 const token = Number(data.usePriceToken) * 49
                 const resultData = Number(result) - token
                 setPrice({
@@ -87,7 +99,7 @@ const FairPriceDetails = () => {
         } else if (data.selectedValue === "916halmark") {
 
             const result = (((details.touch_92 / 100) * data.itemWeight) * currentPriceCP)
-            if (currentUserData?.bonousePoints >= (Number(data.usePriceToken)) > 0) {
+            if ((currentUserData?.bonousePoints >= Number(data.usePriceToken)) && Number(data.usePriceToken) > 0) {
                 const token = Number(data.usePriceToken) * 49
                 const resultData = Number(result) - token
                 setPrice({
@@ -110,7 +122,7 @@ const FairPriceDetails = () => {
     return (
 
         <div className="container mx-auto p-4">
-            {(cardDetailsLoding || cardDetailsLoding) ? (
+            {(cardDetailsLoding || cardDetailsLoding || isGetLoading) ? (
                 <h1 className="text-center">Loading...</h1>
             ) : (
                 <div className="flex flex-col lg:flex-row items-center justify-center lg:w-4/5 mx-auto ">
@@ -127,11 +139,11 @@ const FairPriceDetails = () => {
                         <form>
                             <div className="mb-4 flex gap-2  items-center">
                                 <h2 className="text-md font-semibold">Available Prize Token :</h2>
-                                <p className='font-bold'>{(currentUserData?.bonousePoints >= data?.usePriceToken > 0) ? (currentUserData?.bonousePoints - data?.usePriceToken) : currentUserData?.bonousePoints}</p>
+                                <p className='font-bold'>{((currentUserData?.bonousePoints >= data?.usePriceToken) && (data?.usePriceToken > 0)) ? (currentUserData?.bonousePoints - data?.usePriceToken) : currentUserData?.bonousePoints}</p>
                             </div>
                             <div className="mb-4 ">
                                 {
-                                    data?.usePriceToken ? ((currentUserData?.bonousePoints >= data?.usePriceToken > 0) ?
+                                    data?.usePriceToken ? (((currentUserData?.bonousePoints >= data?.usePriceToken) && (data?.usePriceToken > 0)) ?
                                         (<p className="mb-2 text-md font-semibold">Use Price Token :</p>) : (
                                             <p className="mb-2 text-md text-red-500 font-semibold">Invalid.! prize token:</p>
                                         )) : <p className="mb-2 text-md font-semibold">Use Price Token :</p>

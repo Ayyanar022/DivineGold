@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import UserProfileForm from '../../components/forms/UserProfileForm'
-// import UserDetailsShow from '../../components/UserDetailsShow'
 import { useGetMyUser, useUpdateMyUser } from '../../api/MyUserApi'
 import { useCurrentUserConetxt } from '../../context/userContext'
 
@@ -10,19 +9,18 @@ const UserProfilePage = () => {
   const { currentUser, isLoading: isUpdateLoading } = useGetMyUser()
 
   //conetxt forcurrent user
-  const { setCurrentUserData } = useCurrentUserConetxt()
-  // console.log("---cur", currentUser)
+  const { setCurrentUserData, currentUserData } = useCurrentUserConetxt()
 
   useEffect(() => {
     setCurrentUserData(currentUser)
-  }, [currentUser])
+  }, [currentUser, setCurrentUserData, currentUserData])
 
   if (isGetLoading) {
     return <span>Loading...</span>
   }
 
   if (!currentUser) {
-    return <span>Unable to load user Profile..</span>
+    return <span>Loading... User Profile..</span>
   }
 
   return (
