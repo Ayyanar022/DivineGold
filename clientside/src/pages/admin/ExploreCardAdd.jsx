@@ -8,6 +8,9 @@ import { toast } from 'react-toastify'
 import { useGetAllJewllDesign } from '../../api/ExploreApi'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import { TiDeleteOutline } from 'react-icons/ti'
+import { useAuth0 } from '@auth0/auth0-react'
+import { useQueryClient } from 'react-query'
+import axios from 'axios'
 
 const ExploreCardAdd = () => {
 
@@ -48,7 +51,6 @@ const ExploreCardAdd = () => {
         if (!file) return
         try {
             const uploadImage = await uploadRateforImage(file);
-            console.log("uploadImage", uploadImage?.url)
             setJewellData(prev => ({ ...prev, jewellImage: [...prev.jewellImage, uploadImage.url] }))
         } catch (err) {
             console.log("error", err)
@@ -86,16 +88,44 @@ const ExploreCardAdd = () => {
     const { JewellDesignData, isLoading: JewllDesignIsLoading } = useGetAllJewllDesign()
 
     // delete Jewell design 
-    const handleDelete = (item) => {
-
+    const handleDelete = async (item) => {
+        const accessToken = await getAccessTokenSilently()
+        const response = await axios.delete(`http://localhost:7000/api/admin/delete-jewllDesign`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`
+            },
+            data: { _id: item._id }
+        })
+        if (response.data.success) {
+            queryClient.invalidateQueries('getAllJewell') // to refetch data
+            toast.success(response.data.message)
+        }
     }
 
     // Edit 
-
     const opnDialog = (item) => {
         setJewellData(item);
         setDialogOpen(true);
+    }
 
+    //Edit fun
+    const { getAccessTokenSilently } = useAuth0()
+    const queryClient = useQueryClient();
+    const handleEditJewllDesign = async () => {
+        const accessToken = await getAccessTokenSilently();
+        const response = await fetch(`http://localhost:7000/api/admin/edit-jewllDesign`, {
+            method: "PUT",
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(jewellData)
+        })
+        if (response.ok) {
+            queryClient.invalidateQueries('getAllJewell') // to refetch data
+            handleCancel()
+            toast.success("Updated Scuccessfully..")
+        }
     }
 
 
@@ -238,7 +268,8 @@ const ExploreCardAdd = () => {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={closeDialogFun}>Cancel</Button>
-                    <Button onClick={uploadNewDesign}>Upload</Button>
+                    <Button onClick={handleEditJewllDesign}>Edit</Button>
+                    <Button onClick={uploadNewDesign}>Add</Button>
                 </DialogActions>
             </Dialog>
 
@@ -290,8 +321,8 @@ const ExploreCardAdd = () => {
                                         </td>
                                         <td onClick={() => handleDelete(data)} className='px-4 py-2 text-red-400 hover:text-red-700 cursor-pointer'>
                                             <span className='text-xl'><TiDeleteOutline /></span>
-
                                         </td>
+
                                     </tr>
                                 ))
                             )

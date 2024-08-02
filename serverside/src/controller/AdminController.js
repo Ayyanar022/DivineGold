@@ -114,9 +114,37 @@ try{
   res.status(200).json(data)
 }catch(err){
   console.log("Error",err)
-  res.status(500).json({message:"Somthing went Wrong"})
+  res.status(500).json({message:"Somthing went Wrong.."})
 }
 }
+
+const editJewllDesign = async (req,res)=>{
+  try{
+   const {_id , ...updateDate} = req.body
+    const response = await NewJewllDesign.findByIdAndUpdate(_id , updateDate ,{new:true})
+    res.status(200).json(response)
+
+  }catch(err){
+    console.log("error",err);
+    res.status(500).json({message:"Somthing went wrong.."})
+  }
+}
+
+const deleteJewllDesign = async (req,res)=>{
+  try{
+    const {_id} = req.body;
+    const response = await NewJewllDesign.findByIdAndDelete(_id);
+    if(!response){
+    res.status(404).json({message:"id not found"})
+    }
+    res.status(200).json({message:"Deleted Successfully..",success:true})
+
+  }catch(err){
+    console.log("error",err)
+    res.status(500).json({message:"somthing went wrong.."})
+  }
+}
+
 
 export default {
     getAllUser,
@@ -127,4 +155,6 @@ export default {
     deletFairPriceItem,
     AddnewItemDesign,
     getAllJewllDesigns,
+    editJewllDesign,
+    deleteJewllDesign,
 }

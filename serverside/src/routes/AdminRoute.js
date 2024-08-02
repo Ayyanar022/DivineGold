@@ -14,6 +14,9 @@ router.delete('/',jwtCheck,jwtParse,AdminController.deletFairPriceItem)
 //new jewllDesign
 router.post('/AddnewItemDesign',jwtCheck,jwtParse,AdminController.AddnewItemDesign)
 router.get('/get-AllItemDesign',jwtCheck,jwtParse,AdminController.getAllJewllDesigns)
+router.put('/edit-jewllDesign',jwtCheck,jwtParse,AdminController.editJewllDesign);
+router.delete('/delete-jewllDesign',jwtCheck,jwtParse,AdminController.deleteJewllDesign);
+
 
 
 
