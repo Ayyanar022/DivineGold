@@ -11,6 +11,7 @@ const Admin = () => {
 
           <Link to="allcustomerList" >All Customer</Link>
           <Link to="add-farerate" >Add FairPrice</Link>
+          <Link to="Explore-card-item">Explore Card</Link>
         </div>
       </aside>
       <div className='p-2 w-full h-full '>

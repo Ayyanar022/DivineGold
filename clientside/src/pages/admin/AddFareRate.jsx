@@ -101,15 +101,14 @@ const AddFareRate = () => {
             <div className='flex justify-center  border-b-2 pb-3'>
                 <div className=''>
                     <form className='flex  flex-1 gap-2 p-3'>
-                        {/* <label className='p-1'>Current Price:</label> */}
-                        <input className='p-1 px-2 outline-none border shadow-md' placeholder='Current Price' value={currentPrice} onChange={(e) => setCurrentPrice(e.target.value)} />
+                        <input className='p-1 px-2 outline-none border shadow-md' placeholder='Enter Current Price' value={currentPrice} onChange={(e) => setCurrentPrice(e.target.value)} />
                         <button className='p-1 bg-pink-500 hover:bg-pink-600 px-2 rounded-md text-white' onClick={hanleUpdateCurrentPrice} >Update Current Price</button>
                     </form>
                 </div>
             </div>
 
             <div className=' flex justify-between p-4 items-center shadow-md '>
-                <h1>Fair Price</h1>
+                <h1 className='text-md font-semibold'>Upload new Fair Price item</h1>
                 <button onClick={() => setOpenUploadFairPrice(true)} className='bg-pink-500 hover:bg-pink-600 px-3 py-1 rounded font-medium text-sm text-white'>Upload New</button>
             </div>
 
@@ -123,11 +122,11 @@ const AddFareRate = () => {
             {/**ALL FAIR PRICE ITEM LIST */}
 
             <div className='mt-7 p-3 shadow-sm'>
-                <h2>All FairPrice Item List</h2>
+                <h2 className='text-md font-semibold'> All FairPrice Item List</h2>
                 <div className='w-full'>
                     <table className='w-full mt-2'>
                         <thead className='border'>
-                            <tr className='border-b'>
+                            <tr className='border-b text-md'>
                                 <th className='px-4 py-2 text-left'>S.No</th>
                                 <th className='px-4 py-2 text-left'>IMG</th>
                                 <th className='px-4 py-2 text-left'>Item Name</th>
@@ -151,7 +150,7 @@ const AddFareRate = () => {
                                 </tr>
                             ) : (
                                 fairPriceCardData?.map((item, index) => (
-                                    <tr key={index + item.item_Image} className='border-b'>
+                                    <tr key={index + item.item_Image} className='border-b text-sm'>
                                         <td className='px-4 py-2'>{index + 1}</td>
                                         <td className='px-4 py-2'>
                                             <div className='w-10 h-10'>

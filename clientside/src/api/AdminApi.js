@@ -95,3 +95,29 @@ export const useGetCurrentPrice =()=>{
     return {currentPriceData ,isLoading }
 
 }
+
+
+
+// ADMIN EXPLORE CARD 
+//upload new item design
+
+export const useUploadNewItemDesign = ()=>{
+    const {getAccessTokenSilently} = useAuth0()
+
+    const uploadNewItemDesign =async (data)=>{
+        const accessToken = await getAccessTokenSilently();
+        const response = await fetch(`http://localhost:7000/api/admin/AddnewItemDesign`,{
+            method:'POST',
+            headers:{
+                Authorization:`Bearer ${accessToken}`, 
+                "Content-Type":"application/json"    
+            },
+            body:JSON.stringify(data)
+        })
+    if(!response.ok) throw new Error("Faild to add new item design..")    
+    return response.json();
+    }
+
+    const {mutateAsync:AddNewItemDesign,isLoading,isSuccess} = useMutation(uploadNewItemDesign)
+    return {AddNewItemDesign,isLoading,isSuccess}
+} 

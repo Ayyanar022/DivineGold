@@ -11,6 +11,7 @@ import Allcustomer from "../pages/admin/Allcustomer.jsx";
 import AddFareRate from "../pages/admin/AddFareRate.jsx";
 import { createBrowserRouter } from "react-router-dom";
 import FairPriceDetails from "../pages/fairPrice/FairPriceDetails.jsx";
+import ExploreCardAdd from "../pages/admin/ExploreCardAdd.jsx";
 
 
 const router = createBrowserRouter([
@@ -29,7 +30,8 @@ const router = createBrowserRouter([
         element: <Admin />,
         children:[
           { path: "allcustomerList", element: <Allcustomer />},
-          { path: "add-farerate", element: <AddFareRate />}
+          { path: "add-farerate", element: <AddFareRate />},
+          { path: "Explore-card-item", element: <ExploreCardAdd />},
         ]
        },
        { path: "fairPrice-details/:itemName/:category",element:< FairPriceDetails />}

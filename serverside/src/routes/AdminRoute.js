@@ -11,6 +11,9 @@ router.get("/currentPrice",jwtCheck,jwtParse,AdminController.getCurrentPrice);
 router.put('/',jwtCheck,jwtParse,AdminController.updateFairPriceItem)
 router.delete('/',jwtCheck,jwtParse,AdminController.deletFairPriceItem)
 
+//new jewllDesign
+router.post('/AddnewItemDesign',jwtCheck,jwtParse,AdminController.AddnewItemDesign)
+
 
 
 export default router;

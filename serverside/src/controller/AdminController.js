@@ -1,6 +1,7 @@
 import CurrentPrice from '../models/currentPriceModel.js'
 import FairPrice from '../models/fairPriceModel.js'
 import User from '../models/userModel.js'
+import NewJewllDesign from '../models/jewllItemDesignModel.js'
 
 
 const getAllUser =async (req,res)=>{
@@ -93,6 +94,20 @@ const deletFairPriceItem = async(req,res)=>{
   }
 }
 
+// Add new Jewll Design 
+const AddnewItemDesign = async(req,res)=>{
+  try{
+      const newDesign = new  NewJewllDesign(req.body)
+      await newDesign.save()     
+      res.status(201).json({data:newDesign.toObject(),sucess:true})
+
+  }catch(err){
+    console.log("Error",err)
+    res.status(500).json({message:"somthing went wrong in Adding new design..",error:true})
+
+  }
+}
+
 
 export default {
     getAllUser,
@@ -101,4 +116,5 @@ export default {
     getCurrentPrice,
     updateFairPriceItem,
     deletFairPriceItem,
+    AddnewItemDesign,
 }

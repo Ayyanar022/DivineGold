@@ -49,3 +49,10 @@ export const  itemCategory = [
 ]
    
 
+export const Gender = [
+  {id:1,label:"Male"},
+  {id:2,label:"Female"},
+  {id:3,label:"Kids"},
+  {id:4,label:"BabyGirl"},
+  {id:5,label:"BabyBoy"},
+]
