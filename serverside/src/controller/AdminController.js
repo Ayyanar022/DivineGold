@@ -108,6 +108,15 @@ const AddnewItemDesign = async(req,res)=>{
   }
 }
 
+const getAllJewllDesigns = async(req,res)=>{
+try{
+  const data = await NewJewllDesign.find()
+  res.status(200).json(data)
+}catch(err){
+  console.log("Error",err)
+  res.status(500).json({message:"Somthing went Wrong"})
+}
+}
 
 export default {
     getAllUser,
@@ -117,4 +126,5 @@ export default {
     updateFairPriceItem,
     deletFairPriceItem,
     AddnewItemDesign,
+    getAllJewllDesigns,
 }

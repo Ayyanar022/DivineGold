@@ -1,10 +1,13 @@
 import { Autocomplete, Button, Dialog, DialogActions, DialogContent, DialogTitle, Input, TextField } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { category, Gender, itemCategory } from '../../helper/uploadFairPriceItemData'
 import uploadRateforImage from '../../helper/uploadRateForImage'
-import { MdDelete } from 'react-icons/md'
+import { MdDelete, MdEdit } from 'react-icons/md'
 import { useUploadNewItemDesign } from '../../api/AdminApi'
 import { toast } from 'react-toastify'
+import { useGetAllJewllDesign } from '../../api/ExploreApi'
+import { AiOutlineLoading3Quarters } from 'react-icons/ai'
+import { TiDeleteOutline } from 'react-icons/ti'
 
 const ExploreCardAdd = () => {
 
@@ -79,6 +82,22 @@ const ExploreCardAdd = () => {
         }
         handleCancel()
     }
+
+    const { JewellDesignData, isLoading: JewllDesignIsLoading } = useGetAllJewllDesign()
+
+    // delete Jewell design 
+    const handleDelete = (item) => {
+
+    }
+
+    // Edit 
+
+    const opnDialog = (item) => {
+        setJewellData(item);
+        setDialogOpen(true);
+
+    }
+
 
     return (
         <div>
@@ -222,6 +241,65 @@ const ExploreCardAdd = () => {
                     <Button onClick={uploadNewDesign}>Upload</Button>
                 </DialogActions>
             </Dialog>
+
+
+            {/** Jewll designs */}
+            <div className='w-full'>
+                <h2 className='py-3 font-semibold'>All Jewll Designs </h2>
+                <table className='w-full mt-2 border '>
+                    <thead className='border'>
+                        <tr className='border-b text-md'>
+                            <th className='px-4 py-2 text-left'>S.No</th>
+                            <th className='px-4 py-2 text-left' >Image</th>
+                            <th className='px-4 py-2 text-left' >Name</th>
+                            <th className='px-4 py-2 text-left' >category</th>
+                            <th className='px-4 py-2 text-left' >Type</th>
+                            <th className='px-4 py-2 text-left' >Gender</th>
+                            <th className='px-4 py-2 text-left' >Touch 75</th>
+                            <th className='px-4 py-2 text-left' >Touch 92</th>
+                            <th className='px-4 py-2 text-left' >Edit</th>
+                            <th className='px-4 py-2 text-left' >Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            JewllDesignIsLoading ? (
+                                <tr>
+                                    <td colSpan="8" className='text-center py-10'>
+                                        <div className='flex justify-center items-center'>
+                                            <AiOutlineLoading3Quarters className='animate-spin text-4xl text-gray-600' />
+                                            <span className='ml-2 text-xl font-semibold'>Loading...</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ) : (
+                                JewellDesignData.map((data, index) => (
+                                    <tr key={index} className='border-b text-sm'>
+                                        <td className='px-4 py-1' >{index + 1}</td>
+                                        <td>
+                                            <img src={data?.jewellImage[0]} alt="img" width={40} height={40} />
+                                        </td>
+                                        <td className='px-4 py-1'>{data?.jewellName}</td>
+                                        <td className='px-4 py-1'>{data?.jewellCategory}</td>
+                                        <td className='px-4 py-1' >{data?.jewellType}</td>
+                                        <td className='px-4 py-1' >{"Male"}</td>
+                                        <td className='px-4 py-1' >{data?.touch_75}</td>
+                                        <td className='px-4 py-1' >{data?.touch_92}</td>
+                                        <td onClick={() => opnDialog(data)} className='px-4 py-2 text-green-400 hover:text-green-700 cursor-pointer'>
+                                            <span className='text-xl'><MdEdit /></span>
+                                        </td>
+                                        <td onClick={() => handleDelete(data)} className='px-4 py-2 text-red-400 hover:text-red-700 cursor-pointer'>
+                                            <span className='text-xl'><TiDeleteOutline /></span>
+
+                                        </td>
+                                    </tr>
+                                ))
+                            )
+                        }
+                    </tbody>
+
+                </table>
+            </div>
         </div>
     )
 }
