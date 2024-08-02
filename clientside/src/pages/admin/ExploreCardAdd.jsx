@@ -76,13 +76,22 @@ const ExploreCardAdd = () => {
 
     const { AddNewItemDesign, isLoading, isSuccess: addDesignisSucess } = useUploadNewItemDesign()
 
-    const uploadNewDesign = async (e) => {
-        e.preventDefault()
-        const response = await AddNewItemDesign(jewellData)
-        if (addDesignisSucess) {
-            toast.success("Added new Design")
+    const uploadNewDesign = async () => {
+        try {
+            const response = await AddNewItemDesign(jewellData)
+            if (response?.sucess) {
+                queryClient.invalidateQueries('getAllJewell') // to refetch data
+                handleCancel()
+                toast.success("Added new Design")
+                setDialogOpen(false)
+            }
+        } catch (err) {
+            console.log("error", err)
+            toast.error(err)
         }
-        handleCancel()
+
+
+
     }
 
     const { JewellDesignData, isLoading: JewllDesignIsLoading } = useGetAllJewllDesign()
@@ -305,7 +314,7 @@ const ExploreCardAdd = () => {
                                 </tr>
                             ) : (
                                 JewellDesignData.map((data, index) => (
-                                    <tr key={index} className='border-b text-sm'>
+                                    <tr key={index} className='border-b text-[14px]'>
                                         <td className='px-4 py-1' >{index + 1}</td>
                                         <td>
                                             <img src={data?.jewellImage[0]} alt="img" width={40} height={40} />
