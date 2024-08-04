@@ -1,11 +1,12 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
-import { useGetOneJewllDesign } from '../../api/ExploreApi';
-import { useGetCurrentPrice } from '../../api/AdminApi';
-import { useGetMyUser } from '../../api/MyUserApi';
-import displayINR from '../../helper/RupeeConvetion';
-import { toast } from "react-toastify";
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import { useCurrentUserConetxt } from '../../context/userContext'
+import displayINR from '../../helper/RupeeConvetion'
+import { toast } from 'react-toastify'
+import { useGetCurrentPrice } from '../../api/AdminApi'
+import { useGetMyUser } from '../../api/MyUserApi'
+import { useGetOneJewllDesign } from '../../api/ExploreApi'
+
 
 const RadioButton = ({ label, value, checked, onChange }) => {
     return (
@@ -15,79 +16,20 @@ const RadioButton = ({ label, value, checked, onChange }) => {
                 value={value}
                 checked={checked}
                 onChange={onChange}
-                className='mr-2 text-xs ' />
+                className='mr-2 ' />
             {label}
         </label>
     )
 }
 
-const ExploreCardDetails = () => {
+const Dummy1 = () => {
 
-    const [activeImage, setActiveImage] = useState('')
-    const [zoomImage, setZoomImage] = useState();
-    const [zoomImageOpen, setZoomImageOpen] = useState(false);
-
-    const [price, setPrice] = useState({
-        bestPrice: '',
-        tokenPricediscount: '',
-        afterTokenDiscount: ''
-    })
-
-    const [data, setData] = useState({
-        selectedValue: "75halmark",
-        itemWeight: '',
-        usePriceToken: '',
-    })
+    //GET CURRENT PRICE
     const [currentPriceCP, setCurrentPriceCP] = useState('')
-
-    // to get current 999 rate
     const { currentPriceData, isLoading: getCPisLoading } = useGetCurrentPrice()
-
-    // to get jewell details
-    const params = useParams()
-    const _id = params.id;
-    const { simgleJewellData, isLoading: isCardLoding } = useGetOneJewllDesign(_id)
-    const details = simgleJewellData
-    console.log("details", simgleJewellData)
-
+    const { currentUser, isLoading: isGetLoading } = useGetMyUser()
     const { currentUserData, setCurrentUserData } = useCurrentUserConetxt();
 
-    useEffect(() => {
-        setActiveImage(simgleJewellData?.jewellImage[0])
-    }, [simgleJewellData])
-
-    const handleMouseEnter = (imgUrl) => {
-        setActiveImage(imgUrl)
-    }
-
-    const handleChange = (e) => {
-        setData(prev => ({ ...prev, selectedValue: e.target.value }));
-    }
-
-    const emptyImageListing = new Array(4).fill(null); // for loading empty small image
-
-
-    // get current user details 
-    const { currentUser, isLoading: isUserGetLoading } = useGetMyUser();
-
-    //Zomm image
-    const handleZoomImage = useCallback(
-        (e) => {
-            setZoomImageOpen(true);
-            const { left, top, width, height } = e.target.getBoundingClientRect();
-            const x = (e.clientX - left) / width;
-            const y = (e.clientY - top) / height;
-            setZoomImage({
-                x: x,
-                y: y,
-            });
-        },
-        [zoomImage]
-    );
-
-    const handleZoomOut = () => {
-        setZoomImageOpen(false);
-    };
 
     useEffect(() => {
         if (currentPriceData?.currentPrice) {
@@ -104,6 +46,31 @@ const ExploreCardDetails = () => {
     }, [currentUser, setCurrentUserData, currentUserData])
 
 
+    //-------------------------------------------------
+
+    const params = useParams()
+    const _id = params.id;
+    const { simgleJewellData, isLoading: cardDetailsLoding } = useGetOneJewllDesign(_id)
+    const details = simgleJewellData?.data
+    console.log("details", simgleJewellData)
+
+
+    const [data, setData] = useState({
+        selectedValue: "75halmark",
+        itemWeight: '',
+        usePriceToken: '',
+    })
+
+    const handleChange = (e) => {
+        setData(prev => ({ ...prev, selectedValue: e.target.value }));
+    }
+
+
+    const [price, setPrice] = useState({
+        bestPrice: '',
+        tokenPricediscount: '',
+        afterTokenDiscount: ''
+    })
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -118,7 +85,6 @@ const ExploreCardDetails = () => {
         if (data.selectedValue === "75halmark") {
 
             const result = (((details.touch_75 / 100) * data.itemWeight) * currentPriceCP);
-            console.log("result", result)
             if ((currentUserData?.bonousePoints >= Number(data.usePriceToken)) && Number(data.usePriceToken) > 0) {
                 const token = Number(data.usePriceToken) * 49
                 const resultData = Number(result) - token
@@ -152,66 +118,36 @@ const ExploreCardDetails = () => {
 
     }
 
+
+
     return (
-        <div className='container mx-auto p-4 lg:px-8 '>
-            <div className='min-h-[200px] flex flex-col lg:flex-row gap-8'>
-                {/**Product image */}
-                <div className='h-96 flex flex-col lg:flex-row-reverse gap-4'>
 
-                    <div className='h-[300px] w-[300px] lg:h-96 lg:w-96 bg-slate-200 relative'>
-                        <img src={activeImage} onMouseLeave={handleZoomOut} onMouseMove={handleZoomImage} className='h-full w-full object-scale-down mix-blend-multiply' />
-
-                        {/**Zoom image */}
-                        {zoomImageOpen && (<div className=' hidden lg:block absolute min-h-[400px] min-w-[400px] bg-slate-200 p-1 -right-[410px] top-0'>
-                            <div
-                                className='h-full w-full min-h-[400px] min-w-[400px]  mix-blend-multiply'
-                                style={{
-                                    backgroundImage: `url(${activeImage})`, backgroundRepeat: "no-repeat",
-
-                                    backgroundPosition: `${zoomImage?.x * 100}% ${zoomImage?.y * 100
-                                        }%`,
-                                }}>
-                            </div>
-                        </div>)}
-
+        <div className="container mx-auto p-4">
+            {(cardDetailsLoding || cardDetailsLoding || isGetLoading) ? (
+                <h1 className="text-center">Loading...</h1>
+            ) : (
+                <div className="flex flex-col lg:flex-row items-center justify-center lg:w-4/5 mx-auto ">
+                    <div className="w-full lg:w-1/2 p-4 ">
+                        {!cardDetailsLoding && (
+                            <img
+                                src={details?.item_Image}
+                                alt={details?.item_category}
+                                className="w-full h-auto"
+                            />
+                        )}
                     </div>
-
-                    <div className='h-full'>
-                        {
-                            isCardLoding ? (
-                                <div className='flex gap-2 lg:flex-col overflow-scroll scrollbar-hiden h-full'>
-                                    {emptyImageListing.map((el, index) => (
-                                        <div className='h-20 w-20 bg-slate-200 rounded animate-pulse' key={"loading" + index}> </div>
-                                    ))}
-                                </div>
-                            ) : (
-                                <div className='flex gap-2 lg:flex-col overflow-scroll scrollbar-hiden h-full'>
-                                    {simgleJewellData?.jewellImage?.map((imgurl, index) => (
-                                        <div className='h-20 w-20 bg-slate-200 rounded' key={"img" + imgurl}>
-                                            <img src={imgurl} onMouseEnter={() => handleMouseEnter(imgurl)} className='cursor-pointer w-full h-full object-scale-down border mix-blend-multiply' />
-                                        </div>
-                                    ))}
-                                </div>
-                            )
-                        }
-                    </div>
-
-                </div>
-
-                {/**Product details */}
-                <div>
-                    <div className="w-full lg:min-w-[500px] min-h-[382px] px-6 py-2 bg-gray-100 ">
+                    <div className="w-full lg:w-1/2 p-6 bg-gray-100 ">
                         <form>
-                            <div className="mb-2 flex gap-2  items-center">
-                                <h2 className="text-[15px] font-semibold text-slate-700">Available Prize Token :</h2>
-                                <p className=' text-[15px] font-bold text-sm text-slate-800'>{((currentUserData?.bonousePoints >= data?.usePriceToken) && (data?.usePriceToken > 0)) ? (currentUserData?.bonousePoints - data?.usePriceToken) : currentUserData?.bonousePoints}</p>
+                            <div className="mb-4 flex gap-2  items-center">
+                                <h2 className="text-md font-semibold">Available Prize Token :</h2>
+                                <p className='font-bold'>{((currentUserData?.bonousePoints >= data?.usePriceToken) && (data?.usePriceToken > 0)) ? (currentUserData?.bonousePoints - data?.usePriceToken) : currentUserData?.bonousePoints}</p>
                             </div>
                             <div className="mb-4 ">
                                 {
                                     data?.usePriceToken ? (((currentUserData?.bonousePoints >= data?.usePriceToken) && (data?.usePriceToken > 0)) ?
-                                        (<p className="mb-1 text-[15px] font-semibold text-slate-700">Use Price Token :</p>) : (
-                                            <p className="mb-1 text-[15px] text-md text-red-500 font-semibold">Invalid.! prize token:</p>
-                                        )) : <p className="mb-1 text-[15px] font-semibold text-slate-700">Use Price Token :</p>
+                                        (<p className="mb-2 text-md font-semibold">Use Price Token :</p>) : (
+                                            <p className="mb-2 text-md text-red-500 font-semibold">Invalid.! prize token:</p>
+                                        )) : <p className="mb-2 text-md font-semibold">Use Price Token :</p>
                                 }
 
                                 <input
@@ -224,18 +160,17 @@ const ExploreCardDetails = () => {
                                             usePriceToken: e.target.value,
                                         }))
                                     }
-                                    className="w-full text-[15px] px-2 py-2 border border-gray-300 rounded"
+                                    className="w-full p-2 border border-gray-300 rounded"
                                 />
                             </div>
-                            <div className="mb-4 lg:flex  items-center gap-4">
-                                <label className='font-semibold text-[15px] text-slate-700'> Select Quality :</label>
+                            <div className="mb-4">
+                                <label className='text-md font-semibold'> Select Quality :</label>
                                 <div className='flex gap-3 mt-2'>
                                     <RadioButton
                                         label="75 Halmark"
                                         value="75halmark"
                                         checked={data.selectedValue === '75halmark'}
                                         onChange={handleChange}
-
                                     />
                                     <RadioButton
                                         label="916 Halmark"
@@ -247,7 +182,7 @@ const ExploreCardDetails = () => {
 
                             </div>
                             <div className="mb-4">
-                                <label className="block mb-2 text-[15px] font-semibold text-slate-700">Net Weight :</label>
+                                <label className="block mb-2 text-md font-semibold">Net Weight :</label>
                                 <input
                                     id="itemWeight"
                                     type="text"
@@ -291,10 +226,9 @@ const ExploreCardDetails = () => {
                         </form>
                     </div>
                 </div>
-            </div>
-
+            )}
         </div>
     )
 }
 
-export default ExploreCardDetails
+export default Dummy1
