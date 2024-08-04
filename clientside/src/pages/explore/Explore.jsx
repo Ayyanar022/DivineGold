@@ -12,9 +12,9 @@ const Explore = () => {
   const [selectType, setSelectType] = useState([])
   const [selctedFilter, setSelectedFilter] = useState([])
 
-  const [genderToggle, setGenderToggle] = useState(false);
-  const [typeToggle, settypeToggle] = useState(false);
-  const [categoryToggle, setCategoryToggle] = useState(false);
+  const [genderToggle, setGenderToggle] = useState(true);
+  const [typeToggle, settypeToggle] = useState(true);
+  const [categoryToggle, setCategoryToggle] = useState(true);
 
   const handleChange = (e) => {
     const value = e.target.value;

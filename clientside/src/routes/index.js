@@ -12,6 +12,7 @@ import AddFareRate from "../pages/admin/AddFareRate.jsx";
 import { createBrowserRouter } from "react-router-dom";
 import FairPriceDetails from "../pages/fairPrice/FairPriceDetails.jsx";
 import ExploreCardAdd from "../pages/admin/ExploreCardAdd.jsx";
+import ExploreCardDetails from "../pages/explore/ExploreCardDetails.jsx";
 
 
 const router = createBrowserRouter([
@@ -34,7 +35,9 @@ const router = createBrowserRouter([
           { path: "Explore-card-item", element: <ExploreCardAdd />},
         ]
        },
-       { path: "fairPrice-details/:itemName/:category",element:< FairPriceDetails />}
+       { path: "fairPrice-details/:itemName/:category",element:< FairPriceDetails />},
+       { path: "JewllDesign-details/:id",element:<ExploreCardDetails />}
+
     ],
   },
 ])

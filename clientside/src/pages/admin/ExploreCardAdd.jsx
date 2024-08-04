@@ -140,8 +140,8 @@ const ExploreCardAdd = () => {
 
     return (
         <div>
-            <div className='w-full border-b flex justify-between items-center p-3'>
-                <h2 className='text-md font-semibold'>Upload jewell Items</h2>
+            <div className='w-full border-b flex justify-between items-center px-1 py-3'>
+                <h2 className='text-md font-semibold '>Upload jewell Items</h2>
                 <button className='py-1 px-2 rounded bg-pink-500 hover:bg-pink-700 text-white' onClick={openDialog}>Upload item</button>
             </div>
 
@@ -285,10 +285,10 @@ const ExploreCardAdd = () => {
 
             {/** Jewll designs */}
             <div className='w-full'>
-                <h2 className='py-3 font-semibold'>All Jewll Designs </h2>
+                <h2 className='py-3 px-1 text-slate-700 font-semibold'>All Jewll Designs </h2>
                 <table className='w-full mt-2 border '>
                     <thead className='border'>
-                        <tr className='border-b text-md'>
+                        <tr className='border-b text-md '>
                             <th className='px-4 py-2 text-left'>S.No</th>
                             <th className='px-4 py-2 text-left' >Image</th>
                             <th className='px-4 py-2 text-left' >Name</th>

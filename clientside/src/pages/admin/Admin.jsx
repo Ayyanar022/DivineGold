@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, NavLink, Outlet } from 'react-router-dom'
 
 const Admin = () => {
 
@@ -7,11 +7,11 @@ const Admin = () => {
   return (
     <div className=' min-h-[calc(100vh-95px)] hidden lg:flex'>
       <aside className='max-w-56 w-full overflow-hidden border-r-2'>
-        <div className='w-full flex flex-col gap-3 items-center mt-4'>
+        <div className='w-full flex flex-col  items-center mt-7'>
 
-          <Link to="allcustomerList" >All Customer</Link>
-          <Link to="add-farerate" >Add FairPrice</Link>
-          <Link to="Explore-card-item">Explore Card</Link>
+          <NavLink className={({ isActive }) => `hover:bg-slate-100 w-full py-3 text-center hover:text-pink-500 ${isActive && 'text-pink-700  bg-slate-200'}`} to="allcustomerList" >All Customer</NavLink>
+          <NavLink className={({ isActive }) => `hover:bg-slate-100 w-full py-3 text-center hover:text-pink-500 ${isActive && 'text-pink-700  bg-slate-200'}`} to="add-farerate" >Add FairPrice</NavLink>
+          <NavLink className={({ isActive }) => `hover:bg-slate-100 w-full py-3 text-center hover:text-pink-500 ${isActive && 'text-pink-700  bg-slate-200'}`} to="Explore-card-item">Explore Card</NavLink>
         </div>
       </aside>
       <div className='p-2 w-full h-full '>

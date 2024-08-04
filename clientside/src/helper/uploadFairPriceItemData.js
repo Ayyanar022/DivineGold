@@ -55,4 +55,6 @@ export const Gender = [
   {id:3,label:"Kids"},
   {id:4,label:"BabyGirl"},
   {id:5,label:"BabyBoy"},
+  {id:5,label:"Common"},
+  {id:5,label:"None"},
 ]
