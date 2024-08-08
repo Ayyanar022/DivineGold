@@ -200,9 +200,9 @@ const ExploreCardDetails = () => {
 
                 {/**Product details */}
                 <div>
-                    <div className="w-full lg:min-w-[500px] min-h-[382px] px-6 py-2 bg-gray-100 ">
+                    <div className="w-full lg:min-w-[500px] min-h-[382px] px-6 py-4 bg-gray-100 ">
                         <form>
-                            <div className="mb-2 flex gap-2  items-center">
+                            <div className="mb-4 flex gap-2  items-center">
                                 <h2 className="text-[15px] font-semibold text-slate-700">Available Prize Token :</h2>
                                 <p className=' text-[15px] font-bold text-sm text-slate-800'>{((currentUserData?.bonousePoints >= data?.usePriceToken) && (data?.usePriceToken > 0)) ? (currentUserData?.bonousePoints - data?.usePriceToken) : currentUserData?.bonousePoints}</p>
                             </div>
