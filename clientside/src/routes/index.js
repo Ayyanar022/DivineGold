@@ -13,6 +13,7 @@ import { createBrowserRouter } from "react-router-dom";
 import FairPriceDetails from "../pages/fairPrice/FairPriceDetails.jsx";
 import ExploreCardAdd from "../pages/admin/ExploreCardAdd.jsx";
 import ExploreCardDetails from "../pages/explore/ExploreCardDetails.jsx";
+import ConstantsAdd from "../pages/admin/ConstantsAdd.jsx";
 
 
 const router = createBrowserRouter([
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
           { path: "allcustomerList", element: <Allcustomer />},
           { path: "add-farerate", element: <AddFareRate />},
           { path: "Explore-card-item", element: <ExploreCardAdd />},
+          { path: "ConstantsAdd", element: <ConstantsAdd />}
         ]
        },
        { path: "fairPrice-details/:itemName/:category",element:< FairPriceDetails />},

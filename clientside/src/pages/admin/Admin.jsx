@@ -12,6 +12,7 @@ const Admin = () => {
           <NavLink className={({ isActive }) => `hover:bg-slate-100 w-full py-3 text-center hover:text-pink-500 ${isActive && 'text-pink-700  bg-slate-200'}`} to="allcustomerList" >All Customer</NavLink>
           <NavLink className={({ isActive }) => `hover:bg-slate-100 w-full py-3 text-center hover:text-pink-500 ${isActive && 'text-pink-700  bg-slate-200'}`} to="add-farerate" >Add FairPrice</NavLink>
           <NavLink className={({ isActive }) => `hover:bg-slate-100 w-full py-3 text-center hover:text-pink-500 ${isActive && 'text-pink-700  bg-slate-200'}`} to="Explore-card-item">Explore Card</NavLink>
+          <NavLink className={({ isActive }) => `hover:bg-slate-100 w-full py-3 text-center hover:text-pink-500 ${isActive && 'text-pink-700  bg-slate-200'}`} to="ConstantsAdd">Constants</NavLink>
         </div>
       </aside>
       <div className='p-2 w-full h-full '>
