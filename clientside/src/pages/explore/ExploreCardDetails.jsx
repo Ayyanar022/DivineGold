@@ -48,7 +48,6 @@ const ExploreCardDetails = () => {
     const _id = params.id;
     const { simgleJewellData, isLoading: isCardLoding } = useGetOneJewllDesign(_id)
     const details = simgleJewellData
-    console.log("details", simgleJewellData)
 
     const { currentUserData, setCurrentUserData } = useCurrentUserConetxt();
 
