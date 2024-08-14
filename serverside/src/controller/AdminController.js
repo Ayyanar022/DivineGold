@@ -2,6 +2,10 @@ import CurrentPrice from '../models/currentPriceModel.js'
 import FairPrice from '../models/fairPriceModel.js'
 import User from '../models/userModel.js'
 import NewJewllDesign from '../models/jewllItemDesignModel.js'
+import ItemName from '../models/ConstantItemName.js'
+import ItemGender from '../models/ConstantItemGender.js'
+import ItemCategory from '../models/ConstantItemCategory.js'
+import ItemType from '../models/ConstantItemType.js'
 
 
 const getAllUser =async (req,res)=>{
@@ -146,6 +150,63 @@ const deleteJewllDesign = async (req,res)=>{
 }
 
 
+//Add Constant Item names
+const AddItemName = async (req, res) => {
+  try {
+    const addName = new ItemName({ itemName: req.body.ItemName }); // Ensure the case matches the request body
+    await addName.save();
+    res.status(201).json(addName);
+  } catch (err) {
+    console.log("error", err);
+    res.status(500).json({ message: "something went wrong.." });
+  }
+};
+
+
+//Add Constant Item Category
+const AddItemCategory = async(req,res)=>{
+  try{
+    console.log("req.body",req.body)
+    const addCategory = new ItemCategory({itemCategory:req.body.ItemCategory});
+    await addCategory.save()
+    res.status(201).json(addCategory)
+
+  }catch(err){
+    console.log("error",err);
+    res.status(500).json({message:"somthing went wrong.."})
+  }
+
+}
+//Add Constant Item Types
+const AddItemType = async(req,res)=>{
+  try{
+    console.log("req.body",req.body)
+    const addType = new ItemType({itemType:req.body.Itemtype});
+    await addType.save()
+    res.status(201).json(addType);
+    
+  }catch(err){
+    console.log("error",err);
+    res.status(500).json({message:"somthing went wrong.."})
+  }
+
+}
+//Add Constant Item Gender
+const AddItemGender = async(req,res)=>{
+  try{
+    console.log("req.body",req.body)
+    const addGender = new ItemGender({itemGender:req.body.itemGender});
+    await addGender.save()
+    res.status(201).json(addGender)
+
+  }catch(err){
+    console.log("error",err);
+    res.status(500).json({message:"somthing went wrong.."})
+  }
+
+}
+
+
 export default {
     getAllUser,
     createFairPriceItem,
@@ -157,4 +218,8 @@ export default {
     getAllJewllDesigns,
     editJewllDesign,
     deleteJewllDesign,
+    AddItemName,
+    AddItemCategory,
+    AddItemType,
+    AddItemGender
 }

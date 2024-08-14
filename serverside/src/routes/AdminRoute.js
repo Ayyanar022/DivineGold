@@ -17,7 +17,11 @@ router.get('/get-AllItemDesign',jwtCheck,jwtParse,AdminController.getAllJewllDes
 router.put('/edit-jewllDesign',jwtCheck,jwtParse,AdminController.editJewllDesign);
 router.delete('/delete-jewllDesign',jwtCheck,jwtParse,AdminController.deleteJewllDesign);
 
-
+//constant Data Add
+router.post('/ItemName',jwtCheck,jwtParse,AdminController.AddItemName);
+router.post('/ItemCategory',jwtCheck,jwtParse,AdminController.AddItemCategory);
+router.post('/Itemtype',jwtCheck,jwtParse,AdminController.AddItemType);
+router.post('/itemGender',jwtCheck,jwtParse,AdminController.AddItemGender);
 
 
 

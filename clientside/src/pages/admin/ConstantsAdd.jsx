@@ -1,5 +1,7 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material'
 import React, { useState } from 'react'
+import axios from "axios"
+import { useAuth0 } from '@auth0/auth0-react'
 
 const ConstantsAdd = () => {
 
@@ -26,6 +28,69 @@ const ConstantsAdd = () => {
         setGenderDialogOpen(false)
     }
 
+
+    // this is for post request 
+    const { getAccessTokenSilently } = useAuth0()
+    const handleSubmitName = async () => {
+        const accessToken = await getAccessTokenSilently()
+        try {
+            const response = await axios.post(`http://localhost:7000/api/admin/ItemName`, { ItemName }, {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                    "Content-Type": "application/json"
+                }
+            })
+            console.log("response", response);
+        } catch (err) {
+            console.log("Error", err)
+        }
+    }
+
+    const handleSubmitCategory = async () => {
+        const accessToken = await getAccessTokenSilently()
+        try {
+            const response = await axios.post(`http://localhost:7000/api/admin/ItemCategory`, { ItemCategory }, {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                    "Content-Type": "application/json"
+                }
+            })
+            console.log("response", response);
+        } catch (err) {
+            console.log("Error", err)
+        }
+    }
+
+    const handleSubmitType = async () => {
+        const accessToken = await getAccessTokenSilently()
+        try {
+            const response = await axios.post(`http://localhost:7000/api/admin/Itemtype`, { Itemtype }, {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                    "Content-Type": "application/json"
+                }
+            })
+            console.log("response", response);
+        } catch (err) {
+            console.log("Error", err)
+        }
+    }
+
+    const handleSubmitGender = async () => {
+        const accessToken = await getAccessTokenSilently()
+        try {
+            const response = await axios.post(`http://localhost:7000/api/admin/itemGender`, { itemGender }, {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                    "Content-Type": "application/json"
+                }
+            })
+            console.log("response", response);
+        } catch (err) {
+            console.log("Error", err)
+        }
+    }
+
     return (
         <div>
             <div className='flex justify-around items-center p-4'>
@@ -38,7 +103,6 @@ const ConstantsAdd = () => {
             <Dialog open={namedialogOpen} onClose={handleNameDialogClose}  >
                 <DialogTitle>Add Item Name</DialogTitle>
                 <DialogContent>
-                    <input type='text' value="ItemName" />
                     <div className='min-w-[400px]'>
                         <TextField
                             fullWidth
@@ -55,7 +119,7 @@ const ConstantsAdd = () => {
                     </div>
                 </DialogContent>
                 <DialogActions>
-                    <Button>Submit</Button>
+                    <Button onClick={handleSubmitName}>Submit</Button>
                 </DialogActions>
             </Dialog>
 
@@ -73,12 +137,12 @@ const ConstantsAdd = () => {
                             id="ItemCategory"
                             variant='outlined'
                             type='text'
-                            label="Item Name"
+                            label="Item Category"
                         />
                     </div>
                 </DialogContent>
                 <DialogActions>
-                    <Button>Submit</Button>
+                    <Button onClick={handleSubmitCategory}>Submit</Button>
                 </DialogActions>
             </Dialog>
 
@@ -96,12 +160,12 @@ const ConstantsAdd = () => {
                             id="Itemtype"
                             variant='outlined'
                             type='text'
-                            label="Item Name"
+                            label="Item Type"
                         />
                     </div>
                 </DialogContent>
                 <DialogActions>
-                    <Button>Submit</Button>
+                    <Button onClick={handleSubmitType}>Submit</Button>
                 </DialogActions>
             </Dialog>
 
@@ -119,12 +183,12 @@ const ConstantsAdd = () => {
                             id="itemGender"
                             variant='outlined'
                             type='text'
-                            label="Item Name"
+                            label="Item Gender"
                         />
                     </div>
                 </DialogContent>
                 <DialogActions>
-                    <Button>Submit</Button>
+                    <Button onClick={handleSubmitGender}>Submit</Button>
                 </DialogActions>
             </Dialog>
 
