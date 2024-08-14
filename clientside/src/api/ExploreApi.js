@@ -41,7 +41,6 @@ export const useGetOneJewllDesign = (id)=>{
         if(!response.ok)throw new Error("Somthing went wrong..")
 
         const data = await response.json();
-        console.log("Fetched data:", data);     
      
         return  data;
     }
@@ -77,7 +76,6 @@ export const useFilterJewllDesignExplore = (selectedGender ,selectedType , selec
             },
           });
    
-    console.log("data filter",response.data)
     return response.data;
 
     }

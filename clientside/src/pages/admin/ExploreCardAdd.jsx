@@ -176,7 +176,6 @@ const ExploreCardAdd = () => {
                         renderInput={(params) => (
                             <TextField {...params} label="Select Jewell Category" variant='outlined' />
                         )}
-
                     />
 
                     <Autocomplete

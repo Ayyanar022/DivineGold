@@ -117,7 +117,6 @@ const ExploreCardDetails = () => {
         if (data.selectedValue === "75halmark") {
 
             const result = (((details.touch_75 / 100) * data.itemWeight) * currentPriceCP);
-            console.log("result", result)
             if ((currentUserData?.bonousePoints >= Number(data.usePriceToken)) && Number(data.usePriceToken) > 0) {
                 const token = Number(data.usePriceToken) * 49
                 const resultData = Number(result) - token

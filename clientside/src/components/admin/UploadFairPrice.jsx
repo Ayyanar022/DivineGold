@@ -39,7 +39,6 @@ const UploadFairPrice = ({ createFairPrice, isCreateLoading, iscreateSuccess, on
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log("data", data)
         if (createFairPrice) {
             createFairPrice(data)
             setData(schema)

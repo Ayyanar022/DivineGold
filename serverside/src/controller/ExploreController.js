@@ -6,7 +6,6 @@ const getSingleJEwellDesignData = async(req,res)=>{
    try{
     const _id = req.params.id;
     
-    console.log("id---",req.params)
     const response = await NewJewllDesign.findOne({_id:_id})
    res.status(200).json(response)
    }catch(err){
@@ -19,7 +18,6 @@ const getSingleJEwellDesignData = async(req,res)=>{
 // const getFilterJEwellDesignData = async(req,res)=>{
 //     try{
 //         const {gender,type,category} = req.query;
-//         console.log("filter",gender,type,category)
 //         // let filter = {};
 
 //         // if(gender)filter.jewellGender = {$in:gender.split(',')};
@@ -41,12 +39,7 @@ const getSingleJEwellDesignData = async(req,res)=>{
 
 const getFilterJEwellDesignData = async (req, res) => {
     try {
-      console.log("filter querry--------",req.query)
-     
-      const { gender, type, category } = req.query;
-      console.log("filter querry",req.query)
-      console.log('filter params:', gender, type, category ); // Logging the incoming query params
-  
+      const { gender, type, category } = req.query;  
       let filter = {};
   
       if (gender) filter.jewellGender = { $in: gender.split(',') };

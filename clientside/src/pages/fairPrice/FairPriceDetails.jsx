@@ -37,7 +37,6 @@ const FairPriceDetails = () => {
         }
     }, [currentPriceData])
 
-    console.log("currentUserData", currentUserData, "currentUser", currentUser)
 
     useEffect(() => {
         if ((currentUserData.length <= 0) && currentUser) {

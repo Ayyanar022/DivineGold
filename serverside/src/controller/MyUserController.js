@@ -32,7 +32,6 @@ const createCurrentUser = async(req,res)=>{
 const updateCurrentUser = async(req,res)=>{
     try{       
         const {name,mobileNo,address,village,city,bonousCode} = req.body;
-        console.log("user",name,city)
         const user = await User.findById(req.userId);
         if(!user)return res.status(404).json({message:"User not found"})    
             
@@ -42,7 +41,6 @@ const updateCurrentUser = async(req,res)=>{
             // to check referer user is valid or not and add that user bonuse points alos
             if(bonousCode){
                 const reffererUser = await User.findOne({bonousCode:bonousCode});
-                console.log("reffererUser",reffererUser)
                 if(!reffererUser) return res.json({message:"its not valid SuperCode.."})
 
                 reffererUser.bonousePoints = (reffererUser.bonousePoints ||0)+10    ;
