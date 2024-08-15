@@ -166,7 +166,6 @@ const AddItemName = async (req, res) => {
 //Add Constant Item Category
 const AddItemCategory = async(req,res)=>{
   try{
-    console.log("req.body",req.body)
     const addCategory = new ItemCategory({itemCategory:req.body.ItemCategory});
     await addCategory.save()
     res.status(201).json(addCategory)
@@ -180,7 +179,6 @@ const AddItemCategory = async(req,res)=>{
 //Add Constant Item Types
 const AddItemType = async(req,res)=>{
   try{
-    console.log("req.body",req.body)
     const addType = new ItemType({itemType:req.body.Itemtype});
     await addType.save()
     res.status(201).json(addType);
@@ -195,7 +193,6 @@ const AddItemType = async(req,res)=>{
 //Add Constant Item Gender
 const AddItemGender = async(req,res)=>{
   try{
-    console.log("req.body",req.body)
     const addGender = new ItemGender({itemGender:req.body.itemGender});
     await addGender.save()
     res.status(201).json(addGender)

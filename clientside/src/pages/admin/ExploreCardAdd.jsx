@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { category, Gender, itemCategory } from '../../helper/uploadFairPriceItemData'
 import uploadRateforImage from '../../helper/uploadRateForImage'
 import { MdDelete, MdEdit } from 'react-icons/md'
-import { useUploadNewItemDesign } from '../../api/AdminApi'
+import { useGetIteCategoryConstant, useGetItemGenderConstant, useGetItemNameConstant, useGetItemTypeConstant, useUploadNewItemDesign } from '../../api/AdminApi'
 import { toast } from 'react-toastify'
 import { useGetAllJewllDesign } from '../../api/ExploreApi'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
@@ -18,7 +18,7 @@ const ExploreCardAdd = () => {
         jewellName: '',
         jewellCategory: null,
         jewellType: null,
-        jewellGender: null,
+        jewellGender: '',
         touch_75: "",
         touch_92: "",
         jewellImage: [],
@@ -89,9 +89,6 @@ const ExploreCardAdd = () => {
             console.log("error", err)
             toast.error(err)
         }
-
-
-
     }
 
     const { JewellDesignData, isLoading: JewllDesignIsLoading } = useGetAllJewllDesign()
@@ -113,14 +110,21 @@ const ExploreCardAdd = () => {
 
     // Edit 
     const opnDialog = (item) => {
-        setJewellData(item);
+
+        setJewellData({
+            ...item,
+            jewellCategory: item?.jewellCategory,
+            jewellType: item?.jewellType,
+        });
         setDialogOpen(true);
     }
 
     //Edit fun
     const { getAccessTokenSilently } = useAuth0()
     const queryClient = useQueryClient();
+
     const handleEditJewllDesign = async () => {
+
         const accessToken = await getAccessTokenSilently();
         const response = await fetch(`http://localhost:7000/api/admin/edit-jewllDesign`, {
             method: "PUT",
@@ -137,6 +141,10 @@ const ExploreCardAdd = () => {
         }
     }
 
+    const { ConstantItemName, isLoading: NameIsLoading, refetch: NameRefetch } = useGetItemNameConstant()
+    const { ConstantItemCategory, isLoading: CategoryIsLoading, refetch: CategoryRefetch } = useGetIteCategoryConstant();
+    const { ConstantItemType, isLoading: typeIsLoading, refetch: typeRefetch } = useGetItemTypeConstant();
+    const { ConstantItemGender, isLoading: GenderisLoading, refetch: GenderRefetch } = useGetItemGenderConstant();
 
     return (
         <div>
@@ -154,7 +162,7 @@ const ExploreCardAdd = () => {
                 <DialogContent>
                     <TextField
                         autoFocus
-                        value={jewellData.jewellName}
+                        value={jewellData.jewellName || ''}
                         onChange={handleChange}
                         name="jewellName"
                         label="Jewell Name"
@@ -167,25 +175,29 @@ const ExploreCardAdd = () => {
                     <Autocomplete
                         className='mt-4'
                         autoFocus
+                        freeSolo
                         id="jewellCategory"
-                        value={jewellData?.jewellCategory}
+                        value={jewellData?.jewellCategory || ''}
                         name="jewellCategory"
-                        options={itemCategory}
-                        getOptionLabel={(option) => option?.label}
-                        onChange={(event, newValue) => setJewellData(prev => ({ ...prev, jewellCategory: newValue?.label }))}
+                        options={ConstantItemCategory?.data || []} // This should be your fetched data
+                        getOptionLabel={(option) => option?.itemCategory || jewellData?.jewellCategory || ''}  // Display the item name
+                        onChange={(event, newValue) => setJewellData(prev => ({ ...prev, jewellCategory: newValue?.itemCategory }))}
                         renderInput={(params) => (
                             <TextField {...params} label="Select Jewell Category" variant='outlined' />
                         )}
                     />
 
+
                     <Autocomplete
                         className='mt-4'
                         autoFocus
+                        freeSolo
                         id="jewellType"
-                        value={jewellData?.jewellType}
-                        options={category}
-                        getOptionLabel={(option) => option?.label}
-                        onChange={(event, newValue) => setJewellData(prev => ({ ...prev, jewellType: newValue?.label }))}
+                        name="jewellType"
+                        value={jewellData?.jewellType || ''}
+                        options={ConstantItemType?.data || []}
+                        getOptionLabel={(option) => option?.itemType || jewellData?.jewellType || ''}
+                        onChange={(event, newValue) => setJewellData(prev => ({ ...prev, jewellType: newValue?.itemType }))}
                         renderInput={(params) => (
                             <TextField {...params} label="Select jewll Type" variant='outlined' />
                         )}
@@ -194,23 +206,24 @@ const ExploreCardAdd = () => {
 
                     <Autocomplete
                         className='mt-4'
+                        freeSolo
                         autoFocus
                         id="jewellGender"
-                        value={jewellData?.jewellGender}
-                        options={Gender}
-                        getOptionLabel={(option) => option?.label}
-                        onChange={(newValue) => setJewellData(prev => ({ ...prev, jewellGender: newValue?.label }))}
+                        name="jewellGender"
+                        value={jewellData?.jewellGender || ''}
+                        options={ConstantItemGender?.data || []}
+                        getOptionLabel={(option) => option?.itemGender || jewellData?.jewellGender || ''}
+                        onChange={(event, newValue) => setJewellData(prev => ({ ...prev, jewellGender: newValue?.itemGender }))}
                         renderInput={(params) => (
                             <TextField {...params} label="Select Gender" variant='outlined' />
                         )}
                     />
 
-
                     <TextField
                         fullWidth
                         margin='dense'
                         autoFocus
-                        value={jewellData.touch_75}
+                        value={jewellData.touch_75 || ''}
                         onChange={handleChange}
                         name="touch_75"
                         id="touch_75"
@@ -222,7 +235,7 @@ const ExploreCardAdd = () => {
                         fullWidth
                         margin='dense'
                         autoFocus
-                        value={jewellData.touch_92}
+                        value={jewellData.touch_92 || ''}
                         onChange={handleChange}
                         name="touch_92"
                         id="touch_92"
@@ -321,7 +334,7 @@ const ExploreCardAdd = () => {
                                         <td className='px-4 py-1'>{data?.jewellName}</td>
                                         <td className='px-4 py-1'>{data?.jewellCategory}</td>
                                         <td className='px-4 py-1' >{data?.jewellType}</td>
-                                        <td className='px-4 py-1' >{"Male"}</td>
+                                        <td className='px-4 py-1' >{data?.jewellGender}</td>
                                         <td className='px-4 py-1' >{data?.touch_75}</td>
                                         <td className='px-4 py-1' >{data?.touch_92}</td>
                                         <td onClick={() => opnDialog(data)} className='px-4 py-2 text-green-400 hover:text-green-700 cursor-pointer'>

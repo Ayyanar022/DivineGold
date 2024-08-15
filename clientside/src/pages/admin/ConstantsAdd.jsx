@@ -34,7 +34,7 @@ const ConstantsAdd = () => {
 
     // this is for post request 
     const { getAccessTokenSilently } = useAuth0()
-    const handleSubmitName = async () => {
+    const handleSubmitName = async (NameRefetch) => {
         const accessToken = await getAccessTokenSilently()
         try {
             const response = await axios.post(`http://localhost:7000/api/admin/ItemName`, { ItemName }, {
@@ -45,13 +45,14 @@ const ConstantsAdd = () => {
             })
             if (response?.status === 201) {
                 setItemName('')
+                NameRefetch()
             }
         } catch (err) {
             console.log("Error", err)
         }
     }
 
-    const handleSubmitCategory = async () => {
+    const handleSubmitCategory = async (CategoryRefetch) => {
         const accessToken = await getAccessTokenSilently()
         try {
             const response = await axios.post(`http://localhost:7000/api/admin/ItemCategory`, { ItemCategory }, {
@@ -62,13 +63,14 @@ const ConstantsAdd = () => {
             })
             if (response?.status === 201) {
                 setItemCategory('')
+                CategoryRefetch()
             }
         } catch (err) {
             console.log("Error", err)
         }
     }
 
-    const handleSubmitType = async () => {
+    const handleSubmitType = async (typeRefetch) => {
         const accessToken = await getAccessTokenSilently()
         try {
             const response = await axios.post(`http://localhost:7000/api/admin/Itemtype`, { Itemtype }, {
@@ -79,13 +81,14 @@ const ConstantsAdd = () => {
             })
             if (response?.status === 201) {
                 setItemtype('')
+                typeRefetch()
             }
         } catch (err) {
             console.log("Error", err)
         }
     }
 
-    const handleSubmitGender = async () => {
+    const handleSubmitGender = async (GenderRefetch) => {
         const accessToken = await getAccessTokenSilently()
         try {
             const response = await axios.post(`http://localhost:7000/api/admin/itemGender`, { itemGender }, {
@@ -96,6 +99,7 @@ const ConstantsAdd = () => {
             })
             if (response?.status === 201) {
                 setitemGender('')
+                GenderRefetch()
             }
         } catch (err) {
             console.log("Error", err)
@@ -115,7 +119,6 @@ const ConstantsAdd = () => {
                 "Content-Type": "application/json"
             }
         })
-        console.log("response dele", response)
         NameRefetch()
     }
 
@@ -302,7 +305,7 @@ const ConstantsAdd = () => {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleNameDialogClose} >Cancel</Button>
-                    <Button onClick={handleSubmitName}>Submit</Button>
+                    <Button onClick={() => handleSubmitName(NameRefetch)}>Submit</Button>
 
                 </DialogActions>
             </Dialog>
@@ -327,7 +330,7 @@ const ConstantsAdd = () => {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleCategoryDialogClose} >Cancel</Button>
-                    <Button onClick={handleSubmitCategory}>Submit</Button>
+                    <Button onClick={() => handleSubmitCategory(CategoryRefetch)}>Submit</Button>
 
                 </DialogActions>
             </Dialog>
@@ -352,7 +355,7 @@ const ConstantsAdd = () => {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleTypeDialogClose} >Cancel</Button>
-                    <Button onClick={handleSubmitType}>Submit</Button>
+                    <Button onClick={() => handleSubmitType()}>Submit</Button>
                 </DialogActions>
             </Dialog>
 
@@ -376,7 +379,7 @@ const ConstantsAdd = () => {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleGenderDialogClose} >Cancel</Button>
-                    <Button onClick={handleSubmitGender}>Submit</Button>
+                    <Button onClick={() => handleSubmitGender(GenderRefetch)}>Submit</Button>
                 </DialogActions>
             </Dialog>
 
