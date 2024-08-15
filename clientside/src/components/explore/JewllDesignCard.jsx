@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { CiBag1 } from "react-icons/ci"; // bag icon
+import { CiHeart } from "react-icons/ci"; // heart icon
 
 const JewllDesignCard = ({ item }) => {
 
@@ -8,7 +10,16 @@ const JewllDesignCard = ({ item }) => {
             <img src={item?.jewellImage[0]} alt="img" className="w-full h-44 object-cover mb-2 border-b " />
             <div className="px-2 py-1">
                 <p className="text-lg font-semibold text-gray-800">{item.jewellName}</p>
-                <p className="text-sm text-gray-500">{item.jewellType}</p>
+                <div className='flex justify-between'>
+                    <p className="text-sm text-gray-500">{item.jewellType}</p>
+                    <div className='flex gap-3'>
+                    <spam className="text-lg p-1 bg-green-300 hover:bg-green-500 transition-all rounded-full"><CiHeart /></spam>
+                    <spam className="text-lg p-1 bg-orange-300 hover:bg-orange-500 transition-all rounded-full"><CiBag1 /></spam>
+
+                    </div>
+
+                </div>
+
             </div>
         </Link>
 
