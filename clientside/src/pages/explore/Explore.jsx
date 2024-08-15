@@ -4,6 +4,7 @@ import { MdOutlineKeyboardArrowUp } from "react-icons/md"; // up arraow
 import { MdKeyboardArrowDown } from "react-icons/md" // down arrow
 import { useFilterJewllDesignExplore, useGetAllJewllDesign } from "../../api/ExploreApi";
 import JewllDesignCard from "../../components/explore/JewllDesignCard";
+import { useGetIteCategoryConstant, useGetItemGenderConstant, useGetItemNameConstant, useGetItemTypeConstant } from "../../api/AdminApi";
 
 
 const Explore = () => {
@@ -14,6 +15,7 @@ const Explore = () => {
   const [genderToggle, setGenderToggle] = useState(true);
   const [typeToggle, settypeToggle] = useState(true);
   const [categoryToggle, setCategoryToggle] = useState(true);
+
 
   // onchange for gender
   const handleChangeGender = (e) => {
@@ -36,6 +38,7 @@ const Explore = () => {
     }
   }
 
+
   // onchnage for category
   const handleChangeCategory = (e) => {
     const { checked, value } = e.target;
@@ -45,6 +48,11 @@ const Explore = () => {
       setSelectCategory(selectCategory.filter(category => category !== value))
     }
   }
+
+  // CONSTANTS DATA 
+  const { ConstantItemCategory, isLoading: CategoryIsLoading, refetch: CategoryRefetch } = useGetIteCategoryConstant();
+  const { ConstantItemType, isLoading: typeIsLoading, refetch: typeRefetch } = useGetItemTypeConstant();
+  const { ConstantItemGender, isLoading: GenderisLoading, refetch: GenderRefetch } = useGetItemGenderConstant();
 
   // filter sunmit
   const handleFilterSubmit = () => {
@@ -58,6 +66,8 @@ const Explore = () => {
   const nodilterData = (selectCategory?.length > 0 || selectType?.length > 0 || selectedGendr?.length > 0) && (filterData?.length === 0 && <p className="text-center text-red-600 font-semibold text-lg p-2">No Data Found..</p>)
 
   const { JewellDesignData, isLoading: JewllDataIsLoading } = useGetAllJewllDesign()
+
+
 
   if (JewllDataIsLoading || JewllDataIsLoading) {
     return <p>Loading...</p>
@@ -81,18 +91,18 @@ const Explore = () => {
         </div>
 
         {genderToggle && (<div >
-          {Gender && Gender.map((item, index) => (
-            <div key={item.id} className="flex items-center mb-2">
+          {Gender && ConstantItemGender?.data?.map((item, index) => (
+            <div key={item?._id} className="flex items-center mb-2">
               <input
                 type="checkbox"
-                id={`gender-${index}`}
-                value={item?.label}
+                id={`gender-${item?._id}`}
+                value={item?.itemGender}
                 onChange={handleChangeGender}
                 className="mr-2"
-                name={item?.label}
-                checked={selectedGendr.includes(item?.label)}
+                name={item?.itemGender}
+                checked={selectedGendr.includes(item?.itemGender)}
               />
-              <label htmlFor={`gender-${index}`}>{item?.label}</label>
+              <label htmlFor={`gender-${item?._id}`}>{item?.itemGender}</label>
             </div>
           ))}
         </div>)}
@@ -107,22 +117,23 @@ const Explore = () => {
           {!typeToggle && <MdKeyboardArrowDown />}
         </div>
 
-        {typeToggle && category.map((item, index) => (
-          <div className="flex items-center mb-1">
+        {typeToggle && ConstantItemType?.data?.map((item, index) => (
+          <div key={item?._id} className="flex items-center mb-1">
             <input
               type="checkbox"
-              id={`type${item?.id}`}
-              value={item?.label}
+              id={`type${item?._id}`}
+              value={item?.itemType}
               onChange={handleChangetypes}
               className="mr-2"
-              name={item?.label}
-              checked={selectType.includes(item?.label)}
+              name={item?.itemType}
+              checked={selectType.includes(item?.itemType)}
             />
-            <label htmlFor={`type${item.id}`} >{item?.label}</label>
+            <label htmlFor={`type${item?._id}`} >{item?.itemType}</label>
           </div>
         ))}
 
       </div>
+
       {/**Category */}
       <div className="mb-3">
         <div onClick={() => setCategoryToggle(prev => !prev)} className="flex items-center gap-2">
@@ -131,18 +142,18 @@ const Explore = () => {
           {!categoryToggle && <MdKeyboardArrowDown />}
         </div>
 
-        {categoryToggle && itemCategory.map((item, index) => (
-          <div className="flex items-center mb-1">
+        {categoryToggle && ConstantItemCategory?.data?.map((item, index) => (
+          <div key={item?._id} className="flex items-center mb-1">
             <input
               type="checkbox"
-              id={`type${item?.id}`}
-              value={item?.label}
+              id={`type${item?._id}`}
+              value={item?.itemCategory}
               onChange={handleChangeCategory}
               className="mr-2"
-              name={item?.label}
-              checked={selectCategory?.includes(item?.label)}
+              name={item?.itemCategory}
+              checked={selectCategory?.includes(item?.itemCategory)}
             />
-            <label htmlFor={`type${item.id}`} >{item?.label}</label>
+            <label htmlFor={`type${item?._id}`} >{item?.itemCategory}</label>
           </div>
         ))}
 
