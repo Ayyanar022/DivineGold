@@ -191,6 +191,7 @@ const AddItemType = async(req,res)=>{
   }
 
 }
+
 //Add Constant Item Gender
 const AddItemGender = async(req,res)=>{
   try{
@@ -203,7 +204,90 @@ const AddItemGender = async(req,res)=>{
     console.log("error",err);
     res.status(500).json({message:"somthing went wrong.."})
   }
+}
 
+// get all constants
+const getItemNameConstant = async(req,res)=>{
+  try{
+      const response = await ItemName.find()
+      res.json(response)
+  }catch(err){
+    console.log("error",err)
+    res.status(500).json({message:"Somthing went wrong.."})
+  }
+}
+const getItemCategoryConstant = async(req,res)=>{
+  try{
+      const response = await ItemCategory.find()
+      res.json(response)
+  }catch(err){
+    console.log("error",err)
+    res.status(500).json({message:"Somthing went wrong.."})
+  }
+}
+const getItemTypeConstant = async(req,res)=>{
+  try{
+      const response = await ItemType.find()
+      res.json(response)
+  }catch(err){
+    console.log("error",err)
+    res.status(500).json({message:"Somthing went wrong.."})
+  }
+}
+const getItemGenderConstant = async(req,res)=>{
+  try{
+      const response = await ItemGender.find()
+      res.json(response)
+  }catch(err){
+    console.log("error",err)
+    res.status(500).json({message:"Somthing went wrong.."})
+  }
+}
+
+// delete constants
+
+const deleteItemNameConstant = async(req,res)=>{
+try{
+    const id = req.params.id
+    const response = await ItemName.findByIdAndDelete({_id:id})
+    res.json(response)
+}catch(err){
+  console.log("error",err)
+  res.status(500).json({message:"Somthing went wrong.."})
+}
+}
+
+const deleteItemCategoryConstant = async(req,res)=>{
+try{
+    const id = req.params.id
+    const response = await ItemCategory.findByIdAndDelete({_id:id})
+    res.json(response)
+}catch(err){
+  console.log("error",err)
+  res.status(500).json({message:"Somthing went wrong.."})
+}
+}
+
+const deleteItemtypeConstant = async(req,res)=>{
+try{
+    const id = req.params.id
+    const response = await ItemType.findByIdAndDelete({_id:id})
+    res.json(response)
+}catch(err){
+  console.log("error",err)
+  res.status(500).json({message:"Somthing went wrong.."})
+}
+}
+
+const deleteItemGenderConstant = async(req,res)=>{
+try{
+    const id = req.params.id
+    const response = await ItemGender.findByIdAndDelete({_id:id})
+    res.json(response)
+}catch(err){
+  console.log("error",err)
+  res.status(500).json({message:"Somthing went wrong.."})
+}
 }
 
 
@@ -218,8 +302,19 @@ export default {
     getAllJewllDesigns,
     editJewllDesign,
     deleteJewllDesign,
+
     AddItemName,
     AddItemCategory,
     AddItemType,
-    AddItemGender
+    AddItemGender,
+    getItemNameConstant,
+    getItemCategoryConstant,
+    getItemTypeConstant,
+    getItemGenderConstant,
+
+    //delete constants
+    deleteItemNameConstant,
+    deleteItemCategoryConstant,
+    deleteItemtypeConstant,
+    deleteItemGenderConstant,
 }

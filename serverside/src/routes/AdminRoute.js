@@ -23,6 +23,17 @@ router.post('/ItemCategory',jwtCheck,jwtParse,AdminController.AddItemCategory);
 router.post('/Itemtype',jwtCheck,jwtParse,AdminController.AddItemType);
 router.post('/itemGender',jwtCheck,jwtParse,AdminController.AddItemGender);
 
+// get All constants 
+router.get('/getItemName',jwtCheck,jwtParse,AdminController.getItemNameConstant);
+router.get('/getItemCategory',jwtCheck,jwtParse,AdminController.getItemCategoryConstant);
+router.get('/getItemType',jwtCheck,jwtParse,AdminController.getItemTypeConstant);
+router.get('/getItemGender',jwtCheck,jwtParse,AdminController.getItemGenderConstant);
+
+//delete Constants
+router.delete('/delete-name/:id',jwtCheck,jwtParse,AdminController.deleteItemNameConstant);
+router.delete('/delete-category/:id',jwtCheck,jwtParse,AdminController.deleteItemCategoryConstant);
+router.delete('/delete-type/:id',jwtCheck,jwtParse,AdminController.deleteItemtypeConstant);
+router.delete('/delete-gender/:id',jwtCheck,jwtParse,AdminController.deleteItemGenderConstant);
 
 
 export default router;

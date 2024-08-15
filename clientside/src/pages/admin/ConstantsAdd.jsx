@@ -2,6 +2,9 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } 
 import React, { useState } from 'react'
 import axios from "axios"
 import { useAuth0 } from '@auth0/auth0-react'
+import { useGetIteCategoryConstant, useGetItemGenderConstant, useGetItemNameConstant, useGetItemTypeConstant } from '../../api/AdminApi'
+import { CiCircleRemove } from "react-icons/ci";
+import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 
 const ConstantsAdd = () => {
 
@@ -40,7 +43,9 @@ const ConstantsAdd = () => {
                     "Content-Type": "application/json"
                 }
             })
-            console.log("response", response);
+            if (response?.status === 201) {
+                setItemName('')
+            }
         } catch (err) {
             console.log("Error", err)
         }
@@ -55,7 +60,9 @@ const ConstantsAdd = () => {
                     "Content-Type": "application/json"
                 }
             })
-            console.log("response", response);
+            if (response?.status === 201) {
+                setItemCategory('')
+            }
         } catch (err) {
             console.log("Error", err)
         }
@@ -70,7 +77,9 @@ const ConstantsAdd = () => {
                     "Content-Type": "application/json"
                 }
             })
-            console.log("response", response);
+            if (response?.status === 201) {
+                setItemtype('')
+            }
         } catch (err) {
             console.log("Error", err)
         }
@@ -85,10 +94,62 @@ const ConstantsAdd = () => {
                     "Content-Type": "application/json"
                 }
             })
-            console.log("response", response);
+            if (response?.status === 201) {
+                setitemGender('')
+            }
         } catch (err) {
             console.log("Error", err)
         }
+    }
+
+    const { ConstantItemName, isLoading: NameIsLoading, refetch: NameRefetch } = useGetItemNameConstant()
+    const { ConstantItemCategory, isLoading: CategoryIsLoading, refetch: CategoryRefetch } = useGetIteCategoryConstant();
+    const { ConstantItemType, isLoading: typeIsLoading, refetch: typeRefetch } = useGetItemTypeConstant();
+    const { ConstantItemGender, isLoading: GenderisLoading, refetch: GenderRefetch } = useGetItemGenderConstant();
+
+    const handleNameDeleteFun = async (id, NameRefetch) => {
+        const accessToken = await getAccessTokenSilently();
+        const response = await axios.delete(`http://localhost:7000/api/admin/delete-name/${id}`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                "Content-Type": "application/json"
+            }
+        })
+        console.log("response dele", response)
+        NameRefetch()
+    }
+
+    const handleCategoryDeleteFun = async (id, CategoryRefetch) => {
+        const accessToken = await getAccessTokenSilently();
+        const response = await axios.delete(`http://localhost:7000/api/admin/delete-category/${id}`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                "Content-Type": "application/json"
+            }
+        })
+        CategoryRefetch()
+    }
+
+    const handletypeDeleteFun = async (id, typeRefetch) => {
+        const accessToken = await getAccessTokenSilently();
+        const response = await axios.delete(`http://localhost:7000/api/admin/delete-type/${id}`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                "Content-Type": "application/json"
+            }
+        })
+        typeRefetch()
+    }
+
+    const handleGenderDeleteFun = async (id, GenderRefetch) => {
+        const accessToken = await getAccessTokenSilently();
+        const response = await axios.delete(`http://localhost:7000/api/admin/delete-gender/${id}`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                "Content-Type": "application/json"
+            }
+        })
+        GenderRefetch()
     }
 
     return (
@@ -98,6 +159,127 @@ const ConstantsAdd = () => {
                 <button onClick={() => setCategoryDialogOpen(true)} className='bg-slate-700 hover:bg-slate-800 transition-all text-slate-100 py-1 px-3 rounded-sm'>Item Category</button>
                 <button onClick={() => setTypeDialogOpen(true)} className='bg-slate-700 hover:bg-slate-800 transition-all text-slate-100 py-1 px-3 rounded-sm'>Item Type</button>
                 <button onClick={() => setGenderDialogOpen(true)} className='bg-slate-700 hover:bg-slate-800 transition-all text-slate-100 py-1 px-3 rounded-sm'>Gender</button>
+            </div>
+
+            <div className='bg-yellow-400 p-2 grid grid-cols-4'>
+
+                <table className='border '>
+                    <thead className='border'>
+                        <tr className='border-b text-md'>
+                            <th className='px-3 py-1 text-left'>S.No</th>
+                            <th className='px-3 py-1 text-left'>Item Name</th>
+                            <th className='px-3 py-1 text-left'>Rem</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {NameIsLoading ? (<tr>
+                            <td colSpan="8" className='text-center py-5'>
+                                <div className='flex justify-center items-center'>
+                                    <AiOutlineLoading3Quarters className='animate-spin text-xl text-gray-600' />
+                                    <span className='ml-2 text-xl font-semibold'>Loading...</span>
+                                </div>
+                            </td>
+                        </tr>) : (ConstantItemName?.data?.length > 0 && ConstantItemName?.data?.map((item, index) => {
+                            return (
+                                <tr key={item?._id}>
+                                    <td className='px-3 py-1 text-sm'>{index + 1}</td>
+                                    <td className='px-3 py-1 text-sm'>{item?.itemName}</td>
+                                    <td className='px-3 py-1 text-lg'><span onClick={() => handleNameDeleteFun(item._id, NameRefetch)} className='cursor-pointer'><CiCircleRemove /></span></td>
+                                </tr>
+                            )
+                        }))}
+
+                    </tbody>
+                </table>
+
+                <table className='border '>
+                    <thead className='border'>
+                        <tr className='border-b text-md'>
+                            <th className='px-3 py-1 text-left'>S.No</th>
+                            <th className='px-3 py-1 text-left'>Item Name</th>
+                            <th className='px-3 py-1 text-left'>Rem</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {CategoryIsLoading ? (<tr>
+                            <td colSpan="8" className='text-center py-5'>
+                                <div className='flex justify-center items-center'>
+                                    <AiOutlineLoading3Quarters className='animate-spin text-xl text-gray-600' />
+                                    <span className='ml-2 text-xl font-semibold'>Loading...</span>
+                                </div>
+                            </td>
+                        </tr>) : (ConstantItemCategory?.data?.length > 0 && ConstantItemCategory?.data?.map((item, index) => {
+                            return (
+                                <tr key={item?._id}>
+                                    <td className='px-3 py-1 text-sm'>{index + 1}</td>
+                                    <td className='px-3 py-1 text-sm'>{item?.itemCategory}</td>
+                                    <td className='px-3 py-1 text-lg '><span onClick={() => handleCategoryDeleteFun(item?._id, CategoryRefetch)} className='cursor-pointer'><CiCircleRemove /></span></td>
+                                </tr>
+                            )
+                        }))}
+
+                    </tbody>
+                </table>
+
+                <table className='border '>
+                    <thead className='border'>
+                        <tr className='border-b text-md'>
+                            <th className='px-3 py-1 text-left'>S.No</th>
+                            <th className='px-3 py-1 text-left'>Item Name</th>
+                            <th className='px-3 py-1 text-left'>Rem</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {typeIsLoading ? (<tr>
+                            <td colSpan="8" className='text-center py-5'>
+                                <div className='flex justify-center items-center'>
+                                    <AiOutlineLoading3Quarters className='animate-spin text-xl text-gray-600' />
+                                    <span className='ml-2 text-xl font-semibold'>Loading...</span>
+                                </div>
+                            </td>
+                        </tr>) : (ConstantItemType?.data?.length > 0 && ConstantItemType?.data?.map((item, index) => {
+                            return (
+                                <tr key={item?._id}>
+                                    <td className='px-3 py-1 text-sm'>{index + 1}</td>
+                                    <td className='px-3 py-1 text-sm'>{item?.itemType}</td>
+                                    <td className='px-3 py-1 text-lg'><span onClick={() => handletypeDeleteFun(item?._id, typeRefetch)} className='cursor-pointer'><CiCircleRemove /></span></td>
+                                </tr>
+                            )
+                        }))}
+
+                    </tbody>
+                </table>
+
+                <table className='border '>
+                    <thead className='border'>
+                        <tr className='border-b text-md'>
+                            <th className='px-3 py-1 text-left'>S.No</th>
+                            <th className='px-3 py-1 text-left'>Item Name</th>
+                            <th className='px-3 py-1 text-left'>Rem</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {GenderisLoading ? (<tr>
+                            <td colSpan="8" className='text-center py-5'>
+                                <div className='flex justify-center items-center'>
+                                    <AiOutlineLoading3Quarters className='animate-spin text-xl text-gray-600' />
+                                    <span className='ml-2 text-xl font-semibold'>Loading...</span>
+                                </div>
+                            </td>
+                        </tr>) : (ConstantItemGender?.data?.length > 0 && ConstantItemGender?.data?.map((item, index) => {
+                            return (
+                                <tr key={item?._id}>
+                                    <td className='px-3 py-1 text-sm'>{index + 1}</td>
+                                    <td className='px-3 py-1 text-sm'>{item?.itemGender}</td>
+                                    <td className='px-3 py-1 text-lg'><span onClick={() => handleGenderDeleteFun(item?._id, GenderRefetch)} className='cursor-pointer'><CiCircleRemove /></span></td>
+                                </tr>
+                            )
+                        }))}
+
+                    </tbody>
+                </table>
+
             </div>
 
             <Dialog open={namedialogOpen} onClose={handleNameDialogClose}  >
@@ -119,7 +301,9 @@ const ConstantsAdd = () => {
                     </div>
                 </DialogContent>
                 <DialogActions>
+                    <Button onClick={handleNameDialogClose} >Cancel</Button>
                     <Button onClick={handleSubmitName}>Submit</Button>
+
                 </DialogActions>
             </Dialog>
 
@@ -142,7 +326,9 @@ const ConstantsAdd = () => {
                     </div>
                 </DialogContent>
                 <DialogActions>
+                    <Button onClick={handleCategoryDialogClose} >Cancel</Button>
                     <Button onClick={handleSubmitCategory}>Submit</Button>
+
                 </DialogActions>
             </Dialog>
 
@@ -165,6 +351,7 @@ const ConstantsAdd = () => {
                     </div>
                 </DialogContent>
                 <DialogActions>
+                    <Button onClick={handleTypeDialogClose} >Cancel</Button>
                     <Button onClick={handleSubmitType}>Submit</Button>
                 </DialogActions>
             </Dialog>
@@ -188,6 +375,7 @@ const ConstantsAdd = () => {
                     </div>
                 </DialogContent>
                 <DialogActions>
+                    <Button onClick={handleGenderDialogClose} >Cancel</Button>
                     <Button onClick={handleSubmitGender}>Submit</Button>
                 </DialogActions>
             </Dialog>
