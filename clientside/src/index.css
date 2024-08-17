@@ -26,3 +26,18 @@ code {
 .scrollbar-hiden::-webkit-scrollbar {
   display: none;
 }
+
+
+/** to animation  */
+
+.hover-move p, .hover-move span {
+  transition: transform 0.4s ease; /* Increased transition duration for smoothness */
+}
+
+.hover-move:hover p {
+  transform: translateX(-5px);
+}
+
+.hover-move:hover span {
+  transform: translateX(5px);
+}
