@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from "react";
-import image1 from "../../asserts/banner/img1.webp";
-import image2 from "../../asserts/banner/img2.webp";
-import image3 from "../../asserts/banner/img3.jpg";
-import image4 from "../../asserts/banner/img4.jpg";
-import image5 from "../../asserts/banner/img5.webp";
 
-import mob_1 from "../../asserts/banner/img1_mobile.jpg";
-import mob_2 from "../../asserts/banner/img2_mobile.webp";
-import mob_3 from "../../asserts/banner/img3_mobile.jpg";
-import mob_4 from "../../asserts/banner/img4_mobile.jpg";
-import mob_5 from "../../asserts/banner/img5_mobile.png";
+import bnner1 from '../../asserts/BannerImage/brooke-cagle-kElEigko7PU-unsplash.jpg'
+import bnner2 from '../../asserts/BannerImage/pexels-fox-1004-58267-998521.jpg'
+import bnner3 from '../../asserts/BannerImage/pexels-git-stephen-gitau-302905-1670723.jpg'
+import bnner4 from '../../asserts/BannerImage/pexels-pixabay-248077.jpg'
+import bnner5 from '../../asserts/BannerImage/pexels-pixabay-37826.jpg'
 
 //Angle-buttons
 import { FaAngleRight } from "react-icons/fa"; // right angle
@@ -19,8 +14,8 @@ import { FaAngleLeft } from "react-icons/fa"; // left angle
 const BannerProduct = () => {
     const [currentBannerImage, setCurrentBannerImage] = useState(0);
 
-    const deskTopBannerImage = [image1, image2, image3, image4, image5];
-    const mobileBannerImage = [mob_1, mob_2, mob_3, mob_4, mob_5];
+    const deskTopBannerImage = [bnner1, bnner2, bnner3, bnner4, bnner5];
+    const mobileBannerImage = [bnner1, bnner2, bnner3, bnner4, bnner5];
 
     const nextImage = () => {
         setCurrentBannerImage((prev) =>
