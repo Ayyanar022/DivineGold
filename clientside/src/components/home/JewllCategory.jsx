@@ -17,14 +17,13 @@ const JewllCategory = () => {
         <div className='container mx-auto py-6 md:px-12'>
 
             <div className="text-center mb-6">
-                <h1 className="text-xl md:text-4xl font-bold text-amber-600">Discover the Best Market Prices</h1>
-                <p className="text-[13px]  md:text-lg text-gray-600 mt-2">
+                <h1 className='text-center text-xl md:text-3xl  text-amber-600 font-semibold'>Discover the Best Market Prices</h1>
+                <p className="text-[13px]  md:text-[16px] text-gray-600 mt-2">
                     Discover a curated selection of jewelry categories, each offering exquisite designs to suit every style. Browse through our diverse collections and find the perfect piece for any occasion.
                 </p>
             </div>
 
-            <div className='flex gap-6 overflow-x-auto scrollbar-hiden'>
-                {/* <div className="flex flex-wrap gap-3 overflow-x-auto scrollbar-hide h-[400px]"> */}
+            <div className='flex gap-6 overflow-x-auto scrollbar-hiden p-3'>
                 <JewllCategoryCard img={ring} name={"Ring"} />
                 <JewllCategoryCard img={bangle} name={"Bangle"} />
                 <JewllCategoryCard img={bracelet} name={"Bracelet"} />

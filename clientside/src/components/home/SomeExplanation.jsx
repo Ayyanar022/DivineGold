@@ -11,7 +11,7 @@ const SomeExplanation = () => {
                 <div className="w-full md:w-1/2">
                     <img src={img1} alt="Jewelry" className="w-full h-full object-cover" />
                 </div>
-                <div className="p-5 md:w-1/2 bg-amber-50">
+                <div className="p-5 md:w-1/2 bg-gradient-to-tr from-pink-50 to-white">
                     <h2 className="text-2xl font-semibold text-amber-700 mb-4">
                         Welcome to DivineGold
                     </h2>
