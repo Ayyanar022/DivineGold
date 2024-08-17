@@ -3,7 +3,7 @@ import React from 'react'
 const Benifits = () => {
     return (
         <div className='container mx-auto py-4 md:py-8'>
-            <div className='flex flex-col gap-5'>
+            <div className='flex flex-col gap-3 md:gap-5'>
                 <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold text-amber-600 mb-4 text-center">
                     Unlock Value with Transparent Pricing & Exclusive Rewards
                 </h2>
