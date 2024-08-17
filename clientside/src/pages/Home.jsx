@@ -6,6 +6,8 @@ import JewllCategory from "../components/home/JewllCategory.jsx";
 import GuidPart from "../components/home/GuidPart.jsx";
 import Benifits from "../components/home/Benifits.jsx";
 import WhatsAppForm from "../components/home/WhatsAppForm.jsx";
+import GenderCard from "../components/home/GenderCard.jsx";
+import GenderComponent from "../components/home/GenderComponent.jsx";
 
 const Home = () => {
   return <div className=" container mx-auto px-6">
@@ -16,6 +18,7 @@ const Home = () => {
     <JewllCategory />
     <GuidPart />
     <Benifits />
+    <GenderComponent />
     <WhatsAppForm />
 
   </div>;

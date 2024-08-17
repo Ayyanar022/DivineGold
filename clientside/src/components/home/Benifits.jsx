@@ -4,7 +4,7 @@ const Benifits = () => {
     return (
         <div className='container mx-auto py-4 md:py-8'>
             <div className='flex flex-col gap-5'>
-                <h2 className="text-xl md:text-2xl font-semibold text-amber-600 mb-4 text-center">
+                <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold text-amber-600 mb-4 text-center">
                     Unlock Value with Transparent Pricing & Exclusive Rewards
                 </h2>
                 <div className='border lg:mx-10 border-amber-500 py-5 md:py-10 px-5 md:px-10'>
