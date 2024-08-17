@@ -4,7 +4,7 @@ import img2 from '../../asserts/jewllModel/pexels-qazi-1229414.jpg'
 
 const SomeExplanation = () => {
     return (
-        <div className='container mx-auto py-4 md:py-8 bg-slate-50 '>
+        <div className='container mx-auto py-4 md:py-12 bg-slate-50 '>
 
 
             <div className="md:flex bg-gray-50 rounded-lg shadow-lg overflow-hidden">

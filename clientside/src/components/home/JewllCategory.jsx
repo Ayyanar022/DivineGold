@@ -14,7 +14,7 @@ import JewllCategoryCard from './JewllCategoryCard';
 
 const JewllCategory = () => {
     return (
-        <div className='container mx-auto py-6 md:px-12'>
+        <div className='container mx-auto py-6 md:py-9 lg:py-10 md:px-12'>
 
             <div className="text-center mb-6">
                 <h1 className='text-center text-xl md:text-3xl  text-amber-600 font-semibold'>Discover the Best Market Prices</h1>
