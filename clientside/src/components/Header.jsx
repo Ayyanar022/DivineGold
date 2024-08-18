@@ -27,7 +27,7 @@ const Header = () => {
           <nav className='hidden lg:flex gap-7  items-center'>
             {navigation?.map((el, i) => (
               <div key={el.label}>
-                <NavLink to={el.href} className={({ isActive }) => `px-1 tracking-wide font-semibold hover:text-amber-600 transition-all ${isActive && 'text-amber-700'}`}  >{el.label} </NavLink>
+                <NavLink to={el.href} className={({ isActive }) => `px-1 tracking-wide font-semibold text-md hover:text-amber-600 transition-all ${isActive && 'text-amber-700'}`}  >{el.label} </NavLink>
               </div>
             ))}
           </nav>
@@ -38,8 +38,8 @@ const Header = () => {
           <section className='flex justify-center gap-5 lg:mr-7 pr-2 text-xl items-center '>
 
             {isAuthenticated ? (
-              <button className='text-sm font-semibold ' onClick={() => logout()}>Logout</button>
-            ) : <button className='text-sm cursor-pointer font-semibold ' onClick={async () => await loginWithRedirect()}>Login</button>}
+              <button className='text-[16px] font-semibold ' onClick={() => logout()}>Logout</button>
+            ) : <button className='text-[16px] cursor-pointer font-semibold ' onClick={async () => await loginWithRedirect()}>Login</button>}
 
 
             {/* <p>{user?.email}</p> */}
