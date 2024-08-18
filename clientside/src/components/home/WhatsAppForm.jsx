@@ -6,19 +6,17 @@ const WhatsAppForm = () => {
     const [userMessage, setUserMessage] = useState('');
     const [userName, setUserName] = useState('');
 
-    const yourPhoneNumber = '+919698358807'; // Your WhatsApp number
+    const yourPhoneNumber = '919698358807';
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Encode the message to ensure it works in the URL
         const encodedMessage = encodeURIComponent(
             `From: ${userPhone}\nUserName: ${userName}\nMessage: ${userMessage}`
-        );
+        ).replace(/%20/g, '+').replace(/\n/g, '%0A');
 
-        const whatsappURL = `https://wa.me/${yourPhoneNumber}?text=${encodedMessage}`;
+        const whatsappURL = `https://api.whatsapp.com/send?phone=${yourPhoneNumber}&text=${encodedMessage}`;
 
-        // Open WhatsApp with the pre-filled message
         window.open(whatsappURL, '_blank');
     };
 
