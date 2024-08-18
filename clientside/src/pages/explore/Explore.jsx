@@ -95,7 +95,7 @@ const Explore = () => {
 
 
 
-  return <div className="w-full  flex ">
+  return <div className="w-full  flex mb-14 lg:mb-0">
     {/**filter  */}
 
     {/* <aside className=" hidden md:block h-screen  overflow-y-auto"> */}
