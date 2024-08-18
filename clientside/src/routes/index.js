@@ -38,7 +38,8 @@ const router = createBrowserRouter([
         ]
        },
        { path: "fairPrice-details/:itemName/:category",element:< FairPriceDetails />},
-       { path: "JewllDesign-details/:id",element:<ExploreCardDetails />}
+       { path: "JewllDesign-details/:id",element:<ExploreCardDetails />},
+
 
     ],
   },
