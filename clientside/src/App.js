@@ -10,39 +10,68 @@ import { Bounce, ToastContainer } from "react-toastify";
 function App() {
 
 
+  // return (
+
+  //   <Auth0ProviderWithNavigate>
+    
+  //   <ToastContainer
+  //         position="bottom-right"
+  //         autoClose={2000}
+  //         hideProgressBar={false}
+  //         newestOnTop
+  //         closeOnClick
+  //         rtl={false}
+  //         pauseOnFocusLoss={false}
+  //         draggable
+  //         pauseOnHover
+  //         theme="light"
+  //         transition={Bounce}
+  //         />
+
+  //     <div className="pb-12 lg:pb-0 ">
+  //     <Header />
+  //     <main className="pt-14 min-h-[calc(100vh-40px)]  ">
+  //     <Outlet />
+  //     </main>
+  //     <div className="hidden lg:block">
+  //     <Footer />
+  //     </div>
+    
+  //    <MobileNav />
+  //   </div>
+
+  // </Auth0ProviderWithNavigate>
+
+  // );
+
   return (
-
     <Auth0ProviderWithNavigate>
-    
-    <ToastContainer
-          position="bottom-right"
-          autoClose={2000}
-          hideProgressBar={false}
-          newestOnTop
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss={false}
-          draggable
-          pauseOnHover
-          theme="light"
-          transition={Bounce}
-          />
-
-      <div className="pb-12 lg:pb-0 ">
-      <Header />
-      <main className="pt-14 min-h-[calc(100vh-40px)]  ">
-      <Outlet />
-      </main>
-      <div className="hidden lg:block">
-      <Footer />
+      <ToastContainer
+        position="bottom-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
+  
+      <div className="flex flex-col min-h-screen">
+        <Header />
+        <main className="flex-grow pt-14">
+          <Outlet />
+        </main>
+        <Footer className="mt-auto hidden lg:block" />
+        <MobileNav />
       </div>
-    
-     <MobileNav />
-    </div>
-
-  </Auth0ProviderWithNavigate>
-
+    </Auth0ProviderWithNavigate>
   );
+  
+
 }
 
 export default App;
