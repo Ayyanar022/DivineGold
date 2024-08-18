@@ -163,7 +163,7 @@ const Explore = () => {
           </div>
 
           {/**Category */}
-          <div className="mb-6">
+          <div className="mb-16">
             <div onClick={() => setCategoryToggle(prev => !prev)} className="flex items-center gap-2">
               <h3 className="text-md font-semibold pb-2">Category</h3>
               {categoryToggle && <MdOutlineKeyboardArrowUp />}
