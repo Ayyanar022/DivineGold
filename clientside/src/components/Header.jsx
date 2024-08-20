@@ -45,7 +45,7 @@ const Header = () => {
             {/* <p>{user?.email}</p> */}
             {isAuthenticated && <Link to={"/admin-chan/add-farerate"} className='cursor-pointer hidden lg:block'><FaUserCircle /> </Link>}
             <div> <CiHeart /> </div>
-            <div> <CiBag1 /> </div>
+            <Link to={"/CartPage"} className='hover:bg-slate-200 transition-all rounded-full p-1' > <CiBag1 /> </Link>
           </section>
         </div>
 

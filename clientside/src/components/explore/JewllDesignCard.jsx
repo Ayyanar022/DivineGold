@@ -2,8 +2,19 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { CiBag1 } from "react-icons/ci"; // bag icon
 import { CiHeart } from "react-icons/ci"; // heart icon
+import { useAddUpdateCart } from '../../api/CartApi';
 
 const JewllDesignCard = ({ item }) => {
+
+
+
+    const { addUpdateCart, isLoading } = useAddUpdateCart()
+
+    const handleAaddtoCartfun = (id, event) => {
+
+        event.preventDefault() // to prevent navigation
+        addUpdateCart(id)
+    }
 
     return (
         <Link to={`/JewllDesign-details/${item?._id}`} className="  h-52   md:h-64 shadow-md border m-2 rounded-lg overflow-hidden transform transition-transform hover:scale-105">
@@ -14,7 +25,7 @@ const JewllDesignCard = ({ item }) => {
                     <p className="text-sm text-gray-500 ">{item.jewellType}</p>
                     <div className='flex gap-1.5 md:gap-3'>
                         <spam className="text-xs md:text-lg p-1 bg-green-300 hover:bg-green-500 transition-all rounded-full"><CiHeart /></spam>
-                        <spam className=" text-xs md:text-lg p-1 bg-orange-300 hover:bg-orange-500 transition-all rounded-full"><CiBag1 /></spam>
+                        <button onClick={(event) => handleAaddtoCartfun(item?._id, event)} className=" text-xs md:text-lg p-1 bg-orange-300 hover:bg-orange-500 transition-all rounded-full"><CiBag1 /></button>
 
                     </div>
 

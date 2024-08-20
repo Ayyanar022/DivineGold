@@ -14,6 +14,7 @@ import FairPriceDetails from "../pages/fairPrice/FairPriceDetails.jsx";
 import ExploreCardAdd from "../pages/admin/ExploreCardAdd.jsx";
 import ExploreCardDetails from "../pages/explore/ExploreCardDetails.jsx";
 import ConstantsAdd from "../pages/admin/ConstantsAdd.jsx";
+import CartPage from "../pages/CartPage.jsx";
 
 
 const router = createBrowserRouter([
@@ -39,6 +40,7 @@ const router = createBrowserRouter([
        },
        { path: "fairPrice-details/:itemName/:category",element:< FairPriceDetails />},
        { path: "JewllDesign-details/:id",element:<ExploreCardDetails />},
+       { path: "CartPage", element:<CartPage /> },
 
 
     ],

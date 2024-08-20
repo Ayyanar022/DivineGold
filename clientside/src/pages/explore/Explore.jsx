@@ -6,6 +6,7 @@ import { useFilterJewllDesignExplore, useGetAllJewllDesign } from "../../api/Exp
 import JewllDesignCard from "../../components/explore/JewllDesignCard";
 import { useGetIteCategoryConstant, useGetItemGenderConstant, useGetItemNameConstant, useGetItemTypeConstant } from "../../api/AdminApi";
 import { FaArrowRightArrowLeft } from "react-icons/fa6";
+import { useAddUpdateCart } from "../../api/CartApi";
 
 const Explore = () => {
   const [selectedGendr, setSelectedGender] = useState([])
@@ -84,17 +85,16 @@ const Explore = () => {
     };
   }, [showNave]);
 
-  if (JewllDataIsLoading || JewllDataIsLoading) {
-    return <p>Loading...</p>
-  }
+
 
   const dataToRender = filterData && filterData?.length > 0 ? filterData : JewellDesignData;
 
 
 
 
-
-
+  if (JewllDataIsLoading || JewllDataIsLoading) {
+    return <p>Loading...</p>
+  }
   return <div className="w-full  flex mb-14 lg:mb-0">
     {/**filter  */}
 
