@@ -39,9 +39,9 @@ const WhatsAppForCart = ({ data }) => {
     return (
         <div className="flex justify-center items-center  ">
             <div className="w-full max-w-md lg:max-w-lg bg-white rounded-lg shadow-md p-6">
-                <h2 className="text-xl md:text-2xl font-bold text-center text-green-600 mb-6">Send a WhatsApp Message</h2>
+                <h2 className="text-lg md:text-xl lg:text:2xl font-bold text-center text-green-600 mb-4 lg:mb-6">Send a WhatsApp Message</h2>
                 <form onSubmit={handleSubmit}>
-                    <div className="mb-4">
+                    <div className="mb-2 md:mb-3 lg:mb-4">
                         <label className="block text-gray-700 font-medium mb-2">Your Phone Number</label>
                         <input
                             type="text"

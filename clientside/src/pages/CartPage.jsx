@@ -99,7 +99,7 @@ const CartPage = () => {
 
 
     return (
-        <div className='container mx-auto py-10 px-20 flex gap-10 min-h-screen'>
+        <div className='container mx-auto py-5 lg:py-10 px-6 lg:px-20 flex flex-col md:flex-row gap-10 min-h-screen'>
             <div className=' flex flex-col gap-4 w-1/2 '>
 
                 {
@@ -133,7 +133,7 @@ const CartPage = () => {
             </div>
 
             <div className='w-1/2   flex flex-col  '>
-                <button onClick={handleCheckOut} className='text-center  font-bold text-xl text-slate-900 px-4 py-2 mx-2  bg-orange-400 hover:bg-orange-500 transition-all rounded-md'>CheckOut</button>
+                <button onClick={handleCheckOut} className='text-center  font-bold text-lg lg:text-xl text-slate-900 px-4 py-2 mx-2  bg-orange-400 hover:bg-orange-500 transition-all rounded-md'>CheckOut</button>
                 <WhatsAppForCart data={whatsappData} />
             </div>
         </div>
