@@ -38,14 +38,14 @@ const WhatsAppForCart = ({ data }) => {
 
     return (
         <div className="flex justify-center items-center  ">
-            <div className="w-full max-w-md lg:max-w-lg bg-white rounded-lg shadow-md p-6">
-                <h2 className="text-lg md:text-xl lg:text:2xl font-bold text-center text-green-600 mb-4 lg:mb-6">Send a WhatsApp Message</h2>
+            <div className="w-full max-w-md lg:max-w-lg bg-white rounded-lg shadow-md py-3 px-6  lg:py-5 lg:px-8 lg:mx-10 ">
+                <h2 className="text-lg md:text-lg lg:text-[21px] font-bold text-center text-green-600 mb-4 ">Send a WhatsApp Message</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-2 md:mb-3 lg:mb-4">
-                        <label className="block text-gray-700 font-medium mb-2">Your Phone Number</label>
+                        <label className="block text-gray-700 text-sm md:text-md lg:text-[16px] font-medium mb-1 md:mb-2">Your Phone Number</label>
                         <input
                             type="text"
-                            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                            className="w-full px-3 py-2 border text-sm md:text-md lg:text-[16px] rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                             value={userPhone}
                             onChange={(e) => setUserPhone(e.target.value)}
                             placeholder="Enter your phone number"
@@ -53,10 +53,10 @@ const WhatsAppForCart = ({ data }) => {
                         />
                     </div>
                     <div className="mb-4">
-                        <label className="block text-gray-700 font-medium mb-2">Your Name</label>
+                        <label className="block text-gray-700 text-sm md:text-md lg:text-[16px] font-medium mb-1 md:mb-2">Your Name</label>
                         <input
                             type="text"
-                            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                            className="w-full px-3 py-2 border text-sm md:text-md lg:text-[16px] rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                             value={userName}
                             onChange={(e) => setUserName(e.target.value)}
                             placeholder="Enter your Name"
@@ -64,10 +64,10 @@ const WhatsAppForCart = ({ data }) => {
                         />
                     </div>
                     <div className="mb-4">
-                        <label className="block text-gray-700 font-medium mb-2">Your Vilage or City</label>
+                        <label className="block text-gray-700 text-sm md:text-md lg:text-[16px] font-medium mb-1 md:mb-2">Your Vilage or City</label>
                         <input
                             type="text"
-                            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                            className="w-full px-3 py-2 border text-sm md:text-md lg:text-[16px] rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                             value={village}
                             onChange={(e) => setVillage(e.target.value)}
                             placeholder="Enter your Village or City"
@@ -75,9 +75,9 @@ const WhatsAppForCart = ({ data }) => {
                         />
                     </div>
                     <div className="mb-4">
-                        <label className="block text-gray-700 font-medium mb-2">Your Message</label>
+                        <label className="block text-gray-700 text-sm md:text-md lg:text-[16px] font-medium mb-1 md:mb-2">Your Message</label>
                         <textarea
-                            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                            className="w-full px-3 py-2 border text-sm md:text-md lg:text-[16px] rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                             value={userMessage}
                             onChange={(e) => setUserMessage(e.target.value)}
                             placeholder="Type your message"

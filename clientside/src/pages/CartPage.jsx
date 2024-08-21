@@ -99,31 +99,31 @@ const CartPage = () => {
 
 
     return (
-        <div className='container mx-auto py-5 lg:py-10 px-6 lg:px-20 flex flex-col md:flex-row gap-10 min-h-screen'>
-            <div className=' flex flex-col gap-4 w-1/2 '>
+        <div className='container mx-auto py-5 lg:py-10 px-6 lg:px-20 flex flex-col md:flex-row gap-10 lg:gap-14 min-h-screen'>
+            <div className=' flex flex-col gap-4  w-full md:w-1/2 '>
 
                 {
                     cartData?.cartItems?.length > 0 ? (cartData?.cartItems?.map((item, index) => (
-                        <div key={index} className='flex bg-gray-100 border shadow-md p-3 relative'>
-                            <img src={item?.productId?.jewellImage[0]} className='w-32 h-32 ' alt='Jewelry Image' />
+                        <div key={index} className='flex bg-gray-100 border shadow-md p-2 md:p-3 relative'>
+                            <img src={item?.productId?.jewellImage[0]} className='w-28 md:w-32 h-28 md:h-32 ' alt='Jewelry Image' />
                             <div className='px-3 flex flex-col gap-1'>
-                                <h2>Name    : {item?.productId?.jewellName}</h2>
-                                <p>Category : {item?.productId?.jewellCategory}</p>
-                                <p>Type     : {item?.productId?.jewellType}</p>
+                                <h2 className='text-sm md:lg'>Name    : {item?.productId?.jewellName}</h2>
+                                <p className='text-sm md:lg'>Category : {item?.productId?.jewellCategory}</p>
+                                <p className='text-sm md:lg'>Type     : {item?.productId?.jewellType}</p>
                                 <div className='py-3 flex items-center gap-3'>
-                                    <button onClick={(event) => handleAaddtoCartfun(item?.productId?._id, item?.quantity, event)} className='text-xl font-bold h-7 w-7 rounded-md bg-green-400 hover:bg-green-600 transition-all'>
+                                    <button onClick={(event) => handleAaddtoCartfun(item?.productId?._id, item?.quantity, event)} className='text-lg md:text-xl font-bold h-6 w-6 md:h-7 :w-7  rounded-md bg-green-400 hover:bg-green-600 transition-all'>
                                         +
                                     </button>
                                     <p className='font-semibold'>
                                         {item?.quantity}
                                     </p>
-                                    <button onClick={(event) => handleRemovetoCartfun(item?._id, item?.quantity, event)} className='text-xl font-bold h-7 w-7 rounded-md bg-orange-400 hover:bg-orange-600 transition-all'>
+                                    <button onClick={(event) => handleRemovetoCartfun(item?._id, item?.quantity, event)} className='text-lg md:text-xl font-bold h-6 w-6 md:h-7 :w-7 rounded-md bg-orange-400 hover:bg-orange-600 transition-all'>
                                         -
                                     </button>
                                 </div>
 
                             </div>
-                            <IoCloseSharp onClick={() => handleDelete(item?._id, refetch)} className='absolute right-0 top-0 m-3 text-xl  hover:text-red-500 cursor-pointer ' />
+                            <IoCloseSharp onClick={() => handleDelete(item?._id, refetch)} className='absolute right-0 top-0 m-1 md:m-3 text-md md:text-xl  hover:text-red-500 cursor-pointer ' />
                         </div>
                     ))) : (
 
@@ -132,8 +132,8 @@ const CartPage = () => {
                 }
             </div>
 
-            <div className='w-1/2   flex flex-col  '>
-                <button onClick={handleCheckOut} className='text-center  font-bold text-lg lg:text-xl text-slate-900 px-4 py-2 mx-2  bg-orange-400 hover:bg-orange-500 transition-all rounded-md'>CheckOut</button>
+            <div className='md:w-1/2  w-full flex flex-col  lg:bg-gray-100 lg:py-3'>
+                <button onClick={handleCheckOut} className='text-center   font-bold text-lg lg:text-xl text-slate-900 px-4 py-2 lg:mx-10   bg-orange-400 hover:bg-orange-500 transition-all rounded-md'>CheckOut</button>
                 <WhatsAppForCart data={whatsappData} />
             </div>
         </div>
