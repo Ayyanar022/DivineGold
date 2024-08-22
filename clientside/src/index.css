@@ -41,3 +41,30 @@ code {
 .hover-move:hover span {
   transform: translateX(5px);
 }
+
+
+/**ITS for toast */
+/* Styles for devices below medium size */
+@media (max-width: 767px) {
+  .Toastify__toast {
+    font-size: 14px; /* Smaller font size */
+    padding-left: 8px; /* Adjusted padding */
+    padding-right: 8px; /* Adjusted padding */
+    padding-top: 1px; /* Adjusted padding */
+    padding-bottom: 1px; /* Adjusted padding */
+  }
+  .Toastify__close-button {
+    font-size: 12px; /* Smaller close button */
+  }
+}
+
+/* Styles for devices above medium size */
+@media (min-width: 768px) {
+  .Toastify__toast {
+    font-size: 16px; /* Default or larger font size */
+    padding: 12px; /* Default padding */
+  }
+  .Toastify__close-button {
+    font-size: 14px; /* Default close button size */
+  }
+}

@@ -22,7 +22,8 @@ function App() {
  
     <Auth0ProviderWithNavigate>
       <CartInitializer />
-      <ToastContainer
+
+      {/* <ToastContainer
         position="bottom-right"
         autoClose={2000}
         hideProgressBar={false}
@@ -34,7 +35,21 @@ function App() {
         pauseOnHover
         theme="light"
         transition={Bounce}
-      />
+      /> */}
+
+    <ToastContainer
+        position="bottom-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        style={{ maxWidth: "320px", width: "90%" }} // Adjust container size
+    />
   
       <div className="flex flex-col min-h-screen">
         <Header />

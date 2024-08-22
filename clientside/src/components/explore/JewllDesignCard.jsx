@@ -19,7 +19,7 @@ const JewllDesignCard = ({ item }) => {
         const data = await addUpdateCart(id)
         if (data?.success) {
             toast.success(data?.message.toString())
-            dispatch(addItemToCart({ _id: id, quantity: 1 })); 
+            dispatch(addItemToCart({ _id: id, quantity: 1 }));
         }
         if (!data?.success) {
             toast.warning(data?.message.toString())
