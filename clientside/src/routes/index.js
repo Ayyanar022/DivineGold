@@ -7,7 +7,7 @@ import ContectInfo from "../pages/contectInfo/ContectInfo";
 import Admin from "../pages/admin/Admin";
 import AuthCallBack from "../pages/AuthCallBack";
 import UserProfilePage from '../pages/userProfile/UserProfilePage.jsx'
-import Allcustomer from "../pages/admin/Allcustomer.jsx";
+import Allcustomer from "../pages/admin/Customer/Allcustomer.jsx";
 import AddFareRate from "../pages/admin/AddFareRate.jsx";
 import { createBrowserRouter } from "react-router-dom";
 import FairPriceDetails from "../pages/fairPrice/FairPriceDetails.jsx";
@@ -15,6 +15,8 @@ import ExploreCardAdd from "../pages/admin/ExploreCardAdd.jsx";
 import ExploreCardDetails from "../pages/explore/ExploreCardDetails.jsx";
 import ConstantsAdd from "../pages/admin/ConstantsAdd.jsx";
 import CartPage from "../pages/CartPage.jsx";
+import FilterSales from "../pages/admin/FilterSales.jsx";
+import CustomerSale from "../pages/admin/CustomerSale.jsx";
 
 
 const router = createBrowserRouter([
@@ -35,7 +37,9 @@ const router = createBrowserRouter([
           { path: "allcustomerList", element: <Allcustomer />},
           { path: "add-farerate", element: <AddFareRate />},
           { path: "Explore-card-item", element: <ExploreCardAdd />},
-          { path: "ConstantsAdd", element: <ConstantsAdd />}
+          { path: "ConstantsAdd", element: <ConstantsAdd />},
+          { path: "CustomerSale", element: <CustomerSale />},
+          { path: "FilterSales",element: <FilterSales />},
         ]
        },
        { path: "fairPrice-details/:itemName/:category",element:< FairPriceDetails />},

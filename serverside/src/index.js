@@ -7,6 +7,7 @@ import adminRoutes from "./routes/AdminRoute.js";
 import fairPriceRoutes from "./routes/FairPriceRout.js"
 import exploreRoutes from "./routes/ExoloreRoute.js"
 import cartRoute from "./routes/CartRout.js";
+import customerSale from "./routes/CustomerSaleRoute.js"
 
 
 const app = express();
@@ -18,6 +19,7 @@ app.use("/api/admin",adminRoutes);
 app.use("/api/fairPrice",fairPriceRoutes);
 app.use("/api/explore",exploreRoutes)
 app.use("/api/cart",cartRoute)
+app.use("/api/admin/customersale",customerSale)
 
 mongoose.connect(process.env.MONGODB_URI).then(()=>console.log("connected to DB"))
 

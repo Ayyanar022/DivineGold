@@ -1,5 +1,5 @@
 import React from 'react'
-import { useGetAllCustomer } from '../../api/AdminApi'
+import { useGetAllCustomer } from '../../../api/AdminApi'
 
 const Allcustomer = () => {
     const { allCustomer, isLoading: allCusLoading } = useGetAllCustomer()
@@ -10,6 +10,9 @@ const Allcustomer = () => {
 
     return (
         <div className='container w-full h-full'>
+            <div className='py-4'>
+                search part
+            </div>
             <table className='w-full userTable'>
                 <thead className='bg-black text-white text-sm'>
                     <th className='p-2'>S.No</th>

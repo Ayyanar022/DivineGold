@@ -14,28 +14,6 @@ const getSingleJEwellDesignData = async(req,res)=>{
    }
 }
 
-// TO FILTER EXPLORE CARD 
-// const getFilterJEwellDesignData = async(req,res)=>{
-//     try{
-//         const {gender,type,category} = req.query;
-//         // let filter = {};
-
-//         // if(gender)filter.jewellGender = {$in:gender.split(',')};
-
-//         // if(type)filter.jewellType = { $in: type.split(',') };
-
-//         // if(category)filter.jewellCategory = { $in:category.split(',') };
-
-//         // const designs = await NewJewllDesign.find(filter)
-//         // res.json(designs)
-
-//         res.json("Hello")
-
-//     }catch(err){
-//         console.log("Error",err);
-//         res.status(500).json({message:"Somthing went wrong..",error:true})
-//     }
-// }
 
 const getFilterJEwellDesignData = async (req, res) => {
     try {
