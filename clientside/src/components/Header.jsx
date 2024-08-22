@@ -7,10 +7,11 @@ import { FaUserCircle } from "react-icons/fa"; // userProfile icon
 import { navigation } from '../constant/navigation';
 import { useAuth0 } from '@auth0/auth0-react';
 import logo from '../asserts/logo/apple-touch-icon.png'
-
+import { useSelector } from 'react-redux';
 
 const Header = () => {
   const { loginWithRedirect, isAuthenticated, logout } = useAuth0()
+  const totalQuantity = useSelector(state => state?.cart?.totalQuantity);
 
   return (
     <header className='fixed h-14  w-full border-b-2 z-40 shadow-sm bg-white'>
@@ -46,6 +47,7 @@ const Header = () => {
             {isAuthenticated && <Link to={"/admin-chan/add-farerate"} className='cursor-pointer hidden lg:block'><FaUserCircle /> </Link>}
             <div> <CiHeart /> </div>
             <Link to={"/CartPage"} className='hover:bg-slate-200 transition-all rounded-full p-1' > <CiBag1 /> </Link>
+            <p>qty :{totalQuantity}</p>
           </section>
         </div>
 

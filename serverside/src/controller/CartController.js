@@ -10,6 +10,10 @@ const addUpdateCart = async(req,res)=>{
         let cartItem = await CartModel.findOne({userId,productId});
 
         if(cartItem){
+            if(cartItem.quantity>=3){
+                res.status(200).json({message:"Max Limit is 3.." ,success:false})
+                return
+            }
             cartItem.quantity +=1;
         }else{
             cartItem = new CartModel({
@@ -19,7 +23,7 @@ const addUpdateCart = async(req,res)=>{
             })
         }
         await cartItem.save();
-        res.json({sucess:true,cartItem})
+        res.json({success:true,cartItem,message:"Item Added to the cart"})
     }catch(err){
         console.log("error",err)
         res.status(500).json({message:"somthing went wrong "})

@@ -3,17 +3,27 @@ import { Link } from 'react-router-dom'
 import { CiBag1 } from "react-icons/ci"; // bag icon
 import { CiHeart } from "react-icons/ci"; // heart icon
 import { useAddUpdateCart } from '../../api/CartApi';
+import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { addItemToCart } from '../../store/cartSlice.js';
 
 const JewllDesignCard = ({ item }) => {
 
 
+    const { addUpdateCart, isLoading, } = useAddUpdateCart()
+    const dispatch = useDispatch();
 
-    const { addUpdateCart, isLoading } = useAddUpdateCart()
-
-    const handleAaddtoCartfun = (id, event) => {
+    const handleAaddtoCartfun = async (id, event) => {
 
         event.preventDefault() // to prevent navigation
-        addUpdateCart(id)
+        const data = await addUpdateCart(id)
+        if (data?.success) {
+            toast.success(data?.message.toString())
+            dispatch(addItemToCart({ _id: id, quantity: 1 })); 
+        }
+        if (!data?.success) {
+            toast.warning(data?.message.toString())
+        }
     }
 
     return (
@@ -32,7 +42,7 @@ const JewllDesignCard = ({ item }) => {
                 </div>
 
             </div>
-        </Link>
+        </Link >
 
     )
 }

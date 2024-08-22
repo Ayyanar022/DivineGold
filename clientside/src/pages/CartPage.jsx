@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAddUpdateCart, useGetCartItem } from '../api/CartApi'
 import { IoCloseSharp } from "react-icons/io5";
 import { useAuth0 } from '@auth0/auth0-react';
@@ -7,14 +7,20 @@ import { toast } from 'react-toastify';
 import WhatsAppForCart from '../components/home/WhatsAppForCart';
 import { GiPlantWatering } from "react-icons/gi";
 
+import { useDispatch } from 'react-redux';
+import { removeItemToCart, addItemToCart, } from '../store/cartSlice.js';
+
 const CartPage = () => {
 
     const { cartData, isLoading: cartIsLoading, refetch } = useGetCartItem()
     console.log("cartData", cartData?.cartItems)
     const { getAccessTokenSilently } = useAuth0()
+    const dispatch = useDispatch();
+
+
 
     //DELETE CART ITEM
-    const handleDelete = async (id, refetch) => {
+    const handleDelete = async (id, qty, refetch) => {
         try {
             const accessToken = await getAccessTokenSilently();
             const response = await fetch(`http://localhost:7000/api/cart`, {
@@ -26,6 +32,7 @@ const CartPage = () => {
                 body: JSON.stringify({ id })
             })
             if (!response.ok) throw new Error("Somthing went wrong")
+            dispatch(removeItemToCart({ _id: id, quantity: -qty }));
 
             refetch()
         } catch (err) {
@@ -44,10 +51,11 @@ const CartPage = () => {
             return;
         }
         await addUpdateCart(id)
+        dispatch(addItemToCart({ _id: id, quantity: 1 }));
         refetch()
     }
 
-    //decrse fun
+    // DECRESE COUNT---------------------
     const decresecount = async (id, qty, refetch) => {
         try {
             const accessToken = await getAccessTokenSilently();
@@ -60,25 +68,28 @@ const CartPage = () => {
                 body: JSON.stringify({ id, qty })
             })
             if (!response.ok) throw new Error("Something went wrong")
-
+            dispatch(removeItemToCart({ _id: id, quantity: -1 }));
             refetch()
         } catch (err) {
             console.log("error", err)
         }
     }
 
-    // DECRESE COUNT
+
     const handleRemovetoCartfun = async (id, qty, event) => {
         event.preventDefault() // to prevent navigation
 
         if (qty > 0) {
             const dec = 1
             decresecount(id, dec, refetch);
+
             return
         } else {
             return
         }
     }
+
+    //------------------------------------------------
 
     const [whatsappData, setWhatsAppData] = useState([])
 
@@ -123,7 +134,7 @@ const CartPage = () => {
                                 </div>
 
                             </div>
-                            <IoCloseSharp onClick={() => handleDelete(item?._id, refetch)} className='absolute right-0 top-0 m-1 md:m-3 text-md md:text-xl  hover:text-red-500 cursor-pointer ' />
+                            <IoCloseSharp onClick={() => handleDelete(item?._id, item?.quantity, refetch)} className='absolute right-0 top-0 m-1 md:m-3 text-md md:text-xl  hover:text-red-500 cursor-pointer ' />
                         </div>
                     ))) : (
 

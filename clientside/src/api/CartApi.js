@@ -20,7 +20,8 @@ export const  useAddUpdateCart = ()=>{
             if(!response.ok){
                 throw new Error("somthing went wrong")
             }
-            return response.json()
+
+           return response.json()
          }
 
          const {mutateAsync:addUpdateCart,isError,isSuccess,isLoading} = useMutation(addUpdateCartItem)

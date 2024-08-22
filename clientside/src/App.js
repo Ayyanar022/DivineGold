@@ -5,47 +5,23 @@ import Footer from "./components/Footer";
 import MobileNav from "./components/MobileNav";
 import Auth0ProviderWithNavigate from "./auth/Auth0ProviderWithNavigate";
 import { Bounce, ToastContainer } from "react-toastify";
+import store from "./store/store";
+import { Provider, useDispatch } from "react-redux";
+import { useGetCartItem } from "./api/CartApi";
 // import { useGetCurrentPrice } from "./api/AdminApi";
+import {  setCartItems } from './store/cartSlice.js';
+import { useEffect } from "react";
 
 function App() {
 
 
-  // return (
-
-  //   <Auth0ProviderWithNavigate>
-    
-  //   <ToastContainer
-  //         position="bottom-right"
-  //         autoClose={2000}
-  //         hideProgressBar={false}
-  //         newestOnTop
-  //         closeOnClick
-  //         rtl={false}
-  //         pauseOnFocusLoss={false}
-  //         draggable
-  //         pauseOnHover
-  //         theme="light"
-  //         transition={Bounce}
-  //         />
-
-  //     <div className="pb-12 lg:pb-0 ">
-  //     <Header />
-  //     <main className="pt-14 min-h-[calc(100vh-40px)]  ">
-  //     <Outlet />
-  //     </main>
-  //     <div className="hidden lg:block">
-  //     <Footer />
-  //     </div>
-    
-  //    <MobileNav />
-  //   </div>
-
-  // </Auth0ProviderWithNavigate>
-
-  // );
 
   return (
+    <Provider store={store} >
+
+ 
     <Auth0ProviderWithNavigate>
+      <CartInitializer />
       <ToastContainer
         position="bottom-right"
         autoClose={2000}
@@ -68,11 +44,26 @@ function App() {
         <Footer className="mt-auto hidden lg:block" />
         <MobileNav />
       </div>
+    
     </Auth0ProviderWithNavigate>
+    </Provider>
   );
-  
+  }
 
-}
+
+  function CartInitializer(){
+    const { cartData } = useGetCartItem()
+    const dispatch = useDispatch();
+  
+    useEffect(() => {
+      if (cartData?.cartItems) {
+  
+          dispatch(setCartItems(cartData?.cartItems));
+      }
+  }, [cartData, dispatch])
+
+  return null
+  }
 
 export default App;
 
