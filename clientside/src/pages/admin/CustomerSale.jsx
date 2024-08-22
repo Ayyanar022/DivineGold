@@ -104,7 +104,7 @@ const CustomerSale = () => {
           </div>
         </div>
 
-        {/**TO SUBMIT JEWLL SALE */}
+        {/**TO SUBMIT JEWELL SALE */}
         <div className=' w-3/6 px-6 py-4 border shadow-md'>
           <form className='space-y-3 w-full'>
 
