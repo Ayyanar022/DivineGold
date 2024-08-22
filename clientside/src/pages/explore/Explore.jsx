@@ -101,8 +101,8 @@ const Explore = () => {
     <aside className="hidden md:block  fixed top-0 left-0 md:w-52 lg:w-56 h-full overflow-y-auto  bg-white border-r shadow-sm">
       <nav className="h-full flex flex-col w-full   border-r shadow-sm">
 
-        <div className="p-4 pb-3 mb-5 flex justify-between items-center bg-lime-300 pt-16 ">
-          {!filterData ? <p className="text-xl text-slate-800 font-medium tracking-wider uppercase  w-32 cursor-pointer">Filter</p> : <p onClick={handleFilterSubmit} className="text-xl font-medium uppercase text-slate-800 tracking-wider w-32 cursor-pointer">Clear</p>}
+        <div className="py-5  mb-5 flex justify-around px-3 items-center bg-lime-300 mt-14 ">
+          {!filterData ? <p className="text-xl text-slate-800 font-medium tracking-wider uppercase  w-32 cursor-pointer">Filter</p> : <p onClick={handleFilterSubmit} className="text-xl font-medium uppercase text-red-600 tracking-wider w-32 cursor-pointer">Clear</p>}
           <button className="p-1.5 bg-gray-50 hover:bg-gray-100 rounded-lg"><FaArrowRightArrowLeft /></button>
         </div>
 
