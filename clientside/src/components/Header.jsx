@@ -43,11 +43,10 @@ const Header = () => {
             ) : <button className='text-[16px] cursor-pointer font-semibold ' onClick={async () => await loginWithRedirect()}>Login</button>}
 
 
-            {/* <p>{user?.email}</p> */}
             {isAuthenticated && <Link to={"/admin-chan/add-farerate"} className='cursor-pointer hidden lg:block'><FaUserCircle /> </Link>}
-            <div> <CiHeart /> </div>
-            <Link to={"/CartPage"} className='hover:bg-slate-200 transition-all rounded-full p-1' > <CiBag1 /> </Link>
-            <p>qty :{totalQuantity}</p>
+            <Link to={"/CartPage"} className='hover:bg-slate-200 transition-all rounded-full p-1 relative' > <CiBag1 />
+              <span className='absolute w-4 flex items-center justify-center h-4  text-[10px] bg-red-500  rounded-full  -top-0.5 -right-1 text-white'> {totalQuantity}</span>
+            </Link>
           </section>
         </div>
 
