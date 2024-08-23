@@ -135,34 +135,34 @@ const FilterSales = () => {
 
 
       <div className='w-full p-2'>
-        <table>
-          <thead>
-            <tr>
-              <th>S.No</th>
-              <th>CusNmae</th>
-              <th>Village</th>
-              <th>JewelName</th>
-              <th>Jewel Category</th>
-              <th>Quality</th>
-              <th>Qty</th>
-              <th>Net.Wt</th>
-              <th>PriceToken</th>
-              <th>Net.Amt</th>
+        <table className='w-full mt-2 border'>
+          <thead className='border'>
+            <tr className='border-b bg-slate-200'>
+              <th className=' py-2 text-left px-1'>S.No</th>
+              <th className=' py-2 text-left px-1'>CusNmae</th>
+              <th className=' py-2 text-left px-1'>Village</th>
+              <th className=' py-2 text-left '>JewelName</th>
+              <th className=' py-2 text-left '>Jewel Category</th>
+              <th className=' py-2 text-left '>Quality</th>
+              <th className=' py-2 text-left px-2'>Qty</th>
+              <th className=' py-2 text-left px-2'>Net.Wt</th>
+              <th className=' py-2 text-left px-1'>Token</th>
+              <th className=' py-2 text-left px-2'>Net.Amt</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody >
             {filterdData?.saleItems && filterdData?.saleItems.map((item, index) => (
-              <tr>
-                <td>{index + 1}</td>
-                <td>{item?.userId?.name}</td>
-                <td>{item?.userId?.village}</td>
-                <td>{item?.jewellName}</td>
-                <td>{item?.jewellCategory}</td>
-                <td>{item?.jewllTouch}</td>
-                <td>{item?.quantity}</td>
-                <td>{item?.netWeight}</td>
-                <td>{item?.PrizeToken}</td>
-                <td>{item?.price}</td>
+              <tr key={index + item?.userId?.name} className='border-b text-[14px] '>
+                <td className='py-2 px-1'>{index + 1}</td>
+                <td className='py-2 px-1'>{item?.userId?.name}</td>
+                <td className='py-2 px-1'>{item?.userId?.village}</td>
+                <td className='py-2 '>{item?.jewellName}</td>
+                <td className='py-2 '>{item?.jewellCategory}</td>
+                <td className='py-2 px-3'>{item?.jewllTouch}</td>
+                <td className='py-2 px-3'>{item?.quantity}</td>
+                <td className='py-2 px-3'>{item?.netWeight}</td>
+                <td className='py-2 px-3'>{item?.PrizeToken}</td>
+                <td className='py-2 px-1'>{item?.price}</td>
 
               </tr>
             ))}
@@ -171,25 +171,29 @@ const FilterSales = () => {
         </table>
 
       </div>
+   
+      <div className='w-full  pt-4 pb-6'>
+        <h1 className='font-bold text-lg uppercase tracking-wide p-4'>Overal stats</h1>
+        <div className='flex gap-20 px-10 w-full '>
 
-      <div className='w-full flex gap-20 px-10 py-7'>
-        <section>
-          <h2>Overal Total </h2>
-          <li>TotalTkn :{filterdData?.totalTokens}</li>
-          <li>Total Weight :{filterdData?.totalWeight}</li>
-          <li>22K Total.Wt :{filterdData?.totalWeight}</li>
-          <li>18K Total.Wt :{filterdData?.totalWeight18k}</li>
-          <li>Total Price :{filterdData?.totalPrice}</li>
-        </section>
 
-        <section>
-          <h2>Category Wise Qty</h2>
-          {CategoryWiseTotal && CategoryWiseTotal?.map(([category, quantity]) => (
-            <li>{category} : {quantity}</li>
-          ))}
+          <section className='bg-slate-100 flex flex-col gap-3 py-4 px-6'>
+            <h2 className='font-semibold uppercase tracking-wide'>Overal Total </h2>
+            <li>TotalTkn :{filterdData?.totalTokens}</li>
+            <li>Total Weight :{filterdData?.totalWeight}</li>
+            <li>22K Total.Wt :{filterdData?.totalWeight}</li>
+            <li>18K Total.Wt :{filterdData?.totalWeight18k}</li>
+            <li>Total Price :{filterdData?.totalPrice}</li>
+          </section>
 
-        </section>
+          <section className='bg-slate-100 flex flex-col gap-3 py-4 px-6'>
+            <h2 className='font-semibold uppercase tracking-wide'>Category Wise Qty</h2>
+            {CategoryWiseTotal && CategoryWiseTotal?.map(([category, quantity]) => (
+              <li>{category} : {quantity}</li>
+            ))}
 
+          </section>
+        </div>
       </div>
     </div>
   )
