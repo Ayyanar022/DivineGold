@@ -76,19 +76,15 @@ const CustomerSale = () => {
 
   // TO ADD SALE DATA
   const handleAddSale = async (e, userId) => {
+    e.preventDefault();
+    const sale = { ...saleData, userId }
+    const { PrizeToken, jewellCategory, jewellName, jewllTouch, quantity, price, netWeight } = sale;
+    if (!PrizeToken || !jewellCategory || !jewellName || !jewllTouch || !quantity || !price || !netWeight || !userId) {
+      toast.warning("Check all feilds..");
+      return;
+    }
     try {
-
-      e.preventDefault();
-      const sale = { ...saleData, userId }
-
-      const { PrizeToken, jewellCategory, jewellName, jewllTouch, quantity, price, netWeight } = sale;
-      if (PrizeToken || jewellCategory || jewellName || jewllTouch || quantity || price || netWeight || userId) {
-        toast.warning("Check all feilds..");
-        return;
-      }
-
       const accessToken = await getAccessTokenSilently();
-
       const response = await axios.post(`http://localhost:7000/api/admin/customersale`, sale, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
