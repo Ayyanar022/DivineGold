@@ -8,6 +8,7 @@ import fairPriceRoutes from "./routes/FairPriceRout.js"
 import exploreRoutes from "./routes/ExoloreRoute.js"
 import cartRoute from "./routes/CartRout.js";
 import customerSale from "./routes/CustomerSaleRoute.js"
+import salefilter from "./routes/SaleFilterRoute.js"
 
 
 const app = express();
@@ -20,6 +21,7 @@ app.use("/api/fairPrice",fairPriceRoutes);
 app.use("/api/explore",exploreRoutes)
 app.use("/api/cart",cartRoute)
 app.use("/api/admin/customersale",customerSale)
+app.use("/api/admin/filter",salefilter)
 
 mongoose.connect(process.env.MONGODB_URI).then(()=>console.log("connected to DB"))
 
