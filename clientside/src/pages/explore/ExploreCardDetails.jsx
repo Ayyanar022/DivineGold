@@ -6,16 +6,17 @@ import { useGetMyUser } from '../../api/MyUserApi';
 import displayINR from '../../helper/RupeeConvetion';
 import { toast } from "react-toastify";
 import { useCurrentUserConetxt } from '../../context/userContext'
+import { TextField } from '@mui/material';
 
 const RadioButton = ({ label, value, checked, onChange }) => {
     return (
-        <label className='block mb-2'>
+        <label className='block mb-2 text-sm md:text-md'>
             <input
                 type='radio'
                 value={value}
                 checked={checked}
                 onChange={onChange}
-                className='mr-2 text-xs ' />
+                className='mr-2 text-[6px] md:text-xs ' />
             {label}
         </label>
     )
@@ -38,6 +39,18 @@ const ExploreCardDetails = () => {
         itemWeight: '',
         usePriceToken: '',
     })
+
+    // CLEAR DATA
+    const handleClear = (e) => {
+        e.preventDefault();
+        setData({
+            selectedValue: "75halmark",
+            itemWeight: '',
+            usePriceToken: '',
+        });
+        setPrice({})
+    }
+
     const [currentPriceCP, setCurrentPriceCP] = useState('')
 
     // to get current 999 rate
@@ -64,7 +77,6 @@ const ExploreCardDetails = () => {
     }
 
     const emptyImageListing = new Array(4).fill(null); // for loading empty small image
-
 
     // get current user details 
     const { currentUser, isLoading: isUserGetLoading } = useGetMyUser();
@@ -101,7 +113,6 @@ const ExploreCardDetails = () => {
         }
 
     }, [currentUser, setCurrentUserData, currentUserData])
-
 
 
     const handleSubmit = (e) => {
@@ -149,6 +160,21 @@ const ExploreCardDetails = () => {
         }
 
     }
+
+    const handleChangeFeild = (e) => {
+        const { name, value } = e.target
+        setData((prev) => ({
+            ...prev,
+            [name]: value
+        }))
+    }
+
+
+    // VALIDATE PRICE TOKEN
+
+
+    const PriceTokenLabel = data?.usePriceToken ? (((currentUserData?.bonousePoints >= data?.usePriceToken) && (data?.usePriceToken > 0)) ? (<p className=" text-slate-700">Use Prize Token :</p>) : (<p className=" text-red-500 ">Invalid.! prize token:</p>)) : <p className="  text-slate-700">Use Prize Token :</p>
+
 
     return (
         <div className='container mx-auto p-4 lg:px-8 '>
@@ -198,94 +224,102 @@ const ExploreCardDetails = () => {
 
                 {/**Product details */}
                 <div>
-                    <div className="w-full lg:min-w-[500px] min-h-[382px] px-6 py-4 bg-gray-100 ">
+                    <div className="w-full md:min-w-[500px] min-h-[382px] px-6 py-4 shadow-lg ">
                         <form>
-                            <div className="mb-4 flex gap-2  items-center">
-                                <h2 className="text-[15px] font-semibold text-slate-700">Available Prize Token :</h2>
-                                <p className=' text-[15px] font-bold text-sm text-slate-800'>{((currentUserData?.bonousePoints >= data?.usePriceToken) && (data?.usePriceToken > 0)) ? (currentUserData?.bonousePoints - data?.usePriceToken) : currentUserData?.bonousePoints}</p>
-                            </div>
-                            <div className="mb-4 ">
-                                {
-                                    data?.usePriceToken ? (((currentUserData?.bonousePoints >= data?.usePriceToken) && (data?.usePriceToken > 0)) ?
-                                        (<p className="mb-1 text-[15px] font-semibold text-slate-700">Use Price Token :</p>) : (
-                                            <p className="mb-1 text-[15px] text-md text-red-500 font-semibold">Invalid.! prize token:</p>
-                                        )) : <p className="mb-1 text-[15px] font-semibold text-slate-700">Use Price Token :</p>
-                                }
 
-                                <input
-                                    type="text"
-                                    id="usePriceToken"
-                                    value={data.usePriceToken}
-                                    onChange={(e) =>
-                                        setData((prev) => ({
-                                            ...prev,
-                                            usePriceToken: e.target.value,
-                                        }))
-                                    }
-                                    className="w-full text-[15px] px-2 py-2 border border-gray-300 rounded"
-                                />
-                            </div>
-                            <div className="mb-4 lg:flex  items-center gap-4">
-                                <label className='font-semibold text-[15px] text-slate-700'> Select Quality :</label>
-                                <div className='flex gap-3 mt-2'>
-                                    <RadioButton
-                                        label="75 Halmark"
-                                        value="75halmark"
-                                        checked={data.selectedValue === '75halmark'}
-                                        onChange={handleChange}
-
-                                    />
-                                    <RadioButton
-                                        label="916 Halmark"
-                                        value="916halmark"
-                                        checked={data.selectedValue === '916halmark'}
-                                        onChange={handleChange}
-                                    />
+                            <div className='pb-5'>
+                                <div className=" flex gap-2  items-center mb-6">
+                                    <h2 className="text-[15px] font-semibold text-slate-700">Available Prize Token :</h2>
+                                    <p className=' text-[15px] font-bold text-sm text-slate-800'>{((currentUserData?.bonousePoints >= data?.usePriceToken) && (data?.usePriceToken > 0)) ? (currentUserData?.bonousePoints - data?.usePriceToken) : currentUserData?.bonousePoints}</p>
                                 </div>
 
+                                <div className=" flex justify-between mb-3 ">
+                                    <div className='w-36 md:w-52 '>
+                                        <TextField
+                                            autoFocus
+                                            value={data.usePriceToken || ''}
+                                            onChange={handleChangeFeild}
+                                            name="usePriceToken"
+                                            // label="Use Prize Token"
+                                            label={PriceTokenLabel}
+                                            id="usePriceToken"
+                                            type='number'
+                                            fullWidth
+                                            variant='outlined'
+                                        />
+                                    </div>
+                                    <div className='w-36 md:w-52 '>
+                                        <TextField
+                                            autoFocus
+                                            value={data.itemWeight || ''}
+                                            onChange={handleChangeFeild}
+                                            name="itemWeight"
+                                            label="Enter Weight in gram"
+                                            id="itemWeight"
+                                            type='number'
+                                            fullWidth
+                                            variant='outlined'
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className=" lg:flex  items-center gap-4">
+                                    <label className='font-semibold text-[15px] text-slate-700'> Select Quality :</label>
+                                    <div className='flex gap-3 mt-2'>
+                                        <RadioButton
+                                            label="75 HM(18K)"
+                                            value="75halmark"
+                                            checked={data.selectedValue === '75halmark'}
+                                            onChange={handleChange}
+                                        />
+                                        <RadioButton
+                                            label="916 HM(22k)"
+                                            value="916halmark"
+                                            checked={data.selectedValue === '916halmark'}
+                                            onChange={handleChange}
+                                        />
+                                    </div>
+
+                                </div>
                             </div>
-                            <div className="mb-4">
-                                <label className="block mb-2 text-[15px] font-semibold text-slate-700">Net Weight :</label>
-                                <input
-                                    id="itemWeight"
-                                    type="text"
-                                    value={data.itemWeight}
-                                    onChange={(e) =>
-                                        setData((prev) => ({
-                                            ...prev,
-                                            itemWeight: e.target.value,
-                                        }))
-                                    }
-                                    className="w-full p-2 border border-gray-300 rounded"
-                                />
-                            </div>
+
+
                             {/**show price */}
-                            <div>
-                                <div className='flex justify-between items-center'>
-                                    <label className='text-md font-semibold'>Fair Price :</label>
-                                    <p className='p-2 text-lg font-bold text-pink-600'> {price?.bestPrice}</p>
+                            <div className='md:pt-3 '>
+
+                                <div className='flex justify-between items-center py-1.5 '>
+                                    <label className='text-lg font-semibold tracking-wide text-slate-700'>Fair Price :</label>
+                                    <p className=' text-lg font-semibold text-pink-600 tracking-wider'> {price?.bestPrice}</p>
                                 </div>
-                                {
-                                    price?.tokenPricediscount && (<div>
-                                        <div className='flex justify-between items-center'>
-                                            <label className='text-md font-semibold'>Prize Token Discount :</label>
-                                            <p className='p-2 text-lg font-bold text-pink-600'> {price?.tokenPricediscount}</p>
-                                        </div>
-                                        <div className='flex justify-between items-center'>
-                                            <label className='text-md font-semibold'>Best Fair Price :</label>
-                                            <p className='p-2 text-lg font-bold text-pink-600'> {price?.afterTokenDiscount}</p>
-                                        </div>
-                                    </div>)
-                                }
 
+                                <div className='flex justify-between items-center py-1.5 '>
+                                    <label className='text-lg font-semibold tracking-wide text-slate-700'>Prize Token Discount :</label>
+                                    <p className=' text-lg font-semibold text-pink-600 tracking-wider'> {price?.tokenPricediscount}</p>
+                                </div>
 
+                                <div className='flex justify-between items-center py-1.5 '>
+                                    <label className='text-lg font-semibold tracking-wide text-slate-700'>Best Fair Price :</label>
+                                    <p className=' text-lg font-semibold text-pink-600 tracking-wider'> {price?.afterTokenDiscount}</p>
+                                </div>
                             </div>
-                            <button
-                                className="bg-pink-500 p-2 text-white my-3 w-full rounded"
-                                onClick={handleSubmit}
-                            >
-                                Show Me Best Price
-                            </button>
+
+                            <div className='flex  gap-8 pt-2'>
+                                <button
+                                    className="bg-pink-500 uppercase tracking-wider font-bold p-2 text-white my-3 w-full rounded"
+                                    onClick={handleSubmit}
+                                >
+                                    Show Price
+                                </button>
+
+                                <button
+                                    className="bg-pink-500 uppercase tracking-wider font-bold p-2 text-white my-3 w-full rounded"
+                                    onClick={handleClear}
+                                >
+                                    Clear Price
+                                </button>
+                            </div>
+
+
                         </form>
                     </div>
                 </div>
