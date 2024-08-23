@@ -108,37 +108,36 @@ const Explore = () => {
 
 
         <div className="flex-1 px-5">
-          {/**Gender filter */}
-          <div className="mb-5 ">
-            <div onClick={() => setGenderToggle(prev => !prev)} className="flex justify-between items-center ">
-              <h3 className="text-md text-slate-700 uppercase tracking-wide font-semibold pb-2 ">Gender</h3>
-              <div>
-                {!genderToggle && <MdOutlineKeyboardArrowUp className="text-xl" />}
-                {genderToggle && <MdKeyboardArrowDown className="text-xl" />}
-              </div>
 
+          {/**Category */}
+          <div className="mb-5">
+            <div onClick={() => setCategoryToggle(prev => !prev)} className="flex justify-between items-center gap-2">
+              <h3 className="text-md text-slate-700 uppercase tracking-wide font-semibold pb-2 ">Category</h3>
+              {!categoryToggle && <MdOutlineKeyboardArrowUp className="text-xl" />}
+              {categoryToggle && <MdKeyboardArrowDown className="text-xl" />}
             </div>
 
-            {genderToggle && (<div >
-              {Gender && ConstantItemGender?.data?.map((item, index) => (
-                <div key={item?._id}
-                  className={`flex items-center py-1 px-3 gap-1 
-                  hover:bg-slate-300 
-                  ${selectedGendr.includes(item?.itemGender) ? 'bg-slate-200' : 'bg-white'}`}
-                >
-                  <input
-                    type="checkbox"
-                    id={`gender-${item?._id}`}
-                    value={item?.itemGender}
-                    onChange={handleChangeGender}
-                    className="mr-2"
-                    name={item?.itemGender}
-                    checked={selectedGendr.includes(item?.itemGender)}
-                  />
-                  <label className="text-slate-700 text-md" htmlFor={`gender-${item?._id}`}>{item?.itemGender}</label>
-                </div>
-              ))}
-            </div>)}
+
+            {categoryToggle && ConstantItemCategory?.data?.map((item, index) => (
+              <div
+                key={item?._id}
+                className={`flex items-center py-1 px-3 gap-1 
+                hover:bg-slate-300 
+                ${selectCategory?.includes(item?.itemCategory) ? 'bg-slate-200' : 'bg-white'}`}
+              >
+                <input
+                  type="checkbox"
+                  id={`type${item?._id}`}
+                  value={item?.itemCategory}
+                  onChange={handleChangeCategory}
+                  className="mr-2"
+                  name={item?.itemCategory}
+                  checked={selectCategory?.includes(item?.itemCategory)}
+                />
+                <label className="text-slate-700 text-md" htmlFor={`type${item?._id}`}>{item?.itemCategory}</label>
+              </div>
+            ))}
+
 
           </div>
 
@@ -171,37 +170,43 @@ const Explore = () => {
 
           </div>
 
-          {/**Category */}
-          <div className="mb-16">
-            <div onClick={() => setCategoryToggle(prev => !prev)} className="flex justify-between items-center gap-2">
-              <h3 className="text-md text-slate-700 uppercase tracking-wide font-semibold pb-2 ">Category</h3>
-              {!categoryToggle && <MdOutlineKeyboardArrowUp className="text-xl" />}
-              {categoryToggle && <MdKeyboardArrowDown className="text-xl" />}
+          {/**Gender filter */}
+          <div className="mb-16 ">
+            <div onClick={() => setGenderToggle(prev => !prev)} className="flex justify-between items-center ">
+              <h3 className="text-md text-slate-700 uppercase tracking-wide font-semibold pb-2 ">Gender</h3>
+              <div>
+                {!genderToggle && <MdOutlineKeyboardArrowUp className="text-xl" />}
+                {genderToggle && <MdKeyboardArrowDown className="text-xl" />}
+              </div>
+
             </div>
 
-
-            {categoryToggle && ConstantItemCategory?.data?.map((item, index) => (
-              <div
-                key={item?._id}
-                className={`flex items-center py-1 px-3 gap-1 
-                hover:bg-slate-300 
-                ${selectCategory?.includes(item?.itemCategory) ? 'bg-slate-200' : 'bg-white'}`}
-              >
-                <input
-                  type="checkbox"
-                  id={`type${item?._id}`}
-                  value={item?.itemCategory}
-                  onChange={handleChangeCategory}
-                  className="mr-2"
-                  name={item?.itemCategory}
-                  checked={selectCategory?.includes(item?.itemCategory)}
-                />
-                <label className="text-slate-700 text-md" htmlFor={`type${item?._id}`}>{item?.itemCategory}</label>
-              </div>
-            ))}
-
+            {genderToggle && (<div >
+              {Gender && ConstantItemGender?.data?.map((item, index) => (
+                <div key={item?._id}
+                  className={`flex items-center py-1 px-3 gap-1 
+                  hover:bg-slate-300 
+                  ${selectedGendr.includes(item?.itemGender) ? 'bg-slate-200' : 'bg-white'}`}
+                >
+                  <input
+                    type="checkbox"
+                    id={`gender-${item?._id}`}
+                    value={item?.itemGender}
+                    onChange={handleChangeGender}
+                    className="mr-2"
+                    name={item?.itemGender}
+                    checked={selectedGendr.includes(item?.itemGender)}
+                  />
+                  <label className="text-slate-700 text-md" htmlFor={`gender-${item?._id}`}>{item?.itemGender}</label>
+                </div>
+              ))}
+            </div>)}
 
           </div>
+
+
+
+
 
         </div>
 

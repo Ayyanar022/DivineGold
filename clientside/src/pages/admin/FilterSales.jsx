@@ -70,7 +70,7 @@ const FilterSales = () => {
   return (
     <div>
       <div className='p-4'>
-        <form className='flex py-3 bg-pink-200 flex-col items-center justify-between gap-2 w-4/5 mx-auto  '>
+        <form className='flex py-4 bg-pink-200 flex-col items-center justify-between gap-2 w-4/5 mx-auto  '>
 
           <section className='flex items-center justify-between gap-3 w-full  px-5'>
             <input type='text'
@@ -125,7 +125,10 @@ const FilterSales = () => {
               id="endDate"
               className='border w-60 py-2.5 focus:border-lime-500 focus:shadow-md shadow-sm focus:shadow-lime-200 transition-all duration-150  focus:border-2 px-4 outline-none'
             />
-            <button onClick={handlefilterSubmit} className='px-8 py-2 w-60 bg-teal-400 hover:bg-teal-500 shadow-sm   rounded font-semibold uppercase transition-all duration-150 tracking-wider'>show</button>
+            <div className='flex  w-60  justify-between'>
+              <button onClick={handlefilterSubmit} className='px-7 py-2  bg-orange-400 hover:bg-gradient-to-r hover:from-orange-500 hover:to-teal-500  shadow-sm   rounded font-semibold uppercase transition-all duration-150 tracking-wider'>show</button>
+              <button onClick={handlefilterSubmit} className='px-7 py-2  bg-blue-500 hover:bg-gradient-to-r hover:from-blue-500 hover:to-teal-500  shadow-sm   rounded font-semibold uppercase transition-all duration-150 tracking-wider'>Clear</button>
+            </div>
           </section>
 
 

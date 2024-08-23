@@ -33,7 +33,11 @@ const updateCurrentUser = async(req,res)=>{
     try{       
         const {name,mobileNo,address,village,city,bonousCode} = req.body;
         const user = await User.findById(req.userId);
+
         if(!user)return res.status(404).json({message:"User not found"})    
+        
+        const mobileCheck = await User.findOne({ mobileNo, _id: { $ne: req.userId } });
+        if (mobileCheck) return res.status(400).json({ message: "Mobile No already exists" });
             
         if(!user.bonousCode){
             user.bonousCode= uuidv4();  // to generate unique bonuse code ifuser first update 
