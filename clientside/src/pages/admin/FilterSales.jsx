@@ -135,10 +135,10 @@ const FilterSales = () => {
 
 
       <div className='w-full p-2'>
-        <table className='w-full mt-2 border'>
+        <table className='w-full mt-2 border '>
           <thead className='border'>
-            <tr className='border-b bg-slate-200'>
-              <th className=' py-2 text-left px-1'>S.No</th>
+            <tr className='border-b bg-slate-200 '>
+              <th className=' py-2 text-left px-2'>S.No</th>
               <th className=' py-2 text-left px-1'>CusNmae</th>
               <th className=' py-2 text-left px-1'>Village</th>
               <th className=' py-2 text-left '>JewelName</th>
@@ -171,25 +171,43 @@ const FilterSales = () => {
         </table>
 
       </div>
-   
+
       <div className='w-full  pt-4 pb-6'>
         <h1 className='font-bold text-lg uppercase tracking-wide p-4'>Overal stats</h1>
         <div className='flex gap-20 px-10 w-full '>
 
 
-          <section className='bg-slate-100 flex flex-col gap-3 py-4 px-6'>
-            <h2 className='font-semibold uppercase tracking-wide'>Overal Total </h2>
-            <li>TotalTkn :{filterdData?.totalTokens}</li>
-            <li>Total Weight :{filterdData?.totalWeight}</li>
-            <li>22K Total.Wt :{filterdData?.totalWeight}</li>
-            <li>18K Total.Wt :{filterdData?.totalWeight18k}</li>
-            <li>Total Price :{filterdData?.totalPrice}</li>
+          <section className="bg-slate-100 p-6 rounded-lg shadow-md">
+            <h2 className="font-semibold text-lg uppercase tracking-wide mb-4">Overall Totals</h2>
+            <ul className="space-y-2">
+              <li className="flex justify-between gap-10">
+                <span className=''>Total Tokens :</span>
+                <span className='font-semibold'>{filterdData?.totalTokens}</span>
+              </li>
+              <li className="flex justify-between gap-3 ">
+                <span>Total Wt :</span>
+                <span className='font-semibold'>{filterdData?.totalWeight}</span>
+              </li>
+              <li className="flex justify-between gap-3">
+                <span>22K Total.wt :</span>
+                <span className='font-semibold'>{filterdData?.totalWeight22k}</span>
+              </li>
+              <li className="flex justify-between gap-3">
+                <span>18K Total.Wt :</span>
+                <span className='font-semibold'>{filterdData?.totalWeight18k}</span>
+              </li>
+              <li className="flex justify-between gap-3">
+                <span>Total Price :</span>
+                <span className='font-semibold'>{filterdData?.totalPrice}</span>
+              </li>
+            </ul>
           </section>
+
 
           <section className='bg-slate-100 flex flex-col gap-3 py-4 px-6'>
             <h2 className='font-semibold uppercase tracking-wide'>Category Wise Qty</h2>
             {CategoryWiseTotal && CategoryWiseTotal?.map(([category, quantity]) => (
-              <li>{category} : {quantity}</li>
+              <li>{category} : <apan className='font-semibold px-3'>{quantity}</apan></li>
             ))}
 
           </section>
