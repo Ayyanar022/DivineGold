@@ -1,14 +1,14 @@
 import React from 'react'
-import men1 from '../../asserts/Gender images/men2.webp'
-import women from '../../asserts/Gender images/woemn1.webp'
-import boybaby from '../../asserts/Gender images/childboy1.webp'
-import girlbaby from '../../asserts/Gender images/childgirl1.avif'
+import men1 from '../../asserts/Gender images/Razor Edge Band - Platinum _ 6mm _ Matte.jpeg'
+import women from '../../asserts/Gender images/download.jpeg'
+import boybaby from '../../asserts/Gender images/childboy2.avif'
+import girlbaby from '../../asserts/Gender images/download (2).jpeg'
 import GenderCard from './GenderCard'
 
 
 const GenderComponent = () => {
     return (
-        <div className='container mx-auto py-4 md:py-8 '>
+        <div className='container mx-auto py-4 md:py-8 bg-slate-100'>
             <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold text-amber-600  text-center">
                 Search by Gender: Find Your Ideal Jewelry
             </h2>
