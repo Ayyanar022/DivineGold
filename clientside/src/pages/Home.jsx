@@ -8,7 +8,7 @@ import Benifits from "../components/home/Benifits.jsx";
 import GenderComponent from "../components/home/GenderComponent.jsx";
 
 const Home = () => {
-  return <div className=" container mx-auto px-6">
+  return <div className=" container mx-auto px-6 mb-14">
 
     {/* ITS FOR MARQUE TAG */}
     <div className="bg-gradient-to-br from-cyan-950 to-slate-950 p-4 text-white overflow-hidden whitespace-nowrap w-full">

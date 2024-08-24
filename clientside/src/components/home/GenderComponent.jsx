@@ -8,7 +8,7 @@ import GenderCard from './GenderCard'
 
 const GenderComponent = () => {
     return (
-        <div className='container mx-auto py-4 md:py-8 bg-slate-100'>
+        <div className='container mx-auto py-4 md:py-6 px-1 bg-slate-100 '>
             <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold text-amber-600  text-center">
                 Search by Gender: Find Your Ideal Jewelry
             </h2>
@@ -16,7 +16,7 @@ const GenderComponent = () => {
                 Browse our jewelry selection by gender to discover styles that match your identity and taste.
             </p>
 
-            <div className='flex flex-wrap md:gap-2 gap-1 lg:gap-5 justify-around w-full '>
+            <div className='grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-10 lg:mx-6'>
 
                 <GenderCard img={men1} name="Men" />
                 <GenderCard img={women} name="Women" />
