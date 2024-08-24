@@ -38,7 +38,7 @@ const JewllCategory = () => {
 
 
                 </div>
-                <h2 className=' text-[14px] md:text-[16px] text-center py-2'>Explore our jewelry collection by category and type to find the best market prices. Simply select an item, enter the weight, and discover the most competitive rates instantly</h2>
+                <h2 className=' text-[14px] md:text-[16px] text-gray-600 text-center py-2'>Explore our jewelry collection by category and type to find the best market prices. Simply select an item, enter the weight, and discover the most competitive rates instantly</h2>
             </div>
 
             <div className='flex gap-6 overflow-x-auto scrollbar-hiden p-3'>

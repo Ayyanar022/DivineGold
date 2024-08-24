@@ -42,7 +42,7 @@ const RoundDesigns = () => {
 
 
                     </div>
-                    <h2 className=' text-[14px] md:text-[16px] text-center py-2'>Browse through your favorite designs . we got all designs </h2>
+                    <h2 className=' text-[14px] md:text-[16px] text-gray-600 text-center py-2'>Browse through your favorite designs . we got all designs </h2>
                     <hr class="border-t border-gray-300 my-4 md:my-5  "></hr>
                 </div>
 

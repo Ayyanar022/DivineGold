@@ -8,11 +8,11 @@ const Benifits = () => {
                     Unlock Value with Transparent Pricing & Exclusive Rewards
                 </h2>
                 <div className='border lg:mx-10 border-amber-500 p-4 md:py-6  md:px-8'>
-                    <p><sapn className='font-bold text-amber-500'>Best Price Finder : </sapn>Easily compare current market prices for jewelry based on design, quality, and weight. Get the best deal for each individual design from different sellers, ensuring you make the most informed purchase.</p>
+                    <p className='text-gray-600'><sapn className='font-bold text-amber-500'>Best Price Finder : </sapn >Easily compare current market prices for jewelry based on design, quality, and weight. Get the best deal for each individual design from different sellers, ensuring you make the most informed purchase.</p>
                 </div>
 
                 <div className='border lg:mx-10 border-amber-500 p-4 md:py-6  md:px-8'>
-                    <p>
+                    <p className='text-gray-600'>
                         <span className='font-bold text-amber-500'>Earn Prize Tokens : </span>Share our platform with others and both you and your referral will receive price tokens worth ₹34 each. Accumulate these tokens and redeem them as discounts on your future jewelry purchases, turning your referrals into real savings.
                     </p>
                 </div>

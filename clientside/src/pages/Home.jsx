@@ -7,8 +7,10 @@ import GuidPart from "../components/home/GuidPart.jsx";
 import Benifits from "../components/home/Benifits.jsx";
 import GenderComponent from "../components/home/GenderComponent.jsx";
 
+import ContactUs from "../components/home/ContactUs.jsx";
+
 const Home = () => {
-  return <div className=" container mx-auto px-6 mb-14">
+  return <div className=" container mx-auto px-6 mb-14 lg:mb-8">
 
     {/* ITS FOR MARQUE TAG */}
     <div className="bg-gradient-to-br from-cyan-950 to-slate-950 p-4 text-white overflow-hidden whitespace-nowrap w-full">
@@ -22,6 +24,9 @@ const Home = () => {
     <JewllCategory />
     <Benifits />
     <GenderComponent />
+    <ContactUs />
+
+
 
 
   </div>;
