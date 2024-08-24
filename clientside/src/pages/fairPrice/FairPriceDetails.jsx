@@ -396,17 +396,17 @@ const FairPriceDetails = () => {
 
     return (
 
-        <div className="container mx-auto p-4">
+        <div className="container  mx-auto bg-gradient-to-r from-[#E3D4FD] to-[#F6E9FF] lg:pb-[47px] md:p-6">
             {(cardDetailsLoding || cardDetailsLoding || isGetLoading) ? (
                 <h1 className="text-center">Loading...</h1>
             ) : (
-                <div className="flex flex-col md:flex-row items-center justify-center lg:w-4/5 mx-auto ">
-                    <div className="w-full md:w-1/2 p-4 ">
+                <div className="flex flex-col md:flex-row   items-center gap-6 justify-center lg:w-4/5 mx-auto ">
+                    <div className="w-full md:w-1/2 p-3 bg-white">
                         {!cardDetailsLoding && (
                             <img
                                 src={details?.item_Image}
                                 alt={details?.item_category}
-                                className="w-full h-auto"
+                                className="w-full object-scale-down h-[382px]"
                             />
                         )}
                     </div>
@@ -414,7 +414,7 @@ const FairPriceDetails = () => {
 
 
                     {/**Product details */}
-                    <div>
+                    <div className='bg-white'>
                         <div className="w-full  lg:min-w-[500px] min-h-[382px] px-3 md:px-4 lg:px-6 py-4 shadow-lg ">
                             <form>
 
