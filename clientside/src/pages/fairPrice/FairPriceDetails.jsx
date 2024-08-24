@@ -499,11 +499,6 @@ const FairPriceDetails = () => {
                                     >
                                         Show Price
                                     </button>
-
-                                    {/* <button className="bg-[#333333] text-white font-semibold py-2 px-4 rounded-lg hover:bg-[#555555] transition-all duration-300">
-                                        Sumit
-                                    </button> */}
-
                                     <button
                                         className="bg-[#333333] uppercase text-xs sm:text-sm lg:text-[15px] tracking-wider font-bold p-2 text-white my-3 w-full rounded hover:bg-[#555555] transition-all duration-300"
                                         onClick={handleClear}

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useGetAllFairPrice } from '../../api/FairPriceApi'
 import FairPriceCard from '../../components/fairPrice/FairPriceCard'
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 const FairPrice = () => {
 
@@ -32,7 +33,18 @@ const FairPrice = () => {
 
   const singleFilter = (Itemcategory) => {
     const data = fairPriceCardData?.filter(item => item?.item_category === Itemcategory);
-    setFilterdCardData(data)
+    console.log("data", data)
+    setFilterdCardData(data);
+  }
+
+  //FILTER BASED ON TREDITIONAL , FANCY , HIGHFANCY
+  const TypeFilter = (category, type) => {
+    if (filterdcardData.length < 1) {
+      toast.warning("Select above category.. ")
+      return
+    }
+    const data = fairPriceCardData?.filter(item => item?.item_category === category && item?.category === type)
+    setFilterdCardData(data);
   }
 
 
@@ -54,10 +66,27 @@ const FairPrice = () => {
         ))}
       </div>
 
-      <div className='  py-4 px-2 '>
-        <div onClick={() => setFilterdCardData([])} className='mb-4 text-xl font-bold cursor-pointer text-amber-500'>All Category</div>
+      <div className='flex justify-between md:block space-x-2 md:space-x-5 pt-3 px-2 transition-all duration-200'>
+        <button className="bg-[#D4AF37] uppercase text-xs    md:tracking-wider font-semibold p-2 px-3 md:px-4 hover:bg-[#C49C2E] transition-all duration-300 text-white my-3  rounded"
+          onClick={() => TypeFilter(filterdcardData[0]?.item_category, "Treditional")} >
+          Treditional
+        </button>
 
-        <div className='grid gap-3 md:gap-5 lg:gap-9 grid-cols-2 md:grid-cols-4 lg:grid-cols-5'>
+        <button className="bg-[#D4AF37] uppercase text-xs  md:tracking-wider font-semibold p-2 px-3 md:px-4 hover:bg-[#C49C2E] transition-all duration-300 text-white my-3  rounded"
+          onClick={() => TypeFilter(filterdcardData[0]?.item_category, "Fancy")} >
+          Fancy
+        </button>
+
+        <button className="bg-[#D4AF37] uppercase text-xs   md:tracking-wider font-semibold p-2 px-3 md:px-4 hover:bg-[#C49C2E] transition-all duration-300 text-white my-3  rounded"
+          onClick={() => TypeFilter(filterdcardData[0]?.item_category, "HighFancy")} >
+          High Fancy
+        </button>
+      </div>
+
+      <div className='  py-4 px-2 '>
+        <div onClick={() => setFilterdCardData([])} className='mb-4  w-fit  text-xl font-bold cursor-pointer text-amber-500'>All Category</div>
+
+        <div className='grid gap-5 md:gap-6 lg:gap-9 grid-cols-2 md:grid-cols-4 lg:grid-cols-5'>
           {!isLoading && (filterdcardData.length > 0 ? filterdcardData : fairPriceCardData)?.map((item) => (
             <Link to={`/fairPrice-details/${item.itemName}/${item.category}`}>
               <FairPriceCard key={item.id} data={item} />
