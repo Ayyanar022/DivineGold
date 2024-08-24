@@ -68,3 +68,52 @@ code {
     font-size: 14px; /* Default close button size */
   }
 }
+
+/** FOR MARQUE  
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+
+.animate-marquee-lg {
+  animation: marquee 19s linear infinite;
+}
+
+.animate-marquee-sm {
+  animation: marquee 10s linear infinite;
+}
+
+
+*/
+
+/** FOR MARQUEE */
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee-lg {
+  animation: marquee 19s linear infinite;
+}
+
+.animate-marquee-sm {
+  animation: marquee 10s linear infinite;
+}
+
+
+/** FOR MARQUEE */
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee-lg {
+  animation: marquee 19s linear infinite;
+}
+
+@media (max-width: 767px) {
+  .animate-marquee-lg {
+    animation: marquee 10s linear infinite;
+  }
+}

@@ -4,8 +4,8 @@ import { useAddUpdateCart, useGetCartItem } from '../api/CartApi'
 import { IoCloseSharp } from "react-icons/io5";
 import { useAuth0 } from '@auth0/auth0-react';
 import { toast } from 'react-toastify';
-import WhatsAppForCart from '../components/home/WhatsAppForCart';
 import { GiPlantWatering } from "react-icons/gi";
+import WhatsAppForCart from '../components/WhatsAppForCart.jsx';
 
 import { useDispatch } from 'react-redux';
 import { removeItemToCart, addItemToCart, } from '../store/cartSlice.js';

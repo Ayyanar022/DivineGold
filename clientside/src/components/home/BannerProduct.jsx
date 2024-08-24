@@ -39,7 +39,7 @@ const BannerProduct = () => {
 
     return (
         <div className="container mx-auto">
-            <div className="h-56 md:h-[450px] w-full bg-slate-200 relative">
+            <div className="h-56 md:h-[410px] lg:h-[450px] w-full bg-slate-200 relative">
                 <div className="absolute z-10 w-full h-full flex items-center">
                     <div className="md:flex justify-between items-center w-full hidden">
                         <button
