@@ -24,7 +24,7 @@ const UserProfilePage = () => {
   }
 
   return (
-    <div className='pb-[60px] md:pb-[5px]'>
+    <div className='pb-[60px] md:pb-[10px] p-5 mb-3 md:mb-[60px] lg:mb-0 '>
       <UserProfileForm currentUser={currentUser} onSave={updateUser} isLoading={isUpdateLoading} />
     </div>
 

@@ -41,9 +41,11 @@ const UserProfileForm = ({ currentUser, onSave, isLoading }) => {
 
 
     return (
-        <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 p-4 z-0 ">
-            <div className="w-full md:w-1/2 bg-white p-6 rounded-lg shadow-md">
-                <h2 className="text-xl font-bold mb-4">User Profile Form</h2>
+
+        <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 md:p-4  bg-white w-full justify-center ">
+
+            <div className="w-full md:w-1/2 lg:w-2/5 bg-white p-6 rounded-lg shadow-md border">
+                <h2 className="text-xl font-bold mb-4 text-slate-700 uppercase">User Profile Form</h2>
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Email</label>
@@ -81,25 +83,27 @@ const UserProfileForm = ({ currentUser, onSave, isLoading }) => {
                         {errors.bonousCode && <p className="text-red-500 text-sm mt-1">{errors.bonousCode.message}</p>}
                     </div>}
 
-                    <button type="submit" disabled={isLoading} className="w-full bg-pink-600 text-white py-2 rounded-md hover:bg-pink-700 transition duration-200">
-                        {isLoading ? 'Loading...' : 'Submit'}
+                    <button type="submit" disabled={isLoading} className="w-full bg-pink-600 uppercase font-semibold text-white py-2 rounded-md hover:bg-pink-700 transition-all duration-200">
+                        {isLoading ? 'Loading...' : 'Update Profile'}
                     </button>
                 </form>
             </div>
 
 
-            <div className="w-full md:w-1/2 bg-white p-6 rounded-lg shadow-md">
-                <h2 className="text-xl font-bold mb-4">User Details</h2>
-                <div className=' flex flex-col lg:flex-row gap-1 lg:items-center'>
+            <div className="w-full md:w-1/2 lg:w-2/5 bg-white p-6 rounded-lg shadow-md border">
+                <h2 className="text-xl font-bold uppercase mb-4 text-slate-700">User Details</h2>
+
+                <div className=' flex flex-col lg:flex-row gap-2 lg:items-center'>
                     <p className='text-lg font-semibold  text-slate-700'>Treasure Code : </p>
                     <p className='text-slate-700 text-sm'>{currentUser.bonousCode}</p>
                 </div>
-                <div className='flex flex-col lg:flex-row gap-1 mt-3 lg:items-center '>
+                <div className='flex gap-3 md:gap-5 mt-3 items-center '>
                     <p className='text-lg font-semibold text-slate-700'>Prize Token : </p>
-                    <p className='text-slate-700 text-sm'>{currentUser.bonousePoints}</p>
+                    <p className='text-slate-800 font-semibold text-sm md:text-md'>{currentUser.bonousePoints}</p>
                 </div>
             </div>
         </div>
+
     );
 };
 
