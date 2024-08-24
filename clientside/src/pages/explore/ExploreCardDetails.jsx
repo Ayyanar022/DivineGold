@@ -191,7 +191,7 @@ const ExploreCardDetails = () => {
 
 
     return (
-        <div className='container mx-auto p-4 lg:px-8 '>
+        <div className='container mx-auto p-4 lg:px-8  pb-[40px]'>
             <div className='min-h-[200px] flex flex-col md:flex-row gap-8'>
               
                 {/**Product image */}

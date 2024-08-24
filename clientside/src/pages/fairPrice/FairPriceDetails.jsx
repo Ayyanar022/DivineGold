@@ -396,7 +396,7 @@ const FairPriceDetails = () => {
 
     return (
 
-        <div className="container  mx-auto bg-gradient-to-r from-[#E3D4FD] to-[#F6E9FF] lg:pb-[47px] md:p-6">
+        <div className="container  mx-auto bg-gradient-to-r from-[#e3d6f9] to-[#f3e9f9] pb-[60px] lg:pb-[47px] p-4 md:p-6">
             {(cardDetailsLoding || cardDetailsLoding || isGetLoading) ? (
                 <h1 className="text-center">Loading...</h1>
             ) : (
@@ -494,17 +494,21 @@ const FairPriceDetails = () => {
                                 </div>
 
                                 <div className='flex  gap-8 pt-2'>
-                                    <button
-                                        className="bg-pink-500 uppercase text-xs sm:text-sm  lg:text-[15px] tracking-wider font-bold p-2 text-white my-3 w-full rounded"
+                                    <button className="bg-[#D4AF37] uppercase text-xs sm:text-sm  lg:text-[15px] tracking-wider font-bold p-2 hover:bg-[#C49C2E] transition-all duration-300 text-white my-3 w-full rounded"
                                         onClick={handleSubmit}
                                     >
                                         Show Price
                                     </button>
 
+                                    {/* <button className="bg-[#333333] text-white font-semibold py-2 px-4 rounded-lg hover:bg-[#555555] transition-all duration-300">
+                                        Sumit
+                                    </button> */}
+
                                     <button
-                                        className="bg-pink-500 uppercase text-xs sm:text-sm lg:text-[15px] tracking-wider font-bold p-2 text-white my-3 w-full rounded"
+                                        className="bg-[#333333] uppercase text-xs sm:text-sm lg:text-[15px] tracking-wider font-bold p-2 text-white my-3 w-full rounded hover:bg-[#555555] transition-all duration-300"
                                         onClick={handleClear}
                                     >
+
                                         Clear Price
                                     </button>
                                 </div>

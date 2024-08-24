@@ -24,8 +24,11 @@ const UserProfilePage = () => {
   }
 
   return (
+    <div className='pb-[60px] md:pb-[5px]'>
+      <UserProfileForm currentUser={currentUser} onSave={updateUser} isLoading={isUpdateLoading} />
+    </div>
 
-    <UserProfileForm currentUser={currentUser} onSave={updateUser} isLoading={isUpdateLoading} />
+
 
 
 

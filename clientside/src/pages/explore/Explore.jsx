@@ -95,7 +95,7 @@ const Explore = () => {
   if (JewllDataIsLoading || JewllDataIsLoading) {
     return <p>Loading...</p>
   }
-  return <div className="w-full  flex mb-14  lg:mb-12">
+  return <div className="w-full  flex mb-[82px]  lg:mb-12">
     {/**filter  */}
 
     <aside className="hidden md:block  fixed top-0 left-0 md:w-52 lg:w-56 h-full overflow-y-auto  bg-white border-r  shadow-sm">

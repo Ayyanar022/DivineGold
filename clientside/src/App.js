@@ -56,7 +56,7 @@ function App() {
         <main className="flex-grow pt-14  ">
           <Outlet />
         </main>
-        <Footer className="mt-auto hidden lg:block" />
+        <Footer className="mt-auto hidden lg:block "  />
         <MobileNav />
       </div>
     
