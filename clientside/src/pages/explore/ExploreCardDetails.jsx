@@ -193,6 +193,7 @@ const ExploreCardDetails = () => {
     return (
         <div className='container mx-auto p-4 lg:px-8 '>
             <div className='min-h-[200px] flex flex-col md:flex-row gap-8'>
+              
                 {/**Product image */}
                 <div className='h-96 flex flex-col lg:flex-row-reverse gap-4'>
 
