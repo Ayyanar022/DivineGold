@@ -69,22 +69,20 @@ code {
   }
 }
 
-/** FOR MARQUE  
+
+/** FOR MARQUEE 
 @keyframes marquee {
   0% { transform: translateX(100%); }
   100% { transform: translateX(-100%); }
 }
 
-
 .animate-marquee-lg {
-  animation: marquee 19s linear infinite;
+  animation: marquee 23s linear infinite;
 }
 
 .animate-marquee-sm {
   animation: marquee 10s linear infinite;
 }
-
-
 */
 
 /** FOR MARQUEE */
@@ -94,22 +92,7 @@ code {
 }
 
 .animate-marquee-lg {
-  animation: marquee 19s linear infinite;
-}
-
-.animate-marquee-sm {
-  animation: marquee 10s linear infinite;
-}
-
-
-/** FOR MARQUEE */
-@keyframes marquee {
-  0% { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
-}
-
-.animate-marquee-lg {
-  animation: marquee 19s linear infinite;
+  animation: marquee 23s linear infinite;
 }
 
 @media (max-width: 767px) {
