@@ -25,6 +25,8 @@ app.use("/api/admin/filter",salefilter)
 
 mongoose.connect(process.env.MONGODB_URI).then(()=>console.log("connected to DB"))
 
-app.listen(7000, () => {
-  console.log("server on localhost:7000");
+const PORT = process.env.PORT || 7000;  // Use the port provided by Render or fall back to 7000 for local development
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
