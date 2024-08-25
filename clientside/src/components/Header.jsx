@@ -1,8 +1,6 @@
 import React from 'react'
-// import logo from '../asserts/goldlogopng.png';
 import { Link, NavLink } from 'react-router-dom';
 import { CiBag1 } from "react-icons/ci"; // bag icon
-import { CiHeart } from "react-icons/ci"; // heart icon
 import { FaUserCircle } from "react-icons/fa"; // userProfile icon
 import { navigation } from '../constant/navigation';
 import { useAuth0 } from '@auth0/auth0-react';
