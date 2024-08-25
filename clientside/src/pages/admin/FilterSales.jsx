@@ -49,13 +49,11 @@ const FilterSales = () => {
         },
       })
 
-      // console.log("response", response);
 
       if (response?.data.saleItems.length > 0) {
         setFilteredData(response?.data);
         totalQuantityArry = Object.entries(response?.data?.totalQtyBasedOnCategory)
         setCategoryWiseTotal(totalQuantityArry)
-        console.log("totalQuantityArry", totalQuantityArry)
       } else {
         toast.info("No Data Found..")
       }

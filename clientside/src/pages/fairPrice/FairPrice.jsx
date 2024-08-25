@@ -33,7 +33,6 @@ const FairPrice = () => {
 
   const singleFilter = (Itemcategory) => {
     const data = fairPriceCardData?.filter(item => item?.item_category === Itemcategory);
-    console.log("data", data)
     setFilterdCardData(data);
   }
 

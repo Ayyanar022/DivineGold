@@ -13,7 +13,6 @@ import { removeItemToCart, addItemToCart, } from '../store/cartSlice.js';
 const CartPage = () => {
 
     const { cartData, isLoading: cartIsLoading, refetch } = useGetCartItem()
-    console.log("cartData", cartData?.cartItems)
     const { getAccessTokenSilently } = useAuth0()
     const dispatch = useDispatch();
 

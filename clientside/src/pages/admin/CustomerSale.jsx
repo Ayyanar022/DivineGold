@@ -62,7 +62,6 @@ const CustomerSale = () => {
         },
       });
       // Handle response data
-      console.log("customer", response.data);
       if (response?.data[0]) {
         setUserData(response?.data[0])
       } else {

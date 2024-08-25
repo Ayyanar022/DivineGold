@@ -6,7 +6,6 @@ const Allcustomer = () => {
 
     if (allCusLoading) return <span>Loading....</span>
 
-    console.log("allCustomer", allCustomer)
 
     return (
         <div className='container w-full h-full'>

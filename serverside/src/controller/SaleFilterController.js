@@ -8,9 +8,7 @@ import User from "../models/userModel.js";
        
         const { username, mobileNo, startDate, endDate, jewellCategory } = req.query.filter;
 
-        console.log("startDate",startDate)
-        console.log("endDate",endDate)
-             // Create a query object to hold the filters
+        // Create a query object to hold the filters
         const query = {};
 
         // Filter by jewellCategory if provided
@@ -80,7 +78,6 @@ import User from "../models/userModel.js";
             }
         })
 
-        console.log("saleItem",saleItems)
 
         res.status(200).json({
             saleItems,
