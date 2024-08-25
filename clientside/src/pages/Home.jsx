@@ -1,12 +1,9 @@
 import React from "react";
 import BannerProduct from "../components/home/BannerProduct.jsx";
 import RoundDesigns from "../components/home/RoundDesigns.jsx";
-import SomeExplanation from "../components/home/SomeExplanation.jsx";
 import JewllCategory from "../components/home/JewllCategory.jsx";
-import GuidPart from "../components/home/GuidPart.jsx";
 import Benifits from "../components/home/Benifits.jsx";
 import GenderComponent from "../components/home/GenderComponent.jsx";
-
 import ContactUs from "../components/home/ContactUs.jsx";
 
 const Home = () => {
@@ -25,9 +22,6 @@ const Home = () => {
     <Benifits />
     <GenderComponent />
     <ContactUs />
-
-
-
 
   </div>;
 };
