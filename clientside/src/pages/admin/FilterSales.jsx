@@ -41,7 +41,7 @@ const FilterSales = () => {
     const accessToken = await getAccessTokenSilently();
 
     try {
-      const response = await axios.get(`http://localhost:7000/api/admin/filter`, {
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/admin/filter`, {
         params: { filter },
         headers: {
           Authorization: `Bearer ${accessToken}`,

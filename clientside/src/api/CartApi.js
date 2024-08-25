@@ -9,7 +9,7 @@ export const  useAddUpdateCart = ()=>{
     const addUpdateCartItem = async(id)=>{
    
             const accessToken = await getAccessTokenSilently();
-            const response =await fetch(`http://localhost:7000/api/cart`,{
+                const response =await fetch(`${process.env.REACT_APP_BASE_URL}/api/cart`,{
                 method:"POST",
                 headers:{
                     Authorization:`Bearer ${accessToken}`, 
@@ -32,7 +32,7 @@ export const useGetCartItem = ()=>{
     const {getAccessTokenSilently} = useAuth0();
     const getCartIetm = async()=>{
         const accessToken = await getAccessTokenSilently();
-        const response = await fetch(`http://localhost:7000/api/cart`,{
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/cart`,{
             method:'GET',
             headers:{
                 Authorization:`Bearer ${accessToken}`, 

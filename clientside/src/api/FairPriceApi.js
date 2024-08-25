@@ -8,7 +8,7 @@ export const useGetAllFairPrice = () => {
   const getAllFairPrice = async () => {
     const accessToken = await getAccessTokenSilently();
 
-    const response = await fetch(`http://localhost:7000/api/fairPrice`, {
+    const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/fairPrice`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -33,7 +33,7 @@ export const useGetFairPriceDetailsData = (itemName, category)=>{
     const accessToken =await getAccessTokenSilently();
     const[_key,itemName, category] = queryKey; 
 
-    const response =   await fetch(`http://localhost:7000/api/fairPrice/${itemName}/${category}`, {
+    const response =   await fetch(`${process.env.REACT_APP_BASE_URL}/api/fairPrice/${itemName}/${category}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${accessToken}`,

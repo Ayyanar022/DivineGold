@@ -55,7 +55,7 @@ const CustomerSale = () => {
     try {
 
       const accessToken = await getAccessTokenSilently();
-      const response = await axios.get(`http://localhost:7000/api/admin/customersale/get-customer/${mobileNo}`, {
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/admin/customersale/get-customer/${mobileNo}`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
           "Content-Type": "application/json"
@@ -85,7 +85,7 @@ const CustomerSale = () => {
     }
     try {
       const accessToken = await getAccessTokenSilently();
-      const response = await axios.post(`http://localhost:7000/api/admin/customersale`, sale, {
+      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/admin/customersale`, sale, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
           "Content-Type": "application/json"

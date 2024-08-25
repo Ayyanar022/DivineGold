@@ -1,5 +1,4 @@
 import { useAuth0 } from "@auth0/auth0-react"
-import { get } from "react-hook-form";
 import { useQuery } from "react-query";
 import { toast } from "react-toastify";
 import axios from 'axios'
@@ -9,7 +8,7 @@ export const useGetAllJewllDesign = ()=>{
 
     const getAllJewell =async ()=>{
         const accessToken = await getAccessTokenSilently();
-        const response = await fetch(`http://localhost:7000/api/admin/get-AllItemDesign`,{
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/admin/get-AllItemDesign`,{
             method:"GET",
             headers:{
                 Authorization : `Bearer ${accessToken}`,
@@ -31,7 +30,7 @@ export const useGetOneJewllDesign = (id)=>{
 
     const getOneJewllDesign =async (id)=>{
         const accessToken = await getAccessTokenSilently()
-        const response = await fetch(`http://localhost:7000/api/explore/single/${id}`,{
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/explore/single/${id}`,{
             method:"GET",
             headers:{
                 Authorization : `Bearer ${accessToken}`,
@@ -64,7 +63,7 @@ export const useFilterJewllDesignExplore = (selectedGender ,selectedType , selec
     const filterFun = async(selectedGender ,selectedType , selectedCategory)=>{
         const accessToken = await getAccessTokenSilently();
 
-        const response = await axios.get('http://localhost:7000/api/explore/filter', {
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/explore/filter`, {
             params: {
                 gender: selectedGender.join(','),
                 type: selectedType.join(','),

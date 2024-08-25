@@ -57,7 +57,7 @@ const AddFareRate = () => {
     const handleUpdate = async () => {
         try {
             const accessToken = await getAccessTokenSilently();
-            const response = await axios.put(`http://localhost:7000/api/admin`, currentItem, {
+            const response = await axios.put(`${process.env.REACT_APP_BASE_URL}/api/admin`, currentItem, {
                 headers: {
                     Authorization: `Bearer ${accessToken}`
                 }
@@ -78,7 +78,7 @@ const AddFareRate = () => {
     const handleDelete = async (item) => {
         try {
             const accessToken = await getAccessTokenSilently();
-            const response = await axios.delete(`http://localhost:7000/api/admin`, {
+            const response = await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/admin`, {
                 headers: {
                     Authorization: `Bearer ${accessToken}`
                 },

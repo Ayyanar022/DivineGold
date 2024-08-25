@@ -10,7 +10,7 @@ export const useGetMyUser = ()=>{
     const getMyUserRequest = async()=>{
         const accessToken = await getAccessTokenSilently();
 
-        const response = await fetch(`http://localhost:7000/api/my/user`,{
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/my/user`,{
             method:"GET",
             headers:{
                 Authorization:`Bearer ${accessToken}`, 
@@ -31,8 +31,8 @@ const {getAccessTokenSilently } = useAuth0()
   
     const createMyUserRequest = async (user)=>{
         const accessToken =await getAccessTokenSilently()
-        const response = await fetch(`http://localhost:7000/api/my/user`,{
-            // const response = await fetch(`${API_BASE_URL}/api/my/user`,{
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/my/user`,{
+            
             method:"POST",
             headers:{
                 Authorization:`Bearer ${accessToken}`, 
@@ -59,7 +59,7 @@ export const useUpdateMyUser = ()=>{
 
     const updateMyUserRequest = async (formData)=>{
         const accessToken = await getAccessTokenSilently()
-        const response = await fetch(`http://localhost:7000/api/my/user`,{
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/my/user`,{
             method:"PUT",
             headers:{
                 Authorization:`Bearer ${accessToken}`, 

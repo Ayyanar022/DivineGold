@@ -96,7 +96,7 @@ const ExploreCardAdd = () => {
     // delete Jewell design 
     const handleDelete = async (item) => {
         const accessToken = await getAccessTokenSilently()
-        const response = await axios.delete(`http://localhost:7000/api/admin/delete-jewllDesign`, {
+        const response = await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/admin/delete-jewllDesign`, {
             headers: {
                 Authorization: `Bearer ${accessToken}`
             },
@@ -126,7 +126,7 @@ const ExploreCardAdd = () => {
     const handleEditJewllDesign = async () => {
 
         const accessToken = await getAccessTokenSilently();
-        const response = await fetch(`http://localhost:7000/api/admin/edit-jewllDesign`, {
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/admin/edit-jewllDesign`, {
             method: "PUT",
             headers: {
                 Authorization: `Bearer ${accessToken}`,
@@ -325,7 +325,7 @@ const ExploreCardAdd = () => {
                                     </td>
                                 </tr>
                             ) : (
-                                JewellDesignData.map((data, index) => (
+                                JewellDesignData && JewellDesignData?.map((data, index) => (
                                     <tr key={index} className='border-b text-[14px]'>
                                         <td className='px-4 py-1' >{index + 1}</td>
                                         <td>

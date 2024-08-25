@@ -23,7 +23,7 @@ const CartPage = () => {
     const handleDelete = async (id, qty, refetch) => {
         try {
             const accessToken = await getAccessTokenSilently();
-            const response = await fetch(`http://localhost:7000/api/cart`, {
+            const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/cart`, {
                 method: 'DELETE',
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
@@ -59,7 +59,7 @@ const CartPage = () => {
     const decresecount = async (id, qty, refetch) => {
         try {
             const accessToken = await getAccessTokenSilently();
-            const response = await fetch(`http://localhost:7000/api/cart`, {
+            const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/cart`, {
                 method: 'put',
                 headers: {
                     Authorization: `Bearer ${accessToken}`,

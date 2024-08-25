@@ -10,7 +10,7 @@ export const useGetAllCustomer = ()=>{
     const getAllCustomerRequest = async()=>{
         const accessToken = await getAccessTokenSilently();
 
-        const response = await fetch(`http://localhost:7000/api/admin`,{
+            const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/admin`,{
             method:"GET",
             headers:{
                 Authorization:`Bearer ${accessToken}`, 
@@ -34,7 +34,7 @@ export const useCreateFairPriceItem = ()=>{
 
     const createFairPricefun =async (data)=>{
         const accessToken = await getAccessTokenSilently();
-        const response = await fetch(`http://localhost:7000/api/admin`,{
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/admin`,{
             method:"POST",
             headers:{
                 Authorization:`Bearer ${accessToken}`, 
@@ -56,7 +56,7 @@ export const useUpdateCurrentPrice =()=>{
 
     const updatePrice =async (data)=>{
         const accessToken = await getAccessTokenSilently();
-        const response = await fetch(`http://localhost:7000/api/admin/currentPrice`,{
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/admin/currentPrice`,{
             method:"POST",
             headers:{
                 Authorization:`Bearer ${accessToken}`, 
@@ -80,7 +80,7 @@ export const useGetCurrentPrice =()=>{
     const getCP = async()=>{
         const accessToken = await getAccessTokenSilently();
 
-        const response = await  fetch(`http://localhost:7000/api/admin/currentPrice`,{
+        const response = await  fetch(`${process.env.REACT_APP_BASE_URL}/api/admin/currentPrice`,{
             method:"GET",
             headers:{
                 Authorization:`Bearer ${accessToken}`, 
@@ -107,7 +107,7 @@ export const useUploadNewItemDesign = ()=>{
 
     const uploadNewItemDesign =async (data)=>{
         const accessToken = await getAccessTokenSilently();
-        const response = await fetch(`http://localhost:7000/api/admin/AddnewItemDesign`,{   
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/admin/AddnewItemDesign`,{   
              method:'POST',
             headers:{
                 Authorization:`Bearer ${accessToken}`, 
@@ -131,7 +131,7 @@ export const useGetItemNameConstant = ()=>{
 
     const getItemNameFun =async ()=>{
         const accessToken = await getAccessTokenSilently()
-        const response = await axios.get(`http://localhost:7000/api/admin/getItemName`,{         
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/admin/getItemName`,{         
             headers:{
                 Authorization:`Bearer ${accessToken}`, 
                 "Content-Type":"application/json"    
@@ -151,7 +151,7 @@ export const useGetIteCategoryConstant = ()=>{
 
     const getItemcategoryFun =async ()=>{
         const accessToken = await getAccessTokenSilently()
-        const response = await axios.get(`http://localhost:7000/api/admin/getItemCategory`,{         
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/admin/getItemCategory`,{         
             headers:{
                 Authorization:`Bearer ${accessToken}`, 
                 "Content-Type":"application/json"    
@@ -171,7 +171,7 @@ export const useGetItemTypeConstant = ()=>{
 
     const getItemTypeFun =async ()=>{
         const accessToken = await getAccessTokenSilently()
-        const response = await axios.get(`http://localhost:7000/api/admin/getItemType`,{
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/admin/getItemType`,{
          
             headers:{
                 Authorization:`Bearer ${accessToken}`, 
@@ -192,7 +192,7 @@ export const useGetItemGenderConstant = ()=>{
 
     const getItemGenderFun =async ()=>{
         const accessToken = await getAccessTokenSilently()
-        const response = await axios.get(`http://localhost:7000/api/admin/getItemGender`,{         
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/admin/getItemGender`,{         
             headers:{
                 Authorization:`Bearer ${accessToken}`, 
                 "Content-Type":"application/json"    
