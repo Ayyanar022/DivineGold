@@ -191,7 +191,7 @@ const ExploreCardDetails = () => {
 
 
     return (
-        <div className='container mx-auto p-4  lg:px-8 pb-[37px] md:pb-[85px]'>
+        <div className='container mx-auto p-4  lg:px-8 pb-[37px] md:pb-[85px] lg:pb-[67px]'>
             <div className='min-h-[200px] flex flex-col md:flex-row gap-8'>
 
                 {/**Product image */}
@@ -201,7 +201,7 @@ const ExploreCardDetails = () => {
                         <img src={activeImage} onMouseLeave={handleZoomOut} onMouseMove={handleZoomImage} className='h-full w-full object-scale-down  bg-slate-50' />
 
                         {/**Zoom image */}
-                        {zoomImageOpen && (<div className=' hidden lg:block absolute min-h-[400px] min-w-[400px] bg-slate-200 p-1 -right-[410px] top-0'>
+                        {zoomImageOpen && (<div className=' hidden lg:block absolute min-h-[400px] min-w-[400px] bg-slate-200 p-1 -right-[430px] top-0'>
                             <div
                                 className='h-full w-full min-h-[400px] min-w-[400px]  mix-blend-multiply'
                                 style={{
