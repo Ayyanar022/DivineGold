@@ -71,7 +71,7 @@ const UserProfileForm = ({ currentUser, onSave, isLoading, refetchUserData }) =>
 
             <div className="w-full md:w-1/2 lg:w-2/5 bg-white p-1 md:p-5 lg:p-6 md:rounded-lg md:shadow-md md:border">
                 <h2 className="text-[17px] md:text-xl font-bold  text-cyan-900 uppercase ">Update Your Details </h2>
-                <p className='w-fit text-[11px] md:text-[12px] lg:text-[13px]   text-amber-800 mb-2 md:mb-5'>Use reference TRESURE CODE and get extra prizeToken </p>
+                <p className='w-fit text-[11px] md:text-[12px] lg:text-[13px]   text-amber-800 mb-2 md:mb-5'>Use reference TRESURE CODE and get Added prizeToken </p>
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Email</label>
@@ -133,7 +133,7 @@ const UserProfileForm = ({ currentUser, onSave, isLoading, refetchUserData }) =>
 
             <div className="w-full md:w-1/2 lg:w-2/5 bg-white p-1 md:p-5 lg:p-6 rounded-lg md:shadow-md md:border">
                 <h2 className="text-[17px] md:text-xl font-bold  text-cyan-900 uppercase">Refer & Get</h2>
-                <p className='w-fit text-[11px] md:text-[12px] lg:text-[13px]   text-amber-800 mb-2 md:mb-5'>Share your treasure code, and both will get extra prize tokens. </p>
+                <p className='w-fit text-[11px] md:text-[12px] lg:text-[13px]   text-amber-800 mb-2 md:mb-5'>Share your treasure code, and both will get Added prize tokens. </p>
 
                 <div className=' flex flex-col lg:flex-row md:gap-2 lg:items-center'>
                     <p className=' text-md md:text-lg font-semibold   text-slate-700'>Treasure Code : </p>

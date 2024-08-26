@@ -191,14 +191,14 @@ const ExploreCardDetails = () => {
 
 
     return (
-        <div className='container mx-auto p-4 lg:px-8  pb-[40px]'>
+        <div className='container mx-auto p-4  lg:px-8 pb-[37px] md:pb-[85px]'>
             <div className='min-h-[200px] flex flex-col md:flex-row gap-8'>
-              
+
                 {/**Product image */}
                 <div className='h-96 flex flex-col lg:flex-row-reverse gap-4'>
 
-                    <div className='h-[300px] w-[300px] lg:h-96 lg:w-96 bg-slate-200 relative'>
-                        <img src={activeImage} onMouseLeave={handleZoomOut} onMouseMove={handleZoomImage} className='h-full w-full object-scale-down mix-blend-multiply' />
+                    <div className='mx-auto h-[260px] w-[270px] md:h-[300px] md:w-[300px] lg:h-96 lg:w-96 bg-slate-200 relative'>
+                        <img src={activeImage} onMouseLeave={handleZoomOut} onMouseMove={handleZoomImage} className='h-full w-full object-scale-down  bg-slate-50' />
 
                         {/**Zoom image */}
                         {zoomImageOpen && (<div className=' hidden lg:block absolute min-h-[400px] min-w-[400px] bg-slate-200 p-1 -right-[410px] top-0'>
@@ -239,16 +239,16 @@ const ExploreCardDetails = () => {
 
                 {/**Product details */}
                 <div>
-                    <div className="w-full lg:min-w-[500px] min-h-[382px] px-3 md:px-4 lg:px-6 py-4 shadow-lg ">
+                    <div className="w-full lg:min-w-[500px] min-h-[382px] px-1 md:px-4 lg:px-6 py-4 md:shadow-  bg-slate-50  ">
                         <form>
 
-                            <div className='pb-5 bg-slate-50 p-1 py-2 md:py-4 '>
-                                <div className=" flex gap-2  items-center mb-6">
-                                    <h2 className="text-[15px] font-semibold text-slate-700">Available Prize Token :</h2>
-                                    <p className=' text-[15px] font-bold text-sm text-slate-800'>{((currentUserData?.bonousePoints >= data?.usePriceToken) && (data?.usePriceToken > 0)) ? (currentUserData?.bonousePoints - data?.usePriceToken) : currentUserData?.bonousePoints}</p>
+                            <div className='pb-5    md:py-4 '>
+                                <div className=" flex gap-2  items-center mb-4">
+                                    <h2 className="text-[15px]  font-semibold text-slate-700">Available Prize Token :</h2>
+                                    <p className=' text-[15px]  font-bold text-sm text-slate-800'>{((currentUserData?.bonousePoints >= data?.usePriceToken) && (data?.usePriceToken > 0)) ? (currentUserData?.bonousePoints - data?.usePriceToken) : currentUserData?.bonousePoints}</p>
                                 </div>
 
-                                <div className=" grid grid-cols-2 gap-4 mb-5">
+                                <div className=" grid grid-cols-2 gap-x-3 md:gap-4 mb-5">
                                     <div className=' lg:w-52 bg-white'>
                                         <TextField
                                             autoFocus
@@ -260,6 +260,7 @@ const ExploreCardDetails = () => {
                                             type='number'
                                             fullWidth
                                             variant='outlined'
+
                                         />
                                     </div>
                                     <div className=' lg:w-52 bg-white'>
@@ -277,7 +278,7 @@ const ExploreCardDetails = () => {
                                     </div>
                                 </div>
 
-                                <div className=" flex flex-wrap  items-center  gap-4 ">
+                                <div className=" flex flex-wrap  items-center  gap-2 ">
                                     <label className='font-semibold text-[15px] text-slate-700'> Select Quality :</label>
                                     <div className='flex gap-3  items-center justify-center '>
                                         <RadioButton
@@ -319,14 +320,14 @@ const ExploreCardDetails = () => {
 
                             <div className='flex  gap-8 pt-2'>
                                 <button
-                                    className="bg-pink-500 uppercase text-xs sm:text-sm  lg:text-[15px] tracking-wider font-bold p-2 text-white my-3 w-full rounded"
+                                    className="bg-[#D4AF37]  uppercase text-xs sm:text-sm  lg:text-[15px] tracking-wider font-bold p-2 text-white my-3 w-full rounded"
                                     onClick={handleSubmit}
                                 >
                                     Show Price
                                 </button>
 
                                 <button
-                                    className="bg-pink-500 uppercase text-xs sm:text-sm lg:text-[15px] tracking-wider font-bold p-2 text-white my-3 w-full rounded"
+                                    className="bg-[#333333] uppercase text-xs sm:text-sm lg:text-[15px] tracking-wider font-bold p-2 text-white my-3 w-full rounded"
                                     onClick={handleClear}
                                 >
                                     Clear Price
