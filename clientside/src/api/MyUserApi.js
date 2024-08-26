@@ -1,9 +1,11 @@
 import {useMutation, useQuery} from 'react-query'
 import {useAuth0} from "@auth0/auth0-react";
 import { toast} from 'react-toastify';
+import { useEffect } from 'react';
 
 // const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
+//GET CURRENT USER
 export const useGetMyUser = ()=>{
     const {getAccessTokenSilently} = useAuth0();
 
@@ -21,18 +23,18 @@ export const useGetMyUser = ()=>{
         return response.json()
     }
 
-    const {data:currentUser,isLoading,error}= useQuery("fetchCurrentUser",getMyUserRequest);
+    const {data:currentUser,isLoading,error,refetch}= useQuery("fetchCurrentUser",getMyUserRequest);
     if(error) toast.error(error.toString());    
-    return {currentUser,isLoading}
+    return {currentUser,isLoading,refetch}
 }
 
+// CREATE USER IF 1ST TIME LOGIN
 export const useCreateMyUser = () =>{
 const {getAccessTokenSilently } = useAuth0() 
   
     const createMyUserRequest = async (user)=>{
         const accessToken =await getAccessTokenSilently()
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/my/user`,{
-            
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/my/user`,{            
             method:"POST",
             headers:{
                 Authorization:`Bearer ${accessToken}`, 
@@ -40,20 +42,18 @@ const {getAccessTokenSilently } = useAuth0()
             },
             body:JSON.stringify(user),
         })
-
         if(!response.ok){
             throw new Error("Faild to create user..!")
         }
     };
 
-    const {mutateAsync:createUser,isLoading,isError,isSuccess} = useMutation(createMyUserRequest)
-
+    const {mutateAsync:createUser,isLoading,isError,isSuccess} = useMutation(createMyUserRequest);
     return {
         createUser,isLoading,isError,isSuccess
     }
 }
 
-
+//UPDATE CURRENT USER
 export const useUpdateMyUser = ()=>{
     const {getAccessTokenSilently} = useAuth0();
 
@@ -67,22 +67,19 @@ export const useUpdateMyUser = ()=>{
             },
             body:JSON.stringify(formData),
         })
-
-        if(!response)throw new Error("Faild to update user")
-        
+        if(!response)throw new Error("Faild to update user");        
         return response.json()
     }
 
     const {mutateAsync: updateUser, isLoading, isSuccess,error,reset} = useMutation(updateMyUserRequest);
 
-    if(isSuccess){
-        toast.success('🦄 User profile updated..')
-      }
+    useEffect(()=>{
+        if(error){
+            toast.error(error.toString());
+            reset()
+        }
+    },[error])
 
-    if(error){
-        toast.error(error.toString());
-        reset()
-    }
     return {updateUser,isLoading};
 }
 

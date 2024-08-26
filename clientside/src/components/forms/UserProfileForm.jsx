@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { z } from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from 'react-toastify';
 
 const formSchema = z.object({
     email: z.string().optional(),
@@ -14,7 +15,7 @@ const formSchema = z.object({
     bonousCode: z.string().optional(),
 });
 
-const UserProfileForm = ({ currentUser, onSave, isLoading }) => {
+const UserProfileForm = ({ currentUser, onSave, isLoading, refetchUserData }) => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         resolver: zodResolver(formSchema),
         // defaultValues: currentUser,
@@ -29,16 +30,22 @@ const UserProfileForm = ({ currentUser, onSave, isLoading }) => {
         },
     });
 
-    const onSubmit = data => {
+    const onSubmit = async (data) => {
         if (onSave) {
-            onSave(data);
+            const response = await onSave(data);
+
+            if (!response.success) {
+                toast.warning(response.message.toString())
+            }
+            else if (response.success) {
+                toast.success(response.message.toString())
+                await refetchUserData();
+                reset(await refetchUserData());
+            }
+        } else {
+            toast.info("Please try again..")
         }
     };
-
-    useEffect(() => {
-        reset(currentUser)
-    }, [currentUser, reset])
-
 
     return (
 
@@ -77,14 +84,14 @@ const UserProfileForm = ({ currentUser, onSave, isLoading }) => {
                         <input {...register('city')} className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
                         {errors.city && <p className="text-red-500 text-sm mt-1">{errors.city.message}</p>}
                     </div>
-                    {!currentUser && <div>
+                    {!(currentUser.name || currentUser.mobileNo || currentUser.address || currentUser.village || currentUser.city) && <div>
                         <label className="block text-sm font-medium text-gray-700">Super Code</label>
                         <input {...register('bonousCode')} className="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
                         {errors.bonousCode && <p className="text-red-500 text-sm mt-1">{errors.bonousCode.message}</p>}
                     </div>}
 
                     <button type="submit" disabled={isLoading} className="w-full bg-pink-600 uppercase font-semibold text-white py-2 rounded-md hover:bg-pink-700 transition-all duration-200">
-                        {isLoading ? 'Loading...' : 'Update Profile'}
+                        {isLoading ? 'Loading...' : 'Update Your Account'}
                     </button>
                 </form>
             </div>

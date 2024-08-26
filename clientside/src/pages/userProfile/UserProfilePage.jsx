@@ -6,14 +6,14 @@ import { useCurrentUserConetxt } from '../../context/userContext'
 const UserProfilePage = () => {
 
   const { updateUser, isLoading: isGetLoading } = useUpdateMyUser()
-  const { currentUser, isLoading: isUpdateLoading } = useGetMyUser()
+  const { currentUser, isLoading: isUpdateLoading ,refetch:refetchUserData} = useGetMyUser()
 
   //conetxt forcurrent user
   const { setCurrentUserData, currentUserData } = useCurrentUserConetxt()
 
   useEffect(() => {
     setCurrentUserData(currentUser)
-  }, [currentUser, setCurrentUserData, currentUserData])
+  }, [currentUser, setCurrentUserData])
 
   if (isGetLoading) {
     return <span>Loading...</span>
@@ -25,7 +25,7 @@ const UserProfilePage = () => {
 
   return (
     <div className='pb-[60px] md:pb-[10px] p-5 mb-3 md:mb-[60px] lg:mb-0 '>
-      <UserProfileForm currentUser={currentUser} onSave={updateUser} isLoading={isUpdateLoading} />
+      <UserProfileForm currentUser={currentUser} onSave={updateUser} isLoading={isUpdateLoading} refetchUserData={refetchUserData} />
     </div>
 
 

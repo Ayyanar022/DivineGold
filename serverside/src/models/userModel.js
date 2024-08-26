@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
     village:{type:String},   
     city:{type:String},   
     role:{type:String},
-    bonousCode:{type:String,unique:true},
+    bonousCode:{type:String,unique:true ,sparse: true },
     bonousePoints:{type:Number} // number
 })
 
