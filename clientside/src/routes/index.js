@@ -17,6 +17,8 @@ import ConstantsAdd from "../pages/admin/ConstantsAdd.jsx";
 import CartPage from "../pages/CartPage.jsx";
 import FilterSales from "../pages/admin/FilterSales.jsx";
 import CustomerSale from "../pages/admin/CustomerSale.jsx";
+import NotAuthorized from "../pages/NotAuthorized.jsx";
+import ProtectedAdminRote from "../pages/admin/ProtectedRoute/ProtectedAdminRote.jsx";
 
 
 const router = createBrowserRouter([
@@ -31,9 +33,9 @@ const router = createBrowserRouter([
       { path: "auth-callback", element: <AuthCallBack /> },
       { path: "user-profile", element: <UserProfilePage />},
       { 
-        path: "admin-chan",
-        element: <Admin />,
+        path: "admin-chan", element: <ProtectedAdminRote />,
         children:[
+          { path: "", element: <Admin /> },
           { path: "allcustomerList", element: <Allcustomer />},
           { path: "add-farerate", element: <AddFareRate />},
           { path: "Explore-card-item", element: <ExploreCardAdd />},
@@ -45,6 +47,7 @@ const router = createBrowserRouter([
        { path: "fairPrice-details/:itemName/:category",element:< FairPriceDetails />},
        { path: "JewllDesign-details/:id",element:<ExploreCardDetails />},
        { path: "CartPage", element:<CartPage /> },
+       { path: "not-authorized" , element:<NotAuthorized />},
 
 
     ],
