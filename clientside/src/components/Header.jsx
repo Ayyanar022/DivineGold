@@ -12,7 +12,7 @@ const Header = () => {
   const totalQuantity = useSelector(state => state?.cart?.totalQuantity);
 
   return (
-    <header className='fixed h-14  w-full border-b-2 z-40 shadow-sm bg-white'>
+    <header className='fixed h-[60px] md:h-16  w-full border-b-2 z-40 shadow-sm bg-white'>
       <div className='  mx-auto px-2  flex items-center h-full'>
 
         <div className='flex items-center  lg:mr-10'>

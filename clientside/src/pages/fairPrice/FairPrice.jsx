@@ -50,10 +50,11 @@ const FairPrice = () => {
   return (
     <div className=' mx-auto w-full lg:px-14 py-2 md:py-3 px-2 mb-[55px] lg:mb-[10px]'>
 
-      <div className='flex items-center gap-4 justify-between overflow-x-auto scrollbar-hiden  '>
+      {/**ROUND CATEGORY OPTIONS */}
+      <div className='flex items-center gap-2 md:gap-4 justify-between overflow-x-auto scrollbar-hiden  '>
         {filterData?.map((item) => (
           <div onClick={() => singleFilter(item.item_category)} key={item.id} className='cursor-pointer flex flex-col justify-center items-center  w-full md:w-1/3 p-2'>
-            <div className='h-14 w-14 md:h-16 lg:h-20 md:w-16 lg:w-20 rounded-full overflow-hidden p-2 bg-slate-200 flex items-center justify-center'>
+            <div className='h-16 w-16 md:h-16 lg:h-20 md:w-16 lg:w-20 border-amber-300 border rounded-full overflow-hidden p-2 bg-slate-200 flex items-center justify-center'>
               <img
                 src={item?.item_Image}
                 alt={item?.item_category}
@@ -65,18 +66,18 @@ const FairPrice = () => {
         ))}
       </div>
 
-      <div className='flex justify-between md:block space-x-2 md:space-x-5 pt-3 px-2 transition-all duration-200'>
-        <button className="bg-[#D4AF37] uppercase text-xs    md:tracking-wider font-semibold p-2 px-3 md:px-4 hover:bg-[#C49C2E] transition-all duration-300 text-white my-3  rounded"
+      <div className='flex justify-between md:block space-x-2 md:space-x-5 pt-3 lg:pt-5 px-2 transition-all duration-200'>
+        <button className="bg-[#D4AF37] uppercase text-xs    md:tracking-wider font-semibold py-1.5 px-3 md:px-4 hover:bg-[#C49C2E] transition-all duration-300 text-white  rounded"
           onClick={() => TypeFilter(filterdcardData[0]?.item_category, "Treditional")} >
           Treditional
         </button>
 
-        <button className="bg-[#D4AF37] uppercase text-xs  md:tracking-wider font-semibold p-2 px-3 md:px-4 hover:bg-[#C49C2E] transition-all duration-300 text-white my-3  rounded"
+        <button className="bg-[#D4AF37] uppercase text-xs  md:tracking-wider font-semibold p-1.5 px-3 md:px-4 hover:bg-[#C49C2E] transition-all duration-300 text-white  rounded"
           onClick={() => TypeFilter(filterdcardData[0]?.item_category, "Fancy")} >
           Fancy
         </button>
 
-        <button className="bg-[#D4AF37] uppercase text-xs   md:tracking-wider font-semibold p-2 px-3 md:px-4 hover:bg-[#C49C2E] transition-all duration-300 text-white my-3  rounded"
+        <button className="bg-[#D4AF37] uppercase text-xs   md:tracking-wider font-semibold p-1.5 px-3 md:px-4 hover:bg-[#C49C2E] transition-all duration-300 text-white  rounded"
           onClick={() => TypeFilter(filterdcardData[0]?.item_category, "HighFancy")} >
           High Fancy
         </button>

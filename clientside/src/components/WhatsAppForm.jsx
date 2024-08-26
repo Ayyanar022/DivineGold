@@ -21,7 +21,7 @@ const WhatsAppForm = () => {
     };
 
     return (
-        <div className=" mx-auto w-full max-w-md rounded-lg md:shadow-md p-3 md:p-6">
+        <div className=" mx-auto w-full max-w-md rounded-lg md:shadow-md py-3 px-2 bg-slate-50 md:p-6">
             <h2 className="text-[17px] md:text-xl font-bold text-center text-green-600 mb-4 md:mb-6">Send a WhatsApp Message</h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3 md:mb-4">

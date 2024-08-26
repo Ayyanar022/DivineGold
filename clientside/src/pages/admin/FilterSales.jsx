@@ -10,13 +10,14 @@ const FilterSales = () => {
   const { getAccessTokenSilently } = useAuth0()
   const { ConstantItemCategory, isLoading: CategoryIsLoading, refetch: CategoryRefetch } = useGetIteCategoryConstant();
 
-  const [filter, setFilter] = useState({
+  const filterObject = {
     username: '',
     mobileNo: '',
     jewellCategory: '',
     startDate: '',
     endDate: '',
-  })
+  }
+  const [filter, setFilter] = useState(filterObject)
 
   const [filterdData, setFilteredData] = useState([])
   const [CategoryWiseTotal, setCategoryWiseTotal] = useState([])
@@ -30,6 +31,12 @@ const FilterSales = () => {
       [name]: value
     }))
 
+  }
+
+  // HANDLE CANCEL
+
+  const handleCancel = () => {
+    setFilter(filterObject)
   }
 
   //FILTER
@@ -124,10 +131,10 @@ const FilterSales = () => {
               className='border w-60 py-2.5 focus:border-lime-500 focus:shadow-md shadow-sm focus:shadow-lime-200 transition-all duration-150  focus:border-2 px-4 outline-none'
             />
             <div className='flex  w-60  justify-between'>
-              <button onClick={handlefilterSubmit} className='px-7 py-2  bg-orange-400 hover:bg-gradient-to-r hover:from-orange-500 hover:to-teal-500  shadow-sm   rounded font-semibold uppercase transition-all duration-150 tracking-wider'>show</button>
-              <button onClick={handlefilterSubmit} className='px-7 py-2  bg-blue-500 hover:bg-gradient-to-r hover:from-blue-500 hover:to-teal-500  shadow-sm   rounded font-semibold uppercase transition-all duration-150 tracking-wider'>Clear</button>
+              <button onClick={handlefilterSubmit} className='px-7 py-2  bg-orange-400 hover:bg-gradient-to-r hover:from-orange-400 hover:to-orange-700  shadow-sm   rounded font-bold uppercase transition-all duration-300 tracking-wider'>show</button>
+              <button onClick={handleCancel} className='px-7 py-2  bg-sky-500 hover:bg-gradient-to-r hover:from-sky-400 hover:to-sky-700  shadow-sm   rounded font-bold uppercase transition-all duration-300 tracking-wider'>Clear</button>
             </div>
-          </section>
+          </section>  
 
 
         </form>

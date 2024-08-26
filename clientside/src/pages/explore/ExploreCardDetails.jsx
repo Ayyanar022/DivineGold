@@ -118,7 +118,7 @@ const ExploreCardDetails = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (!data.itemWeight) {
+        if (!data.itemWeight || Number(data.itemWeight) === 0) {
             toast.info("Please Enter Weight...")
             return
         }
@@ -191,11 +191,11 @@ const ExploreCardDetails = () => {
 
 
     return (
-        <div className='container mx-auto p-4  lg:px-8 pb-[37px] md:pb-[85px] lg:pb-[67px]'>
-            <div className='min-h-[200px] flex flex-col md:flex-row gap-8'>
+        <div className='container mx-auto p-4  lg:px-8 pb-[60px] md:pb-[85px] bg-white lg:pb-[28px]'>
+            <div className='min-h-[200px] flex flex-col md:flex-row md:gap-8'>
 
                 {/**Product image */}
-                <div className='h-96 flex flex-col lg:flex-row-reverse gap-4'>
+                <div className='h-96 flex flex-col lg:flex-row-reverse gap-2 md:gap-4'>
 
                     <div className='mx-auto h-[260px] w-[270px] md:h-[300px] md:w-[300px] lg:h-96 lg:w-96 bg-slate-200 relative'>
                         <img src={activeImage} onMouseLeave={handleZoomOut} onMouseMove={handleZoomImage} className='h-full w-full object-scale-down  bg-slate-50' />
@@ -239,13 +239,19 @@ const ExploreCardDetails = () => {
 
                 {/**Product details */}
                 <div>
-                    <div className="w-full lg:min-w-[500px] min-h-[382px] px-1 md:px-4 lg:px-6 py-4 md:shadow-  bg-slate-50  ">
+                    <div className="w-full lg:min-w-[500px] min-h-[382px] px-1 md:px-4 lg:px-6 md:py-4 md:shadow-md   ">
+
+                        <div className='pb-2 md:pb-0'>
+                            <h2 className="text-[14px] md:text-[16px] font-bold  text-gray-800 uppercase ">Get the Best Price for Your Chosen Design </h2>
+                            <p className='w-full text-[11px] md:text-[12px] lg:text-[13px] text-left  text-amber-800 mb-2 md:mb-5'>Select the design you love & get exact price instantly</p>
+                        </div>
+
                         <form>
 
-                            <div className='pb-5    md:py-4 '>
+                            <div className='pb-5    md:py-2 '>
                                 <div className=" flex gap-2  items-center mb-4">
-                                    <h2 className="text-[15px]  font-semibold text-slate-700">Available Prize Token :</h2>
-                                    <p className=' text-[15px]  font-bold text-sm text-slate-800'>{((currentUserData?.bonousePoints >= data?.usePriceToken) && (data?.usePriceToken > 0)) ? (currentUserData?.bonousePoints - data?.usePriceToken) : currentUserData?.bonousePoints}</p>
+                                    <h2 className="text-[14px]  font-semibold text-slate-700">Available Prize Token :</h2>
+                                    <p className=' text-[14px]  font-bold text-sm text-slate-800'>{((currentUserData?.bonousePoints >= data?.usePriceToken) && (data?.usePriceToken > 0)) ? (currentUserData?.bonousePoints - data?.usePriceToken) : currentUserData?.bonousePoints}</p>
                                 </div>
 
                                 <div className=" grid grid-cols-2 gap-x-3 md:gap-4 mb-5">
@@ -279,7 +285,7 @@ const ExploreCardDetails = () => {
                                 </div>
 
                                 <div className=" flex flex-wrap  items-center  gap-2 ">
-                                    <label className='font-semibold text-[15px] text-slate-700'> Select Quality :</label>
+                                    <label className='font-semibold text-[14px] text-slate-700'> Select Quality :</label>
                                     <div className='flex gap-3  items-center justify-center '>
                                         <RadioButton
                                             label="75 HM(18K)"

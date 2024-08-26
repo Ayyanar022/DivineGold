@@ -12,13 +12,13 @@ import { TextField } from '@mui/material'
 
 const RadioButton = ({ label, value, checked, onChange }) => {
     return (
-        <label className='block mb-2'>
+        <label className='block  text-sm md:text-md'>
             <input
                 type='radio'
                 value={value}
                 checked={checked}
                 onChange={onChange}
-                className='mr-2 ' />
+                className='mr-2 text-[6px] md:text-xs ' />
             {label}
         </label>
     )
@@ -77,7 +77,7 @@ const FairPriceDetails = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (!data.itemWeight) {
+        if (!data.itemWeight || Number(data.itemWeight) === 0) {
             toast.info("Please Enter Weight...")
             return
         }
@@ -158,17 +158,17 @@ const FairPriceDetails = () => {
 
     return (
 
-        <div className="container  mx-auto bg-gradient-to-r from-[#e3d6f9] to-[#f3e9f9] pb-[60px] lg:pb-[47px] p-4 md:p-6">
+        <div className="container  mx-auto  pb-[47px] md:pb-[67px] lg:pb-[34px] bg-white p-4   lg:p-6">
             {(cardDetailsLoding || cardDetailsLoding || isGetLoading) ? (
                 <h1 className="text-center">Loading...</h1>
             ) : (
-                <div className="flex flex-col md:flex-row   items-center gap-6 justify-center lg:w-4/5 mx-auto ">
-                    <div className="w-full md:w-1/2 p-3 bg-white">
+                <div className="flex flex-col md:flex-row   items-center md:gap-6 justify-center lg:w-4/5 mx-auto ">
+                    <div className="w-full md:w-1/2 mb-2 md:mb-0 md:p-3 bg-white">
                         {!cardDetailsLoding && (
                             <img
                                 src={details?.item_Image}
                                 alt={details?.item_category}
-                                className="w-full object-scale-down h-[382px]"
+                                className="w-full object-scale-down h-[280px] py-2 md:h-[362px]"
                             />
                         )}
                     </div>
@@ -176,7 +176,7 @@ const FairPriceDetails = () => {
 
 
                     {/**Product details */}
-                    <div className='bg-white'>
+                    {/* <div className='bg-white'>
                         <div className="w-full  lg:min-w-[500px] min-h-[382px] px-3 md:px-4 lg:px-6 py-4 shadow-lg ">
                             <form>
 
@@ -236,7 +236,7 @@ const FairPriceDetails = () => {
                                 </div>
 
 
-                                {/**show price */}
+                              
                                 <div className='md:pt-3 '>
 
                                     <div className='flex justify-between items-center py-1.5 '>
@@ -266,6 +266,111 @@ const FairPriceDetails = () => {
                                         onClick={handleClear}
                                     >
 
+                                        Clear Price
+                                    </button>
+                                </div>
+
+
+                            </form>
+                        </div>
+                    </div> */}
+
+                    <div>
+                        <div className="w-full lg:min-w-[500px] min-h-[382px] px-1 md:px-4 lg:px-6 py-4 md:shadow-  bg-slate-50  ">
+                            <div>
+                                <h2 className="text-[14px] md:text-[17px] font-bold  text-gray-800 uppercase ">Find FairPrice </h2>
+                                <p className='w-full text-left text-[11px] md:text-[12px] lg:text-[13px]   text-amber-800 mb-2 md:mb-5'>Enter the weight in grams and get the best market price at a glance</p>
+                            </div>
+                            <form>
+
+                                <div className='pb-5 py-1 md:py-0 '>
+                                    <div className=" flex gap-2  items-center mb-4">
+                                        <h2 className="text-[14px]  font-semibold text-slate-700">Available Prize Token :</h2>
+                                        <p className=' text-[14px]  font-bold text-sm text-slate-800'>{((currentUserData?.bonousePoints >= data?.usePriceToken) && (data?.usePriceToken > 0)) ? (currentUserData?.bonousePoints - data?.usePriceToken) : currentUserData?.bonousePoints}</p>
+                                    </div>
+
+                                    <div className=" grid grid-cols-2 gap-x-3 md:gap-4 mb-5">
+                                        <div className=' lg:w-52 bg-white'>
+                                            <TextField
+                                                autoFocus
+                                                value={data.usePriceToken || ''}
+                                                onChange={handleChangeFeild}
+                                                name="usePriceToken"
+                                                label={PriceTokenLabel}
+                                                id="usePriceToken"
+                                                type='number'
+                                                fullWidth
+                                                variant='outlined'
+
+                                            />
+                                        </div>
+                                        <div className=' lg:w-52 bg-white'>
+                                            <TextField
+                                                autoFocus
+                                                value={data.itemWeight || ''}
+                                                onChange={handleChangeFeild}
+                                                name="itemWeight"
+                                                label="Enter Weight in gram"
+                                                id="itemWeight"
+                                                type='number'
+                                                fullWidth
+                                                variant='outlined'
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className=" flex flex-wrap  items-center  gap-2 ">
+                                        <label className='font-semibold text-[14px] text-slate-700'> Select Quality :</label>
+                                        <div className='flex gap-3  items-center justify-center '>
+                                            <RadioButton
+                                                label="75 HM(18K)"
+                                                value="75halmark"
+                                                checked={data.selectedValue === '75halmark'}
+                                                onChange={handleChange}
+                                            />
+                                            <RadioButton
+                                                label="916 HM(22k)"
+                                                value="916halmark"
+                                                checked={data.selectedValue === '916halmark'}
+                                                onChange={handleChange}
+                                            />
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                                {/**show price */}
+                                <div className='md:pt-3 '>
+
+                                    <div className='flex justify-between items-center py-1.5 '>
+                                        <label className='text-[14px] md:text-md lg:text-[16px] font-semibold tracking-wide text-slate-700'>Fair Price :</label>
+                                        <p className='text-[14px] md:text-md lg:text-[16px] font-semibold text-pink-600 tracking-wider'> {price?.bestPrice}</p>
+                                    </div>
+
+                                    <div className='flex justify-between items-center py-1.5 '>
+                                        <label className='text-[14px] md:text-md lg:text-[16px] font-semibold tracking-wide text-slate-700'>Prize Token Discount :</label>
+                                        <p className=' text-[14px] md:text-md lg:text-[16px] font-semibold text-pink-600 tracking-wider'> {price?.tokenPricediscount}</p>
+                                    </div>
+
+                                    <div className='flex justify-between items-center py-1.5 '>
+                                        <label className='text-[14px] md:text-md lg:text-[16px] font-semibold tracking-wide text-slate-700'>Best Fair Price :</label>
+                                        <p className='text-[14px] md:text-md lg:text-[16px] font-semibold text-pink-600 tracking-wider'> {price?.afterTokenDiscount}</p>
+                                    </div>
+                                </div>
+
+                                <div className='flex  gap-8 pt-2'>
+                                    <button
+                                        className="bg-[#D4AF37]  uppercase text-xs sm:text-sm  lg:text-[15px] tracking-wider font-bold p-2 text-white my-3 w-full rounded"
+                                        onClick={handleSubmit}
+                                    >
+                                        Show Price
+                                    </button>
+
+                                    <button
+                                        className="bg-[#333333] uppercase text-xs sm:text-sm lg:text-[15px] tracking-wider font-bold p-2 text-white my-3 w-full rounded"
+                                        onClick={handleClear}
+                                    >
                                         Clear Price
                                     </button>
                                 </div>
