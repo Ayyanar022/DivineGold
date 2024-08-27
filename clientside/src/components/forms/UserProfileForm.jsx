@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { z } from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from 'react-toastify';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const formSchema = z.object({
     email: z.string().optional(),
@@ -30,10 +31,14 @@ const UserProfileForm = ({ currentUser, onSave, isLoading, refetchUserData }) =>
         },
     });
 
+    const { isAuthenticated } = useAuth0()
 
     // UPDATE CUSTOMER INFO
     const onSubmit = async (data) => {
+        if (!isAuthenticated) return toast.warning("Please Login..")
+
         if (onSave) {
+
             const response = await onSave(data);
 
             if (response.success) {
@@ -116,7 +121,7 @@ const UserProfileForm = ({ currentUser, onSave, isLoading, refetchUserData }) =>
                         {errors.city && <p className="text-red-500 text-sm mt-1">{errors.city.message}</p>}
                     </div>
 
-                    {!(currentUser.name || currentUser.mobileNo || currentUser.address || currentUser.village || currentUser.city) && <div>
+                    {!(currentUser?.name || currentUser?.mobileNo || currentUser?.address || currentUser?.village || currentUser?.city) && <div>
                         <label className="block text-sm font-medium text-gray-700">Super Code</label>
                         <input {...register('bonousCode')}
                             className=" text-sm md:text-md mt-1 block w-full text-gray-500 p-1.5 md:p-2 border border-gray-300 rounded-md  outline-1 focus:shadow"
@@ -137,11 +142,11 @@ const UserProfileForm = ({ currentUser, onSave, isLoading, refetchUserData }) =>
 
                 <div className=' flex flex-col lg:flex-row md:gap-2 lg:items-center'>
                     <p className=' text-md md:text-lg font-semibold   text-slate-700'>Treasure Code : </p>
-                    <p className='text-slate-700 text-[13px] md:text-md'>{currentUser.bonousCode}</p>
+                    <p className='text-slate-700 text-[13px] md:text-md'>{currentUser?.bonousCode}</p>
                 </div>
                 <div className='flex gap-3 md:gap-5 mt-3 items-center '>
                     <p className=' text-md md:text-lg font-semibold text-slate-700'>Prize Token : </p>
-                    <p className='text-slate-800 font-semibold text-sm md:text-md'>{currentUser.bonousePoints}</p>
+                    <p className='text-slate-800 font-semibold text-sm md:text-md'>{currentUser?.bonousePoints}</p>
                 </div>
             </div>
         </div>

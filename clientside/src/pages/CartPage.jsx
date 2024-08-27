@@ -13,7 +13,7 @@ import { removeItemToCart, addItemToCart, } from '../store/cartSlice.js';
 const CartPage = () => {
 
     const { cartData, isLoading: cartIsLoading, refetch } = useGetCartItem()
-    const { getAccessTokenSilently } = useAuth0()
+    const { getAccessTokenSilently, isAuthenticated } = useAuth0()
     const dispatch = useDispatch();
 
 
@@ -106,6 +106,18 @@ const CartPage = () => {
     }
 
     const emptyLoading = cartIsLoading ? "Bag is Loading..." : "Bag is Empty ";
+
+    // No Authentication
+    if (!isAuthenticated) {
+        return (
+            <div className="w-full h-full bg-white flex items-center justify-center ">
+                <div className='md:w-[80%]  m-4'>
+                    <h1 className="text-xl md:text-2xl   text-amber-500 bg-amber-100 p-6 border text-center mt-20">Please Login To Access Your Cart</h1>
+
+                </div>
+            </div>
+        )
+    }
 
 
     return (

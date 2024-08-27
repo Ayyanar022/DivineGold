@@ -8,6 +8,7 @@ import { toast } from 'react-toastify'
 import { useGetCurrentPrice } from '../../api/AdminApi'
 import { useGetMyUser } from '../../api/MyUserApi'
 import { TextField } from '@mui/material'
+import { useAuth0 } from '@auth0/auth0-react'
 
 
 const RadioButton = ({ label, value, checked, onChange }) => {
@@ -73,9 +74,12 @@ const FairPriceDetails = () => {
     })
 
 
+    const { isAuthenticated } = useAuth0()
     // PRICE CALCULATIONS
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (!isAuthenticated) return toast.warning("Please Login..")
 
         if (!data.itemWeight || Number(data.itemWeight) === 0) {
             toast.info("Please Enter Weight...")

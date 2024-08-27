@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { CiBag1 } from "react-icons/ci"; // bag icon
-import { CiHeart } from "react-icons/ci"; // heart icon
 import { useAddUpdateCart } from '../../api/CartApi';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';

@@ -7,6 +7,7 @@ import displayINR from '../../helper/RupeeConvetion';
 import { toast } from "react-toastify";
 import { useCurrentUserConetxt } from '../../context/userContext'
 import { TextField } from '@mui/material';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const RadioButton = ({ label, value, checked, onChange }) => {
     return (
@@ -27,6 +28,8 @@ const ExploreCardDetails = () => {
     const [activeImage, setActiveImage] = useState('')
     const [zoomImage, setZoomImage] = useState();
     const [zoomImageOpen, setZoomImageOpen] = useState(false);
+
+    const { isAuthenticated } = useAuth0();
 
     const [price, setPrice] = useState({
         bestPrice: '',
@@ -117,6 +120,7 @@ const ExploreCardDetails = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (!isAuthenticated) return toast.warning("Please Login..")
 
         if (!data.itemWeight || Number(data.itemWeight) === 0) {
             toast.info("Please Enter Weight...")

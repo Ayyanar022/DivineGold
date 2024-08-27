@@ -1,15 +1,21 @@
 
+import { useAuth0 } from '@auth0/auth0-react';
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 
 const WhatsAppForm = () => {
     const [userPhone, setUserPhone] = useState('');
     const [userMessage, setUserMessage] = useState('');
     const [userName, setUserName] = useState('');
 
+    const { isAuthenticated } = useAuth0()
+
     const yourPhoneNumber = '919698358807';
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (!isAuthenticated) return toast.warning("Please Login..")
 
         const encodedMessage = encodeURIComponent(
             `From: ${userPhone}\nUserName: ${userName}\nMessage: ${userMessage}`
