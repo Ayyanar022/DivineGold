@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { z } from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -33,41 +33,25 @@ const UserProfileForm = ({ currentUser, onSave, isLoading, refetchUserData }) =>
 
     const { isAuthenticated } = useAuth0()
 
-    // UPDATE CUSTOMER INFO
+    // // UPDATE CUSTOMER INFO
+
     const onSubmit = async (data) => {
         if (!isAuthenticated) return toast.warning("Please Login..")
 
         if (onSave) {
-
             const response = await onSave(data);
-
-            if (response.success) {
+            
+            if (response?.success) {
                 toast.success("Updated sucessfully .. please Refresh ");
-
-                // Re-fetch the latest user data
-                const { data: updatedUser } = await refetchUserData();
-
-                // Reset the form with the updated user data
-                if (updatedUser) {
-                    reset({
-                        email: updatedUser?.email || '',
-                        name: updatedUser?.name || '',
-                        mobileNo: updatedUser?.mobileNo?.toString() || '', // Convert to string
-                        address: updatedUser?.address || '',
-                        village: updatedUser?.village || '',
-                        city: updatedUser?.city || '',
-                        bonousCode: updatedUser?.bonousCode || '',
-                    });
-                }
-
             } else {
-                toast.warning(response.message.toString());
+                toast.warning(response?.message?.toString());
             }
-        } else {
-            toast.info("Please try again..");
         }
     };
 
+    useEffect(() => {
+        reset(currentUser)
+    }, [currentUser, reset])
 
 
     return (

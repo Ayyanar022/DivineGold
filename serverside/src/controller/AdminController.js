@@ -32,6 +32,7 @@ const createFairPriceItem = async (req,res)=>{
    }
 }
 
+//UPDATE CURRENT RATE
 const updateCurentPrice = async (req,res)=>{
     try{
         const currentPrice = req.body.currentPrice;
@@ -40,10 +41,10 @@ const updateCurentPrice = async (req,res)=>{
             { currentPrice: currentPrice },
             { new: true, upsert: true } // `new` returns the modified document, `upsert` creates if it doesn't exist
         );
-        res.status(201).json(updateCP);        
+        res.status(201).json({updateCP,sucess:true,message:"Rate Added."});        
     }catch(err){
         console.log("err",err)
-        res.status(500).json({message:"faild to Update fairPrice",success:false})
+        res.status(500).json({message:"faild to Update Rate",success:false})
        }
 }
 

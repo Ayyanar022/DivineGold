@@ -8,8 +8,8 @@ const Auth0ProviderWithNavigate = ({ children }) => {
 
   const domain = process.env.REACT_APP_AUTH0_DOMAIN;
   const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
-  // const redirectUri = `http://localhost:3000`
-  const redirectUri = `https://divinegold-4789.onrender.com`
+  const redirectUri = `http://localhost:3000`
+  // const redirectUri = `https://divinegold-4789.onrender.com`
   const audience = process.env.REACT_APP_AUTH0_AUDIENCE;
 
 

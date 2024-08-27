@@ -35,21 +35,22 @@ const router = createBrowserRouter([
       { 
         path: "admin-chan", element: <ProtectedAdminRote />,
         children:[
-          { path: "", element: <Admin /> },
-          { path: "allcustomerList", element: <Allcustomer />},
-          { path: "add-farerate", element: <AddFareRate />},
-          { path: "Explore-card-item", element: <ExploreCardAdd />},
-          { path: "ConstantsAdd", element: <ConstantsAdd />},
-          { path: "CustomerSale", element: <CustomerSale />},
-          { path: "FilterSales",element: <FilterSales />},
+          { path: "", element: <Admin /> ,
+            children:[
+              { path: "allcustomerList", element: <Allcustomer />},
+              { path: "add-farerate", element: <AddFareRate />},
+              { path: "Explore-card-item", element: <ExploreCardAdd />},
+              { path: "ConstantsAdd", element: <ConstantsAdd />},
+              { path: "CustomerSale", element: <CustomerSale />},
+              { path: "FilterSales",element: <FilterSales />},
+            ]
+          },       
         ]
        },
        { path: "fairPrice-details/:itemName/:category",element:< FairPriceDetails />},
        { path: "JewllDesign-details/:id",element:<ExploreCardDetails />},
        { path: "CartPage", element:<CartPage /> },
        { path: "not-authorized" , element:<NotAuthorized />},
-
-
     ],
   },
 ])

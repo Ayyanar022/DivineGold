@@ -25,13 +25,7 @@ const Admin = () => {
             Filter Sale
           </NavLink>
 
-          <NavLink
-            className={({ isActive }) => `hover:bg-slate-100 w-full py-3 text-center
-             uppercase font-semibold text-[15px] text-slate-800 transition-all duration-150
-           hover:text-pink-500 ${isActive && 'text-pink-700  bg-slate-200'}`}
-            to="allcustomerList" >
-            All Customer
-          </NavLink>
+
 
           <NavLink
             className={({ isActive }) => `hover:bg-slate-100 w-full py-3 text-center
@@ -55,6 +49,14 @@ const Admin = () => {
            hover:text-pink-500 ${isActive && 'text-pink-700  bg-slate-200'}`}
             to="ConstantsAdd">
             Constants
+          </NavLink>
+          
+          <NavLink
+            className={({ isActive }) => `hover:bg-slate-100 w-full py-3 text-center
+             uppercase font-semibold text-[15px] text-slate-800 transition-all duration-150
+           hover:text-pink-500 ${isActive && 'text-pink-700  bg-slate-200'}`}
+            to="allcustomerList" >
+            All Customer
           </NavLink>
 
         </div>

@@ -17,14 +17,18 @@ const AddFareRate = () => {
 
     const [openUploadFairPrice, setOpenUploadFairPrice] = useState(false);
     const [currentPrice, setCurrentPrice] = useState('')
-    const { updateCurrentPrice, isSuccess: CPisSuccess, isLoading: CPisLoaing } = useUpdateCurrentPrice()
+    const { updateCurrentPrice, isLoading: CPisLoaing } = useUpdateCurrentPrice()
     const { fairPriceCardData, isLoading: FPisLoading } = useGetAllFairPrice()
 
-    const hanleUpdateCurrentPrice = (e) => {
+    //Update current RATE
+    const hanleUpdateCurrentPrice = async (e) => {
         e.preventDefault()
-        updateCurrentPrice(currentPrice)
-        if (CPisSuccess) {
-            toast.success("CP Updated successfull..")
+        const response = await updateCurrentPrice(currentPrice);
+        if (response?.sucess) {
+            toast.success(response?.message?.toString())
+            setCurrentPrice('')
+        } else {
+            toast.error("somthing wrong..")
         }
     }
 

@@ -35,7 +35,8 @@ const FilterSales = () => {
 
   // HANDLE CANCEL
 
-  const handleCancel = () => {
+  const handleCancel = (e) => {
+    e.preventDefault()
     setFilter(filterObject)
   }
 
@@ -134,8 +135,7 @@ const FilterSales = () => {
               <button onClick={handlefilterSubmit} className='px-7 py-2  bg-orange-400 hover:bg-gradient-to-r hover:from-orange-400 hover:to-orange-700  shadow-sm   rounded font-bold uppercase transition-all duration-300 tracking-wider'>show</button>
               <button onClick={handleCancel} className='px-7 py-2  bg-sky-500 hover:bg-gradient-to-r hover:from-sky-400 hover:to-sky-700  shadow-sm   rounded font-bold uppercase transition-all duration-300 tracking-wider'>Clear</button>
             </div>
-          </section>  
-
+          </section>
 
         </form>
       </div>
