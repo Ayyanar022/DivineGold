@@ -20,7 +20,7 @@ const UserProfilePage = () => {
     } else {
       return
     }
-  }, [currentUser, setCurrentUserData])
+  }, [currentUser, setCurrentUserData, currentUserData])
 
 
   // No Authentication

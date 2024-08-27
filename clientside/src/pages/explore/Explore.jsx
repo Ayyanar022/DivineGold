@@ -347,7 +347,7 @@ const Explore = () => {
 
       {/**main */}
 
-      <main className=" p-1 md:p-2 lg:p-3 w-full ml-0 md:ml-52 pb-7">
+      <main className=" p-2 md:p-4  w-full ml-0 md:ml-52 pb-7">
         <div className="w-full">
           {nodilterData}
         </div >
@@ -356,7 +356,7 @@ const Explore = () => {
           <h2 className="font-bold text-amber-500 text-lg md:text-2xl px-5 py-4">Jewell Designs</h2>
         </div>
 
-        <div className=" w-full h-full grid  gap-2 md:gap-2 lg:gap-3 grid-cols-2 md:px-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 ">
+        <div className=" w-full h-full grid  gap-x-4 gap-y-3  lg:gap-5 grid-cols-2 md:px-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 ">
           {!dataToRender && loadingEmptyCard.map((item, index) => (
             <div key={index}> <LoadingJewelCard /> </div>
           ))}

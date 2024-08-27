@@ -13,7 +13,7 @@ const ProtectedAdminRote = () => {
     }
 
     // Check if user is authenticated and is an admin
-    const isAdmin = isAuthenticated && currentUser?.role === 'admin';
+    const isAdmin = isAuthenticated && currentUser?.role === 'ADMIN_AYAN';
 
     return isAdmin ? <Outlet /> : <Navigate to="/not-authorized" />;
 };

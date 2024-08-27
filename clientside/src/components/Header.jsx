@@ -19,7 +19,7 @@ const Header = () => {
 
   return (
     <header className='fixed h-[60px] md:h-16  w-full border-b-2 z-40 shadow-sm bg-white'>
-      <div className='  mx-auto px-2  flex items-center h-full'>
+      <div className='  mx-auto px-1 md:px-2  flex items-center h-full'>
 
         <div className='flex items-center  lg:mr-10'>
           <Link to={"/"}>
@@ -40,7 +40,7 @@ const Header = () => {
 
         {/**for user icons and bag */}
         <div className='ml-auto '>
-          <section className='flex justify-center gap-5 lg:mr-7 pr-2 text-xl items-center '>
+          <section className='flex justify-center gap-3 md:gap-5 lg:mr-7 pr-2 text-xl items-center '>
 
             {isAuthenticated ? (
               <button className='text-[16px] font-semibold ' onClick={() => logout()}>Logout</button>

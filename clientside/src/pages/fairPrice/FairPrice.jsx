@@ -119,6 +119,7 @@ const FairPrice = () => {
         </button>
       </div>
 
+
       <div className='  py-4 px-2 '>
         <div onClick={() => setFilterdCardData([])} className='mb-4  w-fit  text-xl font-bold cursor-pointer text-amber-500'>All Category</div>
 

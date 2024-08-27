@@ -137,17 +137,21 @@ const UserProfileForm = ({ currentUser, onSave, isLoading, refetchUserData }) =>
 
 
             <div className="w-full md:w-1/2 lg:w-2/5 bg-white p-1 md:p-5 lg:p-6 rounded-lg md:shadow-md md:border">
-                <h2 className="text-[17px] md:text-xl font-bold  text-cyan-900 uppercase">Refer & Get</h2>
-                <p className='w-fit text-[11px] md:text-[12px] lg:text-[13px]   text-amber-800 mb-2 md:mb-5'>Share your treasure code, and both will get Added prize tokens. </p>
+                <section>
+                    <h2 className="text-[17px] md:text-xl font-bold  text-cyan-900 uppercase">Refer & Get</h2>
+                    <p className='w-fit text-[11px] md:text-[12px] lg:text-[13px]   text-amber-800 mb-2 md:mb-5'>Share your treasure code, and both will get Added prize tokens. </p>
+                </section>
 
-                <div className=' flex flex-col lg:flex-row md:gap-2 lg:items-center'>
-                    <p className=' text-md md:text-lg font-semibold   text-slate-700'>Treasure Code : </p>
-                    <p className='text-slate-700 text-[13px] md:text-md'>{currentUser?.bonousCode}</p>
-                </div>
-                <div className='flex gap-3 md:gap-5 mt-3 items-center '>
-                    <p className=' text-md md:text-lg font-semibold text-slate-700'>Prize Token : </p>
-                    <p className='text-slate-800 font-semibold text-sm md:text-md'>{currentUser?.bonousePoints}</p>
-                </div>
+                <section className='bg-slate-100 p-2'>
+                    <div className=' flex flex-col lg:flex-row md:gap-2 lg:items-center'>
+                        <p className=' text-md md:text-lg font-semibold   text-slate-700'>Treasure Code : </p>
+                        <p className='text-slate-700 text-[13px] md:text-md'>{currentUser?.bonousCode}</p>
+                    </div>
+                    <div className='flex gap-3 md:gap-5 mt-3 items-center '>
+                        <p className=' text-md md:text-lg font-semibold text-slate-700'>Prize Token : </p>
+                        <p className='text-slate-800 font-semibold text-sm md:text-md'>{currentUser?.bonousePoints}</p>
+                    </div>
+                </section>
             </div>
         </div>
 

@@ -133,13 +133,15 @@ const CartPage = () => {
                                 <p className='text-sm md:lg'>Category : {item?.productId?.jewellCategory}</p>
                                 <p className='text-sm md:lg'>Type     : {item?.productId?.jewellType}</p>
                                 <div className='py-3 flex items-center gap-3'>
-                                    <button onClick={(event) => handleAaddtoCartfun(item?.productId?._id, item?.quantity, event)} className='text-lg md:text-xl font-bold h-6 w-6 md:h-7 :w-7  rounded-md bg-green-400 hover:bg-green-600 transition-all'>
+                                    <button onClick={(event) => handleAaddtoCartfun(item?.productId?._id, item?.quantity, event)} 
+                                    className='text-lg md:text-xl font-bold h-6 w-6 md:h-7 md:w-7 flex items-center justify-center   rounded-full bg-green-500 hover:bg-green-700 transition-all'>
                                         +
                                     </button>
                                     <p className='font-semibold'>
                                         {item?.quantity}
                                     </p>
-                                    <button onClick={(event) => handleRemovetoCartfun(item?._id, item?.quantity, event)} className='text-lg md:text-xl font-bold h-6 w-6 md:h-7 :w-7 rounded-md bg-orange-400 hover:bg-orange-600 transition-all'>
+                                    <button onClick={(event) => handleRemovetoCartfun(item?._id, item?.quantity, event)}
+                                     className='text-lg md:text-xl font-bold h-6 w-6 md:h-7 md:w-7 rounded-full flex items-center justify-center  bg-orange-500 hover:bg-orange-700 transition-all'>
                                         -
                                     </button>
                                 </div>
@@ -155,7 +157,7 @@ const CartPage = () => {
             </div>
 
             <div className='md:w-1/2  w-full flex flex-col  lg:bg-gray-100 lg:py-3'>
-                <button onClick={handleCheckOut} className='text-center   font-bold text-lg lg:text-xl text-slate-900 px-4 py-2 lg:mx-10   bg-orange-400 hover:bg-orange-500 transition-all rounded-md'>CheckOut</button>
+                <button onClick={handleCheckOut} className='text-center   font-bold text-lg lg:text-xl text-white px-4 py-2 lg:mx-10   bg-[#E85C0D]  transition-all rounded-md'>CheckOut</button>
                 <WhatsAppForCart data={whatsappData} />
             </div>
         </div>
