@@ -15,8 +15,6 @@ const Header = () => {
   const { currentUser, isLoading: isUpdateLoading, refetch: refetchUserData } = useGetMyUser()
 
   const isAdmin = currentUser && currentUser?.role === "ADMIN_AYAN"
-  console.log("currentUser", currentUser?.role)
-
 
 
   return (

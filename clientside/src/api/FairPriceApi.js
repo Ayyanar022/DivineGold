@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { toast } from "react-toastify";
 
 export const useGetAllFairPrice = () => {
-  const { getAccessTokenSilently } = useAuth0();
+  const { getAccessTokenSilently ,isAuthenticated} = useAuth0();
 
   const getAllFairPrice = async () => {
     const accessToken = await getAccessTokenSilently();
@@ -20,7 +20,7 @@ export const useGetAllFairPrice = () => {
     return response.json();
   };
 
-  const { data: fairPriceCardData, isLoading, error } = useQuery("getAllFairPrice", getAllFairPrice);  
+  const { data: fairPriceCardData, isLoading, error } = useQuery("getAllFairPrice", getAllFairPrice,{enabled:isAuthenticated});  
   if (error) toast.error(error.toString());
   return { fairPriceCardData, isLoading };
 };

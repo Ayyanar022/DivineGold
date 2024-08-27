@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 
 //GET CURRENT USER
 export const useGetMyUser = ()=>{
-    const {getAccessTokenSilently} = useAuth0();
+    const {getAccessTokenSilently,isAuthenticated} = useAuth0();
 
     const getMyUserRequest = async()=>{
         const accessToken = await getAccessTokenSilently();
@@ -23,7 +23,7 @@ export const useGetMyUser = ()=>{
         return response.json()
     }
 
-    const {data:currentUser,isLoading,error,refetch}= useQuery("fetchCurrentUser",getMyUserRequest);
+    const {data:currentUser,isLoading,error,refetch}= useQuery("fetchCurrentUser",getMyUserRequest,{enabled:isAuthenticated});
     if(error) toast.error(error.toString());    
     return {currentUser,isLoading,refetch}
 }

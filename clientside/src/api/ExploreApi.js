@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import axios from 'axios'
 
 export const useGetAllJewllDesign = ()=>{
-    const {getAccessTokenSilently} = useAuth0();
+    const {getAccessTokenSilently,isAuthenticated} = useAuth0();
 
     const getAllJewell =async ()=>{
         const accessToken = await getAccessTokenSilently();
@@ -19,7 +19,7 @@ export const useGetAllJewllDesign = ()=>{
         return response.json();
     }
 
-    const {data:JewellDesignData , isLoading ,error} = useQuery("getAllJewell",getAllJewell)
+    const {data:JewellDesignData , isLoading ,error} = useQuery("getAllJewell",getAllJewell,{enabled:isAuthenticated})
     if(error)toast.error(error.toString())
     return {JewellDesignData,isLoading}
 }
@@ -73,10 +73,8 @@ export const useFilterJewllDesignExplore = (selectedGender ,selectedType , selec
               Authorization: `Bearer ${accessToken}`,
               'Content-Type': 'application/json',
             },
-          });
-   
+          });   
     return response.data;
-
     }
 
     const {data:filterData,isLoading,error} = useQuery(["FilterExplore",selectedGender ,selectedType , selectedCategory],()=>filterFun(selectedGender ,selectedType , selectedCategory),{

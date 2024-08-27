@@ -29,7 +29,7 @@ export const  useAddUpdateCart = ()=>{
 }
 
 export const useGetCartItem = ()=>{
-    const {getAccessTokenSilently} = useAuth0();
+    const {getAccessTokenSilently,isAuthenticated} = useAuth0();
     const getCartIetm = async()=>{
         const accessToken = await getAccessTokenSilently();
         const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/cart`,{
@@ -45,7 +45,7 @@ export const useGetCartItem = ()=>{
         return response.json()
     }
 
-    const {data:cartData,error,isLoading ,refetch} = useQuery("getCartItems",getCartIetm)
+    const {data:cartData,error,isLoading ,refetch} = useQuery("getCartItems",getCartIetm,{enabled:isAuthenticated})
 
     useEffect(() => {
         if (error) {

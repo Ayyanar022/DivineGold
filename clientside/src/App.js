@@ -53,7 +53,7 @@ function App() {
   
       <div className="flex flex-col min-h-screen">
         <Header />
-        <main className="flex-grow pt-14  ">
+        <main className="flex-grow pt-[60px] md:pt-16  ">
           <Outlet />
         </main>
         <Footer className="mt-auto hidden lg:block "  />

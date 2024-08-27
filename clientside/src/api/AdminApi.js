@@ -5,7 +5,7 @@ import axios from 'axios';
 
 
 export const useGetAllCustomer = ()=>{
-    const {getAccessTokenSilently} = useAuth0();
+    const {getAccessTokenSilently ,isAuthenticated} = useAuth0();
 
     const getAllCustomerRequest = async()=>{
         const accessToken = await getAccessTokenSilently();
@@ -21,7 +21,7 @@ export const useGetAllCustomer = ()=>{
         return response.json();
     }
 
-    const {data:allCustomer,isLoading,error} = useQuery("fetchAllCustomer",getAllCustomerRequest);
+    const {data:allCustomer,isLoading,error} = useQuery("fetchAllCustomer",getAllCustomerRequest,{enabled:isAuthenticated});
     if(error)toast.error(error.toString());
 
     return{allCustomer,isLoading};
@@ -75,7 +75,7 @@ export const useUpdateCurrentPrice =()=>{
 
 //GET CURRENT 999 PRICE
 export const useGetCurrentPrice =()=>{
-    const {getAccessTokenSilently} = useAuth0();
+    const {getAccessTokenSilently,isAuthenticated} = useAuth0();
 
     const getCP = async()=>{
         const accessToken = await getAccessTokenSilently();
@@ -91,7 +91,7 @@ export const useGetCurrentPrice =()=>{
         return response.json();
     }
 
-    const {data:currentPriceData ,isLoading ,error} = useQuery("getCurrentPrice",getCP);
+    const {data:currentPriceData ,isLoading ,error} = useQuery("getCurrentPrice",getCP,{enabled:isAuthenticated});
     if(error)toast.error(error.toString())
     return {currentPriceData ,isLoading }
 
@@ -127,7 +127,7 @@ export const useUploadNewItemDesign = ()=>{
 //  TO FETCH ALL CONSTANTS
 
 export const useGetItemNameConstant = ()=>{
-    const {getAccessTokenSilently} = useAuth0();
+    const {getAccessTokenSilently,isAuthenticated} = useAuth0();
 
     const getItemNameFun =async ()=>{
         const accessToken = await getAccessTokenSilently()
@@ -140,14 +140,14 @@ export const useGetItemNameConstant = ()=>{
         return response;
     }
 
-    const {data:ConstantItemName , error , isLoading,refetch} = useQuery("getItemNameFun",getItemNameFun)
+    const {data:ConstantItemName , error , isLoading,refetch} = useQuery("getItemNameFun",getItemNameFun,{enabled:isAuthenticated})
     if(error)toast.error(error.toString())
     return{ConstantItemName , isLoading ,refetch}
 }
 
 
 export const useGetIteCategoryConstant = ()=>{
-    const {getAccessTokenSilently} = useAuth0();
+    const {getAccessTokenSilently,isAuthenticated} = useAuth0();
 
     const getItemcategoryFun =async ()=>{
         const accessToken = await getAccessTokenSilently()
@@ -160,14 +160,14 @@ export const useGetIteCategoryConstant = ()=>{
         return response;
     }
 
-    const {data:ConstantItemCategory , error , isLoading ,refetch} = useQuery("getItemcategoryFun",getItemcategoryFun)
+    const {data:ConstantItemCategory , error , isLoading ,refetch} = useQuery("getItemcategoryFun",getItemcategoryFun,{enabled:isAuthenticated})
     if(error)toast.error(error.toString())
     return{ConstantItemCategory , isLoading ,refetch}
 }
 
 
 export const useGetItemTypeConstant = ()=>{
-    const {getAccessTokenSilently} = useAuth0();
+    const {getAccessTokenSilently,isAuthenticated} = useAuth0();
 
     const getItemTypeFun =async ()=>{
         const accessToken = await getAccessTokenSilently()
@@ -181,14 +181,14 @@ export const useGetItemTypeConstant = ()=>{
         return response;
     }
 
-    const {data:ConstantItemType , error , isLoading ,refetch} = useQuery("getItemTypeFun",getItemTypeFun)
+    const {data:ConstantItemType , error , isLoading ,refetch} = useQuery("getItemTypeFun",getItemTypeFun,{enabled:isAuthenticated})
     if(error)toast.error(error.toString())
     return{ConstantItemType , isLoading,refetch}
 }
 
 
 export const useGetItemGenderConstant = ()=>{
-    const {getAccessTokenSilently} = useAuth0();
+    const {getAccessTokenSilently,isAuthenticated} = useAuth0();
 
     const getItemGenderFun =async ()=>{
         const accessToken = await getAccessTokenSilently()
@@ -201,7 +201,7 @@ export const useGetItemGenderConstant = ()=>{
         return response;
     }
 
-    const {data:ConstantItemGender , error , isLoading,refetch} = useQuery("getItemGenderFun",getItemGenderFun)
+    const {data:ConstantItemGender , error , isLoading,refetch} = useQuery("getItemGenderFun",getItemGenderFun,{enabled:isAuthenticated})
     if(error)toast.error(error.toString())
     return{ConstantItemGender , isLoading,refetch}
 }
