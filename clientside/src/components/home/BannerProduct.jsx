@@ -1,18 +1,33 @@
 
 
 import React, { useEffect, useState } from "react";
-import bnner1 from '../../asserts/BannerImage/brooke-cagle-kElEigko7PU-unsplash.jpg';
-import bnner2 from '../../asserts/BannerImage/pexels-fox-1004-58267-998521.jpg';
-import bnner3 from '../../asserts/BannerImage/pexels-git-stephen-gitau-302905-1670723.jpg';
-import bnner4 from '../../asserts/BannerImage/pexels-pixabay-248077.jpg';
-import bnner5 from '../../asserts/BannerImage/pexels-pixabay-37826.jpg';
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
+
+
+import bnner1 from '../../asserts/tinifiedBannerBigIMG/brooke-cagle-kElEigko7PU-unsplash.jpg'
+import bnner2 from '../../asserts/tinifiedBannerBigIMG/pexels-fox-1004-58267-998521.jpg';
+import bnner3 from '../../asserts/tinifiedBannerBigIMG/pexels-kampus-8790803.jpg';
+import bnner6 from '../../asserts/tinifiedBannerBigIMG/pexels-pixabay-37826.jpg';
+import bnner7 from '../../asserts/tinifiedBannerBigIMG/pexels-thomas-beaman-460315958-15613451.jpg';
+import bnner8 from '../../asserts/tinifiedBannerBigIMG/pexels-weddingphotography-6593858.jpg';
+import bnner9 from '../../asserts/tinifiedBannerBigIMG/pexels-zacks1981-14275337.jpg';
+
+//Mobile
+import Mobbnner1 from '../../asserts/tinifiedBannerImage/smallBanner_1.jpg';
+import Mobbnner3 from '../../asserts/tinifiedBannerImage/smallBanner_4.jpg';
+import Mobbnner6 from '../../asserts/tinifiedBannerImage/smallBanner_8.jpg';
+import Mobbnner7 from '../../asserts/tinifiedBannerImage/smallBanner_9.jpg';
+import Mobbnner8 from '../../asserts/tinifiedBannerImage/pexels-weddingphotography-6593858 (1).jpg';
+import Mobbnner9 from '../../asserts/tinifiedBannerImage/pexels-pixabay-37826.jpg';
+import Mobbnner11 from '../../asserts/tinifiedBannerImage/pexels-thomas-beaman-460315958-15613451 (1).jpg';
+import Mobbnner12 from '../../asserts/tinifiedBannerImage/brooke-cagle-kElEigko7PU-unsplash.jpg';
+
 
 const BannerProduct = () => {
     const [currentBannerImage, setCurrentBannerImage] = useState(0);
 
-    const deskTopBannerImage = [bnner1, bnner2, bnner3, bnner4, bnner5];
-    const mobileBannerImage = [bnner1, bnner2, bnner3, bnner4, bnner5];
+    const deskTopBannerImage = [bnner8, bnner9, bnner1, bnner6, bnner2, bnner7, bnner3,];
+    const mobileBannerImage = [Mobbnner1, Mobbnner11,Mobbnner8,  Mobbnner12, Mobbnner3, Mobbnner6,Mobbnner9, Mobbnner7, ];
 
     const nextImage = () => {
         setCurrentBannerImage((prev) =>
@@ -54,8 +69,9 @@ const BannerProduct = () => {
                     </button>
                 </div>
 
-                {/* Desktop and Tablet Version */}
-                <div className="hidden md:block h-full w-full overflow-hidden">
+
+                {/**desktop and tablet version */}
+                <div className="hidden md:flex h-full w-full overflow-hidden">
                     <div
                         className="flex transition-transform duration-1000 ease-in-out"
                         style={{
@@ -70,13 +86,12 @@ const BannerProduct = () => {
                                 <img
                                     src={banner}
                                     className="w-full h-full object-cover"
-                                    alt={`Slide ${index + 1}`}
-                                    loading="lazy"
                                 />
                             </div>
                         ))}
                     </div>
                 </div>
+
 
                 {/* Mobile Version */}
                 <div className="block md:hidden h-full w-full overflow-hidden">
