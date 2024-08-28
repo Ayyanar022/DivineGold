@@ -8,12 +8,10 @@ import LoadingJewelCard from '../../components/LoadingJewelCard'
 
 const FairPrice = () => {
 
-  const { isAuthenticated } = useAuth0()
 
   const { fairPriceCardData, isLoading } = useGetAllFairPrice()
   const [filterData, setFilterData] = useState([])
   const [filterdcardData, setFilterdCardData] = useState([])
-  const [rederCards, setRenderCard] = useState([])
 
   useEffect(() => {
     const filterfun = () => {

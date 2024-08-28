@@ -23,28 +23,10 @@ const UserProfilePage = () => {
   }, [currentUser, setCurrentUserData, currentUserData])
 
 
-  // No Authentication
-  // if (!isAuthenticated) {
-  //   return (
-  //     <div className="w-full h-full bg-white flex items-center justify-center ">
-  //       <div className='md:w-[80%]  m-4'>
-  //         <h1 className="text-xl md:text-2xl  text-amber-500 bg-amber-100 p-6 border text-center mt-20">Please Login To Access Benifits</h1>
-
-  //       </div>
-  //     </div>
-  //   )
-  // }
-
   return (
-    <div className='pb-[60px] md:pb-[10px] p-5 mb-3 md:mb-[60px] lg:mb-0 '>
+    <div className='pb-[60px] md:pb-[10px] p-1 md:p-5 mb-3 md:mb-[60px] lg:mb-0 '>
       <UserProfileForm currentUser={currentUser} onSave={updateUser} isLoading={isUpdateLoading} refetchUserData={refetchUserData} />
     </div>
-
-
-
-
-
-
   )
 }
 

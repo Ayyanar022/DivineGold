@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
         required:true
     },
     name:{type:String},
-    mobileNo:{type:Number}, // number
+    mobileNo:{type:String}, // number
     address:{type:String},
     village:{type:String},   
     city:{type:String},   
