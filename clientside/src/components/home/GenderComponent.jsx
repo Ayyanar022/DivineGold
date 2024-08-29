@@ -8,13 +8,15 @@ import GenderCard from './GenderCard'
 
 const GenderComponent = () => {
     return (
-        <div className='container mx-auto py-4 md:py-6 px-1 bg-slate-100 '>
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold text-amber-600  text-center">
-                Search by Gender: Find Your Ideal Jewelry
+        <div className='container mx-auto py-4 md:py-6 lg:py-10 px-1 bg-slate-50 '>
+            <h2 className="text-lg md:text-2xl lg:text-3xl font-semibold text-amber-600 text-center">
+                Search by Gender
+                <span className='hidden md:inline'>: Find Your Ideal Jewelry</span>
             </h2>
             <p className="text-[14px] md:text-[16px] text-gray-600 text-center pb-7">
                 Browse our jewelry selection by gender to discover styles that match your identity and taste.
             </p>
+
 
             <div className='grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-10 lg:mx-6'>
 

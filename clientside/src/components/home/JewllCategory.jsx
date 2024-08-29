@@ -16,29 +16,34 @@ import { MdKeyboardArrowRight } from 'react-icons/md'
 
 const JewllCategory = () => {
     return (
-        <div className='container mx-auto py-6 md:py-9 lg:py-10 md:mt-5 md:px-12 bg-slate-100'>
+        <div className='container mx-auto py-6 md:py-9 lg:py-10 md:mt-5 md:px-12 #f5ebf3 md:bg-[#faf0f8]'>
 
             <div className=' md:pb-5   w-full  '>
-                <div className="flex flex-col items-center justify-center gap-2  md:gap-6 ">
-                    <h1 className="text-center text-xl sm:text-2xl md:text-3xl text-amber-600 font-bold">
+                <div className="flex flex-col items-center justify-center gap-2  md:gap-3 ">
+                    <h1 className=" hidden md:block text-center   md:text-2xl lg:text-[30px] text-amber-600 font-bold">
                         Discover Unmatched Jewelry Prices and Rates
                     </h1>
+                    <h1 className=" md:hidden text-center text-lg  text-amber-600 font-bold">
+                        Discover Unmatched Rates
+                    </h1>
+
 
                     <Link
                         to="/fairPrice"
-                        className="relative flex items-center gap-2 text-md h-7 text-gray-700 md:px-4 md:py-2 transition-colors duration-300 hover-move hover:text-amber-600"
+                        className="relative flex items-center gap-1 md:gap-4 text-md text-gray-700 md:px-4 md:py-2 transition-colors duration-300 hover-move hover:text-amber-600"
                     >
-                        <p className="md:text-lg font-semibold tracking-wider cursor-pointer after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-0.5 after:bg-amber-600 after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100">
+                        <p className="md:text-lg font-semibold tracking-wider cursor-pointer relative after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-0 after:h-0.5 after:bg-amber-600 after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100">
                             Explore
                         </p>
-                        <span className="cursor-pointer">
-                            <MdKeyboardArrowRight className="w-7 p-1 lg:p-2 h-7 md:h-8 md:w-8 lg:h-9 lg:w-9" />
+                        <span className="cursor-pointer flex items-center justify-center">
+                            <MdKeyboardArrowRight className="text-lg text-amber-500 md:text-2xl" />
                         </span>
                     </Link>
 
 
                 </div>
-                <h2 className=' text-[14px] md:text-[16px] text-gray-600 text-center py-2'>Explore our jewelry collection by category and type to find the best market prices. Simply select an item, enter the weight, and discover the most competitive rates instantly</h2>
+                {/* <h2 className=' hidden  md:block text-[14px] md:text-[16px] text-gray-600 text-center py-2'>Explore our jewelry collection by category and type to find the best market prices. Simply select an item, enter the weight, and discover the most competitive rates instantly</h2> */}
+                <h2 className='  text-justify md:text-center  text-[14px] md:text-[16px] text-gray-600 px-1 py-2'>Explore our jewelry by category and type to find the best market prices. Select an item, enter the weight, and see competitive rates instantly.</h2>
             </div>
 
             <div className='flex gap-6 overflow-x-auto scrollbar-hiden p-3'>

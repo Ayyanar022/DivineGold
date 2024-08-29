@@ -27,7 +27,7 @@ const BannerProduct = () => {
     const [currentBannerImage, setCurrentBannerImage] = useState(0);
 
     const deskTopBannerImage = [bnner8, bnner9, bnner1, bnner6, bnner2, bnner7, bnner3,];
-    const mobileBannerImage = [Mobbnner1, Mobbnner11,Mobbnner8,  Mobbnner12, Mobbnner3, Mobbnner6,Mobbnner9, Mobbnner7, ];
+    const mobileBannerImage = [Mobbnner1, Mobbnner11, Mobbnner8, Mobbnner12, Mobbnner3, Mobbnner6, Mobbnner9, Mobbnner7,];
 
     const nextImage = () => {
         setCurrentBannerImage((prev) =>
@@ -51,8 +51,10 @@ const BannerProduct = () => {
 
     return (
         <div className="relative mx-auto w-full">
-            <div className="relative h-56 md:h-[410px] lg:h-[450px] w-full bg-slate-200">
-                <div className="absolute z-10 w-full h-full flex justify-between items-center px-4 md:px-6 lg:px-8">
+            <div className="relative h-52 md:h-[410px] lg:h-[450px] w-full bg-orange-600">
+
+                {/** LEFTT AND RIGHT ARROWS */}
+                <div className="absolute hidden  z-10 w-full h-full md:flex justify-between items-center px-4 md:px-6 lg:px-8">
                     <button
                         onClick={prevImage}
                         className="text-3xl md:text-4xl bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 shadow-lg transition-all"
@@ -117,7 +119,7 @@ const BannerProduct = () => {
                 </div>
 
                 {/* Slide Indicators */}
-                <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
+                <div className="absolute bottom-5 left-0 right-0 flex justify-center space-x-2">
                     {deskTopBannerImage.map((_, index) => (
                         <button
                             key={index}
