@@ -14,8 +14,8 @@ const getAllFairPriceList = async(req,res)=>{
 
 const getSingleFairPriceDetails = async(req,res)=>{
     try{
-        const {itemName,category} = req.params;
-        const response = await FairPrice.find({category,itemName})
+        const {_id} = req.params;
+        const response = await FairPrice.find({_id:_id})
         if(response.length<1){
             res.status(200).json({message:"nodata fount",success:false})
         }       

@@ -5,7 +5,7 @@ import { jwtCheck, jwtParse } from '../middleware/auth.js';
     const router = express.Router();
 
     router.get('/',jwtCheck,jwtParse,FairPriceController.getAllFairPriceList)
-    router.get('/:itemName/:category',jwtCheck,jwtParse,FairPriceController.getSingleFairPriceDetails)
+    router.get('/:_id',jwtCheck,jwtParse,FairPriceController.getSingleFairPriceDetails)
 
 
     export default router

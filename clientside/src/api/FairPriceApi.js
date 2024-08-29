@@ -26,14 +26,14 @@ export const useGetAllFairPrice = () => {
 };
 
 
-export const useGetFairPriceDetailsData = (itemName, category)=>{
+export const useGetFairPriceDetailsData = (_id)=>{
   const { getAccessTokenSilently } = useAuth0();
 
   const getFairPriceDetails = async({queryKey})=>{
     const accessToken =await getAccessTokenSilently();
-    const[_key,itemName, category] = queryKey; 
+    const[_key,_id] = queryKey; 
 
-    const response =   await fetch(`${process.env.REACT_APP_BASE_URL}/api/fairPrice/${itemName}/${category}`, {
+    const response =   await fetch(`${process.env.REACT_APP_BASE_URL}/api/fairPrice/${_id}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -45,7 +45,7 @@ export const useGetFairPriceDetailsData = (itemName, category)=>{
     return response.json()   
   }
 
-  const {data:fairPriceDetails,isLoading,error} = useQuery(["getFairPriceDetails",itemName, category],getFairPriceDetails);
+  const {data:fairPriceDetails,isLoading,error} = useQuery(["getFairPriceDetails",_id],getFairPriceDetails);
   if (error) toast.error(error.toString());
   return { fairPriceDetails, isLoading };
 }

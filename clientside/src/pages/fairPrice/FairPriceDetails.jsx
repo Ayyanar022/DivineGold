@@ -32,6 +32,7 @@ const FairPriceDetails = () => {
     const { currentPriceData, isLoading: getCPisLoading } = useGetCurrentPrice()
     const { currentUser, isLoading: isGetLoading } = useGetMyUser()
     const { currentUserData, setCurrentUserData } = useCurrentUserConetxt();
+    const [activeImage, setActiveImage] = useState('');
 
 
     useEffect(() => {
@@ -51,9 +52,16 @@ const FairPriceDetails = () => {
 
     //-------------------------------------------------
 
-    const { itemName, category } = useParams()
-    const { fairPriceDetails, isLoading: cardDetailsLoding } = useGetFairPriceDetailsData(itemName, category)
+    const { _id } = useParams()
+    console.log("_id", _id)
+    const { fairPriceDetails, isLoading: isCardLoding } = useGetFairPriceDetailsData(_id)
     const details = fairPriceDetails?.data
+    console.log("details", fairPriceDetails)
+
+    const handleMouseEnter = (imgUrl) => {
+        setActiveImage(imgUrl)
+    }
+
 
 
     const [data, setData] = useState({
@@ -72,6 +80,8 @@ const FairPriceDetails = () => {
         tokenPricediscount: '',
         afterTokenDiscount: ''
     })
+
+    const emptyImageListing = new Array(4).fill(null); // for loading empty small image
 
 
     const { isAuthenticated } = useAuth0()
@@ -163,121 +173,39 @@ const FairPriceDetails = () => {
     return (
 
         <div className="container  mx-auto  pb-[47px] md:pb-[67px] lg:pb-[34px] bg-white p-4   lg:p-6">
-            {(cardDetailsLoding || cardDetailsLoding || isGetLoading) ? (
+            {(isCardLoding || isCardLoding || isGetLoading) ? (
                 <h1 className="text-center">Loading...</h1>
             ) : (
                 <div className="flex flex-col md:flex-row   items-center md:gap-6 justify-center lg:w-4/5 mx-auto ">
-                    <div className="w-full md:w-1/2 mb-2 md:mb-0 md:p-3 bg-white">
-                        {!cardDetailsLoding && (
-                            <img
-                                src={details?.item_Image}
-                                alt={details?.item_category}
-                                className="w-full object-scale-down h-[280px] py-2 md:h-[362px]"
-                            />
-                        )}
+
+                    {/**Product image */}
+                    <div className='h-96 flex flex-col lg:flex-row-reverse gap-2 md:gap-4'>
+                        <div className='mx-auto h-[260px] w-[270px] md:h-[300px] md:w-[300px] lg:h-96 lg:w-96 bg-slate-200 relative'>
+                            <img src={activeImage} className='h-full w-full object-cover  bg-slate-50' />
+                        </div>
+                        <div className='h-full'>
+                            {
+                                isCardLoding ? (
+                                    <div className='flex gap-2 lg:flex-col overflow-scroll scrollbar-hiden h-full'>
+                                        {emptyImageListing.map((el, index) => (
+                                            <div className='h-20 w-20 bg-slate-200 rounded animate-pulse' key={"loading" + index}> </div>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <div className='flex gap-2 lg:flex-col overflow-scroll scrollbar-hiden h-full'>
+                                        {fairPriceDetails?.data?.jewellImage?.map((imgurl, index) => (
+                                            <div className='h-20 w-20 bg-slate-200 rounded' key={"img" + imgurl}>
+                                                <img src={imgurl} onMouseEnter={() => handleMouseEnter(imgurl)} className='cursor-pointer w-full h-full object-cover border mix-blend-multiply' />
+                                            </div>
+                                        ))}
+                                    </div>
+                                )
+                            }
+                        </div>
+
                     </div>
 
 
-
-                    {/**Product details */}
-                    {/* <div className='bg-white'>
-                        <div className="w-full  lg:min-w-[500px] min-h-[382px] px-3 md:px-4 lg:px-6 py-4 shadow-lg ">
-                            <form>
-
-                                <div className='pb-5 bg-slate-50 p-1 py-2 md:py-4 '>
-                                    <div className=" flex gap-2  items-center mb-6">
-                                        <h2 className="text-[15px] font-semibold text-slate-700">Available Prize Token :</h2>
-                                        <p className=' text-[15px] font-bold text-sm text-slate-800'>{((currentUserData?.bonousePoints >= data?.usePriceToken) && (data?.usePriceToken > 0)) ? (currentUserData?.bonousePoints - data?.usePriceToken) : currentUserData?.bonousePoints}</p>
-                                    </div>
-
-                                    <div className=" grid grid-cols-2 gap-4 mb-5">
-                                        <div className=' lg:w-52 bg-white'>
-                                            <TextField
-                                                autoFocus
-                                                value={data.usePriceToken || ''}
-                                                onChange={handleChangeFeild}
-                                                name="usePriceToken"
-                                                label={PriceTokenLabel}
-                                                id="usePriceToken"
-                                                type='number'
-                                                fullWidth
-                                                variant='outlined'
-                                            />
-                                        </div>
-                                        <div className=' lg:w-52 bg-white'>
-                                            <TextField
-                                                autoFocus
-                                                value={data.itemWeight || ''}
-                                                onChange={handleChangeFeild}
-                                                name="itemWeight"
-                                                label="Enter Weight in gram"
-                                                id="itemWeight"
-                                                type='number'
-                                                fullWidth
-                                                variant='outlined'
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className=" flex flex-wrap  items-center  gap-4 ">
-                                        <label className='font-semibold text-[15px] text-slate-700'> Select Quality :</label>
-                                        <div className='flex gap-3  items-center justify-center '>
-                                            <RadioButton
-                                                label="75 HM(18K)"
-                                                value="75halmark"
-                                                checked={data.selectedValue === '75halmark'}
-                                                onChange={handleChange}
-                                            />
-                                            <RadioButton
-                                                label="916 HM(22k)"
-                                                value="916halmark"
-                                                checked={data.selectedValue === '916halmark'}
-                                                onChange={handleChange}
-                                            />
-                                        </div>
-
-                                    </div>
-                                </div>
-
-
-                              
-                                <div className='md:pt-3 '>
-
-                                    <div className='flex justify-between items-center py-1.5 '>
-                                        <label className='text-[14px] md:text-md lg:text-[16px] font-semibold tracking-wide text-slate-700'>Fair Price :</label>
-                                        <p className='text-[14px] md:text-md lg:text-[16px] font-semibold text-pink-600 tracking-wider'> {price?.bestPrice}</p>
-                                    </div>
-
-                                    <div className='flex justify-between items-center py-1.5 '>
-                                        <label className='text-[14px] md:text-md lg:text-[16px] font-semibold tracking-wide text-slate-700'>Prize Token Discount :</label>
-                                        <p className=' text-[14px] md:text-md lg:text-[16px] font-semibold text-pink-600 tracking-wider'> {price?.tokenPricediscount}</p>
-                                    </div>
-
-                                    <div className='flex justify-between items-center py-1.5 '>
-                                        <label className='text-[14px] md:text-md lg:text-[16px] font-semibold tracking-wide text-slate-700'>Best Fair Price :</label>
-                                        <p className='text-[14px] md:text-md lg:text-[16px] font-semibold text-pink-600 tracking-wider'> {price?.afterTokenDiscount}</p>
-                                    </div>
-                                </div>
-
-                                <div className='flex  gap-8 pt-2'>
-                                    <button className="bg-[#D4AF37] uppercase text-xs sm:text-sm  lg:text-[15px] tracking-wider font-bold p-2 hover:bg-[#C49C2E] transition-all duration-300 text-white my-3 w-full rounded"
-                                        onClick={handleSubmit}
-                                    >
-                                        Show Price
-                                    </button>
-                                    <button
-                                        className="bg-[#333333] uppercase text-xs sm:text-sm lg:text-[15px] tracking-wider font-bold p-2 text-white my-3 w-full rounded hover:bg-[#555555] transition-all duration-300"
-                                        onClick={handleClear}
-                                    >
-
-                                        Clear Price
-                                    </button>
-                                </div>
-
-
-                            </form>
-                        </div>
-                    </div> */}
 
                     <div>
                         <div className="w-full lg:min-w-[500px] min-h-[382px] px-1 md:px-4 lg:px-6 py-4 md:shadow-  bg-slate-50  ">

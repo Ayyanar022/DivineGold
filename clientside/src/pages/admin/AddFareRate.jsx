@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-// import UploadFairPrice from '../../components/admin/UploadFairPrice';
 import { useCreateFairPriceItem, useGetIteCategoryConstant, useGetItemGenderConstant, useGetItemNameConstant, useGetItemTypeConstant, useUpdateCurrentPrice } from '../../api/AdminApi';
 import { toast } from 'react-toastify';
 import { useGetAllFairPrice } from '../../api/FairPriceApi';
@@ -14,7 +13,7 @@ import uploadRateforImage from '../../helper/uploadRateForImage';
 
 const AddFareRate = () => {
 
-    const { createFairPrice, isLoading, isSuccess, isError } = useCreateFairPriceItem()
+    const { createFairPrice, isLoading: isLoadingNEWFairPrice, isSuccess, isError } = useCreateFairPriceItem()
 
     const [currentPrice, setCurrentPrice] = useState('')
     const { updateCurrentPrice, isLoading: CPisLoaing } = useUpdateCurrentPrice()
@@ -37,8 +36,6 @@ const AddFareRate = () => {
     const { ConstantItemType, isLoading: typeIsLoading, refetch: typeRefetch } = useGetItemTypeConstant();
     const { ConstantItemGender, isLoading: GenderisLoading, refetch: GenderRefetch } = useGetItemGenderConstant();
 
-    // const [dialogOpen, setDialogOpen] = useState(false);
-    const [currentItem, setCurrentItem] = useState(null);
     const [isEditMode, setisEditMode] = useState(false)
     const [dailogOpen, setDialogOpen] = useState()
 
@@ -62,12 +59,6 @@ const AddFareRate = () => {
             [name]: value
         }))
     }
-
-    // Open EDIT Dialogbox
-    // const opnDialog = (item) => {
-    //     setCurrentItem(item);
-    //     setDialogOpen(true)
-    // }
 
 
     // Edit 
@@ -171,38 +162,46 @@ const AddFareRate = () => {
     return (
         <div className=' w-full h-full container'>
             {/** TO ADD CURRENT RATE */}
-            <div className='flex justify-center  border-b-2 pb-3'>
-                <div className=''>
-                    <form className='flex  flex-1 gap-2 p-3'>
-                        <input className='p-1 px-2 outline-none border shadow-md' placeholder='Enter Current Price' value={currentPrice} onChange={(e) => setCurrentPrice(e.target.value)} />
-                        <button className='p-1 bg-pink-500 hover:bg-pink-600 px-2 rounded-md text-white' onClick={hanleUpdateCurrentPrice} >Update Current Price</button>
-                    </form>
-                </div>
-            </div>
+            <div className='  p-1 flex  justify-around items-center bg-slate-100'>
 
-            <div className=' flex justify-between p-4 items-center shadow-md '>
-                <h1 className='text-md font-semibold'>Upload new Fair Price item</h1>
-                <button onClick={() => setDialogOpen(true)} className='bg-pink-500 hover:bg-pink-600 px-3 py-1 rounded font-medium text-sm text-white'>Upload New</button>
+                <form className='flex  justify-center items-center gap-x-10 py-5 '>
+                    <div className='w-36 h-12 flex justify-center items-center'>
+                        <TextField
+                            fullWidth
+                            margin='dense'
+                            autoFocus
+                            value={currentPrice || ''}
+                            onChange={(e) => setCurrentPrice(e.target.value)}
+                            id="currentPrice"
+                            variant='outlined'
+                            type='number'
+                            label="Current Rate"
+                        />
+                    </div>
+
+                    <button className=' px-5 py-3.5  uppercase text-[16px] font-semibold  bg-gradient-to-br from-lime-500 bg-yellow-300  hover:shadow-lg transition-all duration-300' onClick={hanleUpdateCurrentPrice} >Update Current Rate</button>
+                </form>
+                <button onClick={() => setDialogOpen(true)} className='   font-bold text-[16px] px-4 py-4 bg-gradient-to-tl from-amber-300 to-orange-400 uppercase tracking-wide'>Upload New card</button>
             </div>
 
 
             {/**ALL FAIR PRICE ITEM LIST */}
 
-            <div className='mt-7 p-3 shadow-sm'>
-                <h2 className='text-md font-semibold'> All FairPrice Item List</h2>
+            <div className=' mt-4 shadow-sm'>
+                <h2 className='text-[18px] font-bold text-slate-700 uppercase'> All FairPrice list item</h2>
                 <div className='w-full'>
                     <table className='w-full mt-2'>
                         <thead className='border'>
-                            <tr className='border-b text-md'>
-                                <th className='px-4 py-2 text-left'>S.No</th>
-                                <th className='px-4 py-2 text-left'>IMG</th>
-                                <th className='px-4 py-2 text-left'>Item Name</th>
-                                <th className='px-4 py-2 text-left'>Category</th>
-                                <th className='px-4 py-2 text-left'>Type</th>
-                                <th className='px-4 py-2 text-left'>Touch 75</th>
-                                <th className='px-4 py-2 text-left'>Touch 92</th>
-                                <th className='px-4 py-2 text-left'>Edit</th>
-                                <th className='px-4 py-2 text-left'>Remove</th>
+                            <tr className='border-b text-md bg-gradient-to-br from-lime-500 bg-yellow-300 '>
+                                <th className='px-4 py-2.5 text-left'>S.No</th>
+                                <th className='px-4 py-2.5 text-left'>IMG</th>
+                                <th className='px-4 py-2.5 text-left'>Item Name</th>
+                                <th className='px-4 py-2.5 text-left'>Category</th>
+                                <th className='px-4 py-2.5 text-left'>Type</th>
+                                <th className='px-4 py-2.5 text-left'>Touch 75</th>
+                                <th className='px-4 py-2.5 text-left'>Touch 92</th>
+                                <th className='px-4 py-2.5 text-left'>Edit</th>
+                                <th className='px-4 py-2.5 text-left'>Remove</th>
                             </tr>
                         </thead>
 

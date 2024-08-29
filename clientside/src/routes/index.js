@@ -47,7 +47,7 @@ const router = createBrowserRouter([
           },       
         ]
        },
-       { path: "fairPrice-details/:itemName/:category",element:< FairPriceDetails />},
+       { path: "fairPrice-details/:_id",element:< FairPriceDetails />},
        { path: "JewllDesign-details/:id",element:<ExploreCardDetails />},
        { path: "CartPage", element:<CartPage /> },
        { path: "not-authorized" , element:<NotAuthorized />},
