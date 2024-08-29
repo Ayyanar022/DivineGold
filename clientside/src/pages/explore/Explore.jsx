@@ -94,18 +94,6 @@ const Explore = () => {
 
 
 
-  // // No Authentication
-  // if (!isAuthenticated) {
-  //   return (
-  //     <div className="w-full h-full bg-white flex items-center justify-center ">
-  //       <div className='md:w-[80%]  m-4'>
-  //         <h1 className="text-xl md:text-2xl  text-amber-500 bg-amber-100 p-6 border text-center mt-20">Please Login To Access Benifits</h1>
-
-  //       </div>
-  //     </div>
-  //   )
-  // }
-
   // loading empty  card data count .
   const loadingEmptyCard = new Array(20).fill(null)
 
@@ -356,7 +344,7 @@ const Explore = () => {
           <h2 className="font-bold text-amber-500 text-lg md:text-2xl px-5 py-4">Jewell Designs</h2>
         </div>
 
-        <div className=" w-full h-full grid  gap-x-4 gap-y-3  lg:gap-5 grid-cols-2 md:px-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 ">
+        <div className=" w-full h-full grid  gap-x-4 gap-y-3   lg:gap-x-6 lg:gap-y-5 grid-cols-2 md:px-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 ">
           {!dataToRender && loadingEmptyCard.map((item, index) => (
             <div key={index}> <LoadingJewelCard /> </div>
           ))}

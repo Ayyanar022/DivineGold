@@ -63,7 +63,9 @@ const ExploreCardDetails = () => {
     const params = useParams()
     const _id = params.id;
     const { simgleJewellData, isLoading: isCardLoding } = useGetOneJewllDesign(_id)
-    const details = simgleJewellData
+    const details = simgleJewellData;
+
+    console.log("details", details)
 
     const { currentUserData, setCurrentUserData } = useCurrentUserConetxt();
 
@@ -130,7 +132,7 @@ const ExploreCardDetails = () => {
 
         if (data.selectedValue === "75halmark") {
             let result, token, resultData;
-            result = (((details.touch_75 / 100) * data.itemWeight) * currentPriceCP);
+            result = ((((details.touch_75 + details.touch_M_75) / 100) * Number(data.itemWeight)) * currentPriceCP);
 
             if (Number(data.usePriceToken) > 0 && (currentUserData?.bonousePoints >= Number(data.usePriceToken))) {
                 token = Number(data.usePriceToken) * 39
@@ -152,7 +154,7 @@ const ExploreCardDetails = () => {
 
         } else if (data.selectedValue === "916halmark") {
             let result, token, resultData;
-            result = (((details.touch_92 / 100) * data.itemWeight) * currentPriceCP)
+            result = ((((details.touch_92 + details.touch_M_92) / 100) * Number(data.itemWeight)) * currentPriceCP)
 
             if (Number(data.usePriceToken) > 0 && (currentUserData?.bonousePoints >= Number(data.usePriceToken))) {
                 token = Number(data.usePriceToken) * 39
@@ -171,11 +173,9 @@ const ExploreCardDetails = () => {
                 })
                 return
             }
-
         } else {
             setPrice()
         }
-
     }
 
     const handleChangeFeild = (e) => {
@@ -189,10 +189,11 @@ const ExploreCardDetails = () => {
 
 
     // VALIDATE PRICE TOKEN
-
-
     const PriceTokenLabel = data?.usePriceToken ? (((currentUserData?.bonousePoints >= data?.usePriceToken) && (data?.usePriceToken > 0)) ? (<p className=" text-slate-700">Use Prize Token :</p>) : (<p className=" text-red-500 ">Invalid.! prize token:</p>)) : <p className="  text-slate-700">Use Prize Token :</p>
 
+    
+    // prize token data
+    const PrzeTokenData = ((currentUserData?.bonousePoints >= data?.usePriceToken) && (data?.usePriceToken > 0)) ? (currentUserData?.bonousePoints - data?.usePriceToken) : currentUserData?.bonousePoints
 
     return (
         <div className='container mx-auto p-4  lg:px-8 pb-[60px] md:pb-[85px] bg-white lg:pb-[28px]'>
@@ -255,7 +256,7 @@ const ExploreCardDetails = () => {
                             <div className='pb-5    md:py-2 '>
                                 <div className=" flex gap-2  items-center mb-4">
                                     <h2 className="text-[14px]  font-semibold text-slate-700">Available Prize Token :</h2>
-                                    <p className=' text-[14px]  font-bold text-sm text-slate-800'>{((currentUserData?.bonousePoints >= data?.usePriceToken) && (data?.usePriceToken > 0)) ? (currentUserData?.bonousePoints - data?.usePriceToken) : currentUserData?.bonousePoints}</p>
+                                    <p className=' text-[14px]  font-bold text-sm text-slate-800'>{PrzeTokenData}</p>
                                 </div>
 
                                 <div className=" grid grid-cols-2 gap-x-3 md:gap-4 mb-5">

@@ -79,10 +79,8 @@ const ConstantsAdd = () => {
                     "Content-Type": "application/json"
                 }
             })
-            if (response?.status === 201) {
-                setItemtype('')
-                typeRefetch()
-            }
+            setItemtype('')
+            await typeRefetch()
         } catch (err) {
             console.log("Error", err)
         }
@@ -141,7 +139,7 @@ const ConstantsAdd = () => {
                 "Content-Type": "application/json"
             }
         })
-        typeRefetch()
+        await typeRefetch()
     }
 
     const handleGenderDeleteFun = async (id, GenderRefetch) => {

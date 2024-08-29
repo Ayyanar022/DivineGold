@@ -7,6 +7,8 @@ const newJewllDesignSchema = new mongoose.Schema({
     jewellGender: {type:String},
     touch_75: {type:Number},
     touch_92: {type:Number},
+    touch_M_75: {type:Number},
+    touch_M_92: {type:Number},
     jewellImage: [],
     jewellDescription: {type:String}
 })

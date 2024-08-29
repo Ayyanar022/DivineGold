@@ -8,7 +8,7 @@ router.get("/",jwtCheck,jwtParse,AdminController.getAllUser);
 router.post("/",jwtCheck,jwtParse,AdminController.createFairPriceItem)
 router.post("/currentPrice",jwtCheck,jwtParse,AdminController.updateCurentPrice);
 router.get("/currentPrice",jwtCheck,jwtParse,AdminController.getCurrentPrice);
-router.put('/',jwtCheck,jwtParse,AdminController.updateFairPriceItem)
+router.put('/put-fairprice',jwtCheck,jwtParse,AdminController.updateFairPriceItem)
 router.delete('/',jwtCheck,jwtParse,AdminController.deletFairPriceItem)
 
 //new jewllDesign

@@ -1,6 +1,5 @@
 import { Autocomplete, Button, Dialog, DialogActions, DialogContent, DialogTitle, Input, TextField } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { category, Gender, itemCategory } from '../../helper/uploadFairPriceItemData'
 import uploadRateforImage from '../../helper/uploadRateForImage'
 import { MdDelete, MdEdit } from 'react-icons/md'
 import { useGetIteCategoryConstant, useGetItemGenderConstant, useGetItemNameConstant, useGetItemTypeConstant, useUploadNewItemDesign } from '../../api/AdminApi'
@@ -21,12 +20,20 @@ const ExploreCardAdd = () => {
         jewellGender: '',
         touch_75: "",
         touch_92: "",
+        touch_M_75: "",
+        touch_M_92: "",
         jewellImage: [],
         jewellDescription: ""
     }
 
     const [dailogOpen, setDialogOpen] = useState()
     const [jewellData, setJewellData] = useState(newDesign)
+    const [isEditMode, setisEditMode] = useState(false)
+
+    const { ConstantItemName, isLoading: NameIsLoading, refetch: NameRefetch } = useGetItemNameConstant()
+    const { ConstantItemCategory, isLoading: CategoryIsLoading, refetch: CategoryRefetch } = useGetIteCategoryConstant();
+    const { ConstantItemType, isLoading: typeIsLoading, refetch: typeRefetch } = useGetItemTypeConstant();
+    const { ConstantItemGender, isLoading: GenderisLoading, refetch: GenderRefetch } = useGetItemGenderConstant();
 
     const openDialog = () => {
         setDialogOpen(true)
@@ -35,6 +42,8 @@ const ExploreCardAdd = () => {
     //close dialog
     const closeDialogFun = () => {
         setDialogOpen(false)
+        setisEditMode(false)
+        setJewellData(newDesign)
     }
 
     const handleChange = (e) => {
@@ -137,20 +146,17 @@ const ExploreCardAdd = () => {
         if (response.ok) {
             queryClient.invalidateQueries('getAllJewell') // to refetch data
             handleCancel()
+            setisEditMode(false)
             toast.success("Updated Scuccessfully..")
         }
     }
 
-    const { ConstantItemName, isLoading: NameIsLoading, refetch: NameRefetch } = useGetItemNameConstant()
-    const { ConstantItemCategory, isLoading: CategoryIsLoading, refetch: CategoryRefetch } = useGetIteCategoryConstant();
-    const { ConstantItemType, isLoading: typeIsLoading, refetch: typeRefetch } = useGetItemTypeConstant();
-    const { ConstantItemGender, isLoading: GenderisLoading, refetch: GenderRefetch } = useGetItemGenderConstant();
 
     return (
         <div>
-            <div className='w-full border-b flex justify-between items-center px-1 py-3'>
-                <h2 className='text-md font-semibold '>Upload jewell Items</h2>
-                <button className='py-1 px-2 rounded bg-pink-500 hover:bg-pink-700 text-white' onClick={openDialog}>Upload item</button>
+            <div className='w-full  flex justify-between items-center p-4 bg-slate-200 mb-5'>
+                <h2 className='text-[17px] uppercase tracking-wide font-semibold '>Upload jewell Items</h2>
+                <button className='py-1.5 px-5 font-bold uppercase tracking-wide rounded bg-pink-700 hover:bg-pink-800 hover:shadow-md  text-white' onClick={openDialog}>Upload item</button>
             </div>
 
 
@@ -160,92 +166,132 @@ const ExploreCardAdd = () => {
                     Upload New Jewell Item
                 </DialogTitle>
                 <DialogContent>
-                    <TextField
-                        autoFocus
-                        value={jewellData.jewellName || ''}
-                        onChange={handleChange}
-                        name="jewellName"
-                        label="Jewell Name"
-                        id="jewellName"
-                        type='text'
-                        fullWidth
-                        variant='outlined'
-                    />
 
-                    <Autocomplete
-                        className='mt-4'
-                        autoFocus
-                        freeSolo
-                        id="jewellCategory"
-                        value={jewellData?.jewellCategory || ''}
-                        name="jewellCategory"
-                        options={ConstantItemCategory?.data || []} // This should be your fetched data
-                        getOptionLabel={(option) => option?.itemCategory || jewellData?.jewellCategory || ''}  // Display the item name
-                        onChange={(event, newValue) => setJewellData(prev => ({ ...prev, jewellCategory: newValue?.itemCategory }))}
-                        renderInput={(params) => (
-                            <TextField {...params} label="Select Jewell Category" variant='outlined' />
-                        )}
-                    />
+                    <div className='grid grid-cols-2 gap-4'>
+                        <Autocomplete
+                            className='mt-4'
+                            autoFocus
+                            freeSolo
+                            id="jewellName"
+                            value={jewellData.jewellName || ''}
+                            name="jewellName"
+                            options={ConstantItemName?.data || []} // This should be your fetched data
+                            getOptionLabel={(option) => option?.itemName || jewellData?.jewellName || ''}  // Display the item name
+                            onChange={(event, newValue) => setJewellData(prev => ({ ...prev, jewellName: newValue?.itemName }))}
+                            renderInput={(params) => (
+                                <TextField {...params} label="Select Jewell Name" variant='outlined' />
+                            )}
+                        />
+
+                        <Autocomplete
+                            className='mt-4'
+                            autoFocus
+                            freeSolo
+                            id="jewellCategory"
+                            value={jewellData?.jewellCategory || ''}
+                            name="jewellCategory"
+                            options={ConstantItemCategory?.data || []} // This should be your fetched data
+                            getOptionLabel={(option) => option?.itemCategory || jewellData?.jewellCategory || ''}  // Display the item name
+                            onChange={(event, newValue) => setJewellData(prev => ({ ...prev, jewellCategory: newValue?.itemCategory }))}
+                            renderInput={(params) => (
+                                <TextField {...params} label="Select Jewell Category" variant='outlined' />
+                            )}
+                        />
+
+                    </div>
+
+                    <div className='grid grid-cols-2 gap-4'>
+
+                        <Autocomplete
+                            className='mt-4'
+                            autoFocus
+                            freeSolo
+                            id="jewellType"
+                            name="jewellType"
+                            value={jewellData?.jewellType || ''}
+                            options={ConstantItemType?.data || []}
+                            getOptionLabel={(option) => option?.itemType || jewellData?.jewellType || ''}
+                            onChange={(event, newValue) => setJewellData(prev => ({ ...prev, jewellType: newValue?.itemType }))}
+                            renderInput={(params) => (
+                                <TextField {...params} label="Select jewll Type" variant='outlined' />
+                            )}
+                        />
+
+                        <Autocomplete
+                            className='mt-4'
+                            freeSolo
+                            autoFocus
+                            id="jewellGender"
+                            name="jewellGender"
+                            value={jewellData?.jewellGender || ''}
+                            options={ConstantItemGender?.data || []}
+                            getOptionLabel={(option) => option?.itemGender || jewellData?.jewellGender || ''}
+                            onChange={(event, newValue) => setJewellData(prev => ({ ...prev, jewellGender: newValue?.itemGender }))}
+                            renderInput={(params) => (
+                                <TextField {...params} label="Select Gender" variant='outlined' />
+                            )}
+                        />
+                    </div>
+
+                    <div className='grid grid-cols-2 gap-4'>
+                        <TextField
+                            fullWidth
+                            margin='dense'
+                            autoFocus
+                            value={jewellData.touch_75 || ''}
+                            onChange={handleChange}
+                            name="touch_75"
+                            id="touch_75"
+                            variant='outlined'
+                            type='number'
+                            label="Touch 75"
+                        />
+                        <TextField
+                            fullWidth
+                            margin='dense'
+                            autoFocus
+                            value={jewellData.touch_92 || ''}
+                            onChange={handleChange}
+                            name="touch_92"
+                            id="touch_92"
+                            variant='outlined'
+                            type='number'
+                            label="Touch 92"
+                        />
+                    </div>
 
 
-                    <Autocomplete
-                        className='mt-4'
-                        autoFocus
-                        freeSolo
-                        id="jewellType"
-                        name="jewellType"
-                        value={jewellData?.jewellType || ''}
-                        options={ConstantItemType?.data || []}
-                        getOptionLabel={(option) => option?.itemType || jewellData?.jewellType || ''}
-                        onChange={(event, newValue) => setJewellData(prev => ({ ...prev, jewellType: newValue?.itemType }))}
-                        renderInput={(params) => (
-                            <TextField {...params} label="Select jewll Type" variant='outlined' />
-                        )}
-                    />
+                    <div className='grid grid-cols-2 gap-4'>
+                        <TextField
+                            fullWidth
+                            margin='dense'
+                            autoFocus
+                            value={jewellData?.touch_M_75 || ''}
+                            onChange={handleChange}
+                            name="touch_M_75"
+                            id="touch_M_75"
+                            variant='outlined'
+                            type='number'
+                            label="Touch M_75"
+                        />
 
+                        <TextField
+                            fullWidth
+                            margin='dense'
+                            autoFocus
+                            value={jewellData?.touch_M_92 || ''}
+                            onChange={handleChange}
+                            name="touch_M_92"
+                            id="touch_M_92"
+                            variant='outlined'
+                            type='number'
+                            label="Touch M_92"
+                        />
 
-                    <Autocomplete
-                        className='mt-4'
-                        freeSolo
-                        autoFocus
-                        id="jewellGender"
-                        name="jewellGender"
-                        value={jewellData?.jewellGender || ''}
-                        options={ConstantItemGender?.data || []}
-                        getOptionLabel={(option) => option?.itemGender || jewellData?.jewellGender || ''}
-                        onChange={(event, newValue) => setJewellData(prev => ({ ...prev, jewellGender: newValue?.itemGender }))}
-                        renderInput={(params) => (
-                            <TextField {...params} label="Select Gender" variant='outlined' />
-                        )}
-                    />
-
-                    <TextField
-                        fullWidth
-                        margin='dense'
-                        autoFocus
-                        value={jewellData.touch_75 || ''}
-                        onChange={handleChange}
-                        name="touch_75"
-                        id="touch_75"
-                        variant='outlined'
-                        type='number'
-                        label="Touch 75"
-                    />
-                    <TextField
-                        fullWidth
-                        margin='dense'
-                        autoFocus
-                        value={jewellData.touch_92 || ''}
-                        onChange={handleChange}
-                        name="touch_92"
-                        id="touch_92"
-                        variant='outlined'
-                        type='number'
-                        label="Touch 92"
-                    />
+                    </div>
 
                     {jewellData.jewellImage.length > 0 && (
-                        <div className="flex gap-4">
+                        <div className="flex gap-4 ">
                             {jewellData.jewellImage.map((image, index) => (
                                 <div className="relative group" key={index}>
                                     <img
@@ -265,8 +311,9 @@ const ExploreCardAdd = () => {
                             ))}
                         </div>
                     )}
-                    <label htmlFor="image">
-                        <div className='border p-3 mt-2 bg-green-300'>
+
+                    <label htmlFor="image" className=''>
+                        <div className='border p-3 mt-2 bg-green-300 my-2'>
                             <p className='text-center font-sans font-semibold text-sm'>Upload Image</p>
                             <input id="image" className='hidden' onChange={handleUploadImage} type='file' />
                         </div>
@@ -289,26 +336,28 @@ const ExploreCardAdd = () => {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={closeDialogFun}>Cancel</Button>
-                    <Button onClick={handleEditJewllDesign}>Edit</Button>
-                    <Button onClick={uploadNewDesign}>Add</Button>
+                    {isEditMode && <Button onClick={handleEditJewllDesign}>Edit</Button>}
+                    {!isEditMode && <Button onClick={uploadNewDesign}>Add</Button>}
                 </DialogActions>
             </Dialog>
 
 
             {/** Jewll designs */}
-            <div className='w-full'>
-                <h2 className='py-3 px-1 text-slate-700 font-semibold'>All Jewll Designs </h2>
+            <div className='w-full '>
+                <h2 className='py-2  px-1 text-slate-700 font-semibold text-[17px]'>All Jewel Designs</h2>
                 <table className='w-full mt-2 border '>
                     <thead className='border'>
-                        <tr className='border-b text-md '>
-                            <th className='px-4 py-2 text-left'>S.No</th>
+                        <tr className='border-b text-md bg-rose-700 text-slate-200'>
+                            <th className='px-1 py-2 text-left'>S.No</th>
                             <th className='px-4 py-2 text-left' >Image</th>
                             <th className='px-4 py-2 text-left' >Name</th>
                             <th className='px-4 py-2 text-left' >category</th>
                             <th className='px-4 py-2 text-left' >Type</th>
                             <th className='px-4 py-2 text-left' >Gender</th>
-                            <th className='px-4 py-2 text-left' >Touch 75</th>
-                            <th className='px-4 py-2 text-left' >Touch 92</th>
+                            <th className='px-4 py-2 text-left' >18K</th>
+                            <th className='px-4 py-2 text-left' >22K</th>
+                            <th className='px-2 py-2 text-left' >M_75</th>
+                            <th className='px-2 py-2 text-left' >M_92</th>
                             <th className='px-4 py-2 text-left' >Edit</th>
                             <th className='px-4 py-2 text-left' >Remove</th>
                         </tr>
@@ -327,8 +376,8 @@ const ExploreCardAdd = () => {
                             ) : (
                                 JewellDesignData && JewellDesignData?.map((data, index) => (
                                     <tr key={index} className='border-b text-[14px]'>
-                                        <td className='px-4 py-1' >{index + 1}</td>
-                                        <td>
+                                        <td className='px-2 py-1' >{index + 1}</td>
+                                        <td className='px-4 py-1'>
                                             <img src={data?.jewellImage[0]} alt="img" width={40} height={40} />
                                         </td>
                                         <td className='px-4 py-1'>{data?.jewellName}</td>
@@ -337,7 +386,12 @@ const ExploreCardAdd = () => {
                                         <td className='px-4 py-1' >{data?.jewellGender}</td>
                                         <td className='px-4 py-1' >{data?.touch_75}</td>
                                         <td className='px-4 py-1' >{data?.touch_92}</td>
-                                        <td onClick={() => opnDialog(data)} className='px-4 py-2 text-green-400 hover:text-green-700 cursor-pointer'>
+                                        <td className='px-2 py-1' >{data?.touch_M_75}</td>
+                                        <td className='px-2 py-1' >{data?.touch_M_92}</td>
+                                        <td onClick={() => {
+                                            opnDialog(data);
+                                            setisEditMode(true)
+                                        }} className='px-4 py-2 text-green-400 hover:text-green-700 cursor-pointer'>
                                             <span className='text-xl'><MdEdit /></span>
                                         </td>
                                         <td onClick={() => handleDelete(data)} className='px-4 py-2 text-red-400 hover:text-red-700 cursor-pointer'>

@@ -14,18 +14,24 @@ export const item_Name = [
    
    {id:8, label: "Coin",},
    
-   {id:9, label: "RingMen",},
+   {id:9, label: "Ring",},
 
-    {id:11,label: "RingsWomen",},
-   {id:12, label: "RingsWomenFancy"},
+    {id:11,label: "CastingRing",},
+   {id:12, label: "WeddingRing"},
+   {id:12, label: "NamingRing"},
+
 
    {id:13,  label: "Kadas"},
    {id:14, label: "Bracelets"},  
+   {id:14, label: "Casting Bracelets"},  
 
-   {id:16,  label: "Chanins"},
-   {id:17,  label: "ChaninsFancy"},
-   { id:18, label:"SaraduChain"},
-   {id:19, label:"SaraduChainFancy"},
+   {id:16,  label: "Chanin"},
+   {id:17,  label: "Fancy Chain"},
+   { id:18, label:"Sarad uChain"},
+   {id:19, label:"SR Chain Saradu"},
+   {id:19, label:"SR Moppu Chain Saradu"},
+   {id:19, label:"SQR_R Chain Saradu"},
+   {id:19, label:"SQR_R Moppu Chain Saradu"},
   
 ];
 

@@ -61,19 +61,8 @@ const getCurrentPrice = async(req,res)=>{
 const updateFairPriceItem = async(req,res)=>{
   try{
   
-    const {_id,touch_92,touch_75,item_category,itemName} = req.body;
-   
-    const updateItem = await FairPrice.findByIdAndUpdate(
-      _id,
-      {
-        itemName,
-        item_category,
-        touch_75,
-        touch_92,
-      },
-      {new:true}
-    )
-
+    const {_id,...updateData} = req.body;   
+    const updateItem = await FairPrice.findByIdAndUpdate( _id, updateData, {new:true})
     if(!updateItem){
       return res.status(404).json({ message: "Item not found", error: true });
     }
