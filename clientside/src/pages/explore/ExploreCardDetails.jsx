@@ -202,17 +202,15 @@ const ExploreCardDetails = () => {
                 <div className='h-96 flex flex-col lg:flex-row-reverse gap-2 md:gap-4'>
 
                     <div className='mx-auto h-[260px] w-[270px] md:h-[300px] md:w-[300px] lg:h-96 lg:w-96 bg-slate-200 relative'>
-                        <img src={activeImage} onMouseLeave={handleZoomOut} onMouseMove={handleZoomImage} className='h-full w-full object-scale-down  bg-slate-50' />
+                        <img src={activeImage} onMouseLeave={handleZoomOut} onMouseMove={handleZoomImage} className='h-full w-full object-cover bg-slate-50' />
 
-                        {/**Zoom image */}
+                        {/**Zoom image mix-blend-multiply*/}
                         {zoomImageOpen && (<div className=' hidden lg:block absolute min-h-[400px] min-w-[400px] bg-slate-200 p-1 -right-[430px] top-0'>
                             <div
-                                className='h-full w-full min-h-[400px] min-w-[400px]  mix-blend-multiply'
+                                className='h-full w-full min-h-[400px] min-w-[400px]  '
                                 style={{
                                     backgroundImage: `url(${activeImage})`, backgroundRepeat: "no-repeat",
-
-                                    backgroundPosition: `${zoomImage?.x * 100}% ${zoomImage?.y * 100
-                                        }%`,
+                                    backgroundPosition: `${zoomImage?.x * 100}% ${zoomImage?.y * 100}%`,
                                 }}>
                             </div>
                         </div>)}
@@ -231,7 +229,7 @@ const ExploreCardDetails = () => {
                                 <div className='flex gap-2 lg:flex-col overflow-scroll scrollbar-hiden h-full'>
                                     {simgleJewellData?.jewellImage?.map((imgurl, index) => (
                                         <div className='h-20 w-20 bg-slate-200 rounded' key={"img" + imgurl}>
-                                            <img src={imgurl} onMouseEnter={() => handleMouseEnter(imgurl)} className='cursor-pointer w-full h-full object-scale-down border mix-blend-multiply' />
+                                            <img src={imgurl} onMouseEnter={() => handleMouseEnter(imgurl)} className='cursor-pointer w-full h-full object-cover border ' />
                                         </div>
                                     ))}
                                 </div>
@@ -243,11 +241,16 @@ const ExploreCardDetails = () => {
 
                 {/**Product details */}
                 <div>
-                    <div className="w-full lg:min-w-[500px] min-h-[382px] px-1 md:px-4 lg:px-6 md:py-4 md:shadow-md   ">
+                    <div className="w-full lg:min-w-[500px] min-h-[382px] px-1 md:px-4 lg:px-6  md:shadow-md   ">
 
-                        <div className='pb-2 md:pb-0'>
+                        {/* <div className='pb-2 md:pb-0'>
                             <h2 className="text-[14px] md:text-[16px] font-bold  text-gray-800 uppercase ">Get the Best Price for Your Chosen Design </h2>
                             <p className='w-full text-[11px] md:text-[12px] lg:text-[13px] text-left  text-amber-800 mb-2 md:mb-5'>Select the design you love & get exact price instantly</p>
+                        </div> */}
+
+                        <div>
+                            <h2 className="text-[14px] md:text-[17px] font-bold  text-gray-800 uppercase "><span className='  text-[16px] md:text-[19px]   text-amber-600 pr-3'>{details?.jewellName} </span>{details?.jewellDescription} </h2>
+                            <p className='w-full text-left text-[11px] md:text-[12px] lg:text-[13px]   text-amber-800 mb-2 '>Enter the weight in grams and get the best market price at a glance</p>
                         </div>
 
                         <form>

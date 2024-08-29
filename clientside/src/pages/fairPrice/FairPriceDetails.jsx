@@ -216,7 +216,7 @@ const FairPriceDetails = () => {
                     <div>
                         <div className="w-full lg:min-w-[500px] min-h-[382px] px-1 md:px-4 lg:px-6 py-4 md:shadow-  bg-slate-50  ">
                             <div>
-                                <h2 className="text-[14px] md:text-[17px] font-bold  text-gray-800 uppercase ">{details?.jewellDescription} </h2>
+                                <h2 className="text-[14px] md:text-[17px] font-bold  text-gray-800 uppercase "><span className='  text-[16px] md:text-[19px]   text-amber-600 pr-3'>{details?.jewellName} </span>{details?.jewellDescription} </h2>
                                 <p className='w-full text-left text-[11px] md:text-[12px] lg:text-[13px]   text-amber-800 mb-2 md:mb-5'>Enter the weight in grams and get the best market price at a glance</p>
                             </div>
                             <form>
@@ -226,6 +226,8 @@ const FairPriceDetails = () => {
                                         <h2 className="text-[14px]  font-semibold text-slate-700">Available Prize Token :</h2>
                                         <p className=' text-[14px]  font-bold text-sm text-slate-800'>{((currentUserData?.bonousePoints >= data?.usePriceToken) && (data?.usePriceToken > 0)) ? (currentUserData?.bonousePoints - data?.usePriceToken) : currentUserData?.bonousePoints}</p>
                                     </div>
+
+                                    {/* <p className='bg-green-400 py-2 text-black'></p> */}
 
                                     <div className=" grid grid-cols-2 gap-x-3 md:gap-4 mb-5">
                                         <div className=' lg:w-52 bg-white'>

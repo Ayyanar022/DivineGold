@@ -21,6 +21,17 @@ const getFilterJEwellDesignData = async (req, res) => {
       let filter = {};
   
       if (gender) filter.jewellGender = { $in: gender.split(',') };
+
+      if(gender){
+        const genderArray = gender.split(',');
+
+        if(genderArray.includes('Men')|| genderArray.includes("Women")){
+          genderArray.push('Adult_both')
+        }
+        filter.jewellGender = {$in :genderArray }
+      }
+
+
       if (type) filter.jewellType = { $in: type.split(',') };
       if (category) filter.jewellCategory = { $in: category.split(',') };
   

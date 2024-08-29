@@ -90,7 +90,7 @@ const FairPrice = () => {
 
       <div className='flex justify-between md:block space-x-2 md:space-x-5 pt-3 lg:pt-5 px-2 transition-all duration-200'>
         <button className="bg-[#D4AF37] uppercase text-xs    md:tracking-wider font-semibold py-1.5 px-3 md:px-4 hover:bg-[#C49C2E] transition-all duration-300 text-white  rounded"
-          onClick={() => TypeFilter(filterdcardData[0]?.jewellCategory, "Treditional")} >
+          onClick={() => TypeFilter(filterdcardData[0]?.jewellCategory, "Traditional")} >
           Treditional
         </button>
 
@@ -106,8 +106,13 @@ const FairPrice = () => {
       </div>
 
 
-      <div className='  py-4 px-2 '>
-        <div onClick={() => setFilterdCardData([])} className='mb-4  w-fit  text-xl font-bold cursor-pointer text-amber-500'>All jewellType</div>
+
+      <div className=' py-4 px-2 '>
+        <div className=" md:pb-6 " >
+          <h2 className="text-[14px] md:text-[19px] lg:text-[22px] tracking-wide font-bold  text-amber-600 capitalize "> Get The overal Current Market Fair Prices for each Jewelry </h2>
+          <p className="text-[14px] md:text-[15px] font-bold  text-gray-500 capitalize ">Find the overall best market prices for any jewelry item. Get insights into the current rates across traditional, fancy, and high fancy styles, helping you make informed decisions with ease. </p>
+        </div>
+        <div onClick={() => setFilterdCardData([])} className='mb-4  w-fit  text-xl font-bold cursor-pointer text-amber-500'>All jewell Category</div>
 
         <div className='grid gap-3 md:gap-6 lg:gap-12 grid-cols-2 md:grid-cols-4 lg:grid-cols-5'>
 

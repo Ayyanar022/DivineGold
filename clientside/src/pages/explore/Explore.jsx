@@ -110,7 +110,7 @@ const Explore = () => {
 
           <div className="py-5  mb-5 flex justify-around px-3 items-center  bg-gradient-to-br from-lime-500 bg-yellow-300  mt-14 md:mt-16 ">
             {!filterData ? <p className="text-xl text-slate-800 font-medium tracking-wider uppercase  w-32 cursor-pointer">Filter</p> : <p onClick={handleFilterSubmit} className="text-xl font-medium uppercase text-red-600 tracking-wider w-32 cursor-pointer">Clear</p>}
-            <button className="p-1.5  bg-gray-50 hover:bg-gray-100 rounded-lg"><GiHummingbird  className="font-bold text-xl"/></button>
+            <button className="p-1.5  bg-gray-50 hover:bg-gray-100 rounded-lg"><GiHummingbird className="font-bold text-xl" /></button>
           </div>
 
 
@@ -342,7 +342,10 @@ const Explore = () => {
         </div >
         <div className="flex gap-2 items-center ">
           <button className="block md:hidden p-1.5 bg-gray-50 hover:bg-gray-100 rounded-lg" onClick={() => setShowNave(prev => !prev)}><FaArrowRightArrowLeft /></button>
-          <h2 className="font-bold text-amber-500 text-lg md:text-2xl px-5 py-4">Jewell Designs</h2>
+        </div>
+        <div className="md:px-3 md:pb-6 lg:pb-8 " >
+          <h2 className="text-[14px] md:text-[19px] lg:text-[22px] tracking-wide font-bold  text-amber-600 capitalize ">  Explore Top Jewelry Designs with Real-Time Pricing  </h2>
+          <p className="text-[14px] md:text-[15px] font-bold  text-gray-500 capitalize ">Choose from our beautiful jewelry designs, enter the weight, and get the most accurate market prices on each design right away. </p>
         </div>
 
         <div className=" w-full h-full grid  gap-x-4 gap-y-3   lg:gap-x-6 lg:gap-y-5 grid-cols-2 md:px-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 ">
