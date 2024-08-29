@@ -9,6 +9,7 @@ import { FaArrowRightArrowLeft } from "react-icons/fa6";
 import { useAddUpdateCart } from "../../api/CartApi";
 import { useAuth0 } from "@auth0/auth0-react";
 import LoadingJewelCard from "../../components/LoadingJewelCard";
+import { GiHummingbird } from "react-icons/gi";
 
 const Explore = () => {
   const [selectedGendr, setSelectedGender] = useState([])
@@ -56,9 +57,9 @@ const Explore = () => {
   }
 
   // CONSTANTS DATA 
-  const { ConstantItemCategory, isLoading: CategoryIsLoading, refetch: CategoryRefetch } = useGetIteCategoryConstant();
-  const { ConstantItemType, isLoading: typeIsLoading, refetch: typeRefetch } = useGetItemTypeConstant();
-  const { ConstantItemGender, isLoading: GenderisLoading, refetch: GenderRefetch } = useGetItemGenderConstant();
+  const { ConstantItemCategory, } = useGetIteCategoryConstant();
+  const { ConstantItemType, } = useGetItemTypeConstant();
+  const { ConstantItemGender, } = useGetItemGenderConstant();
 
   // filter sunmit
   const handleFilterSubmit = () => {
@@ -107,9 +108,9 @@ const Explore = () => {
       <aside className="hidden md:block  fixed top-0 left-0 md:w-52 lg:w-56 h-full overflow-y-auto  bg-white border-r  shadow-sm">
         <nav className="h-full flex flex-col w-full   border-r shadow-sm">
 
-          <div className="py-5  mb-5 flex justify-around px-3 items-center bg-lime-300 mt-14 ">
+          <div className="py-5  mb-5 flex justify-around px-3 items-center  bg-gradient-to-br from-lime-500 bg-yellow-300  mt-14 md:mt-16 ">
             {!filterData ? <p className="text-xl text-slate-800 font-medium tracking-wider uppercase  w-32 cursor-pointer">Filter</p> : <p onClick={handleFilterSubmit} className="text-xl font-medium uppercase text-red-600 tracking-wider w-32 cursor-pointer">Clear</p>}
-            <button className="p-1.5 bg-gray-50 hover:bg-gray-100 rounded-lg"><FaArrowRightArrowLeft /></button>
+            <button className="p-1.5  bg-gray-50 hover:bg-gray-100 rounded-lg"><GiHummingbird  className="font-bold text-xl"/></button>
           </div>
 
 

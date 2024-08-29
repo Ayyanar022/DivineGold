@@ -6,7 +6,7 @@ const Admin = () => {
 
   return (
     <div className=' min-h-[calc(100vh-95px)] hidden lg:flex'>
-      <aside className='max-w-44 w-full overflow-hidden border-r-2'>
+      <aside className='fixed top-0 left-0 w-56  overflow-y-auto border-r h-full shadow'>
         <div className='w-full flex flex-col  items-center mt-7'>
 
           <NavLink
@@ -61,7 +61,9 @@ const Admin = () => {
 
         </div>
       </aside>
-      <div className='p-2 w-full h-full '>
+
+      {/* <div className='p-2 w-full h-full ml-52'> */}
+      <div className='flex-1 p-2 h-full ml-[224px] overflow-y-auto'>
         <Outlet />
       </div>
     </div>

@@ -42,6 +42,8 @@ const FairPriceDetails = () => {
     }, [currentPriceData])
 
 
+
+
     useEffect(() => {
         if ((currentUserData.length <= 0) && currentUser) {
             setCurrentUserData(currentUser)
@@ -62,6 +64,10 @@ const FairPriceDetails = () => {
         setActiveImage(imgUrl)
     }
 
+
+    useEffect(() => {
+        setActiveImage(details?.jewellImage[0])
+    }, [fairPriceDetails])
 
 
     const [data, setData] = useState({
@@ -180,7 +186,7 @@ const FairPriceDetails = () => {
 
                     {/**Product image */}
                     <div className='h-96 flex flex-col lg:flex-row-reverse gap-2 md:gap-4'>
-                        <div className='mx-auto h-[260px] w-[270px] md:h-[300px] md:w-[300px] lg:h-96 lg:w-96 bg-slate-200 relative'>
+                        <div className='mx-auto h-[260px] w-[270px] md:h-[300px] md:w-[300px] lg:h-96 lg:w-96 bg-slate-200 relative border border-amber-500'>
                             <img src={activeImage} className='h-full w-full object-cover  bg-slate-50' />
                         </div>
                         <div className='h-full'>
@@ -210,7 +216,7 @@ const FairPriceDetails = () => {
                     <div>
                         <div className="w-full lg:min-w-[500px] min-h-[382px] px-1 md:px-4 lg:px-6 py-4 md:shadow-  bg-slate-50  ">
                             <div>
-                                <h2 className="text-[14px] md:text-[17px] font-bold  text-gray-800 uppercase ">Find FairPrice </h2>
+                                <h2 className="text-[14px] md:text-[17px] font-bold  text-gray-800 uppercase ">{details?.jewellDescription} </h2>
                                 <p className='w-full text-left text-[11px] md:text-[12px] lg:text-[13px]   text-amber-800 mb-2 md:mb-5'>Enter the weight in grams and get the best market price at a glance</p>
                             </div>
                             <form>

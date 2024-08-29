@@ -17,7 +17,7 @@ const AddFareRate = () => {
 
     const [currentPrice, setCurrentPrice] = useState('')
     const { updateCurrentPrice, isLoading: CPisLoaing } = useUpdateCurrentPrice()
-    const { fairPriceCardData, isLoading: FPisLoading } = useGetAllFairPrice()
+    const { fairPriceCardData, isLoading: FPisLoading, refetch: reFetchAllFairPrice } = useGetAllFairPrice()
 
     //Update current RATE
     const hanleUpdateCurrentPrice = async (e) => {
@@ -131,7 +131,6 @@ const AddFareRate = () => {
 
     const handleEditJewllDesign = async () => {
         try {
-            console.log("jewll design", jewellData)
             const accessToken = await getAccessTokenSilently();
             const response = await axios.put(`${process.env.REACT_APP_BASE_URL}/api/admin/put-fairprice`, jewellData, {
                 headers: {
@@ -143,6 +142,7 @@ const AddFareRate = () => {
                 setDialogOpen(false)
                 // Invalidate and refetch the query
                 queryClient.invalidateQueries('getAllFairPrice');
+                setJewellData(schema)
             }
         } catch (err) {
             console.log("error", err)
@@ -150,11 +150,12 @@ const AddFareRate = () => {
     }
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         if (createFairPrice) {
-            createFairPrice(jewellData)
-            setJewellData(schema)
+            await createFairPrice(jewellData)
+            await setJewellData(schema)
+            await reFetchAllFairPrice()
         }
     }
 

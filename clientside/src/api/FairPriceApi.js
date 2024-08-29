@@ -20,9 +20,9 @@ export const useGetAllFairPrice = () => {
     return response.json();
   };
 
-  const { data: fairPriceCardData, isLoading, error } = useQuery("getAllFairPrice", getAllFairPrice,{enabled:isAuthenticated});  
+  const { data: fairPriceCardData, isLoading, error,refetch } = useQuery("getAllFairPrice", getAllFairPrice,{enabled:isAuthenticated});  
   if (error) toast.error(error.toString());
-  return { fairPriceCardData, isLoading };
+  return { fairPriceCardData, isLoading ,refetch};
 };
 
 
