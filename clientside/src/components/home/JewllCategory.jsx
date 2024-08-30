@@ -16,7 +16,7 @@ import { MdKeyboardArrowRight } from 'react-icons/md'
 
 const JewllCategory = () => {
     return (
-        <div className='container mx-auto py-6 md:py-9 lg:py-10 md:mt-5 md:px-12 #f5ebf3 md:bg-[#faf0f8]'>
+        <div className='container mx-auto py-6 md:py-9 lg:py-10 md:mt-5 md:px-12 bg-[#faf0f8]'>
 
             <div className=' md:pb-5   w-full  '>
                 <div className="flex flex-col items-center justify-center gap-2  md:gap-3 ">

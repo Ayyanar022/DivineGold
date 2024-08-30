@@ -59,21 +59,23 @@ const FairPrice = () => {
       <div className='flex items-center gap-2 md:gap-4 justify-between overflow-x-auto scrollbar-hiden'>
         {filterData?.length > 0 ? (
           filterData?.map((item) => (
+          
             <div
               onClick={() => singleFilter(item?.jewellCategory)}
               key={item?.id}
-              className='cursor-pointer flex flex-col justify-center items-center w-full md:w-1/3 p-2'
+              className="cursor-pointer flex flex-col justify-center items-center w-full md:w-1/3 p-2"
             >
-              <div className='h-18 w-18  lg:h-20  lg:w-20 border-amber-300 border rounded-full overflow-hidden bg-slate-200 flex items-center justify-center'>
+              <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 border-amber-300 border rounded-full overflow-hidden bg-slate-200 flex items-center justify-center">
                 <img
                   src={item?.jewellImage[0]}
                   alt={item?.jewellCategory}
-                  className='w-full h-full object-cover rounded-full transition-transform duration-200 ease-in-out transform hover:scale-110'
+                  className="w-full h-full object-cover rounded-full transition-transform duration-200 ease-in-out transform hover:scale-110"
                 />
               </div>
-
-              <p className='text-center text-xs md:text-sm capitalize'>{item?.jewellCategory}</p>
+              <p className="text-center text-xs md:text-sm capitalize">{item?.jewellCategory}</p>
             </div>
+
+
           ))
         ) : (
           loadingEmptyCard.map((item, index) => (
@@ -108,11 +110,12 @@ const FairPrice = () => {
 
 
       <div className=' py-4 px-2 '>
-        <div className=" md:pb-6 " >
-          <h2 className="text-[14px] md:text-[19px] lg:text-[22px] tracking-wide font-bold  text-amber-600 capitalize "> Get The overal Current Market Fair Prices for each Jewelry </h2>
-          <p className="text-[14px] md:text-[15px] font-bold  text-gray-500 capitalize ">Find the overall best market prices for any jewelry item. Get insights into the current rates across traditional, fancy, and high fancy styles, helping you make informed decisions with ease. </p>
+        <div className=" md:pb-4   space-y-2" >
+          <h2 className="text-[16px] md:text-[19px] lg:text-[22px] tracking-wide font-bold  text-amber-600 capitalize "> Get The overal Current Market Fair Prices for each Jewelry </h2>
+          <p className=" hidden md:block  md:text-[14px] lg:text-[15px] font-bold  text-gray-500  ">Find the overall best market prices for any jewelry item. Get insights into the current rates across traditional, fancy, and high fancy styles, helping you make informed decisions with ease. </p>
+          <p className=" md:hidden text-[12px] text-justify font-medium  text-gray-500  ">Find the overall best market current prices for any jewel. Get insights into the current rates and helping you make decisions with ease. </p>
         </div>
-        <div onClick={() => setFilterdCardData([])} className='mb-4  w-fit  text-xl font-bold cursor-pointer text-amber-500'>All jewell Category</div>
+        <div onClick={() => setFilterdCardData([])} className='my-3  w-fit  text-lg md:text-xl font-bold cursor-pointer text-amber-500'>All jewell Category</div>
 
         <div className='grid gap-3 md:gap-6 lg:gap-12 grid-cols-2 md:grid-cols-4 lg:grid-cols-5'>
 
@@ -122,9 +125,9 @@ const FairPrice = () => {
           {!isLoading && (renderFinalData)?.map((item) => (
 
             <Link to={`/fairPrice-details/${item?._id}`} className=" h-[195px]  md:h-56 lg:h-[255px] shadow-md border  rounded-md overflow-hidden transform transition-transform duration-200 hover:scale-105">
-              <img src={item?.jewellImage[0]} alt="img" className="w-full h-[72%] md:h-[76%] object-cover   " />
+              <img src={item?.jewellImage[0]} alt="img" className="w-full h-[74%] md:h-[76%] object-cover   " />
 
-              <div className="px-2 py-2 md:py-1.5  bg-white flex">
+              <div className="px-2 py-1 md:py-1.5  bg-white flex">
                 <div className='w-full md:pl-1'>
                   <p className="text-[15px] md:text-md lg:text-lg font-semibold text-gray-700 whitespace-nowrap overflow-hidden text-ellipsis max-w-full ">{item.jewellName}</p>
                   <p className="text-sm text-gray-500 ">{item.jewellType}</p>

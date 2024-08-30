@@ -8,7 +8,7 @@ const MobileNav = () => {
             <div className='flex justify-between items-center h-full '>
                 {
                     mobileNav.map((el, i) => (
-                        <NavLink to={el.href} key={el.label + "mobNav"} className={({ isActive }) => `flex flex-col h-full items-center  justify-center ${isActive && 'text-pink-700'}`} >
+                        <NavLink to={el.href} key={el.label + "mobNav"} className={({ isActive }) => `flex flex-col h-full items-center  justify-center ${isActive && 'text-pink-700 font-bold'}`} >
                             <div>{el?.icon}</div>
                             <sapn className="text-xs">{el?.label}</sapn>
                         </NavLink>

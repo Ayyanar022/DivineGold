@@ -105,7 +105,7 @@ const Explore = () => {
     <div className="w-full  flex mb-[82px]  lg:mb-12">
 
       {/**filter  */}
-      <aside className="hidden md:block  fixed top-0 left-0 md:w-52 lg:w-56 h-full overflow-y-auto  bg-white border-r  shadow-sm">
+      <aside className="hidden md:block  fixed top-0 left-0 md:w-48 lg:w-56 h-full overflow-y-auto  bg-white border-r  shadow-sm">
         <nav className="h-full flex flex-col w-full   border-r shadow-sm">
 
           <div className="py-5  mb-5 flex justify-around px-3 items-center  bg-gradient-to-br from-lime-500 bg-yellow-300  mt-14 md:mt-16 ">
@@ -225,7 +225,7 @@ const Explore = () => {
             <MdClose size={24} />
           </button>
 
-          <div className="p-3  flex justify-between items-center ">
+          <div className="p-3 mb-3  flex justify-between items-center  bg-gradient-to-br from-lime-500 bg-yellow-300 ">
             {!filterData ? <p className="text-lg text-slate-700 font-bold tracking-wider uppercase  w-32 cursor-pointer">Filter</p> : <p onClick={handleFilterSubmit} className="text-lg w-32 cursor-pointer  text-orange-600 font-bold tracking-wider uppercase ">Clear</p>}
             <button className="p-1.5 bg-gray-50 hover:bg-gray-100 rounded-lg" onClick={() => setShowNave(prev => !prev)} ><FaArrowRightArrowLeft /></button>
           </div>
@@ -336,16 +336,16 @@ const Explore = () => {
 
       {/**main */}
 
-      <main className=" p-2 md:p-4  w-full ml-0 md:ml-52 pb-7">
+      <main className=" p-1 lg:py-2   w-full  md:ml-48 lg:ml-56 pb-7">
         <div className="w-full">
           {nodilterData}
         </div >
         <div className="flex gap-2 items-center ">
           <button className="block md:hidden p-1.5 bg-gray-50 hover:bg-gray-100 rounded-lg" onClick={() => setShowNave(prev => !prev)}><FaArrowRightArrowLeft /></button>
         </div>
-        <div className="md:px-3 md:pb-6 lg:pb-8 " >
-          <h2 className="text-[14px] md:text-[19px] lg:text-[22px] tracking-wide font-bold  text-amber-600 capitalize ">  Explore Top Jewelry Designs with Real-Time Pricing  </h2>
-          <p className="text-[14px] md:text-[15px] font-bold  text-gray-500 capitalize ">Choose from our beautiful jewelry designs, enter the weight, and get the most accurate market prices on each design right away. </p>
+        <div className="lg:px-3 pb-6 lg:pb-8 space-y-2 " >
+          <h2 className="text-[16px] md:text-[19px] lg:text-[22px] tracking-wide font-bold  text-amber-600  ">  Explore Top Designs with Real-Time Pricing  </h2>
+          <p className="text-[12px] md:text-[15px] font-medium  text-gray-500  ">Choose from our beautiful jewelry designs, enter the weight, and get the most accurate market prices on each design right away. </p>
         </div>
 
         <div className=" w-full h-full grid  gap-x-4 gap-y-3   lg:gap-x-6 lg:gap-y-5 grid-cols-2 md:px-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 ">

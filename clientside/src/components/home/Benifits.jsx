@@ -13,12 +13,12 @@ const Benifits = () => {
                 <div className='border lg:mx-10 border-slate-300 hover:border-amber-500 p-4 md:py-5 md:px-8'>
                     {/* Desktop View */}
                     <p className='text-gray-600 hidden md:block'>
-                        <span className='font-bold text-amber-500'>Best Price Finder:</span> Easily compare current market prices for jewelry based on design, quality, and weight. Get the best deal for each individual design from different sellers, ensuring you make the most informed purchase.
+                        <span className='font-bold text-amber-500'>Best Price Finder:</span> Easily compare current market prices for jewelry based on design, quality, and weight. Get the best deal for each individual design , ensuring you make the most informed purchase.
                     </p>
 
                     {/* Mobile View */}
                     <p className='text-[14px] md:text-[16px] text-gray-600 md:hidden text-justify'>
-                        <span className='font-bold text-amber-500'>Best Price Finder:</span> Compare jewelry market prices by design, quality, and weight. Find the best deals from various sellers for informed purchases.
+                        <span className='font-bold text-amber-500'>Best Price Finder:</span>  Easily find best current market prices for jewelry. Get the best deal for each individual design , ensuring you make the most informed purchase.
                     </p>
                 </div>
 
@@ -28,12 +28,12 @@ const Benifits = () => {
                 <div className='border lg:mx-10 border-slate-300 hover:border-amber-500 p-4 md:py-5 md:px-8 md:mt-5'>
                     {/* Desktop View */}
                     <p className='text-gray-600 hidden md:block'>
-                        <span className='font-bold text-amber-500'>Earn Prize Tokens:</span> Share our platform with others and both you and your referral will receive price tokens worth ₹34 each. Accumulate these tokens and redeem them as discounts on your future jewelry purchases, turning your referrals into real savings.
+                        <span className='font-bold text-amber-500'>Turning your referrals into real savings:</span> Share our platform with others and both you and your referral will receive price tokens worth ₹34 each. Accumulate these tokens and redeem them as discounts on your future jewelry purchases, turning your referrals into real savings.
                     </p>
 
                     {/* Mobile View */}
                     <p className='text-[14px] md:text-[16px] text-gray-600 md:hidden text-justify'>
-                        <span className='font-bold text-amber-500'>Earn Prize Tokens:</span> Refer others and both earn ₹34 tokens. Redeem tokens for discounts on future jewelry purchases.
+                        <span className='font-bold text-amber-500'>Turning your referrals into real savings:</span> Refer others and both earn ₹34 tokens. Redeem tokens for discounts on future jewelry purchases.turning your referrals into real savings.
                     </p>
                 </div>
 
