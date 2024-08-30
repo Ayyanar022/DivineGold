@@ -105,7 +105,7 @@ const WhatsAppForCart = ({ data }) => {
                         </button>
                         <button onClick={handleCancel}
                             type="submit"
-                            className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition duration-300"
+                            className="w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition duration-300"
                         >
                             Cancel
                         </button>

@@ -112,7 +112,7 @@ const FairPriceDetails = () => {
     const { isAuthenticated } = useAuth0()
     // PRICE CALCULATIONS
 
-    
+
     //VALIDATION 
     const [tokkenErrorMessage, setTokenErrorMessage] = useState()
 
@@ -358,14 +358,14 @@ const FairPriceDetails = () => {
 
                                 <div className='flex  gap-8 pt-2'>
                                     <button
-                                        className="bg-[#D4AF37]  uppercase text-xs sm:text-sm  lg:text-[15px] tracking-wider font-bold p-2 text-white my-3 w-full rounded"
+                                        className="bg-[#D4AF37]  uppercase text-sm md:text-16px  tracking-wider font-bold p-3 text-white my-3 w-full rounded"
                                         onClick={handleSubmit}
                                     >
                                         Show Price
                                     </button>
 
                                     <button
-                                        className="bg-[#333333] uppercase text-xs sm:text-sm lg:text-[15px] tracking-wider font-bold p-2 text-white my-3 w-full rounded"
+                                        className="bg-[#333333] uppercase text-sm md:text-16px tracking-wider font-bold p-3 text-white my-3 w-full rounded"
                                         onClick={handleClear}
                                     >
                                         Clear Price
