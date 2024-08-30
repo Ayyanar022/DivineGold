@@ -9,7 +9,6 @@ const UserProfilePage = () => {
   const { updateUser, isLoading: isGetLoading } = useUpdateMyUser()
   const { currentUser, isLoading: isUpdateLoading, refetch: refetchUserData } = useGetMyUser()
 
-  const { isAuthenticated } = useAuth0()
 
   //conetxt forcurrent user
   const { setCurrentUserData, currentUserData } = useCurrentUserConetxt()

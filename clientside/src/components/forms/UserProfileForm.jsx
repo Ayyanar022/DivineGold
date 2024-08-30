@@ -71,7 +71,7 @@ const UserProfileForm = ({ currentUser, onSave, isLoading, refetchUserData }) =>
 
     return (
 
-        <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 lg:p-4  bg-white w-full justify-center ">
+        <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 px-2 md:px-0 lg:p-4  bg-white w-full justify-center ">
 
             <div className="w-full md:w-1/2 lg:w-2/5 bg-white p-1 md:p-5 lg:p-6 md:rounded-lg md:shadow-md md:border">
                 <h2 className="text-[17px] md:text-xl font-bold  text-cyan-900 uppercase ">Update Your Details </h2>
