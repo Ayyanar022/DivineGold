@@ -44,12 +44,31 @@ const FairPriceDetails = () => {
 
 
 
+    // useEffect(() => {
+    //     if ((currentUserData.length <= 0) && currentUser) {
+    //         setCurrentUserData(currentUser)
+    //     }
+
+    // }, [currentUser, setCurrentUserData, currentUserData])
+
+
     useEffect(() => {
-        if ((currentUserData.length <= 0) && currentUser) {
+        if (currentUser) {
             setCurrentUserData(currentUser)
         }
 
-    }, [currentUser, setCurrentUserData, currentUserData])
+    }, [currentUser])
+
+    // CLEAR DATA
+    const handleClear = (e) => {
+        e.preventDefault();
+        setData({
+            selectedValue: "75halmark",
+            itemWeight: '',
+            usePriceToken: '',
+        });
+        setPrice({})
+    }
 
 
     //-------------------------------------------------
@@ -92,70 +111,149 @@ const FairPriceDetails = () => {
 
     const { isAuthenticated } = useAuth0()
     // PRICE CALCULATIONS
-    const handleSubmit = (e) => {
-        e.preventDefault();
 
-        if (!isAuthenticated) return toast.warning("Please Login..")
 
-        if (!data.itemWeight || Number(data.itemWeight) === 0) {
-            toast.info("Please Enter Weight...")
-            return
-        }
-        if (!currentPriceData || getCPisLoading) return
 
-        if (data.selectedValue === "75halmark") {
-            let result, token, resultData;
-            result = (((details.touch_75 / 100) * data.itemWeight) * currentPriceCP);
 
-            if (Number(data.usePriceToken) > 0 && (currentUserData?.bonousePoints >= Number(data.usePriceToken))) {
-                token = Number(data.usePriceToken) * 39
-                resultData = Number(result) - token
-                setPrice({
-                    bestPrice: displayINR(result) || 0,
-                    afterTokenDiscount: displayINR(resultData) || 0,
-                    tokenPricediscount: displayINR(token) || 0
-                })
-                return;
-            } else {
-                setPrice({
-                    bestPrice: displayINR(result) || 0,
-                    afterTokenDiscount: displayINR(result) || 0,
-                    tokenPricediscount: displayINR(0),
-                })
-                return
-            }
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
 
-        } else if (data.selectedValue === "916halmark") {
-            let result, token, resultData;
-            result = (((details.touch_92 / 100) * data.itemWeight) * currentPriceCP)
+    //     if (!isAuthenticated) return toast.warning("Please Login..")
 
-            if (Number(data.usePriceToken) > 0 && (currentUserData?.bonousePoints >= Number(data.usePriceToken))) {
-                token = Number(data.usePriceToken) * 39
-                resultData = Number(result) - token
-                setPrice({
-                    bestPrice: displayINR(result) || 0,
-                    afterTokenDiscount: displayINR(resultData) || 0,
-                    tokenPricediscount: displayINR(token) || 0
-                })
-                return;
-            } else {
-                setPrice({
-                    bestPrice: displayINR(result) || 0,
-                    afterTokenDiscount: displayINR(result) || 0,
-                    tokenPricediscount: displayINR(0),
-                })
-                return
-            }
+    //     if (!data.itemWeight || Number(data.itemWeight) === 0) {
+    //         toast.info("Please Enter Weight...")
+    //         return
+    //     }
+    //     if (!currentPriceData || getCPisLoading) return
 
+    //     if (data.selectedValue === "75halmark") {
+    //         let result, token, resultData;
+    //         result = (((details.touch_75 / 100) * data.itemWeight) * currentPriceCP);
+
+    //         if (Number(data.usePriceToken) > 0 && (currentUserData?.bonousePoints >= Number(data.usePriceToken))) {
+    //             token = Number(data.usePriceToken) * 39
+    //             resultData = Number(result) - token
+    //             setPrice({
+    //                 bestPrice: displayINR(result) || 0,
+    //                 afterTokenDiscount: displayINR(resultData) || 0,
+    //                 tokenPricediscount: displayINR(token) || 0
+    //             })
+    //             return;
+    //         } else {
+    //             setPrice({
+    //                 bestPrice: displayINR(result) || 0,
+    //                 afterTokenDiscount: displayINR(result) || 0,
+    //                 tokenPricediscount: displayINR(0),
+    //             })
+    //             return
+    //         }
+
+    //     } else if (data.selectedValue === "916halmark") {
+    //         let result, token, resultData;
+    //         result = (((details.touch_92 / 100) * data.itemWeight) * currentPriceCP)
+
+    //         if (Number(data.usePriceToken) > 0 && (currentUserData?.bonousePoints >= Number(data.usePriceToken))) {
+    //             token = Number(data.usePriceToken) * 39
+    //             resultData = Number(result) - token
+    //             setPrice({
+    //                 bestPrice: displayINR(result) || 0,
+    //                 afterTokenDiscount: displayINR(resultData) || 0,
+    //                 tokenPricediscount: displayINR(token) || 0
+    //             })
+    //             return;
+    //         } else {
+    //             setPrice({
+    //                 bestPrice: displayINR(result) || 0,
+    //                 afterTokenDiscount: displayINR(result) || 0,
+    //                 tokenPricediscount: displayINR(0),
+    //             })
+    //             return
+    //         }
+
+    //     } else {
+    //         setPrice()
+    //     }
+
+    // }
+
+
+    // const handleChangeFeild = (e) => {
+    //     const { name, value } = e.target
+    //     if (value < 0) return
+    //     setData((prev) => ({
+    //         ...prev,
+    //         [name]: value
+    //     }))
+    // }
+
+    // const PriceTokenLabel = data?.usePriceToken ? (((currentUserData?.bonousePoints >= data?.usePriceToken) && (data?.usePriceToken > 0)) ? (<p className=" text-slate-700">Use Prize Token :</p>) : (<p className=" text-red-500 ">Invalid.! prize token:</p>)) : <p className="  text-slate-700">Use Prize Token :</p>
+
+
+    //VALIDATION 
+    const [tokkenErrorMessage, setTokenErrorMessage] = useState()
+
+    // TO CHEK MAX TOKEN LIMIT 
+    const allowedToken = (MtouchValue, KchaRate) => {
+        const result = ((MtouchValue / 100) * KchaRate) / 3 / 34;
+        const decimalPart = result % 1;
+
+        if (decimalPart > 0.7) {
+            return Math.ceil(result)
         } else {
-            setPrice()
+            return Math.floor(result)
+        }
+    };
+
+    //  TO SHOW ERROR MESSAGE IN LABEL 
+    const validateTokenUsageErrorMessage = (userTokens, inputTokens, maxToken) => {
+        if (inputTokens > maxToken) {
+            return {
+                isValid: true,
+                message: `The max allowed token: ${maxToken}.`
+            }
+        }
+
+        if (inputTokens < 0) {
+            return {
+                isValid: true,
+                message: "Enter valid Token number"
+            }
+        }
+
+        if (userTokens < inputTokens) {
+            return {
+                isValid: true,
+                message: 'You do not have enough tokens.'
+            }
+        }
+
+        if (inputTokens > 30) {
+            return {
+                isValid: true,
+                message: 'Max Limit is 30'
+            }
+        }
+
+        return {
+            isValid: false,
+            message: '',
         }
 
     }
 
-
+    // HANDLE CHANGE
     const handleChangeFeild = (e) => {
         const { name, value } = e.target
+
+        if (name === "usePriceToken" && !Number.isInteger(Number(value))) return;
+        if (name === "usePriceToken") {
+            const MtouchValue = data.selectedValue === '75halmark' ? details.touch_M_75 : details.touch_M_92;
+            const maxToken = allowedToken(MtouchValue, currentPriceCP)
+            const validation = validateTokenUsageErrorMessage(currentUserData?.bonousePoints, value, maxToken)
+            console.log("validation", validation)
+            setTokenErrorMessage(validation)
+        }
+
         if (value < 0) return
         setData((prev) => ({
             ...prev,
@@ -163,18 +261,54 @@ const FairPriceDetails = () => {
         }))
     }
 
-    // CLEAR DATA
-    const handleClear = (e) => {
-        e.preventDefault();
-        setData({
-            selectedValue: "75halmark",
-            itemWeight: '',
-            usePriceToken: '',
-        });
-        setPrice({})
-    }
 
-    const PriceTokenLabel = data?.usePriceToken ? (((currentUserData?.bonousePoints >= data?.usePriceToken) && (data?.usePriceToken > 0)) ? (<p className=" text-slate-700">Use Prize Token :</p>) : (<p className=" text-red-500 ">Invalid.! prize token:</p>)) : <p className="  text-slate-700">Use Prize Token :</p>
+
+    const validateTokenUsage = (userTokens, inputTokens, maxToken) => {
+        return inputTokens > 0 && userTokens >= inputTokens && inputTokens <= maxToken && inputTokens <= 30;
+    };
+
+    const calculatePrice = (weight, touchValue, currentPrice) => {
+        return (((touchValue / 100) * Number(weight)) * currentPrice);
+    };
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!isAuthenticated) return toast.warning('Please Login..');
+
+        const weight = Number(data.itemWeight);
+        if (!weight) return toast.info('Please Enter Weight...');
+        if (!currentPriceData || getCPisLoading) return;
+
+        const touchValue = data.selectedValue === '75halmark' ? details.touch_75 + details.touch_M_75 : details.touch_92 + details.touch_M_92;
+        const MtouchValue = data.selectedValue === '75halmark' ? details.touch_M_75 : details.touch_M_92;
+        const result = calculatePrice(weight, touchValue, currentPriceCP);
+        const maxToken = allowedToken(MtouchValue, currentPriceCP);
+
+        let token = 0;
+        if (validateTokenUsage(currentUserData?.bonousePoints, data?.usePriceToken, maxToken)) {
+            token = Number(data?.usePriceToken) * 34;
+        }
+
+        const resultData = result - token;
+        setPrice({
+            bestPrice: displayINR(result),
+            afterTokenDiscount: displayINR(resultData),
+            tokenPricediscount: displayINR(token)
+        });
+    };
+
+
+    const PriceTokenLabel = data?.usePriceToken
+        ? ((currentUserData?.bonousePoints >= data?.usePriceToken) && (data?.usePriceToken > 0)
+            ? <p className="text-slate-700">Use Prize Token :</p>
+            : <p className="text-red-500">Invalid.! prize token:</p>)
+        : <p className="text-slate-700">Use Prize Token :</p>;
+
+    const PrzeTokenData = (currentUserData?.bonousePoints >= data?.usePriceToken) && (data?.usePriceToken > 0)
+        ? (currentUserData?.bonousePoints - data?.usePriceToken)
+        : currentUserData?.bonousePoints;
+
 
     return (
 
@@ -211,8 +345,6 @@ const FairPriceDetails = () => {
 
                     </div>
 
-
-
                     <div>
                         <div className="w-full lg:min-w-[500px] min-h-[382px] px-1 md:px-4 lg:px-6 py-4 md:shadow-  bg-slate-50  ">
                             <div>
@@ -222,12 +354,14 @@ const FairPriceDetails = () => {
                             <form>
 
                                 <div className='pb-5 py-1 md:py-0 '>
-                                    <div className=" flex gap-2  items-center mb-4">
-                                        <h2 className="text-[14px]  font-semibold text-slate-700">Available Prize Token :</h2>
-                                        <p className=' text-[14px]  font-bold text-sm text-slate-800'>{((currentUserData?.bonousePoints >= data?.usePriceToken) && (data?.usePriceToken > 0)) ? (currentUserData?.bonousePoints - data?.usePriceToken) : currentUserData?.bonousePoints}</p>
+
+                                    <div className='mb-4'>
+                                        {tokkenErrorMessage?.isValid
+                                            ? <h2 className="text-[14px] text-red-500 font-semibold ">{tokkenErrorMessage?.message}</h2>
+                                            : <h2 className="text-[14px]  font-semibold text-slate-700">{`Available Prize Token : ${PrzeTokenData}`}</h2>
+                                        }
                                     </div>
 
-                                    {/* <p className='bg-green-400 py-2 text-black'></p> */}
 
                                     <div className=" grid grid-cols-2 gap-x-3 md:gap-4 mb-5">
                                         <div className=' lg:w-52 bg-white'>

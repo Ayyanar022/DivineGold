@@ -46,6 +46,8 @@ const AddFareRate = () => {
         jewellGender: '',
         touch_75: "",
         touch_92: "",
+        touch_M_75: "",
+        touch_M_92: "",
         jewellImage: [],
         jewellDescription: ""
     }
@@ -201,6 +203,8 @@ const AddFareRate = () => {
                                 <th className='px-4 py-2.5 text-left'>Type</th>
                                 <th className='px-4 py-2.5 text-left'>Touch 75</th>
                                 <th className='px-4 py-2.5 text-left'>Touch 92</th>
+                                <th className='px-2 py-2 text-left' >M_75</th>
+                                <th className='px-2 py-2 text-left' >M_92</th>
                                 <th className='px-4 py-2.5 text-left'>Edit</th>
                                 <th className='px-4 py-2.5 text-left'>Remove</th>
                             </tr>
@@ -230,6 +234,8 @@ const AddFareRate = () => {
                                         <td className='px-4 py-2'>{item?.jewellType}</td>
                                         <td className='px-4 py-2'>{item?.touch_75}</td>
                                         <td className='px-4 py-2'>{item?.touch_92}</td>
+                                        <td className='px-2 py-1' >{item?.touch_M_75}</td>
+                                        <td className='px-2 py-1' >{item?.touch_M_92}</td>
                                         <td onClick={() => {
                                             opnDialog(item);
                                             setisEditMode(true)
@@ -347,6 +353,36 @@ const AddFareRate = () => {
                             type='number'
                             label="Touch 92"
                         />
+                    </div>
+
+
+                    <div className='grid grid-cols-2 gap-4'>
+                        <TextField
+                            fullWidth
+                            margin='dense'
+                            autoFocus
+                            value={jewellData?.touch_M_75 || ''}
+                            onChange={handleChange}
+                            name="touch_M_75"
+                            id="touch_M_75"
+                            variant='outlined'
+                            type='number'
+                            label="Touch M_75"
+                        />
+
+                        <TextField
+                            fullWidth
+                            margin='dense'
+                            autoFocus
+                            value={jewellData?.touch_M_92 || ''}
+                            onChange={handleChange}
+                            name="touch_M_92"
+                            id="touch_M_92"
+                            variant='outlined'
+                            type='number'
+                            label="Touch M_92"
+                        />
+
                     </div>
 
 
