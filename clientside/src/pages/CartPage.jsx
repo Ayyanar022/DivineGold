@@ -1,5 +1,5 @@
 
-import React, {  useState } from 'react'
+import React, { useState } from 'react'
 import { useAddUpdateCart, useGetCartItem } from '../api/CartApi'
 import { IoCloseSharp } from "react-icons/io5";
 import { useAuth0 } from '@auth0/auth0-react';
@@ -107,7 +107,7 @@ const CartPage = () => {
 
     const emptyLoading = cartIsLoading ? "Bag is Loading..." : "Bag is Empty ";
 
-    // No Authentication
+    // // No Authentication
     if (!isAuthenticated) {
         return (
             <div className="w-full h-full bg-white flex items-center justify-center ">
@@ -121,27 +121,27 @@ const CartPage = () => {
 
 
     return (
-        <div className='container mx-auto py-5 lg:py-10 px-6 lg:px-20 flex flex-col md:flex-row gap-10 lg:gap-14 min-h-screen'>
+        <div className='container mx-auto py-5 lg:py-10 px-6 lg:px-20 flex flex-col md:flex-row gap-10 lg:gap-14 min-h-screen  pb-[78px] lg:pb-4'>
             <div className=' flex flex-col gap-4  w-full md:w-1/2 '>
 
                 {
                     cartData?.cartItems?.length > 0 ? (cartData?.cartItems?.map((item, index) => (
                         <div key={index} className='flex bg-gray-100 border shadow-md p-2 md:p-3 relative'>
-                            <img  src={item?.productId?.jewellImage[0]} className='w-28 md:w-32 h-28 md:h-32 ' alt='Jewelry Image' />
+                            <img src={item?.productId?.jewellImage[0]} className='w-28 md:w-32 h-28 md:h-32 ' alt='Jewelry Image' />
                             <div className='px-3 flex flex-col gap-1'>
                                 <h2 className='text-sm md:lg'>Name    : {item?.productId?.jewellName}</h2>
                                 <p className='text-sm md:lg'>Category : {item?.productId?.jewellCategory}</p>
                                 <p className='text-sm md:lg'>Type     : {item?.productId?.jewellType}</p>
                                 <div className='py-3 flex items-center gap-3'>
-                                    <button onClick={(event) => handleAaddtoCartfun(item?.productId?._id, item?.quantity, event)} 
-                                    className='text-lg md:text-xl font-bold h-6 w-6 md:h-7 md:w-7 flex items-center justify-center   rounded-full bg-green-500 hover:bg-green-700 transition-all'>
+                                    <button onClick={(event) => handleAaddtoCartfun(item?.productId?._id, item?.quantity, event)}
+                                        className='text-lg md:text-xl font-bold h-6 w-6 md:h-7 md:w-7 flex items-center justify-center   rounded-full bg-green-500 hover:bg-green-700 transition-all'>
                                         +
                                     </button>
                                     <p className='font-semibold'>
                                         {item?.quantity}
                                     </p>
                                     <button onClick={(event) => handleRemovetoCartfun(item?._id, item?.quantity, event)}
-                                     className='text-lg md:text-xl font-bold h-6 w-6 md:h-7 md:w-7 rounded-full flex items-center justify-center  bg-orange-500 hover:bg-orange-700 transition-all'>
+                                        className='text-lg md:text-xl font-bold h-6 w-6 md:h-7 md:w-7 rounded-full flex items-center justify-center  bg-orange-500 hover:bg-orange-700 transition-all'>
                                         -
                                     </button>
                                 </div>
