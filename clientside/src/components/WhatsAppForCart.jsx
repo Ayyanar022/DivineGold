@@ -49,7 +49,7 @@ const WhatsAppForCart = ({ data }) => {
 
     return (
         <div className="flex justify-center items-center  ">
-            <div className="w-full max-w-md lg:max-w-lg bg-white rounded-lg shadow-md py-3 px-6  lg:py-5 lg:px-8 lg:mx-10 ">
+            <div className="w-full max-w-md lg:max-w-lg bg-white rounded-lg shadow-md py-3 px-2  lg:py-5 lg:px-8 lg:mx-10 ">
                 <h2 className="text-lg md:text-lg lg:text-[21px] font-bold text-center text-green-600 mb-4 ">Send a WhatsApp Message</h2>
                 <form >
                     <div className="mb-2 md:mb-3 lg:mb-4">
@@ -96,7 +96,7 @@ const WhatsAppForCart = ({ data }) => {
                         />
                     </div>
 
-                    <div className='felx gap-x-4'>
+                    <div className='grid  grid-cols-2 gap-2 md:gap-4'>
                         <button onClick={handleSubmit}
                             type="submit"
                             className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition duration-300"
@@ -105,7 +105,7 @@ const WhatsAppForCart = ({ data }) => {
                         </button>
                         <button onClick={handleCancel}
                             type="submit"
-                            className="w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition duration-300"
+                            className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300"
                         >
                             Cancel
                         </button>
