@@ -610,16 +610,23 @@ const ExploreCardDetails = () => {
                     <div className='mx-auto h-[260px] w-[270px] md:h-[300px] md:w-[300px] lg:h-96 lg:w-96 bg-slate-200 relative'>
                         <img src={activeImage} onMouseLeave={handleZoomOut} onMouseMove={handleZoomImage} className='h-full w-full object-cover bg-slate-50' />
 
-                        {/**Zoom image mix-blend-multiply*/}
-                        {zoomImageOpen && (<div className=' hidden lg:block absolute min-h-[400px] min-w-[400px] bg-slate-200 p-1 -right-[430px] top-0'>
-                            <div
-                                className='h-full w-full min-h-[400px] min-w-[400px]  '
-                                style={{
-                                    backgroundImage: `url(${activeImage})`, backgroundRepeat: "no-repeat",
-                                    backgroundPosition: `${zoomImage?.x * 100}% ${zoomImage?.y * 100}%`,
-                                }}>
+                        {zoomImageOpen && (
+                            <div className='hidden lg:block absolute min-h-[400px] min-w-[400px] p-1 -right-[430px] top-0 z-10'> {/* Ensure z-index is lower than the form */}
+                                <div
+                                    className='h-full w-full min-h-[400px] min-w-[400px] bg-slate-200 border border-amber-400'
+                                    style={{
+                                        backgroundImage: `url(${activeImage})`,
+                                        backgroundRepeat: "no-repeat",
+                                        backgroundPosition: `${zoomImage?.x * 100}% ${zoomImage?.y * 100}%`,
+                                        // backgroundSize: 'cover',
+                                        backgroundSize: '200%',
+                                        filter: 'brightness(1.2)', // Increase brightness
+                                    }}
+                                >
+                                </div>
                             </div>
-                        </div>)}
+                        )}
+
 
                     </div>
 

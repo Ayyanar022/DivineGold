@@ -51,7 +51,7 @@ const BannerProduct = () => {
 
     return (
         <div className="relative mx-auto w-full">
-            <div className="relative h-52 md:h-[410px] lg:h-[450px] w-full bg-orange-600">
+            <div className="relative h-52 md:h-[410px] lg:h-[450px] w-full bg-white">
 
                 {/** LEFTT AND RIGHT ARROWS */}
                 <div className="absolute hidden  z-10 w-full h-full md:flex justify-between items-center px-4 md:px-6 lg:px-8">
