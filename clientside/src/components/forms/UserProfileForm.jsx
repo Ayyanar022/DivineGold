@@ -76,7 +76,7 @@ const UserProfileForm = ({ currentUser, onSave, isLoading, refetchUserData }) =>
             <div className="w-full md:w-1/2 lg:w-2/5 bg-white p-1 md:p-5 lg:p-6 md:rounded-lg md:shadow-md md:border">
                 <h2 className="text-[17px] md:text-xl font-bold  text-cyan-900 uppercase ">Update Your Details </h2>
                 <p className='w-fit text-[11px] md:text-[12px] lg:text-[13px]   text-amber-800 mb-2 md:mb-5'>Use reference TRESURE CODE and get Added prizeToken </p>
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 px-2">
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Email</label>
                         <input {...register('email')} disabled
@@ -144,7 +144,7 @@ const UserProfileForm = ({ currentUser, onSave, isLoading, refetchUserData }) =>
                 <section className=' bg-slate-50 md:bg-slate-100 p-1 md:p-2'>
                     <div className=' flex flex-col lg:flex-row md:gap-2 lg:items-center'>
                         <p className=' text-md md:text-lg font-semibold   text-slate-700'>Treasure Code : </p>
-                        <p className='text-slate-700 text-[13px] md:text-md'>{currentUser?.bonousCode}</p>
+                        <p className='pl-2 text-slate-700 text-[13px] md:text-md'>{currentUser?.bonousCode}</p>
                     </div>
                     <div className='flex gap-3 md:gap-5 mt-3 items-center '>
                         <p className=' text-md md:text-lg font-semibold text-slate-700'>Prize Token : </p>
