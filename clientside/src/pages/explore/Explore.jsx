@@ -98,7 +98,7 @@ const Explore = () => {
 
   return (
 
-    <div className="w-full  flex pb-[200px] md:pb-[140px]  lg:pb-28">
+    <div className="w-full px-2 mx-auto flex pb-[200px] md:pb-[140px]  lg:pb-28">
 
       {/**filter  */}
       <aside className="hidden md:block  fixed top-0 left-0 md:w-48 lg:w-56 h-full overflow-y-auto  bg-white border-r  shadow-sm">

@@ -128,7 +128,7 @@ const UserProfileForm = ({ currentUser, onSave, isLoading, refetchUserData }) =>
                         {errors.bonousCode && <p className="text-red-500 text-sm mt-1">{errors.bonousCode.message}</p>}
                     </div>}
 
-                    <button type="submit" disabled={isLoading} className="w-full text-sm md:text-md bg-cyan-800 uppercase tracking-wider shadow font-semibold text-white py-2 rounded-md hover:bg-cyan-900 hover:shadow-md transition-all duration-200">
+                    <button type="submit" disabled={isLoading} className="w-full text-sm md:text-md bg-cyan-800 uppercase tracking-wider shadow font-semibold text-white p-2.5 rounded-md hover:bg-cyan-900 hover:shadow-md transition-all duration-200">
                         {isLoading ? 'Loading...' : 'Update'}
                     </button>
                 </form>

@@ -126,8 +126,8 @@ const FairPrice = () => {
           ))}
           {!isLoading && (renderFinalData)?.map((item) => (
 
-            <Link to={`/fairPrice-details/${item?._id}`} className=" h-[210px]  md:h-56 lg:h-[255px] shadow-md border  rounded-md overflow-hidden transform transition-transform duration-200 hover:scale-105">
-              <img src={item?.jewellImage[0]} alt="img" className="w-full h-[74%] md:h-[76%] object-cover  brightness-110 " />
+            <Link to={`/fairPrice-details/${item?._id}`} className=" h-[235px]  md:h-56 lg:h-[255px] shadow-md border  rounded-md overflow-hidden transform transition-transform duration-200 hover:scale-105">
+              <img src={item?.jewellImage[0]} alt="img" className="w-full h-[76%] md:h-[76%] object-cover  brightness-110 " />
 
               <div className="px-2 py-1 md:py-1.5  bg-white flex">
                 <div className='w-full md:pl-1'>
