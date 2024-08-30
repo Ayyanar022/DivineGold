@@ -73,7 +73,7 @@ const ConstantsAdd = () => {
     const handleSubmitType = async (typeRefetch) => {
         const accessToken = await getAccessTokenSilently()
         try {
-            const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/admin/Itemtype`, { Itemtype }, {
+            await axios.post(`${process.env.REACT_APP_BASE_URL}/api/admin/Itemtype`, { Itemtype }, {
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
                     "Content-Type": "application/json"
@@ -111,7 +111,7 @@ const ConstantsAdd = () => {
 
     const handleNameDeleteFun = async (id, NameRefetch) => {
         const accessToken = await getAccessTokenSilently();
-        const response = await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/admin/delete-name/${id}`, {
+        await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/admin/delete-name/${id}`, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
                 "Content-Type": "application/json"
@@ -122,7 +122,7 @@ const ConstantsAdd = () => {
 
     const handleCategoryDeleteFun = async (id, CategoryRefetch) => {
         const accessToken = await getAccessTokenSilently();
-        const response = await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/admin/delete-category/${id}`, {
+        await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/admin/delete-category/${id}`, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
                 "Content-Type": "application/json"
@@ -133,7 +133,7 @@ const ConstantsAdd = () => {
 
     const handletypeDeleteFun = async (id, typeRefetch) => {
         const accessToken = await getAccessTokenSilently();
-        const response = await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/admin/delete-type/${id}`, {
+        await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/admin/delete-type/${id}`, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
                 "Content-Type": "application/json"
@@ -144,7 +144,7 @@ const ConstantsAdd = () => {
 
     const handleGenderDeleteFun = async (id, GenderRefetch) => {
         const accessToken = await getAccessTokenSilently();
-        const response = await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/admin/delete-gender/${id}`, {
+        await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/admin/delete-gender/${id}`, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
                 "Content-Type": "application/json"

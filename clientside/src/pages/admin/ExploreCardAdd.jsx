@@ -1,5 +1,5 @@
-import { Autocomplete, Button, Dialog, DialogActions, DialogContent, DialogTitle, Input, TextField } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import { Autocomplete, Button, Dialog, DialogActions, DialogContent, DialogTitle,  TextField } from '@mui/material'
+import React, { useState } from 'react'
 import uploadRateforImage from '../../helper/uploadRateForImage'
 import { MdDelete, MdEdit } from 'react-icons/md'
 import { useGetIteCategoryConstant, useGetItemGenderConstant, useGetItemNameConstant, useGetItemTypeConstant, useUploadNewItemDesign } from '../../api/AdminApi'
@@ -30,10 +30,10 @@ const ExploreCardAdd = () => {
     const [jewellData, setJewellData] = useState(newDesign)
     const [isEditMode, setisEditMode] = useState(false)
 
-    const { ConstantItemName, isLoading: NameIsLoading, refetch: NameRefetch } = useGetItemNameConstant()
-    const { ConstantItemCategory, isLoading: CategoryIsLoading, refetch: CategoryRefetch } = useGetIteCategoryConstant();
-    const { ConstantItemType, isLoading: typeIsLoading, refetch: typeRefetch } = useGetItemTypeConstant();
-    const { ConstantItemGender, isLoading: GenderisLoading, refetch: GenderRefetch } = useGetItemGenderConstant();
+    const { ConstantItemName, } = useGetItemNameConstant()
+    const { ConstantItemCategory, } = useGetIteCategoryConstant();
+    const { ConstantItemType, } = useGetItemTypeConstant();
+    const { ConstantItemGender, } = useGetItemGenderConstant();
 
     const openDialog = () => {
         setDialogOpen(true)
@@ -83,7 +83,7 @@ const ExploreCardAdd = () => {
         setDialogOpen(false)
     }
 
-    const { AddNewItemDesign, isLoading, isSuccess: addDesignisSucess } = useUploadNewItemDesign()
+    const { AddNewItemDesign, } = useUploadNewItemDesign()
 
     const uploadNewDesign = async () => {
         try {

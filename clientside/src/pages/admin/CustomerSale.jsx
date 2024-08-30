@@ -22,7 +22,7 @@ const CustomerSale = () => {
 
   })
 
-  const { ConstantItemCategory, isLoading: CategoryIsLoading, refetch: CategoryRefetch } = useGetIteCategoryConstant();
+  const { ConstantItemCategory,  } = useGetIteCategoryConstant();
 
   const handleChange = (e) => {
     const { name, value } = e.target;

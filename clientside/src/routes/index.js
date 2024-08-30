@@ -19,6 +19,7 @@ import FilterSales from "../pages/admin/FilterSales.jsx";
 import CustomerSale from "../pages/admin/CustomerSale.jsx";
 import NotAuthorized from "../pages/NotAuthorized.jsx";
 import ProtectedAdminRote from "../pages/admin/ProtectedRoute/ProtectedAdminRote.jsx";
+import AddCP_Rate from "../pages/admin/AddCP_Rate.jsx";
 
 
 const router = createBrowserRouter([
@@ -51,6 +52,7 @@ const router = createBrowserRouter([
        { path: "JewllDesign-details/:id",element:<ExploreCardDetails />},
        { path: "CartPage", element:<CartPage /> },
        { path: "not-authorized" , element:<NotAuthorized />},
+       { path: "add-current-rate" , element:<AddCP_Rate />},
     ],
   },
 ])

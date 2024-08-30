@@ -13,10 +13,10 @@ import uploadRateforImage from '../../helper/uploadRateForImage';
 
 const AddFareRate = () => {
 
-    const { createFairPrice, isLoading: isLoadingNEWFairPrice, isSuccess, isError } = useCreateFairPriceItem()
+    const { createFairPrice } = useCreateFairPriceItem()
 
     const [currentPrice, setCurrentPrice] = useState('')
-    const { updateCurrentPrice, isLoading: CPisLoaing } = useUpdateCurrentPrice()
+    const { updateCurrentPrice } = useUpdateCurrentPrice()
     const { fairPriceCardData, isLoading: FPisLoading, refetch: reFetchAllFairPrice } = useGetAllFairPrice()
 
     //Update current RATE
@@ -31,10 +31,10 @@ const AddFareRate = () => {
         }
     }
 
-    const { ConstantItemName, isLoading: NameIsLoading, refetch: NameRefetch } = useGetItemNameConstant()
-    const { ConstantItemCategory, isLoading: CategoryIsLoading, refetch: CategoryRefetch } = useGetIteCategoryConstant();
-    const { ConstantItemType, isLoading: typeIsLoading, refetch: typeRefetch } = useGetItemTypeConstant();
-    const { ConstantItemGender, isLoading: GenderisLoading, refetch: GenderRefetch } = useGetItemGenderConstant();
+    const { ConstantItemName, } = useGetItemNameConstant()
+    const { ConstantItemCategory } = useGetIteCategoryConstant();
+    const { ConstantItemType, } = useGetItemTypeConstant();
+    const { ConstantItemGender } = useGetItemGenderConstant();
 
     const [isEditMode, setisEditMode] = useState(false)
     const [dailogOpen, setDialogOpen] = useState()

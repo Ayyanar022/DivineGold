@@ -7,12 +7,13 @@ import { useAuth0 } from '@auth0/auth0-react';
 import logo from '../asserts/logo/apple-touch-icon.png'
 import { useSelector } from 'react-redux';
 import { useGetMyUser } from '../api/MyUserApi';
+import { FaUserAstronaut } from "react-icons/fa6";
 
 const Header = () => {
   const { loginWithRedirect, isAuthenticated, logout } = useAuth0()
   const totalQuantity = useSelector(state => state?.cart?.totalQuantity);
 
-  const { currentUser, isLoading: isUpdateLoading, refetch: refetchUserData } = useGetMyUser()
+  const { currentUser, } = useGetMyUser()
 
   const isAdmin = currentUser && currentUser?.role === "ADMIN_AYAN"
 
@@ -40,7 +41,7 @@ const Header = () => {
 
         {/**for user icons and bag */}
         <div className='ml-auto '>
-          <section className='flex justify-center gap-3 md:gap-5 lg:mr-7 pr-2 text-xl items-center '>
+          <section className='flex justify-center gap-2 md:gap-5 lg:mr-7 pr-2 text-xl items-center '>
 
             {isAuthenticated ? (
               <button className='text-[16px] font-semibold ' onClick={() => logout()}>Logout</button>
@@ -48,6 +49,7 @@ const Header = () => {
 
 
             {isAuthenticated && isAdmin && (<Link to={"/admin-chan/CustomerSale"} className='cursor-pointer hidden lg:block'><FaUserCircle /> </Link>)}
+            {isAuthenticated && isAdmin && (<Link to={"/add-current-rate"} className='cursor-pointer  lg:hidden'><FaUserAstronaut /> </Link>)}
 
             <Link to={"/CartPage"} className='hover:bg-slate-200 transition-all rounded-full p-1 relative' > <CiBag1 />
               <span className='absolute w-4 flex items-center justify-center h-4  text-[10px] bg-red-500  rounded-full  -top-0.5 -right-1 text-white'> {totalQuantity}</span>

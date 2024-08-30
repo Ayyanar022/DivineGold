@@ -31,6 +31,8 @@ const FairPrice = () => {
   }, [fairPriceCardData,])
 
 
+
+
   const singleFilter = (Itemcategory) => {
     const data = fairPriceCardData?.filter(item => item?.jewellCategory === Itemcategory);
     setFilterdCardData(data);
@@ -47,7 +49,7 @@ const FairPrice = () => {
   }
 
 
-  const loadingEmptyCard = new Array(20).fill(null)
+  const loadingEmptyCard = new Array(10).fill(null)
 
   const renderFinalData = filterdcardData?.length > 0 ? filterdcardData : fairPriceCardData;
 
@@ -59,7 +61,7 @@ const FairPrice = () => {
       <div className='flex items-center gap-2 md:gap-4 justify-between overflow-x-auto scrollbar-hiden'>
         {filterData?.length > 0 ? (
           filterData?.map((item) => (
-          
+
             <div
               onClick={() => singleFilter(item?.jewellCategory)}
               key={item?.id}

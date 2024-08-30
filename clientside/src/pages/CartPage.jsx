@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 import { useAddUpdateCart, useGetCartItem } from '../api/CartApi'
 import { IoCloseSharp } from "react-icons/io5";
 import { useAuth0 } from '@auth0/auth0-react';
@@ -40,7 +40,7 @@ const CartPage = () => {
     }
 
     // INCRESE COUNT
-    const { addUpdateCart, isLoading: increseIsLoaing } = useAddUpdateCart()
+    const { addUpdateCart, } = useAddUpdateCart()
 
     const handleAaddtoCartfun = async (id, qty, event) => {
         event.preventDefault() // to prevent navigation
@@ -127,7 +127,7 @@ const CartPage = () => {
                 {
                     cartData?.cartItems?.length > 0 ? (cartData?.cartItems?.map((item, index) => (
                         <div key={index} className='flex bg-gray-100 border shadow-md p-2 md:p-3 relative'>
-                            <img src={item?.productId?.jewellImage[0]} className='w-28 md:w-32 h-28 md:h-32 ' alt='Jewelry Image' />
+                            <img  src={item?.productId?.jewellImage[0]} className='w-28 md:w-32 h-28 md:h-32 ' alt='Jewelry Image' />
                             <div className='px-3 flex flex-col gap-1'>
                                 <h2 className='text-sm md:lg'>Name    : {item?.productId?.jewellName}</h2>
                                 <p className='text-sm md:lg'>Category : {item?.productId?.jewellCategory}</p>

@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { category, Gender, itemCategory } from "../../helper/uploadFairPriceItemData";
 import { MdClose, MdOutlineKeyboardArrowUp } from "react-icons/md"; // up arraow
 import { MdKeyboardArrowDown } from "react-icons/md" // down arrow
 import { useFilterJewllDesignExplore, useGetAllJewllDesign } from "../../api/ExploreApi";
 import JewllDesignCard from "../../components/explore/JewllDesignCard";
-import { useGetIteCategoryConstant, useGetItemGenderConstant, useGetItemNameConstant, useGetItemTypeConstant } from "../../api/AdminApi";
+import { useGetIteCategoryConstant, useGetItemGenderConstant, useGetItemTypeConstant } from "../../api/AdminApi";
 import { FaArrowRightArrowLeft } from "react-icons/fa6";
-import { useAddUpdateCart } from "../../api/CartApi";
-import { useAuth0 } from "@auth0/auth0-react";
 import LoadingJewelCard from "../../components/LoadingJewelCard";
 import { GiHummingbird } from "react-icons/gi";
 
@@ -22,7 +19,6 @@ const Explore = () => {
 
   const [showNave, setShowNave] = useState(false)
 
-  const { isAuthenticated } = useAuth0()
 
   // onchange for gender
   const handleChangeGender = (e) => {
@@ -68,12 +64,12 @@ const Explore = () => {
     setSelectedGender([]);
   }
 
-
-  const { filterData, isLoading: filterLoading } = useFilterJewllDesignExplore(selectedGendr, selectType, selectCategory)
+// FILTERRING DATA
+  const { filterData } = useFilterJewllDesignExplore(selectedGendr, selectType, selectCategory)
 
   const nodilterData = (selectCategory?.length > 0 || selectType?.length > 0 || selectedGendr?.length > 0) && (filterData?.length === 0 && <p className="text-center text-red-600 font-semibold text-lg p-2">No Data Found..</p>)
 
-  const { JewellDesignData, isLoading: JewllDataIsLoading } = useGetAllJewllDesign()
+  const { JewellDesignData } = useGetAllJewllDesign()
 
   // Prevent background scroll when aside is open
   useEffect(() => {
@@ -96,7 +92,7 @@ const Explore = () => {
 
 
   // loading empty  card data count .
-  const loadingEmptyCard = new Array(20).fill(null)
+  const loadingEmptyCard = new Array(10).fill(null)
 
 
 
@@ -189,7 +185,7 @@ const Explore = () => {
               </div>
 
               {genderToggle && (<div >
-                {Gender && ConstantItemGender?.data?.map((item, index) => (
+                {ConstantItemGender && ConstantItemGender?.data?.map((item, index) => (
                   <div key={item?._id}
                     className={`flex items-center py-1 px-3 gap-1 
                   hover:bg-slate-300 
@@ -243,7 +239,7 @@ const Explore = () => {
               </div>
 
               {genderToggle && (<div >
-                {Gender && ConstantItemGender?.data?.map((item, index) => (
+                {ConstantItemGender && ConstantItemGender?.data?.map((item, index) => (
                   // <div key={item?._id} className="flex items-center mb-2">
                   <div key={item?._id}
                     className={`flex items-center py-1 px-3 gap-1 

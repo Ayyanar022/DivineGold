@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 const FilterSales = () => {
 
   const { getAccessTokenSilently } = useAuth0()
-  const { ConstantItemCategory, isLoading: CategoryIsLoading, refetch: CategoryRefetch } = useGetIteCategoryConstant();
+  const { ConstantItemCategory, } = useGetIteCategoryConstant();
 
   const filterObject = {
     username: '',
