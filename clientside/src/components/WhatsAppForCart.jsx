@@ -8,7 +8,15 @@ const WhatsAppForCart = ({ data }) => {
     const [userName, setUserName] = useState('');
     const [village, setVillage] = useState('')
 
-    const yourPhoneNumber = '919698358807';
+    const yourPhoneNumber = '918248834603';
+
+    const handleCancel = (e) => {
+        e.preventDefault();
+        setUserPhone('')
+        setUserMessage('');
+        setUserPhone('');
+        setVillage('');
+    }
 
     useEffect(() => {
 
@@ -24,6 +32,7 @@ const WhatsAppForCart = ({ data }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+
         // Ensure that userMessage is properly encoded for WhatsApp
         const encodedMessage = encodeURIComponent(
             `From: ${userPhone}\nUserName: ${userName}\nVillage:${village}\nMessage:\n${userMessage}`
@@ -34,13 +43,15 @@ const WhatsAppForCart = ({ data }) => {
 
         // Open WhatsApp with the message
         window.open(whatsappURL, '_blank');
+
+        handleCancel()
     };
 
     return (
         <div className="flex justify-center items-center  ">
             <div className="w-full max-w-md lg:max-w-lg bg-white rounded-lg shadow-md py-3 px-6  lg:py-5 lg:px-8 lg:mx-10 ">
                 <h2 className="text-lg md:text-lg lg:text-[21px] font-bold text-center text-green-600 mb-4 ">Send a WhatsApp Message</h2>
-                <form onSubmit={handleSubmit}>
+                <form >
                     <div className="mb-2 md:mb-3 lg:mb-4">
                         <label className="block text-gray-700 text-sm md:text-md lg:text-[16px] font-medium mb-1 md:mb-2">Your Phone Number</label>
                         <input
@@ -84,12 +95,22 @@ const WhatsAppForCart = ({ data }) => {
                             required
                         />
                     </div>
-                    <button
-                        type="submit"
-                        className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition duration-300"
-                    >
-                        Send WhatsApp Message
-                    </button>
+
+                    <div className='felx gap-x-4'>
+                        <button onClick={handleSubmit}
+                            type="submit"
+                            className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition duration-300"
+                        >
+                            Send Message
+                        </button>
+                        <button onClick={handleCancel}
+                            type="submit"
+                            className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition duration-300"
+                        >
+                            Cancel
+                        </button>
+
+                    </div>
                 </form>
             </div>
         </div>
