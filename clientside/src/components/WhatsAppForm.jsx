@@ -75,13 +75,13 @@ const WhatsAppForm = () => {
 
     return (
         <div className=" mx-auto w-full max-w-md rounded-lg md:shadow-md py-3 px-2 bg-slate-50 md:p-6">
-            <h2 className="text-[17px] md:text-xl font-bold text-center text-green-600 mb-4 md:mb-6">Send a WhatsApp Message</h2>
+            <h2 className="text-[18px] md:text-xl font-bold text-center text-green-600 mb-4 md:mb-6">Send a WhatsApp Message</h2>
             <form className='mx-2  md:px-0 '>
                 <div className="mb-3 md:mb-4">
-                    <label className=" text-[14px] md:text-md block text-gray-700 font-medium mb-1 md:mb-2">Your Phone Number</label>
+                    <label className=" text-[15px] md:text-md block text-gray-700 font-medium mb-1 md:mb-2">Your Phone Number</label>
                     <input
                         type="text"
-                        className="w-full px-3 py-1 md:py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-500 placeholder:text-sm"
+                        className="w-full p-2.5  border rounded-md focus:outline-none focus:ring-1 focus:ring-green-500 placeholder:text-sm"
                         value={userPhone}
                         onChange={(e) => setUserPhone(e.target.value)}
                         placeholder="Enter your phone number"
@@ -89,10 +89,10 @@ const WhatsAppForm = () => {
                     />
                 </div>
                 <div className="mb-3 md:mb-4">
-                    <label className="text-[14px] md:text-md block text-gray-700 font-medium mb-1 md:mb-2">Your Name</label>
+                    <label className="text-[15px] md:text-md block text-gray-700 font-medium mb-1 md:mb-2">Your Name</label>
                     <input
                         type="text"
-                        className="w-full px-3 py-1 md:py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-500 placeholder:text-sm"
+                        className="w-full p-2.5 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-500 placeholder:text-sm"
                         value={userName}
                         onChange={(e) => setUserName(e.target.value)}
                         placeholder="Enter your Name"
@@ -100,9 +100,9 @@ const WhatsAppForm = () => {
                     />
                 </div>
                 <div className="mb-3 md:mb-4">
-                    <label className="text-[14px] md:text-md block text-gray-700 font-medium mb-1 md:mb-2">Your Message</label>
+                    <label className="text-[15px] md:text-md block text-gray-700 font-medium mb-1 md:mb-2">Your Message</label>
                     <textarea
-                        className="w-full px-3 py-1 md:py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-500 placeholder:text-sm"
+                        className="w-full p-2.5 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-500 placeholder:text-sm"
                         value={userMessage}
                         onChange={(e) => setUserMessage(e.target.value)}
                         placeholder="Type your message"

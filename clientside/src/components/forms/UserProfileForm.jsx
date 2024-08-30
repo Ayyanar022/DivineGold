@@ -80,42 +80,42 @@ const UserProfileForm = ({ currentUser, onSave, isLoading, refetchUserData }) =>
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Email</label>
                         <input {...register('email')} disabled
-                            className="text-sm md:text-md mt-1 block w-full text-gray-500 p-2 border border-gray-300 rounded-md outline-none"
+                            className="text-sm md:text-md mt-1 block w-full text-gray-500 p-2.5 border border-gray-300 rounded-md outline-none"
                         />
                         {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
                     </div>
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Full Name</label>
                         <input {...register('name')}
-                            className="text-sm md:text-md mt-1  block w-full text-gray-500 p-2 border border-gray-300 rounded-md  outline-1 focus:shadow"
+                            className="text-sm md:text-md mt-1  block w-full text-gray-500 p-2.5 border border-gray-300 rounded-md  outline-1 focus:shadow"
                         />
                         {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>}
                     </div>
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Mobile No</label>
                         <input {...register('mobileNo')}
-                            className="text-sm md:text-md mt-1 block w-full text-gray-500 p-2 border border-gray-300 rounded-md  outline-1 focus:shadow"
+                            className="text-sm md:text-md mt-1 block w-full text-gray-500 p-2.5 border border-gray-300 rounded-md  outline-1 focus:shadow"
                         />
                         {errors.mobileNo && <p className="text-red-500 text-sm mt-1">{errors.mobileNo.message}</p>}
                     </div>
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Address</label>
                         <input {...register('address')}
-                            className="text-sm md:text-md mt-1 block w-full text-gray-500 p-2 border border-gray-300 rounded-md  outline-1 focus:shadow"
+                            className="text-sm md:text-md mt-1 block w-full text-gray-500 p-2.5 border border-gray-300 rounded-md  outline-1 focus:shadow"
                         />
                         {errors.address && <p className="text-red-500 text-sm mt-1">{errors.address.message}</p>}
                     </div>
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Village</label>
                         <input {...register('village')}
-                            className="text-sm md:text-md mt-1 block w-full text-gray-500 p-2 border border-gray-300 rounded-md  outline-1 focus:shadow"
+                            className="text-sm md:text-md mt-1 block w-full text-gray-500 p-2.5 border border-gray-300 rounded-md  outline-1 focus:shadow"
                         />
                         {errors.village && <p className="text-red-500 text-sm mt-1">{errors.village.message}</p>}
                     </div>
                     <div>
                         <label className="block text-sm font-medium text-gray-700">City</label>
                         <input {...register('city')}
-                            className="text-sm md:text-md mt-1 block w-full text-gray-500 p-2 border border-gray-300 rounded-md  outline-1 focus:shadow"
+                            className="text-sm md:text-md mt-1 block w-full text-gray-500 p-2.5 border border-gray-300 rounded-md  outline-1 focus:shadow"
                         />
                         {errors.city && <p className="text-red-500 text-sm mt-1">{errors.city.message}</p>}
                     </div>
@@ -123,7 +123,7 @@ const UserProfileForm = ({ currentUser, onSave, isLoading, refetchUserData }) =>
                     {!(currentUser?.name || currentUser?.mobileNo || currentUser?.address || currentUser?.village || currentUser?.city) && <div>
                         <label className="block text-sm font-medium text-gray-700">Super Code</label>
                         <input {...register('bonousCode')}
-                            className=" text-sm md:text-md mt-1 block w-full text-gray-500 p-2 border border-gray-300 rounded-md  outline-1 focus:shadow"
+                            className=" text-sm md:text-md mt-1 block w-full text-gray-500 p-2.5 border border-gray-300 rounded-md  outline-1 focus:shadow"
                         />
                         {errors.bonousCode && <p className="text-red-500 text-sm mt-1">{errors.bonousCode.message}</p>}
                     </div>}

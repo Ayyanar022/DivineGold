@@ -49,7 +49,7 @@ const Header = () => {
 
 
             {isAuthenticated && isAdmin && (<Link to={"/admin-chan/CustomerSale"} className='cursor-pointer hidden lg:block'><FaUserCircle /> </Link>)}
-            {isAuthenticated && isAdmin && (<Link to={"/add-current-rate"} className='cursor-pointer  lg:hidden'><FaUserAstronaut /> </Link>)}
+            {isAuthenticated && isAdmin && (<Link to={"/add-current-rate"} className='cursor-pointer   lg:hidden'><FaUserAstronaut /> </Link>)}
 
             <Link to={"/CartPage"} className='hover:bg-slate-200 transition-all rounded-full p-1 relative' > <CiBag1 />
               <span className='absolute w-4 flex items-center justify-center h-4  text-[10px] bg-red-500  rounded-full  -top-0.5 -right-1 text-white'> {totalQuantity}</span>
