@@ -7,10 +7,10 @@ import { FaBlackTie } from "react-icons/fa"; // contect us icon
 
 export const navigation = [
   { label: "Home", href: "/", icon: <IoMdHome />},
-  { label: "Explor", href: "explore", icon: <BiSolidCategoryAlt /> },
+  { label: "Explore", href: "explore", icon: <BiSolidCategoryAlt /> },
   { label: "Fair Price", href: "fairPrice", icon: <BiSolidComponent /> },
   { label: "User", href: "user-profile", icon: <FaUserCircle /> },
-  { label: "Contect Us", href: "contectInfo", icon: <FaBlackTie /> },
+  { label: "Contact Us", href: "contectInfo", icon: <FaBlackTie /> },
 
 ]
 

@@ -3,6 +3,7 @@ import { useGetAllFairPrice } from '../../api/FairPriceApi'
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import LoadingJewelCard from '../../components/LoadingJewelCard'
+import { useAuth0 } from '@auth0/auth0-react'
 
 const FairPrice = () => {
 
@@ -53,6 +54,20 @@ const FairPrice = () => {
 
   const renderFinalData = filterdcardData?.length > 0 ? filterdcardData : fairPriceCardData;
 
+  const { isAuthenticated } = useAuth0()
+  // // No Authentication
+  if (!isAuthenticated) {
+    return (
+      <div className="w-full h-full bg-white flex items-center justify-center ">
+        <div className='md:w-[80%]  m-4'>
+          <h1 className="text-xl md:text-2xl   text-amber-500 bg-amber-100 p-6 border text-center mt-20">Please Login..!</h1>
+
+        </div>
+      </div>
+    )
+  }
+
+
 
   return (
     <div className=' mx-auto w-full lg:px-16 py-2 md:py-3 px-2 mb-[55px] lg:mb-[10px]'>
@@ -90,9 +105,7 @@ const FairPrice = () => {
         )}
       </div>
 
-
-
-      <div className='flex justify-between md:block space-x-2 md:space-x-5 pt-3 lg:pt-5 px-2 transition-all duration-200'>
+      {filterdcardData?.length > 0 && (<div className='flex justify-between md:block space-x-2 md:space-x-5 pt-3 lg:pt-5 px-2 transition-all duration-200'>
         <button className="bg-[#D4AF37] uppercase text-xs    md:tracking-wider font-semibold py-1.5 px-3 md:px-4 hover:bg-[#C49C2E] transition-all duration-300 text-white  rounded"
           onClick={() => TypeFilter(filterdcardData[0]?.jewellCategory, "Traditional")} >
           Treditional
@@ -107,17 +120,21 @@ const FairPrice = () => {
           onClick={() => TypeFilter(filterdcardData[0]?.jewellCategory, "HighFancy")} >
           High Fancy
         </button>
-      </div>
+      </div>)}
+
+
 
 
 
       <div className=' py-4 px-2 '>
         <div className=" md:pb-4   space-y-2" >
-          <h2 className="text-[16px] md:text-[19px] lg:text-[22px] tracking-wide font-bold  text-amber-600 capitalize "> Get The overal Current Market Fair Prices for each Jewelry </h2>
+          <h2 className="text-[16px] md:text-[19px] lg:text-[22px] tracking-wide font-bold  text-amber-600 capitalize ">Get the overall current market fair prices for each jewelry. </h2>
           <p className=" hidden md:block  md:text-[14px] lg:text-[15px] font-bold  text-gray-500  ">Find the overall best market prices for any jewelry item. Get insights into the current rates across traditional, fancy, and high fancy styles, helping you make informed decisions with ease. </p>
-          <p className=" md:hidden text-[12px] text-justify font-medium  text-gray-500  ">Find the overall best market current prices for any jewel. Get insights into the current rates and helping you make decisions with ease. </p>
+          <p className=" md:hidden text-[12px] text-justify font-medium  text-gray-500  ">Find the overall best current market prices for any jewel. Get insights into the current rates, helping you make decisions with ease. </p>
         </div>
-        <div onClick={() => setFilterdCardData([])} className='my-3  w-fit  text-lg md:text-xl font-bold cursor-pointer text-amber-500'>All jewell Category</div>
+
+        {filterdcardData?.length > 0 ? (<div onClick={() => setFilterdCardData([])} className='my-3  w-fit  text-lg md:text-xl font-bold cursor-pointer text-amber-500  uppercase transition-all duration-200'>Clear Filter </div>) : (<div className='my-3  w-fit  text-lg md:text-xl font-bold cursor-pointer uppercase text-slate-800 transition-all duration-200'>All jewelry items</div>)}
+
 
         <div className='grid gap-3 md:gap-6 lg:gap-12 grid-cols-2 md:grid-cols-4 lg:grid-cols-5'>
 

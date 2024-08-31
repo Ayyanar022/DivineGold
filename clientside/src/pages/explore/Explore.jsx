@@ -7,6 +7,8 @@ import { useGetIteCategoryConstant, useGetItemGenderConstant, useGetItemTypeCons
 import { FaArrowRightArrowLeft } from "react-icons/fa6";
 import LoadingJewelCard from "../../components/LoadingJewelCard";
 import { GiHummingbird } from "react-icons/gi";
+import { useAuth0 } from "@auth0/auth0-react";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const Explore = () => {
   const [selectedGendr, setSelectedGender] = useState([])
@@ -64,8 +66,9 @@ const Explore = () => {
     setSelectedGender([]);
   }
 
-// FILTERRING DATA
-  const { filterData } = useFilterJewllDesignExplore(selectedGendr, selectType, selectCategory)
+  // FILTERRING DATA
+  const { filterData, isLoading: filterisLoading } = useFilterJewllDesignExplore(selectedGendr, selectType, selectCategory)
+
 
   const nodilterData = (selectCategory?.length > 0 || selectType?.length > 0 || selectedGendr?.length > 0) && (filterData?.length === 0 && <p className="text-center text-red-600 font-semibold text-lg p-2">No Data Found..</p>)
 
@@ -93,6 +96,20 @@ const Explore = () => {
 
   // loading empty  card data count .
   const loadingEmptyCard = new Array(10).fill(null)
+
+  const { isAuthenticated } = useAuth0()
+  // // No Authentication
+  if (!isAuthenticated) {
+    return (
+      <div className="w-full h-full bg-white flex items-center justify-center ">
+        <div className='md:w-[80%]  m-4'>
+          <h1 className="text-xl md:text-2xl   text-amber-500 bg-amber-100 p-6 border text-center mt-20">Please Login..!</h1>
+
+        </div>
+      </div>
+    )
+  }
+
 
 
 
@@ -340,9 +357,14 @@ const Explore = () => {
           <button className="block md:hidden p-1.5 bg-gray-50 hover:bg-gray-100 rounded-lg" onClick={() => setShowNave(prev => !prev)}><FaArrowRightArrowLeft /></button>
         </div>
         <div className="lg:px-3 pb-6 lg:pb-8 space-y-2 " >
-          <h2 className="text-[16px] md:text-[19px] lg:text-[22px] tracking-wide font-bold  text-amber-600  ">  Explore Top Designs with Real-Time Pricing  </h2>
+          <h2 className="text-[16px] md:text-[19px] lg:text-[22px] tracking-wide font-bold  text-amber-600  "> Explore Top Designs with Real-Time Pricing  </h2>
           <p className="text-[12px] md:text-[15px] font-medium  text-gray-500  ">Choose from our beautiful jewelry designs, enter the weight, and get the most accurate market prices on each design right away. </p>
         </div>
+        {filterisLoading && (<div className='flex justify-center items-center p-3'>
+          <AiOutlineLoading3Quarters className='animate-spin text-xl  md:text-2xl text-gray-600' />
+          <span className='ml-2 text-xl font-semibold'>Loading...</span>
+        </div>)}
+
 
         <div className=" w-full h-full grid  gap-x-4 gap-y-3   lg:gap-x-6 lg:gap-y-5 grid-cols-2 md:px-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 ">
           {!dataToRender && loadingEmptyCard.map((item, index) => (

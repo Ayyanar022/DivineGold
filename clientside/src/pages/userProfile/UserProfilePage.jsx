@@ -2,11 +2,10 @@ import React, { useEffect } from 'react'
 import UserProfileForm from '../../components/forms/UserProfileForm'
 import { useGetMyUser, useUpdateMyUser } from '../../api/MyUserApi'
 import { useCurrentUserConetxt } from '../../context/userContext'
-import { useAuth0 } from '@auth0/auth0-react'
 
 const UserProfilePage = () => {
 
-  const { updateUser, isLoading: isGetLoading } = useUpdateMyUser()
+  const { updateUser } = useUpdateMyUser()
   const { currentUser, isLoading: isUpdateLoading, refetch: refetchUserData } = useGetMyUser()
 
 

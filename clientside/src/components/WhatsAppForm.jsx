@@ -8,6 +8,7 @@ const WhatsAppForm = () => {
     const [userMessage, setUserMessage] = useState('');
     const [userName, setUserName] = useState('');
     const [village, setVillage] = useState('');
+    const [errors, setErrors] = useState({});
 
     const { isAuthenticated } = useAuth0()
 
@@ -22,8 +23,38 @@ const WhatsAppForm = () => {
         setVillage('')
     }
 
+    const validateForm = () => {
+        const error = {}
+
+        const mobileNoRegex = /^[6-9]\d{9}$/; // Indian phone number validation
+        if (!userPhone.match(mobileNoRegex)) {
+            error.userPhone = 'Please enter a valid 10-digit phone number.';
+        }
+
+        const userNameRegex = /^[A-Za-z\s]+$/;
+        if (!userName.match(userNameRegex)) {
+            error.userName = 'Name should contain only letters.';
+        }
+
+        if (!village.match(userNameRegex)) {
+            error.village = 'Village/city should contain only letters.';
+        }
+        if (!userMessage) {
+            error.userMessage = 'Please type message ';
+        }
+
+        return error
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        const validation = validateForm()
+        if (Object.keys(validation).length > 0) {
+            setErrors(validation);
+            return
+        }
+
 
         if (!isAuthenticated) return toast.warning("Please Login..");;
         const encodedMessage = encodeURIComponent(
@@ -52,6 +83,7 @@ const WhatsAppForm = () => {
                         required
                         id="userPhone"
                     />
+                    {errors?.userPhone && <p className="text-red-500 text-xs mt-1">{errors?.userPhone}</p>}
                 </div>
                 <div className="mb-3 md:mb-4">
                     <label className="text-[15px] md:text-md block text-gray-700 font-medium mb-1 md:mb-2">Your Name</label>
@@ -64,6 +96,7 @@ const WhatsAppForm = () => {
                         required
                         id="userName"
                     />
+                    {errors?.userName && <p className="text-red-500 text-xs mt-1">{errors?.userName}</p>}
                 </div>
                 <div className="mb-3 md:mb-4">
                     <label className="text-[15px] md:text-md block text-gray-700 font-medium mb-1 md:mb-2">Village/City</label>
@@ -72,10 +105,11 @@ const WhatsAppForm = () => {
                         id="village"
                         className="w-full p-2.5 border rounded-md focus:outline-none focus:ring-1 focus:ring-green-500 placeholder:text-sm"
                         value={village}
-                        onChange={(e) => setVillage(e.target.value)}
+                        onChange={(e) => setVillage(e.target?.value)}
                         placeholder="Enter your Name"
                         required
                     />
+                    {errors?.village && <p className="text-red-500 text-xs mt-1">{errors?.village}</p>}
                 </div>
                 <div className="mb-3 md:mb-4">
                     <label className="text-[15px] md:text-md block text-gray-700 font-medium mb-1 md:mb-2">Your Message</label>
@@ -87,6 +121,7 @@ const WhatsAppForm = () => {
                         required
                         id="message"
                     />
+                    {errors.userMessage && <p className="text-red-500 text-xs mt-1">{errors.userMessage}</p>}
                 </div>
 
                 <div className='flex gap-x-4'>
