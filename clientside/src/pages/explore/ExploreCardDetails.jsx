@@ -301,7 +301,6 @@ const ExploreCardDetails = () => {
                                 <div className=" grid grid-cols-2 gap-x-3 md:gap-4 mb-5">
                                     <div className=' lg:w-52 bg-white'>
                                         <TextField
-                                            autoFocus
                                             value={data.usePriceToken || ''}
                                             onChange={handleChangeFeild}
                                             name="usePriceToken"
@@ -315,7 +314,6 @@ const ExploreCardDetails = () => {
                                     </div>
                                     <div className=' lg:w-52 bg-white'>
                                         <TextField
-                                            autoFocus
                                             value={data.itemWeight || ''}
                                             onChange={handleChangeFeild}
                                             name="itemWeight"

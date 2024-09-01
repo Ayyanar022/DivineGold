@@ -1,6 +1,7 @@
 {
-  "short_name": "ADJ",
+  "short_name": "ADG",
   "name": "Divine Gold",
+  "description": "The best place to find exquisite jewelry.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,13 +9,13 @@
       "type": "image/x-icon"
     },
     {
-      "src": "/android-chrome-192x192.png",
-      "type": "image/png",
+      "src": "/ADG-logo.webp",
+      "type": "image/webp",
       "sizes": "192x192"
     },
     {
-      "src": "/android-chrome-512x512.png",
-      "type": "image/png",
+      "src": "/ADG-logo.webp",
+      "type": "image/webp",
       "sizes": "512x512"
     }
   ],

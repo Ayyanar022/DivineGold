@@ -4,7 +4,7 @@ import { CiBag1 } from "react-icons/ci"; // bag icon
 import { FaUserCircle } from "react-icons/fa"; // userProfile icon
 import { navigation } from '../constant/navigation';
 import { useAuth0 } from '@auth0/auth0-react';
-import logo from '../asserts/logo/apple-touch-icon.png'
+import logo from '../asserts/logo/ADG-logo.webp'
 import { useSelector } from 'react-redux';
 import { useGetMyUser } from '../api/MyUserApi';
 import { FaUserAstronaut } from "react-icons/fa6";
@@ -22,9 +22,9 @@ const Header = () => {
     <header className='fixed h-[60px] md:h-16  w-full border-b-2 z-40 shadow-sm bg-white'>
       <div className='  mx-auto px-1 md:px-2  flex items-center h-full'>
 
-        <div className='flex items-center  lg:mr-10'>
+        <div className='flex items-center  lg:mr-10 '>
           <Link to={"/"}>
-            <img src={logo} alt="logo-img" width={45} className='cursor-pointer m-3 ' />
+            <img src={logo} alt="logo-img" width={45} className='cursor-pointer m-3 rounded-full brightness-110 ' />
           </Link>
           <h2 className=' text-2xl cursor-pointer font-serif tracking-wider'>DivineGold</h2>
         </div>
