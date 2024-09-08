@@ -110,14 +110,17 @@ const ExploreCardDetails = () => {
     const [tokkenErrorMessage, setTokenErrorMessage] = useState()
 
     // TO CHEK MAX TOKEN LIMIT 
-    const allowedToken = (MtouchValue, KchaRate) => {
+    const allowedToken = (MtouchValue, KchaRate, JewelWeight) => {
         const result = ((MtouchValue / 100) * KchaRate) / 3 / 34;
         const decimalPart = result % 1;
 
         if (decimalPart > 0.7) {
-            return Math.ceil(result)
+            const resultdata = (Math.ceil(result) * JewelWeight) <= 24 ? (Math.ceil(result) * JewelWeight) : 24
+            return resultdata
         } else {
-            return Math.floor(result)
+
+            const resultdata = (Math.floor(result) * JewelWeight) <= 24 ? (Math.floor(result) * JewelWeight) : 24
+            return resultdata
         }
     };
 
@@ -162,12 +165,14 @@ const ExploreCardDetails = () => {
     const handleChangeFeild = (e) => {
         const { name, value } = e.target
 
+
+
         if (name === "usePriceToken" && !Number.isInteger(Number(value))) return;
+        if (!data?.itemWeight > 0) return toast.warning("Enter weight in gram")
         if (name === "usePriceToken") {
             const MtouchValue = data.selectedValue === '75halmark' ? details.touch_M_75 : details.touch_M_92;
-            const maxToken = allowedToken(MtouchValue, currentPriceCP)
+            const maxToken = allowedToken(MtouchValue, currentPriceCP, data?.itemWeight)
             const validation = validateTokenUsageErrorMessage(currentUserData?.bonousePoints, value, maxToken)
-            console.log("validation", validation)
             setTokenErrorMessage(validation)
         }
 
@@ -200,7 +205,7 @@ const ExploreCardDetails = () => {
         const touchValue = data.selectedValue === '75halmark' ? details.touch_75 + details.touch_M_75 : details.touch_92 + details.touch_M_92;
         const MtouchValue = data.selectedValue === '75halmark' ? details.touch_M_75 : details.touch_M_92;
         const result = calculatePrice(weight, touchValue, currentPriceCP);
-        const maxToken = allowedToken(MtouchValue, currentPriceCP);
+        const maxToken = allowedToken(MtouchValue, currentPriceCP, data?.itemWeight);
 
         let token = 0;
         if (validateTokenUsage(currentUserData?.bonousePoints, data?.usePriceToken, maxToken)) {
