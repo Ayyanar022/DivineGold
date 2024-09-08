@@ -166,9 +166,9 @@ const ExploreCardDetails = () => {
         const { name, value } = e.target
 
 
+        if (name === "usePriceToken" && !data?.itemWeight > 0) return toast.warning("Please Enter weight..!")  // to chek jewel weight is entered 
+        if (name === "usePriceToken" && !Number.isInteger(Number(value))) return; // to check token is round number ..
 
-        if (name === "usePriceToken" && !Number.isInteger(Number(value))) return;
-        if (!data?.itemWeight > 0) return toast.warning("Enter weight in gram")
         if (name === "usePriceToken") {
             const MtouchValue = data.selectedValue === '75halmark' ? details.touch_M_75 : details.touch_M_92;
             const maxToken = allowedToken(MtouchValue, currentPriceCP, data?.itemWeight)
