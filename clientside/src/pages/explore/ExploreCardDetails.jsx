@@ -294,7 +294,7 @@ const ExploreCardDetails = () => {
                                 <div className='mb-4'>
                                     {tokkenErrorMessage?.isValid
                                         ? <h2 className="text-[14px] text-red-500 font-semibold ">{tokkenErrorMessage?.message}</h2>
-                                        : <h2 className="text-[14px]  font-semibold text-slate-700">{`Available Prize Token : ${PrzeTokenData}`}</h2>
+                                        : <h2 className="text-[14px]  font-semibold text-slate-700">{`Available Prize Token : ${PrzeTokenData || 0}`}</h2>
                                     }
                                 </div>
 
